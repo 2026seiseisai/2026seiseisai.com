@@ -1,10 +1,19 @@
 'use client';
-import { useEffect, useState } from 'react';
+
+import { useEffect, useState, useMemo } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import { Noto_Sans_JP } from 'next/font/google';
 
-// ===== セクションラベル =====
+// Noto Sans JPの設定
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  display: 'swap',
+});
+
+// ===== セクションラベルコンポーネント =====
 function SectionLabel({ text }: { text: string }) {
   return (
     <div
@@ -20,7 +29,6 @@ function SectionLabel({ text }: { text: string }) {
         style={{
           backgroundColor: '#0A1B6F',
           color: '#ffffff',
-          fontFamily: "'Arial', 'Helvetica', sans-serif",
           fontWeight: '700',
           fontSize: '18px',
           letterSpacing: '0.08em',
@@ -56,9 +64,35 @@ function SectionLabel({ text }: { text: string }) {
   );
 }
 
-// ===== カウントダウン =====
+// ===== セクション背景テキストコンポーネント =====
+function BackgroundText({ text }: { text: string }) {
+  return (
+    <div
+      style={{
+        color: '#f0f0f0',
+        fontSize: 'clamp(40px, 8vw, 80px)',
+        fontWeight: '900',
+        letterSpacing: '-0.02em',
+        lineHeight: 1,
+        userSelect: 'none',
+        position: 'absolute',
+        top: '-20px',
+        right: 0,
+        zIndex: 0,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {text}
+    </div>
+  );
+}
+
+// ===== カウントダウンコンポーネント =====
 function Countdown() {
-  const target = new Date('2026-09-12T00:00:00+09:00').getTime();
+  const target = useMemo(
+    () => new Date('2026-09-12T00:00:00+09:00').getTime(),
+    [],
+  );
   const [time, setTime] = useState({
     days: 0,
     hours: 0,
@@ -83,7 +117,7 @@ function Countdown() {
     calc();
     const id = setInterval(calc, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [target]);
 
   const pad = (n: number, len = 2) => String(n).padStart(len, '0');
 
@@ -97,6 +131,7 @@ function Countdown() {
         width: '100%',
         margin: '0 auto 64px',
         boxSizing: 'border-box',
+        color: '#fff',
       }}
     >
       {/* COUNTDOWN タイトル */}
@@ -110,7 +145,6 @@ function Countdown() {
       >
         <div
           style={{
-            fontFamily: "'Arial Black', 'Arial', sans-serif",
             fontWeight: '900',
             fontSize: '40px',
             letterSpacing: '-0.02em',
@@ -125,7 +159,6 @@ function Countdown() {
           style={{
             color: '#ffffff',
             fontSize: '14px',
-            fontFamily: "'Hiragino Sans', 'Yu Gothic', sans-serif",
           }}
         >
           菁々祭まで
@@ -151,7 +184,6 @@ function Countdown() {
           <div key={label} style={{ textAlign: 'center' }}>
             <div
               style={{
-                fontFamily: "'Arial Black', sans-serif",
                 fontWeight: '900',
                 fontSize: '52px',
                 color: '#fff',
@@ -166,7 +198,6 @@ function Countdown() {
                 color: 'rgba(255,255,255,0.6)',
                 fontSize: '11px',
                 letterSpacing: '0.1em',
-                fontFamily: "'Arial', sans-serif",
                 marginTop: '4px',
               }}
             >
@@ -177,74 +208,42 @@ function Countdown() {
       </div>
 
       {/* 日付 */}
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
           <span
-            style={{
-              color: '#DB5492',
-              fontFamily: "'Arial Black', sans-serif",
-              fontWeight: '900',
-              fontSize: '28px',
-            }}
+            style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}
           >
             2
           </span>
           <span
-            style={{
-              color: '#ffffff',
-              fontFamily: "'Arial Black', sans-serif",
-              fontWeight: '900',
-              fontSize: '28px',
-            }}
+            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
           >
             0
           </span>
           <span
-            style={{
-              color: '#00AABE',
-              fontFamily: "'Arial Black', sans-serif",
-              fontWeight: '900',
-              fontSize: '28px',
-            }}
+            style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}
           >
             2
           </span>
           <span
-            style={{
-              color: '#ffffff',
-              fontFamily: "'Arial Black', sans-serif",
-              fontWeight: '900',
-              fontSize: '28px',
-            }}
+            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
           >
             6
           </span>
           <span
             style={{
               color: 'rgba(255,255,255,0.7)',
-              fontFamily: "'Arial', sans-serif",
               fontSize: '14px',
               marginLeft: '8px',
             }}
           >
-            SAT
-          </span>
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.7)',
-              fontFamily: "'Arial', sans-serif",
-              fontSize: '14px',
-              marginLeft: '24px',
-            }}
-          >
-            SUN
+            SAT / SUN
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0' }}>
           <span
             style={{
               color: '#ffffff',
-              fontFamily: "'Arial Black', sans-serif",
               fontWeight: '900',
               fontSize: '64px',
               lineHeight: 1,
@@ -255,7 +254,6 @@ function Countdown() {
           <span
             style={{
               color: '#DB5492',
-              fontFamily: "'Arial Black', sans-serif",
               fontWeight: '900',
               fontSize: '64px',
               lineHeight: 1,
@@ -266,7 +264,6 @@ function Countdown() {
           <span
             style={{
               color: '#ffffff',
-              fontFamily: "'Arial Black', sans-serif",
               fontWeight: '900',
               fontSize: '64px',
               lineHeight: 1,
@@ -277,7 +274,6 @@ function Countdown() {
           <span
             style={{
               color: '#00AABE',
-              fontFamily: "'Arial Black', sans-serif",
               fontWeight: '900',
               fontSize: '64px',
               lineHeight: 1,
@@ -294,10 +290,10 @@ function Countdown() {
 // ===== メインページ =====
 export default function Home() {
   return (
-    <>
+    <div className={notoSansJP.className}>
       <Header />
 
-      {/* ヒーロー画像エリア（グレープレースホルダー） */}
+      {/* ヒーロー画像エリア */}
       <div
         style={{
           width: '100%',
@@ -308,9 +304,7 @@ export default function Home() {
           justifyContent: 'center',
         }}
       >
-        <span
-          style={{ color: '#888', fontSize: '18px', fontFamily: 'sans-serif' }}
-        >
+        <span style={{ color: '#888', fontSize: '18px' }}>
           メインビジュアル（画像を後で設定）
         </span>
       </div>
@@ -327,7 +321,7 @@ export default function Home() {
         <Countdown />
 
         {/* SEISEISAI セクション */}
-        <section style={{ marginBottom: '64px' }}>
+        <section style={{ marginBottom: '80px' }}>
           <SectionLabel text="SEISEISAI" />
           <div
             style={{
@@ -352,51 +346,28 @@ export default function Home() {
             >
               <span style={{ color: '#888', fontSize: '12px' }}>学校ロゴ</span>
             </div>
-            <div style={{ flex: 1, minWidth: '260px' }}>
-              {/* 大きな透かし文字 */}
-              <div style={{ position: 'relative' }}>
-                <div
-                  style={{
-                    color: '#f0f0f0',
-                    fontSize: 'clamp(40px, 6vw, 72px)',
-                    fontWeight: '900',
-                    fontFamily: "'Arial Black', sans-serif",
-                    letterSpacing: '-0.02em',
-                    lineHeight: 1,
-                    userSelect: 'none',
-                    position: 'absolute',
-                    top: '-20px',
-                    right: 0,
-                    zIndex: 0,
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  SEISEISAI
-                </div>
-                <p
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    color: '#333',
-                    fontSize: '15px',
-                    lineHeight: '2',
-                    fontFamily: "'Hiragino Sans', 'Yu Gothic', sans-serif",
-                    margin: 0,
-                  }}
-                >
-                  菁々祭とは東大寺学園で行われる文化祭のこと。
-                  <br />
-                  第62回菁々祭 "Infinity"は2026年9月に開催予定。
-                  <br />
-                  東大寺学園の100周年を飾る菁々祭をぜひご覧ください！
-                </p>
-              </div>
+            <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
+              <BackgroundText text="SEISEISAI" />
+              <p
+                style={{
+                  position: 'relative',
+                  zIndex: 1,
+                  color: '#333',
+                  fontSize: '15px',
+                  lineHeight: '2',
+                  margin: 0,
+                }}
+              >
+                菁々祭とは東大寺学園で行われる文化祭のこと。 第62回菁々祭
+                &quot;Infinity&quot;は2026年9月に開催予定。
+                東大寺学園の100周年を飾る菁々祭をぜひご覧ください！
+              </p>
             </div>
           </div>
         </section>
 
         {/* Infinity セクション */}
-        <section style={{ marginBottom: '64px' }}>
+        <section style={{ marginBottom: '80px' }}>
           <SectionLabel text="Infinity" />
           <div
             style={{
@@ -408,31 +379,17 @@ export default function Home() {
           >
             {/* ロゴ画像 */}
             <div style={{ flexShrink: 0 }}>
-              <img
-                src="/Infinity_rogotype_1.png"
+              <Image
+                src="/Infinityrogotype1.svg"
                 alt="Infinity logo"
-                style={{ height: '80px', objectFit: 'contain' }}
+                width={180}
+                height={80}
+                style={{ height: 'auto', width: '180px', objectFit: 'contain' }}
+                unoptimized
               />
             </div>
             <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-              <div
-                style={{
-                  color: '#f0f0f0',
-                  fontSize: 'clamp(36px, 5vw, 64px)',
-                  fontWeight: '900',
-                  fontFamily: "'Arial Black', sans-serif",
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1,
-                  userSelect: 'none',
-                  position: 'absolute',
-                  top: '-16px',
-                  right: 0,
-                  zIndex: 0,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                INFINITY
-              </div>
+              <BackgroundText text="INFINITY" />
               <p
                 style={{
                   position: 'relative',
@@ -440,22 +397,66 @@ export default function Home() {
                   color: '#333',
                   fontSize: '15px',
                   lineHeight: '2',
-                  fontFamily: "'Hiragino Sans', 'Yu Gothic', sans-serif",
                   margin: 0,
                 }}
               >
-                第62回菁々祭のテーマは"Infinity"です。
-                <br />
+                第62回菁々祭のテーマは&quot;Infinity&quot;です。
                 生徒が持つ、無限の可能性を十分に発揮して欲しい
-                <br />
                 という思いが込められています。
               </p>
             </div>
           </div>
         </section>
 
+        {/* LOGO-PV セクション */}
+        <section style={{ marginBottom: '80px' }}>
+          <SectionLabel text="LOGO-PV" />
+          <div
+            style={{
+              display: 'flex',
+              gap: '40px',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            {/* PV動画プレースホルダー */}
+            <div
+              style={{
+                width: '280px',
+                height: '160px',
+                backgroundColor: '#000',
+                borderRadius: '8px',
+                flexShrink: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <span style={{ color: '#fff', fontSize: '14px' }}>
+                PV動画プレースホルダー
+              </span>
+            </div>
+            <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
+              <BackgroundText text="LOGO-PV" />
+              <p
+                style={{
+                  position: 'relative',
+                  zIndex: 1,
+                  color: '#333',
+                  fontSize: '15px',
+                  lineHeight: '2',
+                  margin: 0,
+                }}
+              >
+                今年のテーマロゴを制作する過程や、ロゴに込められた想いを
+                映像にまとめました。ぜひ音声をONにしてお楽しみください。
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ACCESS セクション */}
-        <section style={{ marginBottom: '64px' }}>
+        <section style={{ marginBottom: '80px' }}>
           <SectionLabel text="ACCESS" />
           <div
             style={{
@@ -472,7 +473,7 @@ export default function Home() {
                 height: '200px',
                 backgroundColor: '#eee',
                 borderRadius: '8px',
-                overflow: 'hidden', // マップが角丸からはみ出さないように
+                overflow: 'hidden',
                 flexShrink: 0,
                 border: '1px solid #ddd',
               }}
@@ -489,30 +490,13 @@ export default function Home() {
               ></iframe>
             </div>
             <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
-              <div
-                style={{
-                  color: '#f0f0f0',
-                  fontSize: 'clamp(36px, 5vw, 60px )',
-                  fontWeight: '900',
-                  fontFamily: "'Arial Black', sans-serif",
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1,
-                  userSelect: 'none',
-                  position: 'absolute',
-                  top: '-10px',
-                  right: 0,
-                  zIndex: 0,
-                }}
-              >
-                ACCESS
-              </div>
+              <BackgroundText text="ACCESS" />
               <div style={{ position: 'relative', zIndex: 1 }}>
                 <p
                   style={{
                     color: '#333',
                     fontSize: '15px',
                     lineHeight: '2',
-                    fontFamily: "'Hiragino Sans', 'Yu Gothic', sans-serif",
                     margin: '0 0 12px',
                   }}
                 >
@@ -525,7 +509,6 @@ export default function Home() {
                   style={{
                     color: '#00AABE',
                     fontSize: '14px',
-                    fontFamily: "'Hiragino Sans', 'Yu Gothic', sans-serif",
                   }}
                 >
                   https://tdj.ac.jp/
@@ -537,6 +520,6 @@ export default function Home() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

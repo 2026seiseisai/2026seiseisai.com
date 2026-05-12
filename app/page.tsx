@@ -21,34 +21,24 @@ const SplashScreen = dynamic(() => import('@/components/SplashScreen'), {
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 /* ------------------------------------------------------------------ */
-/* SectionLabel                                                        */
+/* SectionLabel */
 /* ------------------------------------------------------------------ */
 function SectionLabel({ text }: { text: string }) {
   return (
     <div className="section-label-wrap">
-      <div className="section-label-box">{text}</div>
-      <svg
-        width="80"
-        height="44"
-        viewBox="0 0 80 44"
-        fill="none"
-        style={{ display: 'block', flexShrink: 0 }}
-      >
-        <path
-          d="M0,44 C5,44 15,40 25,32 C35,24 45,16 55,10 C65,4 75,0 80,0 L80,12 C75,12 65,16 55,22 C45,28 35,34 25,40 C15,46 5,48 0,48 Z"
-          fill="#DB5492"
-        />
-        <path
-          d="M0,32 C10,28 20,22 30,16 C40,10 55,4 65,0 C70,0 75,0 80,0 L80,8 C70,8 60,12 50,18 C40,24 30,30 20,36 C10,42 5,44 0,44 Z"
-          fill="#00AABE"
-        />
-      </svg>
+      <div className="section-label-box">
+        <span className="section-label-part section-label-part-blue">
+          {text}
+        </span>
+        <span className="section-label-part section-label-part-pink" />
+        <span className="section-label-part section-label-part-teal" />
+      </div>
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* BackgroundText (watermark)                                          */
+/* BackgroundText (watermark) */
 /* ------------------------------------------------------------------ */
 function BackgroundText({ text }: { text: string }) {
   return (
@@ -59,13 +49,14 @@ function BackgroundText({ text }: { text: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Countdown                                                           */
+/* Countdown */
 /* ------------------------------------------------------------------ */
 function Countdown() {
   const target = useMemo(
     () => new Date('2026-09-12T00:00:00+09:00').getTime(),
     [],
   );
+
   const [time, setTime] = useState({
     days: 0,
     hours: 0,
@@ -173,77 +164,19 @@ function Countdown() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-          <span
-            style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}
-          >
-            2
-          </span>
-          <span
-            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
-          >
-            0
-          </span>
-          <span
-            style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}
-          >
-            2
-          </span>
-          <span
-            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
-          >
-            6
-          </span>
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.7)',
-              fontSize: '14px',
-              marginLeft: '8px',
-            }}
-          >
+          <span style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}>2</span>
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}>0</span>
+          <span style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}>2</span>
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}>6</span>
+          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginLeft: '8px' }}>
             SAT / SUN
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0' }}>
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
-            9.1
-          </span>
-          <span
-            style={{
-              color: '#DB5492',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
-            2
-          </span>
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
-            -9.1
-          </span>
-          <span
-            style={{
-              color: '#00AABE',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
-            3
-          </span>
+        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>9.1</span>
+          <span style={{ color: '#DB5492', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>2</span>
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>-9.1</span>
+          <span style={{ color: '#00AABE', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>3</span>
         </div>
       </div>
     </div>
@@ -251,7 +184,7 @@ function Countdown() {
 }
 
 /* ------------------------------------------------------------------ */
-/* sessionStorage helper (SSR safe)                                    */
+/* sessionStorage helper (SSR safe) */
 /* ------------------------------------------------------------------ */
 function getInitialSplashDone(): boolean {
   if (typeof window === 'undefined') return false;
@@ -259,7 +192,7 @@ function getInitialSplashDone(): boolean {
 }
 
 /* ------------------------------------------------------------------ */
-/* Page                                                                */
+/* Page */
 /* ------------------------------------------------------------------ */
 export default function Home() {
   const [splashDone, setSplashDone] = useState<boolean>(getInitialSplashDone);
@@ -272,7 +205,6 @@ export default function Home() {
   return (
     <div className={notoSansJP.className}>
       {!splashDone && <SplashScreen onFinish={handleSplashFinish} />}
-
       <div
         style={{
           opacity: splashDone ? 1 : 0,
@@ -377,7 +309,7 @@ export default function Home() {
               </div>
               <div className="two-col-right">
                 <BackgroundText text="PV" />
-                <p className="section-body-text">LOGO-PVを公開中！</p>
+                <p className="section-body-text-pv">LOGO-PVを公開中！</p>
               </div>
             </div>
           </section>
@@ -401,14 +333,12 @@ export default function Home() {
               <div className="two-col-right">
                 <BackgroundText text="ACCESS" />
                 <div style={{ position: 'relative', zIndex: 1 }}>
-                  <p
-                    className="section-body-text"
-                    style={{ marginBottom: '12px' }}
-                  >
+                  <p className="section-body-text" style={{ marginBottom: '12px' }}>
                     東大寺学園中学校・高等学校
                     <br />
                     〒631-0803 奈良市山陵町1375
                   </p>
+
                   <a
                     href="https://tdj.ac.jp/"
                     target="_blank"
@@ -421,6 +351,7 @@ export default function Home() {
               </div>
             </div>
           </section>
+
         </main>
 
         <Footer />

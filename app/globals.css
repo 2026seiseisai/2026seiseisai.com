@@ -1,12 +1,11 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   /* 文化祭メインカラー */
-  --color-navy: #0A1B6F;
-  --color-pink: #DB5492;
-  --color-teal: #00AABE;
+  --color-navy: #0a1b6f;
+  --color-pink: #db5492;
+  --color-teal: #00aabe;
   --color-white: #ffffff;
-
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -14,9 +13,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy: #0A1B6F;
-  --color-pink: #DB5492;
-  --color-teal: #00AABE;
+  --color-navy: #0a1b6f;
+  --color-pink: #db5492;
+  --color-teal: #00aabe;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -35,31 +34,91 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* SectionLabel                                                        */
+/* SectionLabel */
 /* ------------------------------------------------------------------ */
 .section-label-wrap {
   display: flex;
   align-items: center;
-  gap: 0;
-  margin-bottom: 32px;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+  width: 100%;
 }
 
 .section-label-box {
-  background-color: #0A1B6F;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-  padding: 10px 28px;
-  display: inline-flex;
+  display: flex;
+  align-items: stretch;
+  height: 76px;
+  width: min(45vw, 860px);
+  min-width: 540px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%);
+}
+
+.section-label-part {
+  height: 100%;
+  display: flex;
   align-items: center;
-  line-height: 44px;
-  padding-top: 0;
-  padding-bottom: 0;
+  justify-content: center;
+  position: relative;
+}
+
+.section-label-part-blue {
+  flex: 1;
+  padding: 0 48px;
+  background: #0a1b6f;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 50px;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-label-part-blue span {
+  display: inline-block;
+  transform: skewX(12deg);
+}
+
+.section-label-part-pink {
+  width: 172px;
+  min-width: 172px;
+  background: #db5492;
+  position: relative;
+}
+
+.section-label-part-pink::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  bottom: -12px;
+  width: 24px;
+  background: rgba(255, 255, 255, 0.24);
+  transform: skewX(-25deg);
+  transform-origin: left;
+}
+
+.section-label-part-teal {
+  width: 172px;
+  min-width: 172px;
+  background: #00aabe;
+  position: relative;
+}
+
+.section-label-part-teal::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  bottom: -12px;
+  width: 24px;
+  background: rgba(255, 255, 255, 0.24);
+  transform: skewX(-25deg);
+  transform-origin: left;
 }
 
 /* ------------------------------------------------------------------ */
-/* Two-column section layout                                           */
+/* Two-column section layout */
 /* ------------------------------------------------------------------ */
 .content-section {
   position: relative;
@@ -97,7 +156,7 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* Background watermark text                                           */
+/* Background watermark text */
 /* ------------------------------------------------------------------ */
 .bg-watermark {
   color: #e0e0e0;
@@ -116,26 +175,37 @@ body {
   z-index: 0;
   white-space: nowrap;
   pointer-events: none;
-  transform: scaleY(2.8);
-  transform-origin: right center;
+  transform: none;
 }
 
 /* ------------------------------------------------------------------ */
-/* Section body text (sits above watermark)                            */
+/* Section body text (sits above watermark) */
 /* ------------------------------------------------------------------ */
 .section-body-text {
   position: relative;
   z-index: 1;
   color: #333;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 700; /* 500 → 700 に変更 */
+  line-height: 2;
+  margin: 0;
+  text-align: center;
+}
+
+/* PVセクション用：特に太く大きく */
+.section-body-text-pv {
+  position: relative;
+  z-index: 1;
+  color: #333;
+  font-size: 22px;
+  font-weight: 900;
   line-height: 2;
   margin: 0;
   text-align: center;
 }
 
 /* ------------------------------------------------------------------ */
-/* Hero Lottie                                                         */
+/* Hero Lottie */
 /* ------------------------------------------------------------------ */
 .hero-lottie-section {
   width: 100%;
@@ -163,7 +233,7 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* YouTube 16:9 placeholder                                            */
+/* YouTube 16:9 placeholder */
 /* ------------------------------------------------------------------ */
 .yt-placeholder {
   width: 100%;
@@ -174,11 +244,11 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* ACCESS map (fills left column with fixed height)                    */
+/* ACCESS map (fills left column with fixed height) */
 /* ------------------------------------------------------------------ */
 .access-map-wrap {
   min-height: 260px;
-  height: 280px;
+  height: 340px;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #ddd;
@@ -186,7 +256,7 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* Responsive: mobile single column (< 768px)                         */
+/* Responsive: mobile single column (< 768px) */
 /* ------------------------------------------------------------------ */
 @media (max-width: 767px) {
   .content-section {
@@ -236,4 +306,3 @@ body {
     min-height: 220px;
   }
 }
-

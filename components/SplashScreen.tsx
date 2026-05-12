@@ -32,7 +32,7 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        backgroundColor: "#0A1B6F",
+        backgroundColor: "#ffffff",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -41,13 +41,13 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
         pointerEvents: fadeOut ? "none" : "all",
       }}
     >
-      <div style={{ width: "100%", maxWidth: "960px", padding: "0 24px", boxSizing: "border-box" }}>
+      <div style={{ width: "100%", height: "100%" }}>
         <Lottie
           lottieRef={lottieRef}
           animationData={animationData}
           loop={false}
           autoplay={true}
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%", height: "100%" }}
         />
       </div>
     </div>

@@ -33,3 +33,142 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ------------------------------------------------------------------ */
+/* SectionLabel                                                         */
+/* ------------------------------------------------------------------ */
+.section-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 32px;
+}
+
+.section-label-box {
+  background-color: #0A1B6F;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  padding: 10px 28px;
+  display: inline-flex;
+  align-items: center;
+  /* height must match SVG viewBox height (44px) */
+  line-height: 44px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Two-column section layout                                            */
+/* ------------------------------------------------------------------ */
+.content-section {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  margin-bottom: 40px;
+}
+
+.two-col-body {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Left column ~40% */
+.two-col-left {
+  flex: 0 0 42%;
+  max-width: 42%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Right column ~58% */
+.two-col-right {
+  flex: 1;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ */
+/* Background watermark text                                            */
+/* ------------------------------------------------------------------ */
+.bg-watermark {
+  color: #e0e0e0;
+  font-size: clamp(80px, 12vw, 200px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Section body text (sits above watermark)                             */
+/* ------------------------------------------------------------------ */
+.section-body-text {
+  position: relative;
+  z-index: 1;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2;
+  margin: 0;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ */
+/* YouTube 16:9 placeholder                                             */
+/* ------------------------------------------------------------------ */
+.yt-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #111;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/* ACCESS map (fills left column with fixed height)                     */
+/* ------------------------------------------------------------------ */
+.access-map-wrap {
+  min-height: 260px;
+  height: 280px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  align-items: stretch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive: mobile single column (< 768px)                           */
+/* ------------------------------------------------------------------ */
+@media (max-width: 767px) {
+  .two-col-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .two-col-left {
+    flex: unset;
+    max-width: 100%;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .two-col-right {
+    width: 100%;
+  }
+
+  /* On mobile the left image/media comes first, then the text below */
+  .access-map-wrap {
+    height: 220px;
+    min-height: 220px;
+  }
+}

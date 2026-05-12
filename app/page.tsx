@@ -2,10 +2,11 @@
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
 import { Noto_Sans_JP } from 'next/font/google';
+import animationData from '@/public/Infinity animation.json';
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -17,75 +18,49 @@ const SplashScreen = dynamic(() => import('@/components/SplashScreen'), {
   ssr: false,
 });
 
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+
+/* ------------------------------------------------------------------ */
+/* SectionLabel                                                         */
+/* ------------------------------------------------------------------ */
 function SectionLabel({ text }: { text: string }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0',
-        marginBottom: '32px',
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: '#0A1B6F',
-          color: '#ffffff',
-          fontWeight: '700',
-          fontSize: '18px',
-          letterSpacing: '0.08em',
-          padding: '10px 28px',
-          display: 'inline-flex',
-          alignItems: 'center',
-        }}
+    <div className="section-label-wrap">
+      <div className="section-label-box">{text}</div>
+      <svg
+        width="80"
+        height="44"
+        viewBox="0 0 80 44"
+        fill="none"
+        style={{ display: 'block', flexShrink: 0 }}
       >
-        {text}
-      </div>
-      <div
-        style={{
-          width: 0,
-          height: 0,
-          borderTop: '22px solid transparent',
-          borderBottom: '22px solid transparent',
-          borderLeft: '18px solid #DB5492',
-        }}
-      />
-      <div
-        style={{
-          width: 0,
-          height: 0,
-          borderTop: '22px solid transparent',
-          borderBottom: '22px solid transparent',
-          borderLeft: '18px solid #00AABE',
-          marginLeft: '-6px',
-        }}
-      />
+        <path
+          d="M0,44 C5,44 15,40 25,32 C35,24 45,16 55,10 C65,4 75,0 80,0 L80,12 C75,12 65,16 55,22 C45,28 35,34 25,40 C15,46 5,48 0,48 Z"
+          fill="#DB5492"
+        />
+        <path
+          d="M0,32 C10,28 20,22 30,16 C40,10 55,4 65,0 C70,0 75,0 80,0 L80,8 C70,8 60,12 50,18 C40,24 30,30 20,36 C10,42 5,44 0,44 Z"
+          fill="#00AABE"
+        />
+      </svg>
     </div>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* BackgroundText (watermark)                                           */
+/* ------------------------------------------------------------------ */
 function BackgroundText({ text }: { text: string }) {
   return (
-    <div
-      style={{
-        color: '#f0f0f0',
-        fontSize: 'clamp(40px, 8vw, 80px)',
-        fontWeight: '900',
-        letterSpacing: '-0.02em',
-        lineHeight: 1,
-        userSelect: 'none',
-        position: 'absolute',
-        top: '-20px',
-        right: 0,
-        zIndex: 0,
-        whiteSpace: 'nowrap',
-      }}
-    >
+    <div className="bg-watermark" aria-hidden="true">
       {text}
     </div>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Countdown                                                            */
+/* ------------------------------------------------------------------ */
 function Countdown() {
   const target = useMemo(
     () => new Date('2026-09-12T00:00:00+09:00').getTime(),
@@ -152,7 +127,7 @@ function Countdown() {
           C<span style={{ color: '#DB5492' }}>O</span>UNT
           <span style={{ color: '#00AABE' }}>D</span>OWN
         </div>
-        <div style={{ color: '#ffffff', fontSize: '14px' }}>菁々祭まで</div>
+        <div style={{ color: '#ffffff', fontSize: '14px' }}>開幕まで</div>
       </div>
       <div
         style={{
@@ -196,75 +171,27 @@ function Countdown() {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+          <span style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}>2</span>
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}>0</span>
+          <span style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}>2</span>
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}>6</span>
           <span
-            style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}
-          >
-            2
-          </span>
-          <span
-            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
-          >
-            0
-          </span>
-          <span
-            style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}
-          >
-            2
-          </span>
-          <span
-            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
-          >
-            6
-          </span>
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.7)',
-              fontSize: '14px',
-              marginLeft: '8px',
-            }}
+            style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginLeft: '8px' }}
           >
             SAT / SUN
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0' }}>
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>
             9.1
           </span>
-          <span
-            style={{
-              color: '#DB5492',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
+          <span style={{ color: '#DB5492', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>
             2
           </span>
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
+          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>
             -9.1
           </span>
-          <span
-            style={{
-              color: '#00AABE',
-              fontWeight: '900',
-              fontSize: '64px',
-              lineHeight: 1,
-            }}
-          >
+          <span style={{ color: '#00AABE', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>
             3
           </span>
         </div>
@@ -273,14 +200,18 @@ function Countdown() {
   );
 }
 
-// sessionStorageを確認して初期値を決める関数（SSR対応）
+/* ------------------------------------------------------------------ */
+/* sessionStorage helper (SSR safe)                                     */
+/* ------------------------------------------------------------------ */
 function getInitialSplashDone(): boolean {
   if (typeof window === 'undefined') return false;
   return sessionStorage.getItem('splashSeen') === '1';
 }
 
+/* ------------------------------------------------------------------ */
+/* Page                                                                 */
+/* ------------------------------------------------------------------ */
 export default function Home() {
-  // useEffectではなく、useState の初期化関数でsessionStorageを読む
   const [splashDone, setSplashDone] = useState<boolean>(getInitialSplashDone);
 
   const handleSplashFinish = useCallback(() => {
@@ -301,210 +232,122 @@ export default function Home() {
       >
         <Header />
 
+        {/* Hero Lottie */}
         <div
           style={{
             width: '100%',
-            height: '480px',
-            backgroundColor: '#cccccc',
+            backgroundColor: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            minHeight: 'calc(100vh - 80px)',
           }}
         >
-          <span style={{ color: '#888', fontSize: '18px' }}>
-            メインビジュアル（画像を後で設定）
-          </span>
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            autoplay={true}
+            style={{ width: '100%', height: 'auto' }}
+          />
         </div>
 
-        <main
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: '64px 24px',
-            boxSizing: 'border-box',
-          }}
-        >
+        <main style={{ padding: '16px 5vw', boxSizing: 'border-box' }}>
           <Countdown />
 
-          <section style={{ marginBottom: '80px' }}>
+          {/* ---- SEISEISAI ---- */}
+          <section className="content-section">
             <SectionLabel text="SEISEISAI" />
-            <div
-              style={{
-                display: 'flex',
-                gap: '40px',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div
-                style={{
-                  width: '180px',
-                  height: '160px',
-                  backgroundColor: '#ddd',
-                  borderRadius: '8px',
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span style={{ color: '#888', fontSize: '12px' }}>
-                  学校ロゴ
-                </span>
+            <BackgroundText text="SEISEISAI" />
+            <div className="two-col-body">
+              <div className="two-col-left">
+                <Image
+                  src="/TDJ-Logo.svg"
+                  alt="東大寺学園ロゴ"
+                  width={200}
+                  height={200}
+                  style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxHeight: '280px', maxWidth: '100%' }}
+                />
               </div>
-              <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-                <BackgroundText text="SEISEISAI" />
-                <p
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    color: '#333',
-                    fontSize: '15px',
-                    lineHeight: '2',
-                    margin: 0,
-                  }}
-                >
-                  菁々祭とは東大寺学園で行われる文化祭のこと。 第62回菁々祭
-                  &quot;Infinity&quot;は2026年9月に開催予定。
+              <div className="two-col-right">
+                <p className="section-body-text">
+                  菁々祭とは東大寺学園で行われる文化祭のこと。
+                  第62回菁々祭&ldquo;Infinity&rdquo;は2026年9月に開催予定。
                   東大寺学園の100周年を飾る菁々祭をぜひご覧ください！
                 </p>
               </div>
             </div>
           </section>
 
-          <section style={{ marginBottom: '80px' }}>
+          {/* ---- Infinity ---- */}
+          <section className="content-section">
             <SectionLabel text="Infinity" />
-            <div
-              style={{
-                display: 'flex',
-                gap: '40px',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div style={{ flexShrink: 0 }}>
+            <BackgroundText text="INFINITY" />
+            <div className="two-col-body">
+              <div className="two-col-left">
                 <Image
-                  src="/Infinityrogotype1.svg"
-                  alt="Infinity logo"
-                  width={180}
-                  height={80}
-                  style={{
-                    height: 'auto',
-                    width: '180px',
-                    objectFit: 'contain',
-                  }}
-                  unoptimized
+                  src="/Infinity rogotype.svg"
+                  alt="Infinityロゴタイプ"
+                  width={200}
+                  height={200}
+                  style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxHeight: '280px', maxWidth: '100%' }}
                 />
               </div>
-              <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-                <BackgroundText text="INFINITY" />
-                <p
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    color: '#333',
-                    fontSize: '15px',
-                    lineHeight: '2',
-                    margin: 0,
-                  }}
-                >
-                  第62回菁々祭のテーマは&quot;Infinity&quot;です。
-                  生徒が持つ、無限の可能性を十分に発揮して欲しい
-                  という思いが込められています。
+              <div className="two-col-right">
+                <p className="section-body-text">
+                  第62回菁々祭のテーマは&ldquo;Infinity&rdquo;です。
+                  生徒が持つ、無限の可能性を十分に発揮して欲しいという思いが込められています。
                 </p>
               </div>
             </div>
           </section>
 
-          <section style={{ marginBottom: '80px' }}>
+          {/* ---- LOGO-PV ---- */}
+          <section className="content-section">
             <SectionLabel text="LOGO-PV" />
-            <div
-              style={{
-                display: 'flex',
-                gap: '40px',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div
-                style={{
-                  width: '280px',
-                  height: '160px',
-                  backgroundColor: '#000',
-                  borderRadius: '8px',
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span style={{ color: '#fff', fontSize: '14px' }}>
-                  PV動画プレースホルダー
-                </span>
+            <BackgroundText text="PV" />
+            <div className="two-col-body">
+              {/* Left: 16:9 iframe placeholder */}
+              <div className="two-col-left">
+                <div className="yt-placeholder">
+                  <iframe
+                    src="about:blank"
+                    title="LOGO-PV YouTube"
+                    allowFullScreen
+                    style={{ border: 0, width: '100%', height: '100%', borderRadius: '6px' }}
+                  />
+                </div>
               </div>
-              <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-                <BackgroundText text="LOGO-PV" />
-                <p
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    color: '#333',
-                    fontSize: '15px',
-                    lineHeight: '2',
-                    margin: 0,
-                  }}
-                >
-                  今年のテーマロゴを制作する過程や、ロゴに込められた想いを
-                  映像にまとめました。ぜひ音声をONにしてお楽しみください。
+              <div className="two-col-right">
+                <p className="section-body-text">
+                  LOGO-PVを公開中！
                 </p>
               </div>
             </div>
           </section>
 
-          <section style={{ marginBottom: '80px' }}>
+          {/* ---- ACCESS ---- */}
+          <section className="content-section">
             <SectionLabel text="ACCESS" />
-            <div
-              style={{
-                display: 'flex',
-                gap: '40px',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div
-                style={{
-                  width: '280px',
-                  height: '200px',
-                  backgroundColor: '#eee',
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  flexShrink: 0,
-                  border: '1px solid #ddd',
-                }}
-              >
+            <BackgroundText text="ACCESS" />
+            <div className="two-col-body">
+              {/* Left: Google Maps fills the column height */}
+              <div className="two-col-left access-map-wrap">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.3741635816173!2d135.78694137633215!3d34.71333338276135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600139169649936b%3A0x67343e061801267!2z5p2x5aSn5a-65a2m5ZyS5Lit5a2m5qCh44O76auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1715432000000!5m2!1sja!2sjp"
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
+                  style={{ border: 0, borderRadius: '6px' }}
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Google Map"
                 />
               </div>
-              <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
-                <BackgroundText text="ACCESS" />
+              <div className="two-col-right">
                 <div style={{ position: 'relative', zIndex: 1 }}>
-                  <p
-                    style={{
-                      color: '#333',
-                      fontSize: '15px',
-                      lineHeight: '2',
-                      margin: '0 0 12px',
-                    }}
-                  >
-                    東大寺学園中学校・高等学校 〒631-0803 奈良市山陵町1375
+                  <p className="section-body-text" style={{ marginBottom: '12px' }}>
+                    東大寺学園中学校・高等学校<br />
+                    〒631-0803 奈良市山陵町1375
                   </p>
                   <a
                     href="https://tdj.ac.jp/"

@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "文化祭 2025",
-  description: "文化祭公式ホームページ",
+  title: '菁々祭 2026',
+  description: '文化祭公式ホームページ',
 };
 
 export default function RootLayout({

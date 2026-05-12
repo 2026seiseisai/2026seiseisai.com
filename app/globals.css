@@ -35,7 +35,7 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* SectionLabel                                                         */
+/* SectionLabel                                                        */
 /* ------------------------------------------------------------------ */
 .section-label-wrap {
   display: flex;
@@ -53,14 +53,13 @@ body {
   padding: 10px 28px;
   display: inline-flex;
   align-items: center;
-  /* height must match SVG viewBox height (44px) */
   line-height: 44px;
   padding-top: 0;
   padding-bottom: 0;
 }
 
 /* ------------------------------------------------------------------ */
-/* Two-column section layout                                            */
+/* Two-column section layout                                           */
 /* ------------------------------------------------------------------ */
 .content-section {
   position: relative;
@@ -72,7 +71,8 @@ body {
 .two-col-body {
   display: flex;
   gap: 40px;
-  align-items: center;
+  align-items: stretch;
+  height: calc(100% - 76px);
 }
 
 /* Left column ~40% */
@@ -87,11 +87,17 @@ body {
 /* Right column ~58% */
 .two-col-right {
   flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 /* ------------------------------------------------------------------ */
-/* Background watermark text                                            */
+/* Background watermark text                                           */
 /* ------------------------------------------------------------------ */
 .bg-watermark {
   color: #e0e0e0;
@@ -101,16 +107,21 @@ body {
   line-height: 1;
   user-select: none;
   position: absolute;
-  top: 50%;
+  top: 0;
   right: 0;
-  transform: translateY(-50%);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   z-index: 0;
   white-space: nowrap;
   pointer-events: none;
+  transform: scaleY(2.8);
+  transform-origin: right center;
 }
 
 /* ------------------------------------------------------------------ */
-/* Section body text (sits above watermark)                             */
+/* Section body text (sits above watermark)                            */
 /* ------------------------------------------------------------------ */
 .section-body-text {
   position: relative;
@@ -124,7 +135,35 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* YouTube 16:9 placeholder                                             */
+/* Hero Lottie                                                         */
+/* ------------------------------------------------------------------ */
+.hero-lottie-section {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0 12px;
+}
+
+.hero-lottie-box {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+}
+
+.hero-lottie-box > div {
+  width: 100% !important;
+}
+
+.hero-lottie-box svg {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 72vh;
+}
+
+/* ------------------------------------------------------------------ */
+/* YouTube 16:9 placeholder                                            */
 /* ------------------------------------------------------------------ */
 .yt-placeholder {
   width: 100%;
@@ -135,7 +174,7 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* ACCESS map (fills left column with fixed height)                     */
+/* ACCESS map (fills left column with fixed height)                    */
 /* ------------------------------------------------------------------ */
 .access-map-wrap {
   min-height: 260px;
@@ -147,28 +186,54 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* Responsive: mobile single column (< 768px)                           */
+/* Responsive: mobile single column (< 768px)                         */
 /* ------------------------------------------------------------------ */
 @media (max-width: 767px) {
+  .content-section {
+    height: auto;
+    min-height: 0;
+  }
+
   .two-col-body {
     flex-direction: column;
     align-items: stretch;
+    height: auto;
+    gap: 20px;
   }
 
   .two-col-left {
     flex: unset;
     max-width: 100%;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .two-col-right {
     width: 100%;
+    min-height: 180px;
+    padding: 8px 0;
   }
 
-  /* On mobile the left image/media comes first, then the text below */
+  .bg-watermark {
+    font-size: clamp(56px, 18vw, 120px);
+    transform: scaleY(2.2);
+  }
+
+  .hero-lottie-section {
+    padding: 0 0 8px;
+  }
+
+  .hero-lottie-box {
+    width: 100%;
+  }
+
+  .hero-lottie-box svg {
+    max-height: none;
+  }
+
   .access-map-wrap {
     height: 220px;
     min-height: 220px;
   }
 }
+

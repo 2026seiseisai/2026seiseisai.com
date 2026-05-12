@@ -3,7 +3,17 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: '菁々祭 2026',
-  description: '文化祭公式ホームページ',
+  description: '菁々祭公式ホームページ',
+  openGraph: {
+    title: '菁々祭 2026',
+    description: '菁々祭公式ホームページ',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '菁々祭 2026',
+    description: '菁々祭公式ホームページ',
+  },
 };
 
 export default function RootLayout({

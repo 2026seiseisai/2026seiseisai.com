@@ -1,19 +1,22 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Noto_Sans_JP } from 'next/font/google';
 
-// Noto Sans JPの設定
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   weight: ['400', '500', '700', '900'],
   display: 'swap',
 });
 
-// ===== セクションラベルコンポーネント =====
+const SplashScreen = dynamic(() => import('@/components/SplashScreen'), {
+  ssr: false,
+});
+
 function SectionLabel({ text }: { text: string }) {
   return (
     <div
@@ -24,7 +27,6 @@ function SectionLabel({ text }: { text: string }) {
         marginBottom: '32px',
       }}
     >
-      {/* 紺背景のラベル */}
       <div
         style={{
           backgroundColor: '#0A1B6F',
@@ -39,7 +41,6 @@ function SectionLabel({ text }: { text: string }) {
       >
         {text}
       </div>
-      {/* ピンクの三角装飾 */}
       <div
         style={{
           width: 0,
@@ -49,7 +50,6 @@ function SectionLabel({ text }: { text: string }) {
           borderLeft: '18px solid #DB5492',
         }}
       />
-      {/* ティールの三角装飾 */}
       <div
         style={{
           width: 0,
@@ -64,7 +64,6 @@ function SectionLabel({ text }: { text: string }) {
   );
 }
 
-// ===== セクション背景テキストコンポーネント =====
 function BackgroundText({ text }: { text: string }) {
   return (
     <div
@@ -87,7 +86,6 @@ function BackgroundText({ text }: { text: string }) {
   );
 }
 
-// ===== カウントダウンコンポーネント =====
 function Countdown() {
   const target = useMemo(
     () => new Date('2026-09-12T00:00:00+09:00').getTime(),
@@ -134,7 +132,6 @@ function Countdown() {
         color: '#fff',
       }}
     >
-      {/* COUNTDOWN タイトル */}
       <div
         style={{
           display: 'flex',
@@ -155,17 +152,8 @@ function Countdown() {
           C<span style={{ color: '#DB5492' }}>O</span>UNT
           <span style={{ color: '#00AABE' }}>D</span>OWN
         </div>
-        <div
-          style={{
-            color: '#ffffff',
-            fontSize: '14px',
-          }}
-        >
-          菁々祭まで
-        </div>
+        <div style={{ color: '#ffffff', fontSize: '14px' }}>菁々祭まで</div>
       </div>
-
-      {/* 数字 */}
       <div
         style={{
           display: 'flex',
@@ -206,8 +194,6 @@ function Countdown() {
           </div>
         ))}
       </div>
-
-      {/* 日付 */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
           <span
@@ -287,239 +273,255 @@ function Countdown() {
   );
 }
 
-// ===== メインページ =====
+// sessionStorageを確認して初期値を決める関数（SSR対応）
+function getInitialSplashDone(): boolean {
+  if (typeof window === 'undefined') return false;
+  return sessionStorage.getItem('splashSeen') === '1';
+}
+
 export default function Home() {
+  // useEffectではなく、useState の初期化関数でsessionStorageを読む
+  const [splashDone, setSplashDone] = useState<boolean>(getInitialSplashDone);
+
+  const handleSplashFinish = useCallback(() => {
+    sessionStorage.setItem('splashSeen', '1');
+    setSplashDone(true);
+  }, []);
+
   return (
     <div className={notoSansJP.className}>
-      <Header />
+      {!splashDone && <SplashScreen onFinish={handleSplashFinish} />}
 
-      {/* ヒーロー画像エリア */}
       <div
         style={{
-          width: '100%',
-          height: '480px',
-          backgroundColor: '#cccccc',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          opacity: splashDone ? 1 : 0,
+          transition: 'opacity 0.4s ease 0.1s',
+          pointerEvents: splashDone ? 'all' : 'none',
         }}
       >
-        <span style={{ color: '#888', fontSize: '18px' }}>
-          メインビジュアル（画像を後で設定）
-        </span>
-      </div>
+        <Header />
 
-      <main
-        style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: '64px 24px',
-          boxSizing: 'border-box',
-        }}
-      >
-        {/* カウントダウン */}
-        <Countdown />
+        <div
+          style={{
+            width: '100%',
+            height: '480px',
+            backgroundColor: '#cccccc',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span style={{ color: '#888', fontSize: '18px' }}>
+            メインビジュアル（画像を後で設定）
+          </span>
+        </div>
 
-        {/* SEISEISAI セクション */}
-        <section style={{ marginBottom: '80px' }}>
-          <SectionLabel text="SEISEISAI" />
-          <div
-            style={{
-              display: 'flex',
-              gap: '40px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            {/* 学校ロゴプレースホルダー */}
+        <main
+          style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            padding: '64px 24px',
+            boxSizing: 'border-box',
+          }}
+        >
+          <Countdown />
+
+          <section style={{ marginBottom: '80px' }}>
+            <SectionLabel text="SEISEISAI" />
             <div
               style={{
-                width: '180px',
-                height: '160px',
-                backgroundColor: '#ddd',
-                borderRadius: '8px',
-                flexShrink: 0,
                 display: 'flex',
+                gap: '40px',
                 alignItems: 'center',
-                justifyContent: 'center',
+                flexWrap: 'wrap',
               }}
             >
-              <span style={{ color: '#888', fontSize: '12px' }}>学校ロゴ</span>
-            </div>
-            <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-              <BackgroundText text="SEISEISAI" />
-              <p
+              <div
                 style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  color: '#333',
-                  fontSize: '15px',
-                  lineHeight: '2',
-                  margin: 0,
+                  width: '180px',
+                  height: '160px',
+                  backgroundColor: '#ddd',
+                  borderRadius: '8px',
+                  flexShrink: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                菁々祭とは東大寺学園で行われる文化祭のこと。 第62回菁々祭
-                &quot;Infinity&quot;は2026年9月に開催予定。
-                東大寺学園の100周年を飾る菁々祭をぜひご覧ください！
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Infinity セクション */}
-        <section style={{ marginBottom: '80px' }}>
-          <SectionLabel text="Infinity" />
-          <div
-            style={{
-              display: 'flex',
-              gap: '40px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            {/* ロゴ画像 */}
-            <div style={{ flexShrink: 0 }}>
-              <Image
-                src="/Infinityrogotype1.svg"
-                alt="Infinity logo"
-                width={180}
-                height={80}
-                style={{ height: 'auto', width: '180px', objectFit: 'contain' }}
-                unoptimized
-              />
-            </div>
-            <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-              <BackgroundText text="INFINITY" />
-              <p
-                style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  color: '#333',
-                  fontSize: '15px',
-                  lineHeight: '2',
-                  margin: 0,
-                }}
-              >
-                第62回菁々祭のテーマは&quot;Infinity&quot;です。
-                生徒が持つ、無限の可能性を十分に発揮して欲しい
-                という思いが込められています。
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* LOGO-PV セクション */}
-        <section style={{ marginBottom: '80px' }}>
-          <SectionLabel text="LOGO-PV" />
-          <div
-            style={{
-              display: 'flex',
-              gap: '40px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            {/* PV動画プレースホルダー */}
-            <div
-              style={{
-                width: '280px',
-                height: '160px',
-                backgroundColor: '#000',
-                borderRadius: '8px',
-                flexShrink: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <span style={{ color: '#fff', fontSize: '14px' }}>
-                PV動画プレースホルダー
-              </span>
-            </div>
-            <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
-              <BackgroundText text="LOGO-PV" />
-              <p
-                style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  color: '#333',
-                  fontSize: '15px',
-                  lineHeight: '2',
-                  margin: 0,
-                }}
-              >
-                今年のテーマロゴを制作する過程や、ロゴに込められた想いを
-                映像にまとめました。ぜひ音声をONにしてお楽しみください。
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ACCESS セクション */}
-        <section style={{ marginBottom: '80px' }}>
-          <SectionLabel text="ACCESS" />
-          <div
-            style={{
-              display: 'flex',
-              gap: '40px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            {/* Google マップ埋め込み */}
-            <div
-              style={{
-                width: '280px',
-                height: '200px',
-                backgroundColor: '#eee',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                flexShrink: 0,
-                border: '1px solid #ddd',
-              }}
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.3741635816173!2d135.78694137633215!3d34.71333338276135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600139169649936b%3A0x67343e061801267!2z5p2x5aSn5a-65a2m5ZyS5Lit5a2m5qCh44O76auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1715432000000!5m2!1sja!2sjp"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Google Map"
-              ></iframe>
-            </div>
-            <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
-              <BackgroundText text="ACCESS" />
-              <div style={{ position: 'relative', zIndex: 1 }}>
+                <span style={{ color: '#888', fontSize: '12px' }}>
+                  学校ロゴ
+                </span>
+              </div>
+              <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
+                <BackgroundText text="SEISEISAI" />
                 <p
                   style={{
+                    position: 'relative',
+                    zIndex: 1,
                     color: '#333',
                     fontSize: '15px',
                     lineHeight: '2',
-                    margin: '0 0 12px',
+                    margin: 0,
                   }}
                 >
-                  東大寺学園中学校・高等学校 〒631-0803 奈良市山陵町1375
+                  菁々祭とは東大寺学園で行われる文化祭のこと。 第62回菁々祭
+                  &quot;Infinity&quot;は2026年9月に開催予定。
+                  東大寺学園の100周年を飾る菁々祭をぜひご覧ください！
                 </p>
-                <a
-                  href="https://tdj.ac.jp/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: '#00AABE',
-                    fontSize: '14px',
-                  }}
-                >
-                  https://tdj.ac.jp/
-                </a>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
 
-      <Footer />
+          <section style={{ marginBottom: '80px' }}>
+            <SectionLabel text="Infinity" />
+            <div
+              style={{
+                display: 'flex',
+                gap: '40px',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <div style={{ flexShrink: 0 }}>
+                <Image
+                  src="/Infinityrogotype1.svg"
+                  alt="Infinity logo"
+                  width={180}
+                  height={80}
+                  style={{
+                    height: 'auto',
+                    width: '180px',
+                    objectFit: 'contain',
+                  }}
+                  unoptimized
+                />
+              </div>
+              <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
+                <BackgroundText text="INFINITY" />
+                <p
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    color: '#333',
+                    fontSize: '15px',
+                    lineHeight: '2',
+                    margin: 0,
+                  }}
+                >
+                  第62回菁々祭のテーマは&quot;Infinity&quot;です。
+                  生徒が持つ、無限の可能性を十分に発揮して欲しい
+                  という思いが込められています。
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section style={{ marginBottom: '80px' }}>
+            <SectionLabel text="LOGO-PV" />
+            <div
+              style={{
+                display: 'flex',
+                gap: '40px',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <div
+                style={{
+                  width: '280px',
+                  height: '160px',
+                  backgroundColor: '#000',
+                  borderRadius: '8px',
+                  flexShrink: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <span style={{ color: '#fff', fontSize: '14px' }}>
+                  PV動画プレースホルダー
+                </span>
+              </div>
+              <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
+                <BackgroundText text="LOGO-PV" />
+                <p
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    color: '#333',
+                    fontSize: '15px',
+                    lineHeight: '2',
+                    margin: 0,
+                  }}
+                >
+                  今年のテーマロゴを制作する過程や、ロゴに込められた想いを
+                  映像にまとめました。ぜひ音声をONにしてお楽しみください。
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section style={{ marginBottom: '80px' }}>
+            <SectionLabel text="ACCESS" />
+            <div
+              style={{
+                display: 'flex',
+                gap: '40px',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <div
+                style={{
+                  width: '280px',
+                  height: '200px',
+                  backgroundColor: '#eee',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  flexShrink: 0,
+                  border: '1px solid #ddd',
+                }}
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.3741635816173!2d135.78694137633215!3d34.71333338276135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600139169649936b%3A0x67343e061801267!2z5p2x5aSn5a-65a2m5ZyS5Lit5a2m5qCh44O76auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1715432000000!5m2!1sja!2sjp"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Google Map"
+                />
+              </div>
+              <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
+                <BackgroundText text="ACCESS" />
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <p
+                    style={{
+                      color: '#333',
+                      fontSize: '15px',
+                      lineHeight: '2',
+                      margin: '0 0 12px',
+                    }}
+                  >
+                    東大寺学園中学校・高等学校 〒631-0803 奈良市山陵町1375
+                  </p>
+                  <a
+                    href="https://tdj.ac.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#00AABE', fontSize: '14px' }}
+                  >
+                    https://tdj.ac.jp/
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
     </div>
   );
 }

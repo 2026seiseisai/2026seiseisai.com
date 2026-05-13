@@ -164,19 +164,77 @@ function Countdown() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-          <span style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}>2</span>
-          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}>0</span>
-          <span style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}>2</span>
-          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}>6</span>
-          <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginLeft: '8px' }}>
+          <span
+            style={{ color: '#DB5492', fontWeight: '900', fontSize: '28px' }}
+          >
+            2
+          </span>
+          <span
+            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
+          >
+            0
+          </span>
+          <span
+            style={{ color: '#00AABE', fontWeight: '900', fontSize: '28px' }}
+          >
+            2
+          </span>
+          <span
+            style={{ color: '#ffffff', fontWeight: '900', fontSize: '28px' }}
+          >
+            6
+          </span>
+          <span
+            style={{
+              color: 'rgba(255,255,255,0.7)',
+              fontSize: '14px',
+              marginLeft: '8px',
+            }}
+          >
             SAT / SUN
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline' }}>
-          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>9.1</span>
-          <span style={{ color: '#DB5492', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>2</span>
-          <span style={{ color: '#ffffff', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>-9.1</span>
-          <span style={{ color: '#00AABE', fontWeight: '900', fontSize: '64px', lineHeight: 1 }}>3</span>
+          <span
+            style={{
+              color: '#ffffff',
+              fontWeight: '900',
+              fontSize: '64px',
+              lineHeight: 1,
+            }}
+          >
+            9.1
+          </span>
+          <span
+            style={{
+              color: '#DB5492',
+              fontWeight: '900',
+              fontSize: '64px',
+              lineHeight: 1,
+            }}
+          >
+            2
+          </span>
+          <span
+            style={{
+              color: '#ffffff',
+              fontWeight: '900',
+              fontSize: '64px',
+              lineHeight: 1,
+            }}
+          >
+            -9.1
+          </span>
+          <span
+            style={{
+              color: '#00AABE',
+              fontWeight: '900',
+              fontSize: '64px',
+              lineHeight: 1,
+            }}
+          >
+            3
+          </span>
         </div>
       </div>
     </div>
@@ -295,7 +353,7 @@ export default function Home() {
               <div className="two-col-left">
                 <div className="yt-placeholder">
                   <iframe
-                    src="about:blank"
+                    src="https://www.youtube.com/embed/gEj_JFokp90"
                     title="LOGO-PV YouTube"
                     allowFullScreen
                     style={{
@@ -333,7 +391,10 @@ export default function Home() {
               <div className="two-col-right">
                 <BackgroundText text="ACCESS" />
                 <div style={{ position: 'relative', zIndex: 1 }}>
-                  <p className="section-body-text" style={{ marginBottom: '12px' }}>
+                  <p
+                    className="section-body-text"
+                    style={{ marginBottom: '12px' }}
+                  >
                     東大寺学園中学校・高等学校
                     <br />
                     〒631-0803 奈良市山陵町1375
@@ -351,7 +412,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-
         </main>
 
         <Footer />

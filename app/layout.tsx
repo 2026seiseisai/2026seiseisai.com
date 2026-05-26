@@ -2,16 +2,19 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '菁々祭 2026',
+  title: '東大寺学園菁々祭「Infinity」公式ホームページ',
   description: '菁々祭公式ホームページ',
+  icons: {
+    icon: '/インフィニティーアイコン (軽量版).png',
+  },
   openGraph: {
-    title: '菁々祭 2026',
+    title: '東大寺学園菁々祭「Infinity」公式ホームページ',
     description: '菁々祭公式ホームページ',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '菁々祭 2026',
+    title: '東大寺学園菁々祭「Infinity」公式ホームページ',
     description: '菁々祭公式ホームページ',
   },
 };

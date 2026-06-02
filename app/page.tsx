@@ -53,7 +53,7 @@ function BackgroundText({ text }: { text: string }) {
 /* ------------------------------------------------------------------ */
 function Countdown() {
   const target = useMemo(
-    () => new Date('2026-09-12T00:00:00+09:00').getTime(),
+    () => new Date('2026-09-26T09:00:00+09:00').getTime(),
     [],
   );
 

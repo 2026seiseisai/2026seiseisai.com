@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: '東大寺学園菁々祭「Infinity」公式ホームページ',
   description: '菁々祭公式ホームページ',
   icons: {
-    icon: '/infinityicon.png',
-    shortcut: '/infinityicon.png',
-    apple: '/infinityicon.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   openGraph: {
     title: '東大寺学園菁々祭「Infinity」公式ホームページ',

@@ -4,11 +4,6 @@ import './globals.css';
 export const metadata: Metadata = {
   title: '東大寺学園菁々祭「Infinity」公式ホームページ',
   description: '菁々祭公式ホームページ',
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
   openGraph: {
     title: '東大寺学園菁々祭「Infinity」公式ホームページ',
     description: '菁々祭公式ホームページ',
@@ -28,6 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body style={{ margin: 0, padding: 0 }}>{children}</body>
     </html>
   );

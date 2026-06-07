@@ -292,19 +292,15 @@ export default function Header() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              flexWrap: 'nowrap',
-              overflowX: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              justifyContent: 'flex-start',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
               gap: '40px',
-              paddingBottom: '8px',
             }}
           >
             {DRAWER_DATA.map((section) => (
               <div
                 key={section.title}
                 style={{
-                  flexShrink: 0,
                   minWidth: '140px',
                   textAlign: 'left',
                 }}

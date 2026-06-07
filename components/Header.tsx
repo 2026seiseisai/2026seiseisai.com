@@ -280,7 +280,7 @@ export default function Header() {
             right: 0,
             backgroundColor: '#0A1B6F',
             zIndex: 99,
-            padding: '24px 32px 32px',
+            padding: '24px 20px 32px',
             display: 'flex',
             flexDirection: 'column',
             gap: '20px',
@@ -292,16 +292,20 @@ export default function Header() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '40px',
+              flexWrap: 'nowrap',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              gap: '16px',
+              width: '100%',
             }}
           >
             {DRAWER_DATA.map((section) => (
               <div
                 key={section.title}
                 style={{
-                  minWidth: '140px',
+                  flex: '1 1 0',
+                  minWidth: 0,
+                  maxWidth: '33%',
                   textAlign: 'left',
                 }}
               >

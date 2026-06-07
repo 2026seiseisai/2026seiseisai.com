@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const FOOTER_DATA = [
   {
@@ -35,17 +35,7 @@ const FOOTER_DATA = [
 ];
 
 export default function Footer() {
-  const [isMobile, setIsMobile] = useState(false);
   const [imgError, setImgError] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <footer
@@ -58,7 +48,7 @@ export default function Footer() {
       <div
         style={{
           backgroundColor: '#ffffff',
-          padding: isMobile ? '40px 20px' : '40px 80px',
+          padding: '40px 80px',
           borderTop: '1px solid #eaeaea',
         }}
       >
@@ -67,21 +57,29 @@ export default function Footer() {
             maxWidth: '1200px',
             margin: '0 auto',
             display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-            alignItems: isMobile ? 'center' : 'flex-end',
-            gap: isMobile ? '20px' : '40px',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '40px',
           }}
         >
           {/* Logo & Copyright */}
-          <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
-            <div style={{ marginBottom: '8px', minHeight: '60px' }}>
+          <div style={{ textAlign: 'left', minWidth: 0 }}>
+            <div
+              style={{
+                marginBottom: '8px',
+                minHeight: '60px',
+                width: '200px',
+                maxWidth: '100%',
+              }}
+            >
               {!imgError ? (
                 <Image
                   src="/Infinityrogotype2.svg"
                   alt="Infinity Logo"
                   width={200}
                   height={60}
-                  style={{ height: '60px', width: 'auto', display: 'block' }}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
                   priority
                   unoptimized
                   onError={() => setImgError(true)}
@@ -120,7 +118,7 @@ export default function Footer() {
               flexDirection: 'column',
               gap: '8px',
               textAlign: 'left',
-              marginBottom: isMobile ? '0' : '4px',
+              marginBottom: '0',
             }}
           >
             <Link
@@ -160,7 +158,7 @@ export default function Footer() {
         style={{
           backgroundColor: '#0A1B6F',
           color: '#ffffff',
-          padding: isMobile ? '40px 20px' : '60px 80px',
+          padding: '60px 80px',
           boxSizing: 'border-box',
         }}
       >
@@ -169,10 +167,11 @@ export default function Footer() {
             maxWidth: '1200px',
             margin: '0 auto',
             display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
+            flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: isMobile ? 'center' : 'flex-end',
-            gap: isMobile ? '20px' : '60px',
+            alignItems: 'flex-end',
+            gap: '60px',
+            flexWrap: 'wrap',
           }}
         >
           {/* Navigation Links */}
@@ -180,17 +179,22 @@ export default function Footer() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: isMobile ? '30px' : '80px',
+              flexWrap: 'nowrap',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              gap: '24px',
+              width: '100%',
+              overflowX: 'hidden',
             }}
           >
             {FOOTER_DATA.map((section) => (
               <div
                 key={section.title}
                 style={{
-                  minWidth: isMobile ? '140px' : '180px',
-                  textAlign: isMobile ? 'center' : 'left',
+                  flex: '1 1 0',
+                  minWidth: 0,
+                  textAlign: 'left',
+                  overflow: 'hidden',
                 }}
               >
                 <h3
@@ -222,6 +226,8 @@ export default function Footer() {
                           textDecoration: 'none',
                           fontSize: '14px',
                           fontWeight: '500',
+                          whiteSpace: 'normal',
+                          wordBreak: 'break-word',
                         }}
                       >
                         {link.label}
@@ -238,7 +244,7 @@ export default function Footer() {
             style={{
               display: 'flex',
               gap: '12px',
-              marginBottom: isMobile ? '0' : '4px',
+              marginBottom: '0',
             }}
           >
             <a

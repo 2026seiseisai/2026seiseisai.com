@@ -158,7 +158,7 @@ export default function Footer() {
         style={{
           backgroundColor: '#0A1B6F',
           color: '#ffffff',
-          padding: '60px 80px',
+          padding: '40px 32px',
           boxSizing: 'border-box',
         }}
       >
@@ -170,7 +170,7 @@ export default function Footer() {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'flex-end',
-            gap: '60px',
+            gap: '24px',
             flexWrap: 'wrap',
           }}
         >
@@ -182,9 +182,9 @@ export default function Footer() {
               flexWrap: 'nowrap',
               justifyContent: 'space-between',
               alignItems: 'flex-start',
-              gap: '24px',
+              gap: '12px',
               width: '100%',
-              overflowX: 'hidden',
+              overflowX: 'visible',
             }}
           >
             {FOOTER_DATA.map((section) => (
@@ -192,9 +192,9 @@ export default function Footer() {
                 key={section.title}
                 style={{
                   flex: '1 1 0',
-                  minWidth: 0,
+                  minWidth: '110px',
+                  maxWidth: 'calc((100% - 24px) / 3)',
                   textAlign: 'left',
-                  overflow: 'hidden',
                 }}
               >
                 <h3
@@ -226,8 +226,10 @@ export default function Footer() {
                           textDecoration: 'none',
                           fontSize: '14px',
                           fontWeight: '500',
-                          whiteSpace: 'normal',
-                          wordBreak: 'break-word',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          display: 'inline-block',
                         }}
                       >
                         {link.label}

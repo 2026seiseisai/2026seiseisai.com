@@ -180,17 +180,21 @@ export default function Footer() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              flexWrap: 'wrap',
+              flexWrap: 'nowrap',
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
               justifyContent: 'center',
-              gap: isMobile ? '30px' : '80px',
+              gap: '80px',
+              paddingBottom: '8px',
             }}
           >
             {FOOTER_DATA.map((section) => (
               <div
                 key={section.title}
                 style={{
-                  minWidth: isMobile ? '140px' : '180px',
-                  textAlign: isMobile ? 'center' : 'left',
+                  flexShrink: 0,
+                  minWidth: '140px',
+                  textAlign: 'left',
                 }}
               >
                 <h3

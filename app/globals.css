@@ -184,6 +184,8 @@ body {
   white-space: nowrap;
   pointer-events: none;
   transform: none;
+  left: 0;
+  padding-right: 2rem;
 }
 
 /* ------------------------------------------------------------------ */
@@ -290,11 +292,13 @@ body {
     width: 100%;
     min-height: 180px;
     padding: 8px 0;
+    overflow: visible;
   }
 
   .bg-watermark {
-    font-size: clamp(56px, 18vw, 120px);
-    transform: scaleY(2.2);
+    font-size: clamp(48px, 14vw, 100px);
+    transform: none;
+    padding-right: 1rem;
   }
 
   .hero-lottie-section {

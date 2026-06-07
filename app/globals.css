@@ -161,6 +161,7 @@ body {
   text-align: center;
   overflow: hidden;
   isolation: isolate;
+  min-width: 0;
 }
 
 /* ------------------------------------------------------------------ */
@@ -168,7 +169,8 @@ body {
 /* ------------------------------------------------------------------ */
 .bg-watermark {
   color: #e0e0e0;
-  font-size: clamp(80px, 12vw, 200px);
+  font-size: clamp(80px, 9vw, 180px);
+  max-width: 100%;
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -177,6 +179,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -184,8 +187,19 @@ body {
   white-space: nowrap;
   pointer-events: none;
   transform: none;
-  left: 0;
   padding-right: 2rem;
+}
+
+@media (max-width: 1150px) {
+  .bg-watermark {
+    font-size: clamp(70px, 9.5vw, 150px);
+  }
+}
+
+@media (max-width: 960px) {
+  .bg-watermark {
+    font-size: clamp(56px, 10vw, 120px);
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -292,7 +306,7 @@ body {
     width: 100%;
     min-height: 180px;
     padding: 8px 0;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .bg-watermark {

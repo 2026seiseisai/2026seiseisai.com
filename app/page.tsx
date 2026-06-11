@@ -83,7 +83,7 @@ function Countdown() {
     return () => clearInterval(id);
   }, [target]);
 
-  const pad = (n: number, len = 2) => String(n).padStart(len, '0');
+  const pad = (n: number) => String(n);
 
   return (
     <div
@@ -118,35 +118,45 @@ function Countdown() {
           C<span style={{ color: '#DB5492' }}>O</span>UNT
           <span style={{ color: '#00AABE' }}>D</span>OWN
         </div>
-        <div style={{ color: '#ffffff', fontSize: '14px' }}>開幕まで</div>
       </div>
 
       <div
         style={{
           display: 'flex',
-          gap: '24px',
+          gap: '14px',
           alignItems: 'flex-end',
           justifyContent: 'center',
           marginBottom: '24px',
           flexWrap: 'nowrap',
-          overflowX: 'auto',
+          overflowX: 'hidden',
           paddingBottom: '8px',
+          width: '100%',
+          minWidth: 0,
         }}
       >
         {[
-          { value: pad(time.days, 3), label: 'DAYS' },
+          { value: pad(time.days), label: 'DAYS' },
           { value: pad(time.hours), label: 'HOURS' },
           { value: pad(time.minutes), label: 'MIN' },
           { value: pad(time.seconds), label: 'SEC' },
         ].map(({ value, label }) => (
-          <div key={label} style={{ textAlign: 'center' }}>
+          <div
+            key={label}
+            style={{
+              textAlign: 'center',
+              flex: '1 1 0',
+              minWidth: 0,
+              maxWidth: '120px',
+            }}
+          >
             <div
               style={{
                 fontWeight: '900',
-                fontSize: '52px',
+                fontSize: 'clamp(34px, 8vw, 52px)',
                 color: '#fff',
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
+                overflowWrap: 'break-word',
               }}
             >
               {value}

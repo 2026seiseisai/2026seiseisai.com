@@ -63,6 +63,7 @@ function Countdown() {
     minutes: 0,
     seconds: 0,
   });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const calc = () => {
@@ -78,12 +79,23 @@ function Countdown() {
         seconds: Math.floor((diff % 60000) / 1000),
       });
     };
+
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
     calc();
+    updateIsMobile();
     const id = setInterval(calc, 1000);
-    return () => clearInterval(id);
+    window.addEventListener('resize', updateIsMobile);
+    return () => {
+      clearInterval(id);
+      window.removeEventListener('resize', updateIsMobile);
+    };
   }, [target]);
 
-  const pad = (n: number) => String(n);
+  const formatValue = (n: number, len = 2) =>
+    isMobile ? String(n) : String(n).padStart(len, '0');
 
   return (
     <div
@@ -135,10 +147,10 @@ function Countdown() {
         }}
       >
         {[
-          { value: pad(time.days), label: 'DAYS' },
-          { value: pad(time.hours), label: 'HOURS' },
-          { value: pad(time.minutes), label: 'MIN' },
-          { value: pad(time.seconds), label: 'SEC' },
+          { value: formatValue(time.days, 3), label: 'DAYS' },
+          { value: formatValue(time.hours), label: 'HOURS' },
+          { value: formatValue(time.minutes), label: 'MIN' },
+          { value: formatValue(time.seconds), label: 'SEC' },
         ].map(({ value, label }) => (
           <div
             key={label}

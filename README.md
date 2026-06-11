@@ -31,4 +31,3 @@ cp .env.example .env.local
 npm run dev
 ```
 起動後、ブラウザで http://localhost:3000 にアクセスすると、現在のサイトを確認できます。
----

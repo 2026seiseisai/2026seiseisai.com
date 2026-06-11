@@ -310,9 +310,12 @@ body {
   }
 
   .bg-watermark {
-    font-size: clamp(48px, 14vw, 100px);
+    font-size: clamp(64px, 16vw, 140px);
     transform: none;
-    padding-right: 1rem;
+    padding-right: 0;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
   }
 
   .hero-lottie-section {

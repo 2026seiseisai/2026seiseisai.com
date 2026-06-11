@@ -126,8 +126,11 @@ function Countdown() {
           display: 'flex',
           gap: '24px',
           alignItems: 'flex-end',
+          justifyContent: 'center',
           marginBottom: '24px',
-          flexWrap: 'wrap',
+          flexWrap: 'nowrap',
+          overflowX: 'auto',
+          paddingBottom: '8px',
         }}
       >
         {[

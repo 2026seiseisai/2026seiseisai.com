@@ -33,7 +33,7 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
-      <body style={{ margin: 0, padding: 0 }}>{children}</body>
+      <body style={{ margin: 0, padding: '64px 0 0 0' }}>{children}</body>
     </html>
   );
 }

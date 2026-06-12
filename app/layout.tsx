@@ -14,10 +14,9 @@ export const metadata: Metadata = {
     title: '東大寺学園菁々祭「Infinity」公式ホームページ',
     description: '菁々祭公式ホームページ',
   },
-  icons: [
-    { url: '/favicon.ico', type: 'image/x-icon' },
-    { url: '/favicon.svg', type: 'image/svg+xml' },
-  ],
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

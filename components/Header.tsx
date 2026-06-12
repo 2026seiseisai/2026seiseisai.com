@@ -171,6 +171,9 @@ export default function Header() {
         {/* 左：SVGロゴ */}
         <Link
           href="/"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
           style={{
             display: 'flex',
             alignItems: 'center',

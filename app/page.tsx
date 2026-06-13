@@ -270,18 +270,37 @@ function Countdown() {
 /* sessionStorage helper (SSR safe) */
 /* ------------------------------------------------------------------ */
 function getInitialSplashDone(): boolean {
-  if (typeof window === 'undefined') return false;
-  return sessionStorage.getItem('splashSeen') === '1';
+  // Deprecated: avoid reading sessionStorage during render to prevent
+  // hydration mismatch between server and client. Always return false
+  // here and read storage in useEffect on the client.
+  return false;
 }
 
 /* ------------------------------------------------------------------ */
 /* Page */
 /* ------------------------------------------------------------------ */
 export default function Home() {
-  const [splashDone, setSplashDone] = useState<boolean>(getInitialSplashDone);
+  const [splashDone, setSplashDone] = useState<boolean>(false);
+
+  // Read sessionStorage on client after mount to decide whether to skip splash.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const timeoutId = window.setTimeout(() => {
+      if (sessionStorage.getItem('splashSeen') === '1') {
+        setSplashDone(true);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const handleSplashFinish = useCallback(() => {
-    sessionStorage.setItem('splashSeen', '1');
+    try {
+      sessionStorage.setItem('splashSeen', '1');
+    } catch (e) {
+      /* ignore */
+    }
     setSplashDone(true);
   }, []);
 
@@ -329,6 +348,7 @@ export default function Home() {
                     maxHeight: '280px',
                     maxWidth: '100%',
                   }}
+                  loading="eager"
                 />
               </div>
               <div className="two-col-right">
@@ -359,6 +379,7 @@ export default function Home() {
                     maxHeight: '280px',
                     maxWidth: '100%',
                   }}
+                  loading="eager"
                 />
               </div>
               <div className="two-col-right">

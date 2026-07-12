@@ -50,14 +50,16 @@ body {
   justify-content: flex-start;
   margin-bottom: 40px;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .section-label-box {
   display: flex;
   align-items: stretch;
   height: 76px;
-  width: min(45vw, 860px);
-  min-width: 540px;
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%);
 }
@@ -68,6 +70,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  min-width: 0;
 }
 
 .section-label-part-blue {
@@ -131,27 +134,34 @@ body {
 .content-section {
   position: relative;
   overflow: hidden;
-  height: 500px;
-  margin-bottom: 40px;
+  height: 50vh;
+  margin-bottom: 64px;
+  padding: 0 3vw;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 24px;
 }
 
 .two-col-body {
   display: flex;
   gap: 40px;
-  align-items: stretch;
-  height: calc(100% - 76px);
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
 }
 
-/* Left column ~40% */
+/* Left column ~48% */
 .two-col-left {
-  flex: 0 0 42%;
-  max-width: 42%;
+  flex: 0 0 48%;
+  max-width: 48%;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
-/* Right column ~58% */
+/* Right column ~52% */
 .two-col-right {
   flex: 1;
   position: relative;
@@ -159,9 +169,10 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
   min-width: 0;
+  height: 100%;
 }
 
 /* ------------------------------------------------------------------ */
@@ -176,9 +187,8 @@ body {
   line-height: 1;
   user-select: none;
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
-  bottom: 0;
   left: 0;
   display: flex;
   align-items: center;
@@ -186,7 +196,7 @@ body {
   z-index: 0;
   white-space: nowrap;
   pointer-events: none;
-  transform: none;
+  transform: translateY(-50%);
   padding-right: 2rem;
 }
 
@@ -241,7 +251,7 @@ body {
 }
 
 .hero-lottie-box {
-  width: min(100%, 1200px);
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -277,6 +287,9 @@ body {
   overflow: hidden;
   border: 1px solid #ddd;
   align-items: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ------------------------------------------------------------------ */

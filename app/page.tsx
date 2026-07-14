@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  type CSSProperties,
+} from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Header from '@/components/Header';
@@ -97,9 +103,18 @@ function Countdown() {
   const formatValue = (n: number, len = 2) =>
     isMobile ? String(n) : String(n).padStart(len, '0');
 
-  return (
-    <div
-      style={{
+  const countdownCardStyle: CSSProperties = isMobile
+    ? {
+        backgroundColor: '#0A1B6F',
+        borderRadius: '8px',
+        padding: '32px 40px',
+        maxWidth: '660px',
+        width: '100%',
+        margin: '0 auto 64px',
+        boxSizing: 'border-box',
+        color: '#fff',
+      }
+    : {
         backgroundColor: '#0A1B6F',
         borderRadius: '8px',
         padding: '3vw 4vw',
@@ -107,210 +122,381 @@ function Countdown() {
         margin: '0 13vw 64px',
         boxSizing: 'border-box',
         color: '#fff',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '16px',
-          marginBottom: '24px',
-        }}
-      >
-        <div
-          style={{
-            fontWeight: '900',
-            fontSize: 'clamp(38px, 3.8vw, 60px)',
-            letterSpacing: '-0.08em',
-            color: '#fff',
-            lineHeight: 1,
-            whiteSpace: 'nowrap',
-          }}
-        >
-          C<span style={{ color: '#DB5492' }}>O</span>UNT
-          <span style={{ color: '#00AABE' }}>D</span>OWN
-        </div>
-        <div
-          style={{
-            color: '#fff',
-            fontWeight: '700',
-            fontSize: 'clamp(16px, 1.4vw, 20px)',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          菁々祭まで
-        </div>
-      </div>
+      };
 
-      <div
-        style={{
-          display: 'flex',
-          gap: '18px',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          marginBottom: '28px',
-          flexWrap: 'wrap',
-          overflowX: 'hidden',
-          paddingBottom: '8px',
-          width: '100%',
-          minWidth: 0,
-        }}
-      >
-        {[
-          { value: formatValue(time.days, 3), label: 'DAYS' },
-          { value: formatValue(time.hours), label: 'HOURS' },
-          { value: formatValue(time.minutes), label: 'MIN' },
-          { value: formatValue(time.seconds), label: 'SEC' },
-        ].map(({ value, label }) => (
+  const countdownTitleStyle: CSSProperties = isMobile
+    ? {
+        fontWeight: '900',
+        fontSize: '40px',
+        letterSpacing: '-0.02em',
+        color: '#fff',
+        lineHeight: 1,
+      }
+    : {
+        fontWeight: '900',
+        fontSize: 'clamp(38px, 3.8vw, 60px)',
+        letterSpacing: '-0.08em',
+        color: '#fff',
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
+      };
+
+  const countdownNumberStyle: CSSProperties = isMobile
+    ? {
+        fontWeight: '900',
+        fontSize: 'clamp(34px, 8vw, 52px)',
+        color: '#fff',
+        lineHeight: 1,
+        letterSpacing: '-0.02em',
+        overflowWrap: 'break-word',
+      }
+    : {
+        fontWeight: '900',
+        fontSize: 'clamp(44px, 5vw, 88px)',
+        color: '#fff',
+        lineHeight: 1,
+        letterSpacing: '-0.04em',
+        overflowWrap: 'break-word',
+      };
+
+  const countdownLabelStyle: CSSProperties = isMobile
+    ? {
+        color: 'rgba(255,255,255,0.6)',
+        fontSize: '11px',
+        letterSpacing: '0.1em',
+        marginTop: '4px',
+      }
+    : {
+        color: 'rgba(255,255,255,0.75)',
+        fontSize: 'clamp(12px, 1.2vw, 14px)',
+        letterSpacing: '0.14em',
+        marginTop: '6px',
+      };
+
+  return (
+    <div style={countdownCardStyle}>
+      {isMobile ? (
+        <>
           <div
-            key={label}
             style={{
-              textAlign: 'center',
-              flex: '1 1 0',
-              minWidth: 0,
-              maxWidth: '160px',
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: '16px',
+              marginBottom: '20px',
             }}
           >
-            <div
-              style={{
-                fontWeight: '900',
-                fontSize: 'clamp(44px, 5vw, 88px)',
-                color: '#fff',
-                lineHeight: 1,
-                letterSpacing: '-0.04em',
-                overflowWrap: 'break-word',
-              }}
-            >
-              {value}
-            </div>
-            <div
-              style={{
-                color: 'rgba(255,255,255,0.75)',
-                fontSize: 'clamp(12px, 1.2vw, 14px)',
-                letterSpacing: '0.14em',
-                marginTop: '6px',
-              }}
-            >
-              {label}
+            <div style={countdownTitleStyle}>
+              C<span style={{ color: '#DB5492' }}>O</span>UNT
+              <span style={{ color: '#00AABE' }}>D</span>OWN
             </div>
           </div>
-        ))}
-      </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            gap: '10px',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          <span
+          <div
             style={{
-              color: '#DB5492',
-              fontWeight: '900',
-              fontSize: 'clamp(24px, 2.4vw, 36px)',
-              lineHeight: 1,
+              display: 'flex',
+              gap: '14px',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+              marginBottom: '24px',
+              flexWrap: 'nowrap',
+              overflowX: 'hidden',
+              paddingBottom: '8px',
+              width: '100%',
+              minWidth: 0,
             }}
           >
-            2
-          </span>
-          <span
+            {[
+              { value: formatValue(time.days, 3), label: 'DAYS' },
+              { value: formatValue(time.hours), label: 'HOURS' },
+              { value: formatValue(time.minutes), label: 'MIN' },
+              { value: formatValue(time.seconds), label: 'SEC' },
+            ].map(({ value, label }) => (
+              <div
+                key={label}
+                style={{
+                  textAlign: 'center',
+                  flex: '1 1 0',
+                  minWidth: 0,
+                  maxWidth: '120px',
+                }}
+              >
+                <div style={countdownNumberStyle}>{value}</div>
+                <div style={countdownLabelStyle}>{label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div
+              style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}
+            >
+              <span
+                style={{
+                  color: '#DB5492',
+                  fontWeight: '900',
+                  fontSize: '28px',
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: '28px',
+                }}
+              >
+                0
+              </span>
+              <span
+                style={{
+                  color: '#00AABE',
+                  fontWeight: '900',
+                  fontSize: '28px',
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: '28px',
+                }}
+              >
+                6
+              </span>
+              <span
+                style={{
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '14px',
+                  marginLeft: '8px',
+                }}
+              >
+                SAT / SUN
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: '64px',
+                  lineHeight: 1,
+                }}
+              >
+                9.1
+              </span>
+              <span
+                style={{
+                  color: '#DB5492',
+                  fontWeight: '900',
+                  fontSize: '64px',
+                  lineHeight: 1,
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: '64px',
+                  lineHeight: 1,
+                }}
+              >
+                -9.1
+              </span>
+              <span
+                style={{
+                  color: '#00AABE',
+                  fontWeight: '900',
+                  fontSize: '64px',
+                  lineHeight: 1,
+                }}
+              >
+                3
+              </span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div
             style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: 'clamp(24px, 2.4vw, 36px)',
-              lineHeight: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '16px',
+              marginBottom: '24px',
             }}
           >
-            0
-          </span>
-          <span
+            <div style={countdownTitleStyle}>
+              C<span style={{ color: '#DB5492' }}>O</span>UNT
+              <span style={{ color: '#00AABE' }}>D</span>OWN
+            </div>
+            <div
+              style={{
+                color: '#fff',
+                fontWeight: '700',
+                fontSize: 'clamp(16px, 1.4vw, 20px)',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              菁々祭まで
+            </div>
+          </div>
+
+          <div
             style={{
-              color: '#00AABE',
-              fontWeight: '900',
-              fontSize: 'clamp(24px, 2.4vw, 36px)',
-              lineHeight: 1,
+              display: 'flex',
+              gap: '18px',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+              marginBottom: '28px',
+              flexWrap: 'wrap',
+              overflowX: 'hidden',
+              paddingBottom: '8px',
+              width: '100%',
+              minWidth: 0,
             }}
           >
-            2
-          </span>
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: 'clamp(24px, 2.4vw, 36px)',
-              lineHeight: 1,
-            }}
-          >
-            6
-          </span>
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.75)',
-              fontSize: 'clamp(14px, 1.3vw, 18px)',
-              marginLeft: '12px',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            SAT / SUN
-          </span>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '6px',
-          }}
-        >
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: 'clamp(72px, 8vw, 120px)',
-              lineHeight: 1,
-            }}
-          >
-            9.1
-          </span>
-          <span
-            style={{
-              color: '#DB5492',
-              fontWeight: '900',
-              fontSize: 'clamp(72px, 8vw, 120px)',
-              lineHeight: 1,
-            }}
-          >
-            2
-          </span>
-          <span
-            style={{
-              color: '#ffffff',
-              fontWeight: '900',
-              fontSize: 'clamp(72px, 8vw, 120px)',
-              lineHeight: 1,
-            }}
-          >
-            -9.1
-          </span>
-          <span
-            style={{
-              color: '#00AABE',
-              fontWeight: '900',
-              fontSize: 'clamp(72px, 8vw, 120px)',
-              lineHeight: 1,
-            }}
-          >
-            3
-          </span>
-        </div>
-      </div>
+            {[
+              { value: formatValue(time.days, 3), label: 'DAYS' },
+              { value: formatValue(time.hours), label: 'HOURS' },
+              { value: formatValue(time.minutes), label: 'MIN' },
+              { value: formatValue(time.seconds), label: 'SEC' },
+            ].map(({ value, label }) => (
+              <div
+                key={label}
+                style={{
+                  textAlign: 'center',
+                  flex: '1 1 0',
+                  minWidth: 0,
+                  maxWidth: '160px',
+                }}
+              >
+                <div style={countdownNumberStyle}>{value}</div>
+                <div style={countdownLabelStyle}>{label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                gap: '10px',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
+              <span
+                style={{
+                  color: '#DB5492',
+                  fontWeight: '900',
+                  fontSize: 'clamp(24px, 2.4vw, 36px)',
+                  lineHeight: 1,
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: 'clamp(24px, 2.4vw, 36px)',
+                  lineHeight: 1,
+                }}
+              >
+                0
+              </span>
+              <span
+                style={{
+                  color: '#00AABE',
+                  fontWeight: '900',
+                  fontSize: 'clamp(24px, 2.4vw, 36px)',
+                  lineHeight: 1,
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: 'clamp(24px, 2.4vw, 36px)',
+                  lineHeight: 1,
+                }}
+              >
+                6
+              </span>
+              <span
+                style={{
+                  color: 'rgba(255,255,255,0.75)',
+                  fontSize: 'clamp(14px, 1.3vw, 18px)',
+                  marginLeft: '12px',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                SAT / SUN
+              </span>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                gap: '6px',
+              }}
+            >
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: 'clamp(72px, 8vw, 120px)',
+                  lineHeight: 1,
+                }}
+              >
+                9.1
+              </span>
+              <span
+                style={{
+                  color: '#DB5492',
+                  fontWeight: '900',
+                  fontSize: 'clamp(72px, 8vw, 120px)',
+                  lineHeight: 1,
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  color: '#ffffff',
+                  fontWeight: '900',
+                  fontSize: 'clamp(72px, 8vw, 120px)',
+                  lineHeight: 1,
+                }}
+              >
+                -9.1
+              </span>
+              <span
+                style={{
+                  color: '#00AABE',
+                  fontWeight: '900',
+                  fontSize: 'clamp(72px, 8vw, 120px)',
+                  lineHeight: 1,
+                }}
+              >
+                3
+              </span>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -377,15 +563,7 @@ export default function Home() {
           </div>
         </div>
 
-        <main
-          style={{
-            padding: '16px 3vw',
-            boxSizing: 'border-box',
-            maxWidth: '100%',
-            margin: '0 auto',
-            width: '100%',
-          }}
-        >
+        <main style={{ padding: '16px 5vw', boxSizing: 'border-box' }}>
           <Countdown />
 
           {/* ---- SEISEISAI ---- */}
@@ -396,13 +574,14 @@ export default function Home() {
                 <Image
                   src="/TDJ-Logo.svg"
                   alt="東大寺学園ロゴ"
+                  className="section-logo-image"
                   width={200}
                   height={200}
                   style={{
                     objectFit: 'contain',
                     width: 'auto',
                     height: 'auto',
-                    maxHeight: '280px',
+                    maxHeight: 'min(280px, 30vh)',
                     maxWidth: '100%',
                   }}
                   loading="eager"
@@ -427,13 +606,14 @@ export default function Home() {
                 <Image
                   src="/Infinity rogotype.svg"
                   alt="Infinityロゴタイプ"
+                  className="section-logo-image"
                   width={200}
                   height={200}
                   style={{
                     objectFit: 'contain',
                     width: 'auto',
                     height: 'auto',
-                    maxHeight: '280px',
+                    maxHeight: 'min(280px, 30vh)',
                     maxWidth: '100%',
                   }}
                   loading="eager"

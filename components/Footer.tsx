@@ -55,8 +55,10 @@ export default function Footer() {
         }}
       >
         <div
+          className="footer-top-inner"
           style={{
-            maxWidth: '1200px',
+            width: '100%',
+            maxWidth: 'none',
             margin: '0 auto',
             display: 'flex',
             flexWrap: 'wrap',
@@ -70,7 +72,7 @@ export default function Footer() {
               style={{
                 marginBottom: '8px',
                 minHeight: '60px',
-                width: '200px',
+                width: 'clamp(180px, 20vw, 320px)',
                 maxWidth: '100%',
               }}
             >
@@ -80,7 +82,7 @@ export default function Footer() {
                   alt="Infinity Logo"
                   width={200}
                   height={60}
-                  style={{ width: 'auto', height: 'auto', display: 'block' }}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
                   loading="eager"
                   priority
                   unoptimized
@@ -108,10 +110,11 @@ export default function Footer() {
                 margin: 0,
               }}
             >
-              © 2026 62nd seiseisai "Infinity", Created by PR part
+              © 2026 62nd seiseisai &quot;Infinity&quot;, Created by PR part
             </p>
           </div>
           <div
+            className="footer-actions"
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -120,6 +123,7 @@ export default function Footer() {
           >
             <Link
               href="/404"
+              className="footer-action-link"
               style={{
                 color: '#333',
                 textDecoration: 'none',
@@ -134,6 +138,7 @@ export default function Footer() {
             </Link>
             <Link
               href="/404"
+              className="footer-action-link"
               style={{
                 color: '#333',
                 textDecoration: 'none',
@@ -151,6 +156,7 @@ export default function Footer() {
       </div>
 
       <div
+        className="footer-bottom"
         style={{
           backgroundColor: '#0A1B6F',
           color: '#ffffff',
@@ -159,8 +165,10 @@ export default function Footer() {
         }}
       >
         <div
+          className="footer-bottom-inner"
           style={{
-            maxWidth: '1200px',
+            width: '100%',
+            maxWidth: 'none',
             margin: '0 auto',
             display: 'flex',
             flexDirection: 'column',
@@ -173,8 +181,9 @@ export default function Footer() {
             className="footer-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-              gap: '24px',
+              width: '100%',
+              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+              gap: 'clamp(16px, 3vw, 48px)',
             }}
           >
             {FOOTER_DATA.map((section) => (

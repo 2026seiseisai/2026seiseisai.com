@@ -485,156 +485,151 @@ body {
   }
 }
 
-/* Footer responsive tweaks */
-.site-footer .footer-top {
-  padding-left: 20px;
-  padding-right: 20px;
+/* Footer responsive layout */
+.site-footer {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.site-footer,
+.site-footer * {
+  box-sizing: border-box;
+}
+
+.site-footer .footer-top,
+.site-footer .footer-bottom {
+  width: 100%;
+  padding-left: clamp(16px, 4vw, 56px) !important;
+  padding-right: clamp(16px, 4vw, 56px) !important;
+}
+
+.site-footer .footer-top-inner,
+.site-footer .footer-bottom-inner {
+  width: 100%;
+  max-width: none;
+}
+
+.site-footer .footer-top-inner {
+  position: relative;
+  min-height: 90px;
+  align-items: flex-end;
+}
+
+.site-footer .footer-actions {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  align-items: center;
+  text-align: center;
+}
+
+.site-footer .footer-action-link {
+  font-size: clamp(15px, 1.65vw, 20px) !important;
+  line-height: 1.5;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .site-footer .footer-grid {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 48px);
+  align-items: start;
+}
+
+.site-footer .footer-grid > div {
+  min-width: 0;
 }
 
 .site-footer .footer-link {
   display: inline-block;
-  white-space: nowrap;
-  padding: 2px 4px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .site-footer .footer-sns {
   display: flex;
-  gap: 12px;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 600px) {
-  .site-footer .footer-grid {
-    gap: 12px;
-    display: flex;
-    /* allow wrapping on small screens so link text can flow to next line */
-    flex-wrap: wrap;
-    /* let vertical growth be visible instead of clipping horizontally */
-    overflow-x: visible;
-  }
-
-  .site-footer .footer-link {
-    font-size: 10px;
-    padding: 1px 4px;
-  }
-
-  .site-footer .footer-top {
-    padding: 24px 12px;
+@media (min-width: 768px) {
+  .site-footer .footer-bottom {
+    position: relative;
+    padding-bottom: 44px !important;
   }
 
   .site-footer .footer-sns {
-    justify-content: center;
-    width: 100%;
-    max-width: none;
+    position: absolute;
+    right: clamp(16px, 4vw, 56px);
+    bottom: 28px;
+    margin-top: 0 !important;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-footer .footer-top {
+    padding-top: 32px !important;
+    padding-bottom: 28px !important;
   }
 
-  /* Prevent vertical wrapping of link items: shrink text and truncate if necessary */
-  .site-footer .footer-grid > div {
-    min-width: 0;
-    flex: 1 1 auto;
+  .site-footer .footer-bottom {
+    padding-top: 32px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer .footer-top-inner {
+    position: static;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 20px !important;
+  }
+
+  .site-footer .footer-actions {
+    position: static;
+    transform: none;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .site-footer .footer-action-link {
+    font-size: clamp(14px, 3.8vw, 16px) !important;
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .site-footer .footer-grid h3 {
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .site-footer .footer-grid ul {
-    gap: 6px;
-  }
-
-  .site-footer .footer-grid li {
-    /* allow wrapping so long link labels are fully visible */
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    word-break: break-word;
+    font-size: 22px !important;
+    margin-bottom: 10px !important;
   }
 
   .site-footer .footer-link {
-    font-size: 11px;
-    padding: 1px 6px;
-    display: inline-block;
-    max-width: 100%;
+    font-size: 15px !important;
+    line-height: 1.5;
   }
-}
 
-/* Footer columns: center and size to content on wide screens so columns sit closer */
-.site-footer .footer-grid {
-  display: flex;
-  gap: 16px; /* reduce the gap between column groups */
-  align-items: flex-start;
-  justify-content: center; /* center columns instead of stretching */
-  flex-wrap: nowrap;
-  overflow-x: auto; /* horizontal scroll fallback if needed */
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 6px;
-}
-
-.site-footer .footer-grid > div {
-  /* size columns to their content instead of equally distributing space */
-  flex: 0 0 auto;
-  min-width: 0;
-}
-
-/* make link text scale with viewport but not wrap */
-.site-footer .footer-grid h3 {
-  font-size: clamp(12px, 2.8vw, 18px);
-  margin: 0 0 6px 0;
-}
-
-.site-footer .footer-grid ul {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-}
-
-.site-footer .footer-grid li {
-  list-style: none;
-  /* allow labels to wrap rather than be truncated */
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-  word-break: break-word;
-}
-
-.site-footer .footer-link {
-  font-size: clamp(10px, 2.6vw, 14px);
-  padding: 0 6px;
-  /* allow wrapping within link labels */
-  white-space: normal;
-  word-break: break-word;
-}
-
-@media (max-width: 420px) {
-  .site-footer .footer-grid > div {
-    min-width: 72px;
+  .site-footer .footer-sns {
+    position: static;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px !important;
   }
-  .site-footer .footer-link {
-    font-size: 10px;
-  }
-}
-
-/* Keep SNS icons visible on the right row without forcing wrap */
-.site-footer .footer-sns {
-  flex: 0 0 auto;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-left: 8px;
-  white-space: nowrap;
-}
-
-/* Prevent internal elements from causing horizontal overflow */
-.site-footer,
-.site-footer * {
-  box-sizing: border-box;
 }

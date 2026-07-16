@@ -9,8 +9,8 @@ import {
 } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Header from './(header)/Header';
-import Footer from './(footer)/Footer';
+import Header from '../(header)/Header';
+import Footer from '../(footer)/Footer';
 import { Noto_Sans_JP } from 'next/font/google';
 import animationData from '@/app/(top)/Infinity animation.json';
 
@@ -20,7 +20,7 @@ const notoSansJP = Noto_Sans_JP({
   display: 'swap',
 });
 
-const SplashScreen = dynamic(() => import('./(top)/SplashScreen'), {
+const SplashScreen = dynamic(() => import('./components/SplashScreen'), {
   ssr: false,
 });
 

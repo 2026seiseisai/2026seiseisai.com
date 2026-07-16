@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import animationData from "@/public/Infinity animation.json";
+import { useEffect, useRef, useState } from 'react';
+import Lottie, { LottieRefCurrentProps } from 'lottie-react';
+import animationData from '@/app/(top)/Infinity animation.json';
 
 export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
@@ -29,25 +29,25 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
   return (
     <div
       style={{
-        position: "fixed",
+        position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        backgroundColor: "#ffffff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "opacity 0.5s ease",
+        backgroundColor: '#ffffff',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'opacity 0.5s ease',
         opacity: fadeOut ? 0 : 1,
-        pointerEvents: fadeOut ? "none" : "all",
+        pointerEvents: fadeOut ? 'none' : 'all',
       }}
     >
-      <div style={{ width: "100%", height: "100%" }}>
+      <div style={{ width: '100%', height: '100%' }}>
         <Lottie
           lottieRef={lottieRef}
           animationData={animationData}
           loop={false}
           autoplay={true}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: '100%', height: '100%' }}
         />
       </div>
     </div>

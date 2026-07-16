@@ -78,7 +78,7 @@ export default function Footer() {
             >
               {!imgError ? (
                 <Image
-                  src="/Infinityrogotype2.svg"
+                  src="/footer/Infinityrogotype2.svg"
                   alt="Infinity Logo"
                   width={200}
                   height={60}

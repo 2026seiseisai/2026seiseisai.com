@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import footerLogo from './Infinityrogotype2.svg';
 
 const FOOTER_DATA = [
   {
@@ -78,7 +79,7 @@ export default function Footer() {
             >
               {!imgError ? (
                 <Image
-                  src="/footer/Infinityrogotype2.svg"
+                  src={footerLogo}
                   alt="Infinity Logo"
                   width={200}
                   height={60}

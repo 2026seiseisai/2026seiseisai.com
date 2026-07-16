@@ -13,6 +13,8 @@ import Header from '../(header)/Header';
 import Footer from '../(footer)/Footer';
 import { Noto_Sans_JP } from 'next/font/google';
 import animationData from '@/app/(top)/Infinity animation.json';
+import tdjLogo from '@/app/(top)/TDJ-Logo.svg';
+import infinityRogotype from '@/app/(top)/Infinity rogotype.svg';
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -562,7 +564,7 @@ export default function Home() {
             <div className="two-col-body">
               <div className="two-col-left">
                 <Image
-                  src="/top/TDJ-Logo.svg"
+                  src={tdjLogo}
                   alt="東大寺学園ロゴ"
                   className="section-logo-image"
                   width={200}
@@ -594,7 +596,7 @@ export default function Home() {
             <div className="two-col-body">
               <div className="two-col-left">
                 <Image
-                  src="/top/Infinity rogotype.svg"
+                  src={infinityRogotype}
                   alt="Infinityロゴタイプ"
                   className="section-logo-image"
                   width={200}

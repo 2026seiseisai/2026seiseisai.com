@@ -1,0 +1,2 @@
+git checkout -b S-kojimaa
+git push origin S-kojimaa

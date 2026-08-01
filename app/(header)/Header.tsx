@@ -16,12 +16,12 @@ const NAV_ITEMS = [
   { label: 'Theme&Logo', href: '/theme' },
   { label: 'Access', href: '/access' },
   { label: 'Events', href: '/events' },
-  { label: 'Exhibition', href: '/exhibition' },
+  { label: 'Exhibitions', href: '/exhibitions' },
   { label: 'Map', href: '/map' },
   { label: 'Goods', href: '/goods' },
   { label: 'Blog', href: '/blog' },
   { label: 'Special', href: '/special' },
-  { label: 'Brochers', href: '/brochers' },
+  { label: 'Brochures', href: '/brochures' },
   { label: 'Achieves', href: '/achieves' },
 ];
 

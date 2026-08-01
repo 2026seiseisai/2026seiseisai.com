@@ -19,7 +19,7 @@ const FOOTER_DATA = [
     title: 'Guides',
     links: [
       { label: 'Events', href: '/events' },
-      { label: 'Exhibition', href: '/exhibition' },
+      { label: 'Exhibitions', href: '/exhibitions' },
       { label: 'Map', href: '/map' },
       { label: 'Goods', href: '/goods' },
     ],
@@ -29,7 +29,7 @@ const FOOTER_DATA = [
     links: [
       { label: 'Blog', href: '/blog' },
       { label: 'Special', href: '/special' },
-      { label: 'Brochers', href: '/brochers' },
+      { label: 'Brochures', href: '/brochures' },
       { label: 'Achieves', href: '/achieves' },
     ],
   },

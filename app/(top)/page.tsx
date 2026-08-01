@@ -11,16 +11,9 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Header from '../(header)/Header';
 import Footer from '../(footer)/Footer';
-import { Noto_Sans_JP } from 'next/font/google';
 import animationData from '@/app/(top)/Infinity animation.json';
 import tdjLogo from '@/app/(top)/TDJ-Logo.svg';
 import infinityRogotype from '@/app/(top)/Infinity rogotype.svg';
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ['latin'],
-  weight: ['400', '500', '700', '900'],
-  display: 'swap',
-});
 
 const SplashScreen = dynamic(() => import('./components/SplashScreen'), {
   ssr: false,
@@ -109,7 +102,7 @@ function Countdown() {
     ? {
         backgroundColor: '#0A1B6F',
         borderRadius: '8px',
-        padding: '32px 40px',
+        padding: '28px clamp(14px, 4.2vw, 24px)',
         maxWidth: '660px',
         width: '100%',
         margin: '0 auto 64px',
@@ -146,7 +139,7 @@ function Countdown() {
   const countdownNumberStyle: CSSProperties = isMobile
     ? {
         fontWeight: '900',
-        fontSize: 'clamp(34px, 8vw, 52px)',
+        fontSize: 'clamp(28px, 7.2vw, 48px)',
         color: '#fff',
         lineHeight: 1,
         letterSpacing: '-0.02em',
@@ -196,7 +189,7 @@ function Countdown() {
           <div
             style={{
               display: 'flex',
-              gap: '14px',
+              gap: 'clamp(8px, 2.8vw, 14px)',
               alignItems: 'flex-end',
               justifyContent: 'center',
               marginBottom: '24px',
@@ -230,13 +223,18 @@ function Countdown() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <div
-              style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: '6px',
+                flexWrap: 'wrap',
+              }}
             >
               <span
                 style={{
                   color: '#DB5492',
                   fontWeight: '900',
-                  fontSize: '28px',
+                  fontSize: 'clamp(22px, 6vw, 28px)',
                 }}
               >
                 2
@@ -245,7 +243,7 @@ function Countdown() {
                 style={{
                   color: '#ffffff',
                   fontWeight: '900',
-                  fontSize: '28px',
+                  fontSize: 'clamp(22px, 6vw, 28px)',
                 }}
               >
                 0
@@ -254,7 +252,7 @@ function Countdown() {
                 style={{
                   color: '#00AABE',
                   fontWeight: '900',
-                  fontSize: '28px',
+                  fontSize: 'clamp(22px, 6vw, 28px)',
                 }}
               >
                 2
@@ -263,7 +261,7 @@ function Countdown() {
                 style={{
                   color: '#ffffff',
                   fontWeight: '900',
-                  fontSize: '28px',
+                  fontSize: 'clamp(22px, 6vw, 28px)',
                 }}
               >
                 6
@@ -271,19 +269,26 @@ function Countdown() {
               <span
                 style={{
                   color: 'rgba(255,255,255,0.7)',
-                  fontSize: '14px',
-                  marginLeft: '8px',
+                  fontSize: 'clamp(11px, 3.2vw, 14px)',
+                  marginLeft: '6px',
                 }}
               >
                 SAT / SUN
               </span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
               <span
                 style={{
                   color: '#ffffff',
                   fontWeight: '900',
-                  fontSize: '64px',
+                  fontSize: 'clamp(44px, 14vw, 64px)',
                   lineHeight: 1,
                 }}
               >
@@ -293,7 +298,7 @@ function Countdown() {
                 style={{
                   color: '#DB5492',
                   fontWeight: '900',
-                  fontSize: '64px',
+                  fontSize: 'clamp(44px, 14vw, 64px)',
                   lineHeight: 1,
                 }}
               >
@@ -303,7 +308,7 @@ function Countdown() {
                 style={{
                   color: '#ffffff',
                   fontWeight: '900',
-                  fontSize: '64px',
+                  fontSize: 'clamp(44px, 14vw, 64px)',
                   lineHeight: 1,
                 }}
               >
@@ -313,7 +318,7 @@ function Countdown() {
                 style={{
                   color: '#00AABE',
                   fontWeight: '900',
-                  fontSize: '64px',
+                  fontSize: 'clamp(44px, 14vw, 64px)',
                   lineHeight: 1,
                 }}
               >
@@ -532,7 +537,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={notoSansJP.className}>
+    <div>
       {!splashDone && <SplashScreen onFinish={handleSplashFinish} />}
       <div
         style={{

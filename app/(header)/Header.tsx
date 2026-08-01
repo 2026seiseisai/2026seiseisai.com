@@ -1,46 +1,32 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { Anton } from 'next/font/google';
+import { useEffect, useState } from 'react';
+
+const anton = Anton({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+});
 
 const NAV_ITEMS = [
   { label: 'Top', href: '/' },
-  { label: 'Theme & Logo', href: '/theme' },
   { label: 'News', href: '/news' },
+  { label: 'Theme&Logo', href: '/theme' },
   { label: 'Access', href: '/access' },
+  { label: 'Events', href: '/events' },
+  { label: 'Exhibition', href: '/exhibition' },
+  { label: 'Map', href: '/map' },
+  { label: 'Goods', href: '/goods' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Special', href: '/special' },
+  { label: 'Brochers', href: '/brochers' },
+  { label: 'Achieves', href: '/achieves' },
 ];
 
-const DRAWER_DATA = [
-  {
-    title: 'Overview',
-    links: [
-      { label: 'Top', href: '/' },
-      { label: 'Theme & Logo', href: '/404' },
-      { label: 'News', href: '/404' },
-      { label: 'Access', href: '/404' },
-    ],
-  },
-  {
-    title: 'Guide',
-    links: [
-      { label: 'Events', href: '/404' },
-      { label: 'Exhibition', href: '/404' },
-      { label: 'Bazaar', href: '/404' },
-      { label: 'Goods', href: '/404' },
-    ],
-  },
-  {
-    title: 'Contents',
-    links: [
-      { label: 'Blog', href: '/404' },
-      { label: 'Gallery', href: '/404' },
-      { label: 'Special', href: '/404' },
-      { label: 'Archives', href: '/404' },
-    ],
-  },
-];
+const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;
 
-// SVGロゴをインラインで定義
 function InfinityLogo() {
   return (
     <svg
@@ -137,13 +123,8 @@ function InfinityLogo() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // メニュー開閉時にbodyのスクロール制御
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -153,14 +134,13 @@ export default function Header() {
     <>
       <header
         style={{
-          backgroundColor: '#0A1B6F',
-          height: '64px',
-          width: '100%',
           position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 100,
+          zIndex: 120,
+          height: '72px',
+          backgroundColor: '#0A1B6F',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -168,15 +148,17 @@ export default function Header() {
           boxSizing: 'border-box',
         }}
       >
-        {/* 左：SVGロゴ */}
         <Link
           href="/"
           onClick={() => {
             window.scrollTo(0, 0);
+            setMenuOpen(false);
           }}
+          className="logo-block"
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
+            justifyContent: 'center',
             textDecoration: 'none',
             flexShrink: 0,
           }}
@@ -184,259 +166,328 @@ export default function Header() {
           <InfinityLogo />
         </Link>
 
-        {/* 右：ナビ＋ハンバーガー（常に表示） */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          {/* PC用ナビ（スマホでは非表示） */}
+        <div className="header-actions">
+          <Link
+            href="/ticket"
+            className="header-cta-link"
+            style={{
+              fontFamily: HEADER_BUTTON_FONT,
+              color: '#DB5492',
+              textDecoration: 'none',
+              fontSize: '18px',
+              fontWeight: 500,
+              lineHeight: 1,
+              padding: '0',
+              border: 'none',
+              whiteSpace: 'nowrap',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+          >
+            Web整理券
+          </Link>
+
+          <Link
+            href="https://www.js.tdj.ac.jp/"
+            className="header-cta-link"
+            style={{
+              fontFamily: HEADER_BUTTON_FONT,
+              color: '#DB5492',
+              textDecoration: 'none',
+              fontSize: '18px',
+              fontWeight: 500,
+              lineHeight: 1,
+              padding: '0',
+              border: 'none',
+              whiteSpace: 'nowrap',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            入場申し込み
+          </Link>
+
+          <button
+            type="button"
+            className="menu-button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+            aria-expanded={menuOpen}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              width: '44px',
+              height: '44px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: '#ffffff',
+              flexShrink: 0,
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                width: '28px',
+                height: '28px',
+                position: 'relative',
+              }}
+            >
+              <span
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: menuOpen ? '13px' : '7px',
+                  height: '3px',
+                  borderRadius: '4px',
+                  backgroundColor: '#ffffff',
+                  transform: menuOpen ? 'rotate(45deg)' : 'none',
+                  transition: 'all 0.22s ease',
+                }}
+              />
+              <span
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: '13px',
+                  height: '3px',
+                  borderRadius: '4px',
+                  backgroundColor: '#ffffff',
+                  opacity: menuOpen ? 0 : 1,
+                  transition: 'opacity 0.16s ease',
+                }}
+              />
+              <span
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: menuOpen ? '13px' : '19px',
+                  height: '3px',
+                  borderRadius: '4px',
+                  backgroundColor: '#ffffff',
+                  transform: menuOpen ? 'rotate(-45deg)' : 'none',
+                  transition: 'all 0.22s ease',
+                }}
+              />
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!menuOpen}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 140,
+          backgroundColor: 'rgba(8, 10, 23, 0.4)',
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? 'auto' : 'none',
+          transition: 'opacity 0.35s ease',
+        }}
+        onClick={() => setMenuOpen(false)}
+      >
+        <div
+          style={{
+            width: 'min(88vw, 440px)',
+            maxWidth: '100%',
+            height: '100%',
+            marginLeft: 'auto',
+            backgroundColor: '#ffffff',
+            overflowY: 'auto',
+            transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div
+            style={{
+              height: '84px',
+              backgroundColor: '#2d2cb0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0 16px',
+            }}
+          >
+            <Link
+              href="/"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setMenuOpen(false);
+              }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+                textDecoration: 'none',
+              }}
+            >
+              <InfinityLogo />
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="メニューを閉じる"
+              style={{
+                width: '44px',
+                height: '44px',
+                border: 'none',
+                background: 'none',
+                color: '#ffffff',
+                fontSize: '42px',
+                lineHeight: 1,
+                cursor: 'pointer',
+              }}
+            >
+              x
+            </button>
+          </div>
+
           <nav
-            style={{ display: 'flex', alignItems: 'center', gap: '28px' }}
-            className="pc-nav"
+            aria-label="モバイルメニュー"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '22px 26px 28px',
+              fontFamily: HEADER_BUTTON_FONT,
+            }}
           >
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setMenuOpen(false)}
                 style={{
                   color: '#DB5492',
                   textDecoration: 'none',
-                  fontSize: '14px',
-                  fontFamily: "'Arial', 'Helvetica', sans-serif",
-                  fontWeight: '500',
-                  letterSpacing: '0.04em',
-                  whiteSpace: 'nowrap',
-                  transition: 'opacity 0.2s',
+                  fontSize: 'clamp(36px, 10vw, 50px)',
+                  fontWeight: 500,
+                  lineHeight: 1.08,
+                  padding: '22px 0 18px',
+                  borderBottom: '1px solid #e7e9f2',
+                  letterSpacing: '0.01em',
+                  whiteSpace: 'normal',
+                  overflowWrap: 'anywhere',
+                  wordBreak: 'break-word',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
               >
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/reservation"
-              style={{
-                backgroundColor: '#00AABE',
-                color: '#ffffff',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontFamily: "'Arial', 'Helvetica', sans-serif",
-                fontWeight: '500',
-                padding: '6px 20px',
-                borderRadius: '10px',
-                letterSpacing: '0.04em',
-                whiteSpace: 'nowrap',
-                display: 'inline-block',
-              }}
-            >
-              reservation
-            </Link>
-          </nav>
 
-          {/* ハンバーガーボタン：常に表示 */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '6px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '5px',
-              flexShrink: 0,
-            }}
-            aria-label="メニューを開く"
-          >
-            <span
-              style={{
-                display: 'block',
-                width: '24px',
-                height: '2px',
-                backgroundColor: '#ffffff',
-                borderRadius: '2px',
-                transition: 'transform 0.2s',
-                transform: menuOpen
-                  ? 'rotate(45deg) translate(5px, 5px)'
-                  : 'none',
-              }}
-            />
-            <span
-              style={{
-                display: 'block',
-                width: '24px',
-                height: '2px',
-                backgroundColor: '#ffffff',
-                borderRadius: '2px',
-                transition: 'opacity 0.2s',
-                opacity: menuOpen ? 0 : 1,
-              }}
-            />
-            <span
-              style={{
-                display: 'block',
-                width: '24px',
-                height: '2px',
-                backgroundColor: '#ffffff',
-                borderRadius: '2px',
-                transition: 'transform 0.2s',
-                transform: menuOpen
-                  ? 'rotate(-45deg) translate(5px, -5px)'
-                  : 'none',
-              }}
-            />
-          </button>
-        </div>
-      </header>
-
-      {/* ドロワーメニュー（常に表示） */}
-      <div
-        style={{
-          position: 'fixed',
-          top: '64px',
-          left: 0,
-          right: 0,
-          backgroundColor: '#0A1B6F',
-          zIndex: 99,
-          maxHeight: 'calc(100vh - 64px)',
-          overflowY: 'auto',
-          padding: '24px 20px 32px',
-          display: menuOpen ? 'flex' : 'none',
-          flexDirection: 'column',
-          gap: '20px',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
-        }}
-      >
-        {/* Navigation Links */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'nowrap',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: '16px',
-            width: '100%',
-          }}
-        >
-          {DRAWER_DATA.map((section) => (
-            <div
-              key={section.title}
-              style={{
-                flex: '1 1 0',
-                minWidth: 0,
-                maxWidth: '33%',
-                textAlign: 'left',
-              }}
-            >
-              <h3
+            <div className="drawer-cta-wrap">
+              <Link
+                href="/ticket"
+                onClick={() => setMenuOpen(false)}
                 style={{
-                  color: '#00AABE',
-                  fontSize: '20px',
-                  fontWeight: '600',
-                  margin: '0 0 8px 0',
-                  paddingBottom: '8px',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: HEADER_BUTTON_FONT,
+                  textDecoration: 'none',
+                  backgroundColor: '#ffffff',
+                  color: '#0A1B6F',
+                  fontSize: 'clamp(20px, 5.4vw, 26px)',
+                  fontWeight: 500,
+                  lineHeight: 1.2,
+                  borderRadius: '999px',
+                  padding: '14px 22px',
                   width: '100%',
+                  maxWidth: '100%',
+                  border: '2px solid #0A1B6F',
                 }}
               >
-                {section.title}
-              </h3>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: '16px 0 0 0',
-                }}
-              >
-                {section.links.map((link) => (
-                  <li key={link.label} style={{ marginBottom: '12px' }}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      style={{
-                        color: '#DB5492',
-                        textDecoration: 'none',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+                Web整理券
+              </Link>
 
-        {/* SNS Icons */}
-        <div
-          style={{
-            display: 'flex',
-            gap: '12px',
-            justifyContent: 'center',
-          }}
-        >
-          <a
-            href="https://x.com/seiseisai_tdj"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#ffffff',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A1B6F">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.youtube.com/@seiseisai_tdj"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#ffffff',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#DB5492">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.instagram.com/seiseisai_tdj/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#ffffff',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00AABE">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4.162 4.162 0 1 1 0-8.324A4.162 4.162 0 0 1 12 16zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
-            </svg>
-          </a>
+              <Link
+                href="https://www.js.tdj.ac.jp/"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: HEADER_BUTTON_FONT,
+                  textDecoration: 'none',
+                  backgroundColor: '#00AABE',
+                  color: '#ffffff',
+                  fontSize: 'clamp(20px, 5.4vw, 26px)',
+                  fontWeight: 500,
+                  lineHeight: 1.2,
+                  borderRadius: '999px',
+                  padding: '14px 22px',
+                  width: '100%',
+                  maxWidth: '100%',
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                入場申し込み
+              </Link>
+            </div>
+          </nav>
         </div>
       </div>
 
       <style>{`
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-left: auto;
+        }
+
+        .drawer-cta-wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 24px;
+        }
+
+        @media (max-width: 1024px) {
+          .header-cta-link {
+            font-size: 15px !important;
+          }
+        }
+
         @media (max-width: 768px) {
-          .pc-nav {
-            display: none !important;
+          .header-actions {
+            gap: 8px;
+          }
+
+          .logo-block {
+            transform: scale(0.95);
+            transform-origin: left center;
+          }
+
+          .header-cta-link {
+            font-size: 12px !important;
+          }
+
+          .menu-button {
+            width: 40px !important;
+            height: 40px !important;
+          }
+
+          header {
+            padding: 0 16px !important;
           }
         }
       `}</style>

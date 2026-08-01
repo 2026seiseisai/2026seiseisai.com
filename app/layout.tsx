@@ -1,5 +1,13 @@
 import type { Metadata } from 'next';
+import { Noto_Sans_JP } from 'next/font/google';
 import './globals.css';
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  display: 'swap',
+  variable: '--font-noto-sans-jp',
+});
 
 export const metadata: Metadata = {
   title: '東大寺学園菁々祭「Infinity」公式ホームページ',
@@ -33,7 +41,12 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
-      <body style={{ margin: 0, padding: '64px 0 0 0' }}>{children}</body>
+      <body
+        className={`${notoSansJP.className} ${notoSansJP.variable}`}
+        style={{ margin: 0, padding: '72px 0 0 0' }}
+      >
+        {children}
+      </body>
     </html>
   );
 }

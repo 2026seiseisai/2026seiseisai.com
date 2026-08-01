@@ -10,28 +10,79 @@ const FOOTER_DATA = [
     title: 'Overview',
     links: [
       { label: 'Top', href: '/' },
-      { label: 'Theme & Logo', href: '/404' },
-      { label: 'News', href: '/404' },
-      { label: 'Access', href: '/404' },
+      { label: 'News', href: '/news' },
+      { label: 'Theme&Logo', href: '/theme' },
+      { label: 'Access', href: '/access' },
     ],
   },
   {
-    title: 'Guide',
+    title: 'Guides',
     links: [
-      { label: 'Events', href: '/404' },
-      { label: 'Exhibition', href: '/404' },
-      { label: 'Bazaar', href: '/404' },
-      { label: 'Goods', href: '/404' },
+      { label: 'Events', href: '/events' },
+      { label: 'Exhibition', href: '/exhibition' },
+      { label: 'Map', href: '/map' },
+      { label: 'Goods', href: '/goods' },
     ],
   },
   {
     title: 'Contents',
     links: [
-      { label: 'Blog', href: '/404' },
-      { label: 'Gallery', href: '/404' },
-      { label: 'Special', href: '/404' },
-      { label: 'Archives', href: '/404' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Special', href: '/special' },
+      { label: 'Brochers', href: '/brochers' },
+      { label: 'Achieves', href: '/achieves' },
     ],
+  },
+];
+
+const SNS_LINKS = [
+  {
+    name: 'X',
+    href: 'https://x.com/seiseisai_tdj',
+    color: '#0A1B6F',
+    icon: (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@seiseisai_tdj',
+    color: '#DB5492',
+    icon: (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/seiseisai_tdj/',
+    color: '#00AABE',
+    icon: (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4.162 4.162 0 1 1 0-8.324A4.162 4.162 0 0 1 12 16zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+      </svg>
+    ),
   },
 ];
 
@@ -43,7 +94,7 @@ export default function Footer() {
       className="site-footer"
       style={{
         width: '100%',
-        fontFamily: "'Hiragino Sans', 'Yu Gothic', sans-serif",
+        fontFamily: 'inherit',
       }}
     >
       <div
@@ -108,6 +159,7 @@ export default function Footer() {
               style={{
                 color: '#666',
                 fontSize: '12px',
+                fontWeight: '700',
                 margin: 0,
               }}
             >
@@ -129,6 +181,7 @@ export default function Footer() {
                 color: '#333',
                 textDecoration: 'none',
                 fontSize: '13px',
+                fontWeight: '700',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
@@ -144,6 +197,7 @@ export default function Footer() {
                 color: '#333',
                 textDecoration: 'none',
                 fontSize: '14px',
+                fontWeight: '700',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
@@ -161,7 +215,7 @@ export default function Footer() {
         style={{
           backgroundColor: '#0A1B6F',
           color: '#ffffff',
-          padding: '40px 20px',
+          padding: '32px 20px 40px',
           boxSizing: 'border-box',
         }}
       >
@@ -183,8 +237,9 @@ export default function Footer() {
             style={{
               display: 'grid',
               width: '100%',
-              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-              gap: 'clamp(16px, 3vw, 48px)',
+              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+              alignItems: 'stretch',
+              gap: 'clamp(12px, 2.2vw, 36px)',
             }}
           >
             {FOOTER_DATA.map((section) => (
@@ -192,11 +247,13 @@ export default function Footer() {
                 <h3
                   style={{
                     color: '#00AABE',
-                    fontSize: '20px',
-                    fontWeight: '600',
-                    margin: '0 0 16px 0',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em',
+                    fontSize: '46px',
+                    fontWeight: '700',
+                    margin: '0 0 22px 0',
+                    letterSpacing: '0.02em',
+                    lineHeight: 1,
+                    borderBottom: '2px solid rgba(255, 255, 255, 0.65)',
+                    paddingBottom: '8px',
                   }}
                 >
                   {section.title}
@@ -219,8 +276,9 @@ export default function Footer() {
                         style={{
                           color: '#DB5492',
                           textDecoration: 'none',
-                          fontSize: '14px',
-                          fontWeight: '500',
+                          fontSize: '32px',
+                          fontWeight: '700',
+                          letterSpacing: '0.01em',
                           display: 'inline-block',
                         }}
                       >
@@ -231,75 +289,84 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
+
+            <div
+              style={{
+                textAlign: 'left',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  gap: '18px',
+                  marginTop: 'auto',
+                }}
+              >
+                {SNS_LINKS.map((sns) => (
+                  <a
+                    key={sns.name}
+                    href={sns.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={sns.name}
+                    style={{
+                      color: sns.color,
+                      width: '36px',
+                      height: '36px',
+                      backgroundColor: '#ffffff',
+                      borderRadius: '4px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {sns.icon}
+                  </a>
+                ))}
+                <Link
+                  href="/ticket"
+                  style={{
+                    textDecoration: 'none',
+                    color: '#0A1B6F',
+                    backgroundColor: '#ffffff',
+                    border: '2px solid #0A1B6F',
+                    borderRadius: '999px',
+                    padding: '8px 14px',
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    lineHeight: 1,
+                    whiteSpace: 'nowrap',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  Web整理券
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div
-          className="footer-sns"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '12px',
-            flexWrap: 'wrap',
-            marginTop: '16px',
-          }}
-        >
-          <a
-            href="https://x.com/seiseisai_tdj"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#ffffff',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A1B6F">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.youtube.com/@seiseisai_tdj"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#ffffff',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#DB5492">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.instagram.com/seiseisai_tdj/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#ffffff',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00AABE">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4.162 4.162 0 1 1 0-8.324A4.162 4.162 0 0 1 12 16zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
-            </svg>
-          </a>
-        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1100px) {
+          .footer-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

@@ -10,27 +10,27 @@ const FOOTER_DATA = [
     title: 'Overview',
     links: [
       { label: 'Top', href: '/' },
-      { label: 'News', href: '/news' },
-      { label: 'Theme&Logo', href: '/theme' },
-      { label: 'Access', href: '/access' },
+      { label: 'News', href: '/404dummy' },
+      { label: 'Theme&Logo', href: '/404dummy' },
+      { label: 'Access', href: '/404dummy' },
     ],
   },
   {
     title: 'Guides',
     links: [
-      { label: 'Events', href: '/events' },
-      { label: 'Exhibitions', href: '/exhibitions' },
-      { label: 'Map', href: '/map' },
-      { label: 'Goods', href: '/goods' },
+      { label: 'Events', href: '/404dummy' },
+      { label: 'Exhibitions', href: '/404dummy' },
+      { label: 'Map', href: '/404dummy' },
+      { label: 'Goods', href: '/404dummy' },
     ],
   },
   {
     title: 'Contents',
     links: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Special', href: '/special' },
-      { label: 'Brochures', href: '/brochures' },
-      { label: 'Achieves', href: '/achieves' },
+      { label: 'Blog', href: '/404dummy' },
+      { label: 'Special', href: '/404dummy' },
+      { label: 'Brochres', href: '/404dummy' },
+      { label: 'Achieves', href: '/404dummy' },
     ],
   },
 ];
@@ -175,7 +175,7 @@ export default function Footer() {
             }}
           >
             <Link
-              href="/404"
+              href="/404dummy"
               className="footer-action-link"
               style={{
                 color: '#333',
@@ -191,7 +191,7 @@ export default function Footer() {
               お問い合わせ
             </Link>
             <Link
-              href="/404"
+              href="/404dummy"
               className="footer-action-link"
               style={{
                 color: '#333',
@@ -329,7 +329,7 @@ export default function Footer() {
                   </a>
                 ))}
                 <Link
-                  href="/ticket"
+                  href="/404dummy"
                   style={{
                     textDecoration: 'none',
                     color: '#0A1B6F',

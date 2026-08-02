@@ -12,17 +12,17 @@ const anton = Anton({
 
 const NAV_ITEMS = [
   { label: 'Top', href: '/' },
-  { label: 'News', href: '/news' },
-  { label: 'Theme&Logo', href: '/theme' },
-  { label: 'Access', href: '/access' },
-  { label: 'Events', href: '/events' },
-  { label: 'Exhibitions', href: '/exhibitions' },
-  { label: 'Map', href: '/map' },
-  { label: 'Goods', href: '/goods' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Special', href: '/special' },
-  { label: 'Brochures', href: '/brochures' },
-  { label: 'Achieves', href: '/achieves' },
+  { label: 'News', href: '/404dummy' },
+  { label: 'Theme&Logo', href: '/404dummy' },
+  { label: 'Access', href: '/404dummy' },
+  { label: 'Events', href: '/404dummy' },
+  { label: 'Exhibitions', href: '/404dummy' },
+  { label: 'Map', href: '/404dummy' },
+  { label: 'Goods', href: '/404dummy' },
+  { label: 'Blog', href: '/404dummy' },
+  { label: 'Special', href: '/404dummy' },
+  { label: 'Brochres', href: '/404dummy' },
+  { label: 'Achieves', href: '/404dummy' },
 ];
 
 const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;
@@ -168,7 +168,7 @@ export default function Header() {
 
         <div className="header-actions">
           <Link
-            href="/ticket"
+            href="/404dummy"
             className="header-cta-link"
             style={{
               fontFamily: HEADER_BUTTON_FONT,
@@ -316,8 +316,11 @@ export default function Header() {
         >
           <div
             style={{
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
               height: '84px',
-              backgroundColor: '#2d2cb0',
+              backgroundColor: '#0A1B6F',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -371,7 +374,7 @@ export default function Header() {
           >
             {NAV_ITEMS.map((item) => (
               <Link
-                key={item.href}
+                key={`${item.label}-${item.href}`}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
                 style={{
@@ -394,7 +397,7 @@ export default function Header() {
 
             <div className="drawer-cta-wrap">
               <Link
-                href="/ticket"
+                href="/404dummy"
                 onClick={() => setMenuOpen(false)}
                 style={{
                   display: 'inline-flex',

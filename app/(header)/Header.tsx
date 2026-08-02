@@ -319,7 +319,7 @@ export default function Header() {
               position: 'sticky',
               top: 0,
               zIndex: 1,
-              height: '84px',
+              height: '72px',
               backgroundColor: '#0A1B6F',
               display: 'flex',
               alignItems: 'center',

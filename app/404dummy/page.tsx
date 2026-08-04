@@ -3,6 +3,7 @@ import Link from 'next/link';
 export default function NotFoundDummyPage() {
   return (
     <main
+      className="page-common"
       style={{
         minHeight: '100vh',
         display: 'grid',

@@ -41,6 +41,31 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* 2025 style PC/SP switch helpers (border: 768px) */
+.page-common {
+  margin: 0;
+}
+
+.pc-only {
+  display: block;
+}
+
+.sp-only {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .pc-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .sp-only {
+    display: none !important;
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /* SectionLabel */
 /* ------------------------------------------------------------------ */

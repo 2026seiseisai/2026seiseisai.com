@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import ResponsivePagePlaceholder from '../_components/ResponsivePagePlaceholder';
 
 export default function ExhibitionsPage() {
-  redirect('/404dummy');
+  return <ResponsivePagePlaceholder title="Exhibitions" />;
 }

@@ -9,8 +9,6 @@ import {
 } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Header from '../(header)/Header';
-import Footer from '../(footer)/Footer';
 import animationData from '@/app/(top)/Infinity animation.json';
 import tdjLogo from '@/app/(top)/TDJ-Logo.svg';
 import infinityRogotype from '@/app/(top)/Infinity rogotype.svg';
@@ -537,7 +535,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="page-common">
       {!splashDone && <SplashScreen onFinish={handleSplashFinish} />}
       <div
         style={{
@@ -546,8 +544,6 @@ export default function Home() {
           pointerEvents: splashDone ? 'all' : 'none',
         }}
       >
-        <Header />
-
         {/* Hero Lottie */}
         <div className="hero-lottie-section">
           <div className="hero-lottie-box">
@@ -693,8 +689,6 @@ export default function Home() {
             </div>
           </section>
         </main>
-
-        <Footer />
       </div>
     </div>
   );

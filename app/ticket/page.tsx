@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import ResponsivePagePlaceholder from '../_components/ResponsivePagePlaceholder';
 
 export default function TicketPage() {
-  redirect('/404dummy');
+  return <ResponsivePagePlaceholder title="Ticket" />;
 }

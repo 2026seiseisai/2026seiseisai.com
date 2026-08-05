@@ -82,7 +82,7 @@ export default function NotFoundDummyPage() {
             Topへ戻る
           </Link>
           <Link
-            href="https://www.js.tdj.ac.jp/"
+            href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"
             style={{
               textDecoration: 'none',
               color: '#0A1B6F',

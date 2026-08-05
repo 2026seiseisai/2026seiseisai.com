@@ -189,7 +189,7 @@ export default function Header() {
           </Link>
 
           <Link
-            href="https://www.js.tdj.ac.jp/"
+            href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"
             className="header-cta-link"
             style={{
               fontFamily: HEADER_BUTTON_FONT,
@@ -421,7 +421,7 @@ export default function Header() {
               </Link>
 
               <Link
-                href="https://www.js.tdj.ac.jp/"
+                href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"
                 onClick={() => setMenuOpen(false)}
                 style={{
                   display: 'inline-flex',

@@ -12,17 +12,17 @@ const anton = Anton({
 
 const NAV_ITEMS = [
   { label: 'Top', href: '/' },
-  { label: 'News', href: '/404dummy' },
-  { label: 'Theme&Logo', href: '/404dummy' },
-  { label: 'Access', href: '/404dummy' },
-  { label: 'Events', href: '/404dummy' },
-  { label: 'Exhibitions', href: '/404dummy' },
-  { label: 'Map', href: '/404dummy' },
-  { label: 'Goods', href: '/404dummy' },
-  { label: 'Blog', href: '/404dummy' },
-  { label: 'Special', href: '/404dummy' },
-  { label: 'Brochres', href: '/404dummy' },
-  { label: 'Achieves', href: '/404dummy' },
+  { label: 'News', href: '/news' },
+  { label: 'Theme&Logo', href: '/theme&logo' },
+  { label: 'Access', href: '/access' },
+  { label: 'Events', href: '/events' },
+  { label: 'Exhibitions', href: '/exhibitions' },
+  { label: 'Map', href: '/map' },
+  { label: 'Goods', href: '/goods' },
+  { label: 'Blog', href: '/blog/blog一覧' },
+  { label: 'Special', href: '/special' },
+  { label: 'Brochres', href: '/brochres' },
+  { label: 'Achieves', href: '/achieves' },
 ];
 
 const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;
@@ -168,7 +168,7 @@ export default function Header() {
 
         <div className="header-actions">
           <Link
-            href="/404dummy"
+            href="/ticket"
             className="header-cta-link"
             style={{
               fontFamily: HEADER_BUTTON_FONT,
@@ -397,7 +397,7 @@ export default function Header() {
 
             <div className="drawer-cta-wrap">
               <Link
-                href="/404dummy"
+                href="/ticket"
                 onClick={() => setMenuOpen(false)}
                 style={{
                   display: 'inline-flex',

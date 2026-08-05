@@ -1,5 +1,14 @@
-import ResponsivePagePlaceholder from '../_components/ResponsivePagePlaceholder';
+﻿import styles from './page.module.css';
+
+export const metadata = {
+  title: 'Goods | 東大寺学園菁々祭「Infinity」公式ホームページ',
+};
 
 export default function GoodsPage() {
-  return <ResponsivePagePlaceholder title="Goods" />;
+  return (
+    <>
+      {/* ここに書く */}
+      <p className={styles.example}>Goods</p>
+    </>
+  );
 }

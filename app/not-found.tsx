@@ -1,5 +1,5 @@
-import NotFoundDummyPage from './404dummy/page';
+import NotFoundPage from './404/page';
 
 export default function NotFound() {
-  return <NotFoundDummyPage />;
+  return <NotFoundPage />;
 }

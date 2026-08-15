@@ -4,8 +4,13 @@ import { NextResponse } from 'next/server';
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Keep top page and destination page reachable.
-  if (pathname === '/' || pathname === '/404dummy') {
+  // Keep the published top page, News pages, and destination page reachable.
+  if (
+    pathname === '/' ||
+    pathname === '/news' ||
+    pathname.startsWith('/news/') ||
+    pathname === '/404dummy'
+  ) {
     return NextResponse.next();
   }
 

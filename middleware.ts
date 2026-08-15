@@ -1,7 +1,10 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-export function proxy(request: NextRequest) {
+// Cloudflare (OpenNext) does not support Node.js proxy; Next.js 16's `proxy.ts`
+// always runs on the Node.js runtime, so we keep the deprecated `middleware.ts`
+// convention here, which still runs on the Edge runtime.
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Keep the published top page, News pages, and destination page reachable.

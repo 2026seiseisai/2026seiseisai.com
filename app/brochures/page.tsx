@@ -1,5 +1,5 @@
 ﻿import NotFoundDummyPage from '../404dummy/page';
 
-export default function BrochresPage() {
+export default function BrochuresPage() {
   return <NotFoundDummyPage />;
 }

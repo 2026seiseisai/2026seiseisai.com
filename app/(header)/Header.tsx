@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   { label: 'Goods', href: '/goods' },
   { label: 'Blog', href: '/blog/blog一覧' },
   { label: 'Special', href: '/special' },
-  { label: 'Brochres', href: '/brochres' },
+  { label: 'Brochures', href: '/brochures' },
   { label: 'Achieves', href: '/achieves' },
 ];
 

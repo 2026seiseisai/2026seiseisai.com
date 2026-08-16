@@ -1,0 +1,12 @@
+.container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+.title { font-size: 2rem; text-align: center; }
+.subtitle { text-align: center; color: #666; }
+.section { margin: 2rem 0; }
+.sectionTitle { border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+.infoBox { background: #f9f9f9; padding: 1rem; border-radius: 8px; }
+.videoWrapper { 
+  position: relative; 
+  width: 100%; 
+  aspect-ratio: 16 / 9; 
+  iframe { width: 100%; height: 100%; }
+}

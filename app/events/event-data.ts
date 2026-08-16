@@ -309,6 +309,7 @@ export const eventData: EventData[] = [
         location: "音楽室",
         start: "13:10",
         end: "15:00",
+        label: "予選",
       },
     ],
     day2: [
@@ -383,11 +384,42 @@ export const eventData: EventData[] = [
       },
     ],
   },
+  {
+    name: "PTAコーラス",
+    description: "",
+    day1: [
+      {
+        location: "圓融館",
+        start: "12:40",
+        end: "13:40",
+      },
+    ],
+    day2: [],
+  },
+  {
+    name: "音楽",
+    description: "",
+    day1: [
+      {
+        location: "圓融館",
+        start: "13:50",
+        end: "15:30",
+      },
+    ],
+    day2: [
+      {
+        location: "圓融館",
+        start: "09:00",
+        end: "10:40",
+      },
+    ],
+  },
   //視聴覚
   {
     name: "テラボンバー",
     description:
       "大人気クイズ番組「ネプリーグ」をモチーフにした来場者参加型のクイズ企画です。本校クイズ研究部が作成した問題に挑戦し、東大寺生やクイズ研究部員と対戦していただきます。参加者にはハンデも用意されているため、どなたでも気軽にお楽しみいただけます。",
+    ticket: true,
     day1: [
       {
         location: "視聴覚室",
@@ -400,6 +432,7 @@ export const eventData: EventData[] = [
   {
     name: "模擬授業",
     description: "",
+    ticket: true,
     day1: [
       {
         location: "視聴覚室",
@@ -439,7 +472,7 @@ export const eventData: EventData[] = [
     day2: [
       {
         location: "視聴覚室",
-        start: "10:20",
+        start: "09:20",
         end: "11:10",
       },
     ],
@@ -452,7 +485,7 @@ export const eventData: EventData[] = [
       {
         location: "視聴覚室",
         start: "12:50",
-        end: "13:20",
+        end: "13:30",
       },
     ],
   },
@@ -464,7 +497,7 @@ export const eventData: EventData[] = [
     day1: [
       {
         location: "音楽室",
-        start: "09:20",
+        start: "09:30",
         end: "11:20",
       },
     ],
@@ -511,6 +544,7 @@ export const eventData: EventData[] = [
     name: "TDJ徒競走大会",
     description:
       "現役陸上部とのガチンコ徒競走勝負を開催します。景品もあるので是非参加ください。",
+    ticket: true,
     day1: [
       {
         location: "グラウンド",
@@ -519,8 +553,8 @@ export const eventData: EventData[] = [
       },
       {
         location: "グラウンド",
-        start: "13:00",
-        end: "14:00",
+        start: "14:00",
+        end: "15:00",
       },
     ],
     day2: [
@@ -555,8 +589,8 @@ export const eventData: EventData[] = [
     day2: [
       {
         location: "グラウンド",
-        start: "11:20",
-        end: "11:40",
+        start: "11:30",
+        end: "11:50",
       },
       {
         location: "グラウンド",
@@ -568,6 +602,7 @@ export const eventData: EventData[] = [
   //物理室
   {
     name: "レゴプログラミング講習会",
+    ticket: true,
     description:
       "レゴでできたロボットを、簡単なプログラムを書いて動かしてみよう！",
     day1: [

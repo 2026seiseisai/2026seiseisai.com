@@ -12,6 +12,7 @@ export function middleware(request: NextRequest) {
     pathname === '/' ||
     pathname === '/news' ||
     pathname.startsWith('/news/') ||
+    pathname === '/access' ||
     pathname === '/404dummy'
   ) {
     return NextResponse.next();

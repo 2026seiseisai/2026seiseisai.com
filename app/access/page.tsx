@@ -2,6 +2,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import headerImage from './header.svg';
+import trainMapImage from './train_map.svg';
 import styles from './page.module.css';
 
 const AccessPage: NextPage = () => {
@@ -14,7 +16,7 @@ const AccessPage: NextPage = () => {
       <div className={styles.container}>
         {/* 1. ヘッダー画像 */}
         <Image 
-          src="/header.jpg"
+          src={headerImage}
           alt="東大寺学園キャンパス"
           width={1200}
           height={400}
@@ -86,7 +88,7 @@ const AccessPage: NextPage = () => {
         {/* 6. 路線図 */}
         <h2 className={styles.sectionHeading}>路線図</h2>
         <Image 
-          src="/train_map.png" 
+          src={trainMapImage} 
           alt="路線図"
           width={1000}
           height={700}

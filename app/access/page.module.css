@@ -86,7 +86,16 @@
 .mapDescription p {
   margin-bottom: 10px;
 }
+@media (max-width: 768px) {
+  .mapSection {
+    flex-direction: column; /* スマホでは縦並びにする */
+  }
 
+  .googleMap {
+    width: 100%; /* スマホではマップを横幅いっぱいにする */
+    max-width: 100%;
+  }
+  }
 .mapImage {
   width: 100%;
   height: auto;

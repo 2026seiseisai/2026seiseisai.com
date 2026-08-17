@@ -1,5 +1,9 @@
-﻿import NotFoundDummyPage from '../404dummy/page';
+﻿import styles from './page.module.css';
 
-export default function ThemeLogoPage() {
-  return <NotFoundDummyPage />;
+export default function App() {
+  return (
+    <div className={styles.page}>
+      <div className={styles.hello}>Theme &amp; Logo</div>
+    </div>
+  );
 }

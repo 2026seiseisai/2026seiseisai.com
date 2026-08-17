@@ -1,1 +1,17 @@
-﻿
+﻿.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hello {
+  position: absolute;
+  top: 40px;
+  left: 160px;
+  width: 1120px;
+  height: 96px;
+  color: blue;
+  font-size: 64px;
+  line-height: 96px;
+  font-weight: 700;
+}

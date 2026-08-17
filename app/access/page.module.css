@@ -1,1 +1,118 @@
-﻿
+/* page.module.css */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+}
+
+.headerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.schoolName {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.infoTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 60px;
+}
+
+.infoTable tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.infoTable th, 
+.infoTable td {
+  padding: 15px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.infoTable th {
+  width: 100px;
+  font-weight: normal;
+  color: #555;
+}
+
+.sectionHeading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.sectionHeading::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: #004a99;
+}
+
+.mapSection {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.googleMap {
+  width: 400px;
+  height: 250px;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.mapDescription p {
+  margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .mapSection {
+    flex-direction: column; /* スマホでは縦並び */
+  }
+
+  .googleMap {
+    width: 100%; /* スマホではマップを横幅いっぱいに*/
+    max-width: 100%;
+  }
+  }
+.mapImage {
+  width: 100%;
+  height: auto;
+  margin-bottom: 60px;
+  display: block;
+  border: 1px solid #eee;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 60px;
+}
+
+.videoWrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

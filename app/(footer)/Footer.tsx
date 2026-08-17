@@ -12,7 +12,7 @@ const FOOTER_DATA = [
       { label: 'Top', href: '/' },
       { label: 'Theme & Logo', href: '/404' },
       { label: 'News', href: '/404' },
-      { label: 'Access', href: '/404' },
+      { label: 'Access', href: '/access' },
     ],
   },
   {

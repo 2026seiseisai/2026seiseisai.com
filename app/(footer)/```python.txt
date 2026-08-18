@@ -1,0 +1,10 @@
+```python
+#!/usr/bin/env python3
+"""Simple script that outputs 'aaaa'."""
+
+def main():
+	print("aaaa")
+
+if __name__ == "__main__":
+	main()
+```

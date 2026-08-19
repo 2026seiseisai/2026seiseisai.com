@@ -4,17 +4,15 @@
   height: 2267px;
   margin: 0 auto;
   background: white;
+  transform-origin: top center;
 }
 
-.TandL {
+.title {
   position: absolute;
   top: 40px;
   left: 160px;
   width: 1120px;
   height: 96px;
-}
-
-.title {
   color: #0A1B6F;
   font-size: 64px;
   line-height: 96px;
@@ -29,10 +27,10 @@
   left: 156px;
   width: 1120px;
   height: 22px;
-  color: #0A1B6F;
-  font-size: 16px;
+  color: #000000;
+  font-size: 18px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
   padding: 0;
 }
@@ -43,20 +41,235 @@
   left: 0px;
   width: 1440px;
   height: 2025px;
-}
-
-.vector {
-  position: absolute;
-  top: 1429px;
-  left: 1123px;
-  width: 2px;
-  height: 12px;
-  border: 2px solid #0A1B6F;
+  padding: 0 160px;
   box-sizing: border-box;
 }
 
-.setsumei {
+.rectangle1 {
+  position: absolute;
+  top: 74px;
+  left: 290px;
+  width: 860px;
+  height: 272px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+.rectangle2 {
+  position: absolute;
+  top: 348px;
+  left: 290px;
+  width: 860px;
+  height: 272px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+.rectangle3 {
+  position: absolute;
+  top: 813px;
+  left: 290px;
+  width: 430px;
+  height: 287px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+.rectangle4 {
+  position: absolute;
+  top: 813px;
+  left: 720px;
+  width: 430px;
+  height: 287px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+.rectangle5 {
+  position: absolute;
+  top: 1308px;
+  left: 290px;
+  width: 430px;
+  height: 160px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+.rectangle6 {
+  position: absolute;
+  top: 1308px;
+  left: 720px;
+  width: 430px;
+  height: 160px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+.rectangle7 {
+  position: absolute;
+  top: 1680px;
+  left: 505px;
+  width: 429px;
+  height: 122px;
+  background: transparent;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.sectionTitle {
+  position: absolute;
+  left: 294px;
+  width: 165px;
+  height: 52px;
   color: #0A1B6F;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 36px;
+  line-height: 22px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+.sectionText {
+  position: absolute;
+  left: 322px;
+  width: 800px;
+  height: 48px;
+  color: #000000;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.title1 {
+  top: -7px;
+}
+.doubleColor {
+  position: absolute;
+  top: 98px;
+  left: 320px;
+  width: 770px;
+  height: 215px;
+}
+.downloadImage1 {
+  position: absolute;
+  top: 297px;
+  left: 1105px;
+  width: 38px;
+  height: 38px;
+}
+.doubleMono {
+  position: absolute;
+  top: 376px;
+  left: 320px;
+  width: 770px;
+  height: 215px;
+}
+.downloadImage2 {
+  position: absolute;
+  top: 567px;
+  left: 1105px;
+  width: 38px;
+  height: 38px;
+}
+.text1 {
+  top: 670px;
+}
+
+.title2 {
+  top: 741px;
+}
+.LogoColor {
+  position: absolute;
+  top: 843px;
+  left: 339px;
+  width: 332px;
+  height: 220px;
+}
+.LogoMono {
+  position: absolute;
+  top: 843px;
+  left: 766px;
+  width: 332px;
+  height: 220px;
+}
+.downloadImage3 {
+  position: absolute;
+  top: 1041px;
+  left: 1105px;
+  width: 38px;
+  height: 38px;
+}
+.text2 {
+  top: 1137px;
+}
+
+.title3 {
+  top: 1256px;
+}
+.InfColor {
+  position: absolute;
+  top: 1315px;
+  left: 336px;
+  width: 334px;
+  height: 137px;
+}
+.InfMono {
+  position: absolute;
+  top: 1315px;
+  left: 756px;
+  width: 334px;
+  height: 137px;
+}
+.downloadImage4 {
+  position: absolute;
+  top: 1419px;
+  left: 1105px;
+  width: 38px;
+  height: 38px;
+}
+.text3 {
+  top: 1480px;
+}
+
+.title4 {
+  top: 1606px;
+}
+.touch {
+  position: absolute;
+  top: 1718px;
+  left: 579px;
+  width: 280px;
+  height: 46px;
+}
+.textLink {
+  position: absolute;
+  top: 1723px;
+  left: 592px;
+  width: 248px;
+  height: 29px;
+  color: #000000;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+.downloadImage5 {
+  position: absolute;
+  top: 1741px;
+  left: 874px;
+  width: 38px;
+  height: 38px;
+}
+.text4 {
+  top: 1836px;
+}
+
+@media (max-width: 1440px) {
+  .page {
+    --page-scale: calc(100vw / 1440);
+    margin-bottom: calc((2267px * var(--page-scale)) - 2267px);
+    transform: scale(var(--page-scale));
+  }
 }

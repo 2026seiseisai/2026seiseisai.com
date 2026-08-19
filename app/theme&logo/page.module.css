@@ -151,7 +151,7 @@
   width: 770px;
   height: 215px;
 }
-.downloadImage1 {
+.doubleColor_D {
   position: absolute;
   top: 297px;
   left: 1105px;
@@ -165,7 +165,7 @@
   width: 770px;
   height: 215px;
 }
-.downloadImage2 {
+.doubleMono_D {
   position: absolute;
   top: 567px;
   left: 1105px;
@@ -186,6 +186,13 @@
   width: 332px;
   height: 220px;
 }
+.LogoColor_D {
+  position: absolute;
+  top: 1041px;
+  left: 610px;
+  width: 38px;
+  height: 38px;
+}
 .LogoMono {
   position: absolute;
   top: 843px;
@@ -193,7 +200,7 @@
   width: 332px;
   height: 220px;
 }
-.downloadImage3 {
+.LogoMono_D {
   position: absolute;
   top: 1041px;
   left: 1105px;
@@ -214,6 +221,13 @@
   width: 334px;
   height: 137px;
 }
+.InfColor_D {
+  position: absolute;
+  top: 1419px;
+  left: 610px;
+  width: 38px;
+  height: 38px;
+}
 .InfMono {
   position: absolute;
   top: 1315px;
@@ -221,7 +235,7 @@
   width: 334px;
   height: 137px;
 }
-.downloadImage4 {
+.InfMono_D {
   position: absolute;
   top: 1419px;
   left: 1105px;
@@ -255,7 +269,7 @@
   margin: 0;
   padding: 0;
 }
-.downloadImage5 {
+.touch_D {
   position: absolute;
   top: 1741px;
   left: 874px;

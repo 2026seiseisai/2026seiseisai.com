@@ -1,7 +1,8 @@
 ﻿.page {
   position: relative;
-  width: 1440px;
-  height: 2267px;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1440 / 2267;
   margin: 0 auto;
   background: white;
   transform-origin: top center;
@@ -9,10 +10,10 @@
 
 .title {
   position: absolute;
-  top: 40px;
-  left: 160px;
-  width: 1120px;
-  height: 96px;
+  top: 1.7644%;
+  left: 11.1111%;
+  width: 77.7778%;
+  height: 4.2347%;
   color: #0A1B6F;
   font-size: 64px;
   line-height: 96px;
@@ -23,10 +24,10 @@
 
 .introduction {
   position: absolute;
-  top: 183px;
-  left: 156px;
-  width: 1120px;
-  height: 22px;
+  top: 8.0728%;
+  left: 10.8333%;
+  width: 77.7778%;
+  height: 0.9704%;
   color: #000000;
   font-size: 18px;
   line-height: 22px;
@@ -37,80 +38,80 @@
 
 .main {
   position: absolute;
-  top: 242px;
-  left: 0px;
-  width: 1440px;
-  height: 2025px;
-  padding: 0 160px;
+  top: 10.6740%;
+  left: 0%;
+  width: 100%;
+  height: 89.3260%;
+  padding: 0 11.1111%;
   box-sizing: border-box;
 }
 
 .rectangle1 {
   position: absolute;
-  top: 74px;
-  left: 290px;
-  width: 860px;
-  height: 272px;
+  top: 3.6543%;
+  left: 20.1389%;
+  width: 59.7222%;
+  height: 13.4321%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
 .rectangle2 {
   position: absolute;
-  top: 348px;
-  left: 290px;
-  width: 860px;
-  height: 272px;
+  top: 17.1852%;
+  left: 20.1389%;
+  width: 59.7222%;
+  height: 13.4321%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
 .rectangle3 {
   position: absolute;
-  top: 813px;
-  left: 290px;
-  width: 430px;
-  height: 287px;
+  top: 40.1481%;
+  left: 20.1389%;
+  width: 29.8611%;
+  height: 14.1728%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
 .rectangle4 {
   position: absolute;
-  top: 813px;
-  left: 720px;
-  width: 430px;
-  height: 287px;
+  top: 40.1481%;
+  left: 50%;
+  width: 29.8611%;
+  height: 14.1728%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
 .rectangle5 {
   position: absolute;
-  top: 1308px;
-  left: 290px;
-  width: 430px;
-  height: 160px;
+  top: 64.5926%;
+  left: 20.1389%;
+  width: 29.8611%;
+  height: 7.9012%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
 .rectangle6 {
   position: absolute;
-  top: 1308px;
-  left: 720px;
-  width: 430px;
-  height: 160px;
+  top: 64.5926%;
+  left: 50%;
+  width: 29.8611%;
+  height: 7.9012%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
 }
 .rectangle7 {
   position: absolute;
-  top: 1680px;
-  left: 505px;
-  width: 429px;
-  height: 122px;
+  top: 82.9630%;
+  left: 35.0694%;
+  width: 29.7917%;
+  height: 6.0247%;
   background: transparent;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -118,9 +119,9 @@
 
 .sectionTitle {
   position: absolute;
-  left: 294px;
-  width: 165px;
-  height: 52px;
+  left: 20.4167%;
+  width: 11.4583%;
+  height: 2.5679%;
   color: #0A1B6F;
   font-size: 36px;
   line-height: 22px;
@@ -130,9 +131,9 @@
 }
 .sectionText {
   position: absolute;
-  left: 322px;
-  width: 800px;
-  height: 48px;
+  left: 22.3611%;
+  width: 55.5556%;
+  height: 2.3704%;
   color: #000000;
   font-size: 16px;
   line-height: 150%;
@@ -142,148 +143,119 @@
 }
 
 .title1 {
-  top: -7px;
+  top: -0.3457%;
+}
+.downloadButton {
+  display: block;
+}
+.downloadButton img {
+  width: 100%;
+  height: 100%;
 }
 .doubleColor {
   position: absolute;
-  top: 98px;
-  left: 320px;
-  width: 770px;
-  height: 215px;
+  top: 4.8395%;
+  left: 22.2222%;
+  width: 53.4722%;
+  height: 10.6173%;
 }
 .doubleColor_D {
   position: absolute;
-  top: 297px;
-  left: 1105px;
-  width: 38px;
-  height: 38px;
+  top: 14.6667%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
 }
 .doubleMono {
   position: absolute;
-  top: 376px;
-  left: 320px;
-  width: 770px;
-  height: 215px;
+  top: 18.5679%;
+  left: 22.2222%;
+  width: 53.4722%;
+  height: 10.6173%;
 }
 .doubleMono_D {
   position: absolute;
-  top: 567px;
-  left: 1105px;
-  width: 38px;
-  height: 38px;
+  top: 28%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
 }
 .text1 {
-  top: 670px;
+  top: 33.0864%;
 }
 
 .title2 {
-  top: 741px;
+  top: 36.5926%;
 }
 .LogoColor {
   position: absolute;
-  top: 843px;
-  left: 339px;
-  width: 332px;
-  height: 220px;
+  top: 41.6296%;
+  left: 23.5417%;
+  width: 23.0556%;
+  height: 10.8642%;
 }
 .LogoColor_D {
   position: absolute;
-  top: 1041px;
-  left: 610px;
-  width: 38px;
-  height: 38px;
+  top: 51.4074%;
+  left: 42.3611%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
 }
 .LogoMono {
   position: absolute;
-  top: 843px;
-  left: 766px;
-  width: 332px;
-  height: 220px;
+  top: 41.6296%;
+  left: 53.1944%;
+  width: 23.0556%;
+  height: 10.8642%;
 }
 .LogoMono_D {
   position: absolute;
-  top: 1041px;
-  left: 1105px;
-  width: 38px;
-  height: 38px;
+  top: 51.4074%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
 }
 .text2 {
-  top: 1137px;
+  top: 56.1481%;
 }
 
 .title3 {
-  top: 1256px;
+  top: 62.0247%;
 }
 .InfColor {
   position: absolute;
-  top: 1315px;
-  left: 336px;
-  width: 334px;
-  height: 137px;
+  top: 64.9383%;
+  left: 23.3333%;
+  width: 23.1944%;
+  height: 6.7654%;
 }
 .InfColor_D {
   position: absolute;
-  top: 1419px;
-  left: 610px;
-  width: 38px;
-  height: 38px;
+  top: 70.0741%;
+  left: 42.3611%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
 }
 .InfMono {
   position: absolute;
-  top: 1315px;
-  left: 756px;
-  width: 334px;
-  height: 137px;
+  top: 64.9383%;
+  left: 52.5%;
+  width: 23.1944%;
+  height: 6.7654%;
 }
 .InfMono_D {
   position: absolute;
-  top: 1419px;
-  left: 1105px;
-  width: 38px;
-  height: 38px;
+  top: 70.0741%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
 }
 .text3 {
-  top: 1480px;
-}
-
-.title4 {
-  top: 1606px;
-}
-.touch {
-  position: absolute;
-  top: 1718px;
-  left: 579px;
-  width: 280px;
-  height: 46px;
-}
-.textLink {
-  position: absolute;
-  top: 1723px;
-  left: 592px;
-  width: 248px;
-  height: 29px;
-  color: #000000;
-  font-size: 16px;
-  line-height: 150%;
-  font-weight: 500;
-  margin: 0;
-  padding: 0;
-}
-.touch_D {
-  position: absolute;
-  top: 1741px;
-  left: 874px;
-  width: 38px;
-  height: 38px;
-}
-.text4 {
-  top: 1836px;
-}
-
-@media (max-width: 1440px) {
-  .page {
-    --page-scale: calc(100vw / 1440);
-    margin-bottom: calc((2267px * var(--page-scale)) - 2267px);
-    transform: scale(var(--page-scale));
-  }
+  top: 73.0864%;
 }

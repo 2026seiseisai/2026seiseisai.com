@@ -3,6 +3,7 @@
   width: 100%;
   height: 100%;
   aspect-ratio: 1440 / 2267;
+  font-size: 1.1111vw;
   margin: 0 auto;
   background: white;
   transform-origin: top center;
@@ -113,7 +114,7 @@
   width: 11.4583%;
   height: 2.5679%;
   color: #0A1B6F;
-  font-size: 36px;
+  font-size: 225%;
   line-height: 22px;
   font-weight: 500;
   margin: 0;
@@ -125,7 +126,7 @@
   width: 55.5556%;
   height: 2.3704%;
   color: #000000;
-  font-size: 16px;
+  font-size: 100%;
   line-height: 150%;
   font-weight: 500;
   margin: 0;

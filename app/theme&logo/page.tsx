@@ -39,7 +39,6 @@ export default function App() {
         <div className={styles.rectangle4} aria-hidden="true" />
         <div className={styles.rectangle5} aria-hidden="true" />
         <div className={styles.rectangle6} aria-hidden="true" />
-        <div className={styles.rectangle7} aria-hidden="true" />
         <h2 className={`${styles.sectionTitle} ${styles.title1}`}>Logotype</h2>
         <Image src={doubleColor} alt="Logo and Inf Color" className={styles.doubleColor} width={770} height={215} />
         <DownloadButton file={doubleColor} fileName="double-color-D.svg" className={styles.doubleColor_D} />

@@ -17,7 +17,7 @@
   height: 4.2347%;
   color: #0A1B6F;
   font-size: 400%;
-  line-height: 96px;
+  line-height: 150%;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@
   height: 0.9704%;
   color: #000000;
   font-size: 112.5%;
-  line-height: 22px;
+  line-height: 122.2222%;
   font-weight: 500;
   margin: 0;
   padding: 0;
@@ -54,7 +54,7 @@
   width: 59.7222%;
   height: 13.4321%;
   background: transparent;
-  border: 1px solid #000000;
+  border: 0.0694vw solid #000000;
   box-sizing: border-box;
 }
 .rectangle2 {
@@ -64,7 +64,7 @@
   width: 59.7222%;
   height: 13.4321%;
   background: transparent;
-  border: 1px solid #000000;
+  border: 0.0694vw solid #000000;
   box-sizing: border-box;
 }
 .rectangle3 {
@@ -74,7 +74,7 @@
   width: 29.8611%;
   height: 14.1728%;
   background: transparent;
-  border: 1px solid #000000;
+  border: 0.0694vw solid #000000;
   box-sizing: border-box;
 }
 .rectangle4 {
@@ -84,7 +84,7 @@
   width: 29.8611%;
   height: 14.1728%;
   background: transparent;
-  border: 1px solid #000000;
+  border: 0.0694vw solid #000000;
   box-sizing: border-box;
 }
 .rectangle5 {
@@ -94,7 +94,7 @@
   width: 29.8611%;
   height: 7.9012%;
   background: transparent;
-  border: 1px solid #000000;
+  border: 0.0694vw solid #000000;
   box-sizing: border-box;
 }
 .rectangle6 {
@@ -104,7 +104,7 @@
   width: 29.8611%;
   height: 7.9012%;
   background: transparent;
-  border: 1px solid #000000;
+  border: 0.0694vw solid #000000;
   box-sizing: border-box;
 }
 
@@ -115,7 +115,7 @@
   height: 2.5679%;
   color: #0A1B6F;
   font-size: 225%;
-  line-height: 22px;
+  line-height: 61.1111%;
   font-weight: 500;
   margin: 0;
   padding: 0;

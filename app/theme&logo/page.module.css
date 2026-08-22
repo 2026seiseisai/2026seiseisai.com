@@ -25,12 +25,12 @@
 
 .introduction {
   position: absolute;
-  top: 8.0728%;
+  top: 7.0728%;
   left: 10.8333%;
   width: 77.7778%;
   height: 0.9704%;
   color: #000000;
-  font-size: 112.5%;
+  font-size: 137.5%;
   line-height: 122.2222%;
   font-weight: 500;
   margin: 0;
@@ -124,9 +124,9 @@
   position: absolute;
   left: 22.3611%;
   width: 55.5556%;
-  height: 2.3704%;
+  height: 3.3704%;
   color: #000000;
-  font-size: 100%;
+  font-size: 150%;
   line-height: 150%;
   font-weight: 500;
   margin: 0;
@@ -174,7 +174,7 @@
   cursor: pointer;
 }
 .text1 {
-  top: 33.0864%;
+  top: 32.0864%;
 }
 
 .title2 {
@@ -211,7 +211,7 @@
   cursor: pointer;
 }
 .text2 {
-  top: 56.1481%;
+  top: 55.6481%;
 }
 
 .title3 {
@@ -248,5 +248,5 @@
   cursor: pointer;
 }
 .text3 {
-  top: 73.0864%;
+  top: 73.5864%;
 }

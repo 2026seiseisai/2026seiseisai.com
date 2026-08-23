@@ -1,1 +1,299 @@
 ﻿
+.page {
+  --color-teal: #1f6f83;
+  --color-navy: #1c3a5e;
+  --color-navy-hover: #142a45;
+  --color-pink: #c2255c;
+  --color-text: #374151;
+  --color-text-light: #6b7280;
+  --color-border: #e5e7eb;
+ 
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic',
+    'Noto Sans JP', sans-serif;
+  color: var(--color-text);
+}
+ 
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin: 0 0 20px;
+}
+ 
+.lead {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--color-text);
+  margin: 0 0 48px;
+}
+ 
+.section {
+  margin-bottom: 56px;
+}
+ 
+/* --- セクション見出し（横線 + 中央タイトル） --- */
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+ 
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+ 
+.headingText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+ 
+.headingText h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--color-teal);
+  margin: 0;
+}
+ 
+.subtitle {
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+}
+ 
+.body {
+  font-size: 0.9rem;
+  line-height: 1.95;
+  color: var(--color-text);
+  margin: 0 0 32px;
+}
+ 
+/* --- ダウンロードボタン群 --- */
+.downloads {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+ 
+.downloadItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.downloadLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+ 
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+ 
+.downloadButton:hover {
+  background: var(--color-navy-hover);
+  transform: translateY(-1px);
+}
+ 
+.downloadButton:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+ 
+/* --- アコーディオン（部活一覧） --- */
+.accordionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  align-items: start;
+}
+ 
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.accordionItem {
+  border-radius: 4px;
+}
+ 
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-navy);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+ 
+.accordionHeader:hover {
+  background: var(--color-navy-hover);
+}
+ 
+.accordionHeaderOpen {
+  background: var(--color-pink);
+}
+ 
+.accordionHeaderOpen:hover {
+  background: var(--color-pink);
+  opacity: 0.92;
+}
+ 
+.accordionHeader:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+ 
+.accordionIcon {
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1;
+}
+ 
+.clubList {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+ 
+.clubRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+ 
+.clubIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--color-navy);
+}
+ 
+.clubName {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+ 
+.readButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+ 
+.readButton:hover {
+  background: var(--color-navy-hover);
+}
+ 
+.readButton:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+ 
+.clubEmpty {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  padding: 10px 4px;
+}
+ 
+/* --- レスポンシブ対応 --- */
+@media (max-width: 700px) {
+  .page {
+    padding: 32px 16px 64px;
+  }
+ 
+  .title {
+    font-size: 1.9rem;
+  }
+ 
+  .lead {
+    margin-bottom: 36px;
+  }
+ 
+  .sectionHeading {
+    gap: 12px;
+  }
+ 
+  .headingText h2 {
+    font-size: 1.4rem;
+  }
+ 
+  .accordionGrid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .downloads {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+}
+ 
+@media (max-width: 420px) {
+  .title {
+    font-size: 1.6rem;
+  }
+ 
+  .clubRow {
+    gap: 10px;
+  }
+ 
+  .clubName {
+    font-size: 0.88rem;
+  }
+}
+ 

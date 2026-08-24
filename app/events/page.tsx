@@ -287,7 +287,7 @@ const SchedulesTable = ({ day }: { day: Day }) => {
           gridTemplateColumns: `repeat(${colsRepeats}, auto minmax(0,1fr))`,
         }}
       >
-        <ScheduleGrid day={day} locationsToRender={locations} />
+        <ScheduleGrid day={day} locationsToRender={[...locations]} />
       </div>
       <div className="lg:hidden">
         <div className={css.embla} ref={emblaRef}>

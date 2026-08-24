@@ -192,6 +192,8 @@ const scheduleMinutes: MinuteType[] = [
 ];
 
 const scheduleHalfMinutes: MinuteType[] = ["00", "30"];
+const additionalRows = 6;
+
 // overload
 function calcScheduleStyle(arg: {
   startHour: HourType;
@@ -210,7 +212,6 @@ function calcScheduleStyle(arg: {
   isTimeIndicator: true;
   isMobile: boolean;
 }): React.CSSProperties;
-const additionalRows = 6;
 // implementation
 function calcScheduleStyle({
   startHour,

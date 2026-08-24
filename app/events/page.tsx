@@ -26,7 +26,7 @@ const DaySwitcher = ({
   const buttonLabelCN = "text-sm md:text-xl";
   const currentCN = "bg-navy text-white";
   const inCurrentCN = "bg-gray-200 text-white";
-  const switcherArrowCN = "text-6xl text-navy px-6 md:px-16 disabled:text-gray-200";
+  const switcherArrowCN = "text-6xl text-navy px-2 md:px-16 disabled:text-gray-200";
 
   return (
     <div
@@ -463,7 +463,7 @@ export default function EventsPage() {
           <SchedulesTable day={currentDay}></SchedulesTable>
         </div>
       </div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 font-medium my-16 px-16">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 font-medium my-16 md:px-16">
         <div className="border-2 border-navy p-6">
           <div className="flex">
             <Image src={cloud_rain} alt="" className="size-10"></Image>

@@ -7,6 +7,7 @@ import mapPin from "./map-pin.svg";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import css from "./page.module.css";
+import arrowR from "./arrow-right-circle.svg"
 
 type Day = "Day1" | "Day2";
 
@@ -21,11 +22,11 @@ const DaySwitcher = ({
 }) => {
   const buttonWrapperCN = "flex flex-col items-center";
   const buttonCommonCN =
-    "font-bold px-4 py-2 text-sm md:px-8 py-4 md:text-xl rounded-full";
+    "font-bold px-6 py-2 text-sm md:px-8 py-4 md:text-xl rounded-full";
   const buttonLabelCN = "text-sm md:text-xl";
   const currentCN = "bg-navy text-white";
   const inCurrentCN = "bg-gray-200 text-white";
-  const switcherArrowCN = "text-6xl text-navy px-16 disabled:text-gray-200";
+  const switcherArrowCN = "text-6xl text-navy px-6 md:px-16 disabled:text-gray-200";
 
   return (
     <div
@@ -152,6 +153,45 @@ const locationColorMap: Record<Location, string[]> = {
   転心殿前: ["bg-purple-100", "border-purple-600"],
   音楽室: ["bg-pink-100", "border-pink-600"],
 };
+
+const mobileLocationOrder: Location[] = [
+  "体育館",
+  "圓融館",
+  "視聴覚室",
+  "音楽室",
+  "転心殿前",
+  "グラウンド",
+  "物理室",
+];
+
+const scheduleHours: HourType[] = [
+  "09",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+];
+
+const scheduleMinutes: MinuteType[] = [
+  "00",
+  "05",
+  "10",
+  "15",
+  "20",
+  "25",
+  "30",
+  "35",
+  "40",
+  "45",
+  "50",
+  "55",
+];
+
+const scheduleHalfMinutes: MinuteType[] = ["00", "30"];
 // overload
 function calcScheduleStyle(arg: {
   startHour: HourType;
@@ -216,262 +256,193 @@ function calcScheduleStyle({
 }
 
 const SchedulesTable = ({ day }: { day: Day }) => {
-  const hours: HourType[] = [
-    "09",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-  ];
-  const mins: MinuteType[] = [
-    "00",
-    "05",
-    "10",
-    "15",
-    "20",
-    "25",
-    "30",
-    "35",
-    "40",
-    "45",
-    "50",
-    "55",
-  ];
-  const rows = hours.length * mins.length + additionalRows;
+  const rows = scheduleHours.length * scheduleMinutes.length + additionalRows;
   const cols = 7 * 2;
   const colsRepeats = cols / 2;
   const [emblaRef] = useEmblaCarousel();
+
+  const mobileSlides = mobileLocationOrder.map((location) => {
+    const eventsForLocation = eventData.flatMap((event) => {
+      const todaysEvent = day === "Day1" ? event.day1 : event.day2;
+      return todaysEvent
+        .filter((thisEvent) => thisEvent.location === location)
+        .map((thisEvent) => ({
+          eventName: event.name,
+          eventTicket: event.ticket,
+          start: thisEvent.start,
+          end: thisEvent.end,
+          label: thisEvent.label,
+        }));
+    });
+
+    return { location, eventsForLocation };
+  });
+
   return (
     <>
       <div
-        className={`grid w-[300vw] lg:w-[150vw] gap-0 font-medium hidden lg:grid `}
+        className={`hidden lg:grid w-[300vw] lg:w-[150vw] gap-0 font-medium`}
         style={{
           gridTemplateRows: `repeat(${rows}, minmax(0,1fr))`,
           gridTemplateColumns: `repeat(${colsRepeats}, auto minmax(0,1fr))`,
         }}
       >
-        
-        {/*場所一覧表示*/}
-        {locations.flatMap((localLocation) => {
-          const ns = calcScheduleStyle({
-            isTimeIndicator: true,
-            startHour: "09",
-            startMin: "00",
-            location: localLocation,
-            isMobile: false,
-          });
-
-          return (
-            <div
-              style={{
-                gridRowStart: (ns.gridRowStart as number) - additionalRows,
-                gridRowEnd: (ns.gridRowEnd as number) - 1,
-                gridColumnEnd: (ns.gridColumnEnd as number) + 1,
-              }}
-              className="text-3xl text-center"
-            >
-              {localLocation}
-            </div>
-          );
-        })}
-        {/*時刻*/}
-        {locations.flatMap((location) =>
-          hours.flatMap((hour) => (
-            <div
-              key={`${location}-${hour}-${"00"}`}
-              style={calcScheduleStyle({
-                isTimeIndicator: true,
-                startHour: hour,
-                startMin: "00",
-                location,
-                isMobile: false,
-              })}
-              className="relative w-12"
-            >
-              <span className="text-2xl absolute -translate-y-4">
-                {hour}:{"00"}
-              </span>
-            </div>
-          )),
-        )}
-        {/*枠線*/}
-        {locations.flatMap((localLocation) => {
-          return hours.map((d2) => {
-            const hs: MinuteType[] = ["00", "30"];
-            return hs.map((d3) => {
-              const ns = calcScheduleStyle({
-                isTimeIndicator: true,
-                startHour: d2,
-                startMin: d3,
-                location: localLocation,
-                isMobile: false,
-              });
-              return (
-                <div
-                  style={{
-                    gridRowStart: ns.gridRowStart as number,
-                    gridRowEnd: ns.gridRowEnd as number,
-                    gridColumnStart: ns.gridColumnEnd as number,
-                    gridColumnEnd: ns.gridColumnEnd as number,
-                  }}
-                  className={`border-t-2 border-black border-dashed mx-4 h-0`}
-                  key={`line-${localLocation}-${d2}-${d3}`}
-                ></div>
-              );
-            });
-          });
-        })}
-        {/*各アイテム*/}
-        {eventData.map((event) => {
-          const todaysEvent = day === "Day1" ? event.day1 : event.day2;
-          return todaysEvent.map((thisEvent) => {
-            const placement = calcScheduleStyle({
-              isTimeIndicator: false,
-              startHour: thisEvent.start.slice(0, 2) as HourType,
-              startMin: thisEvent.start.slice(3, 5) as MinuteType,
-              endHour: thisEvent.end.slice(0, 2) as HourType,
-              endMin: thisEvent.end.slice(3, 5) as MinuteType,
-              location: thisEvent.location,
-              isMobile: false,
-            });
-            return (
-              <div
-                key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}`}
-                style={placement}
-                className={`${locationColorMap[thisEvent.location][0]} m-1 mx-4 flex border-l-8 ${locationColorMap[thisEvent.location][1]}`}
-              >
-                <div className="flex flex-col justify-between">
-                  <div>{thisEvent.start}</div>
-                  <div>{thisEvent.end}</div>
-                </div>
-                <div className="pl-4 xl:pl-12 text-2xl flex items-center">
-                  {event.name}
-                </div>
-              </div>
-            );
-          });
-        })}
+        <ScheduleGrid day={day} locationsToRender={locations} />
       </div>
-      <div className={css.embla} ref={emblaRef}>
-        <div className={css.embla__container}>
-          <div className={css.embla__slide}>
-          <div
-          className={`grid w-[300vw] lg:w-[150vw] gap-0 font-medium hidden lg:grid `}
-        style={{
-          gridTemplateRows: `repeat(${3}, minmax(0,1fr))`,
-          gridTemplateColumns: `repeat(${colsRepeats}, auto minmax(0,1fr))`,
-        }}>
-            {/*場所一覧表示*/}
-        {locations.flatMap((localLocation) => {
-          const ns = calcScheduleStyle({
-            isTimeIndicator: true,
-            startHour: "09",
-            startMin: "00",
-            location: localLocation,
-            isMobile: false,
-          });
-
-          return (
-            <div
-              style={{
-                gridRowStart: (ns.gridRowStart as number) - additionalRows,
-                gridRowEnd: (ns.gridRowEnd as number) - 1,
-                gridColumnEnd: (ns.gridColumnEnd as number) + 1,
-              }}
-              className="text-3xl text-center"
-            >
-              {localLocation}
-            </div>
-          );
-        })}
-        {/*時刻*/}
-        {locations.flatMap((location) =>
-          hours.flatMap((hour) => (
-            <div
-              key={`${location}-${hour}-${"00"}`}
-              style={calcScheduleStyle({
-                isTimeIndicator: true,
-                startHour: hour,
-                startMin: "00",
-                location,
-                isMobile: false,
-              })}
-              className="relative w-12"
-            >
-              <span className="text-2xl absolute -translate-y-4">
-                {hour}:{"00"}
-              </span>
-            </div>
-          )),
-        )}
-        {/*枠線*/}
-        {locations.flatMap((localLocation) => {
-          return hours.map((d2) => {
-            const hs: MinuteType[] = ["00", "30"];
-            return hs.map((d3) => {
-              const ns = calcScheduleStyle({
-                isTimeIndicator: true,
-                startHour: d2,
-                startMin: d3,
-                location: localLocation,
-                isMobile: false,
-              });
-              return (
+      <div className="lg:hidden">
+        <div className={css.embla} ref={emblaRef}>
+          <div className={css.embla__container}>
+            {mobileSlides.map(({ location }) => (
+              <div className={css.embla__slide} key={location}>
                 <div
+                  className="grid rounded-2xl bg-white px-2 py-4"
                   style={{
-                    gridRowStart: ns.gridRowStart as number,
-                    gridRowEnd: ns.gridRowEnd as number,
-                    gridColumnStart: ns.gridColumnEnd as number,
-                    gridColumnEnd: ns.gridColumnEnd as number,
+                    gridTemplateRows: `repeat(${rows}, minmax(0,1fr))`,
+                    gridTemplateColumns: "auto minmax(0, 1fr)",
                   }}
-                  className={`border-t-2 border-black border-dashed mx-4 h-0`}
-                  key={`line-${localLocation}-${d2}-${d3}`}
-                ></div>
-              );
-            });
-          });
-        })}
-        {/*各アイテム*/}
-        {eventData.map((event) => {
-          const todaysEvent = day === "Day1" ? event.day1 : event.day2;
-          return todaysEvent.map((thisEvent) => {
-            const placement = calcScheduleStyle({
-              isTimeIndicator: false,
-              startHour: thisEvent.start.slice(0, 2) as HourType,
-              startMin: thisEvent.start.slice(3, 5) as MinuteType,
-              endHour: thisEvent.end.slice(0, 2) as HourType,
-              endMin: thisEvent.end.slice(3, 5) as MinuteType,
-              location: thisEvent.location,
-              isMobile: false,
-            });
-            return (
-              <div
-                key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}`}
-                style={placement}
-                className={`${locationColorMap[thisEvent.location][0]} m-1 mx-4 flex border-l-8 ${locationColorMap[thisEvent.location][1]}`}
-              >
-                <div className="flex flex-col justify-between">
-                  <div>{thisEvent.start}</div>
-                  <div>{thisEvent.end}</div>
-                </div>
-                <div className="pl-4 xl:pl-12 text-2xl flex items-center">
-                  {event.name}
+                >
+                  <ScheduleGrid
+                    day={day}
+                    locationsToRender={[location]}
+                    isMobile
+                  />
                 </div>
               </div>
-            );
-          });
-        })}
-
+            ))}
           </div>
-          </div>
-          <div className={css.embla__slide}>スライド 2</div>
-          <div className={css.embla__slide}>スライド 3</div>
         </div>
       </div>
+    </>
+  );
+};
+
+const ScheduleGrid = ({
+  day,
+  locationsToRender,
+  isMobile = false,
+}: {
+  day: Day;
+  locationsToRender: Location[];
+  isMobile?: boolean;
+}) => {
+  return (
+    <>
+      {/*場所一覧表示*/}
+      {locationsToRender.flatMap((localLocation) => {
+        const ns = calcScheduleStyle({
+          isTimeIndicator: true,
+          startHour: "09",
+          startMin: "00",
+          location: localLocation,
+          isMobile: false,
+        });
+
+        return (
+          <div
+            key={`label-${localLocation}-${isMobile ? "mobile" : "pc"}`}
+            style={
+              isMobile
+                ? {
+                    gridRowStart: (ns.gridRowStart as number) - additionalRows,
+                    gridRowEnd: (ns.gridRowEnd as number) - 1,
+                    gridColumnStart: 1,
+                    gridColumnEnd: 3,
+                  }
+                : {
+                    gridRowStart: (ns.gridRowStart as number) - additionalRows,
+                    gridRowEnd: (ns.gridRowEnd as number) - 1,
+                    gridColumnEnd: (ns.gridColumnEnd as number) + 1,
+                  }
+            }
+            className={`${isMobile ? "text-2xl" : "text-3xl"} text-center`}
+          >
+            {localLocation}
+          </div>
+        );
+      })}
+      {/*時刻*/}
+      {locationsToRender.flatMap((location) =>
+        scheduleHours.flatMap((hour) => (
+          <div
+            key={`${location}-${hour}-00-${isMobile ? "mobile" : "pc"}`}
+            style={calcScheduleStyle({
+              isTimeIndicator: true,
+              startHour: hour,
+              startMin: "00",
+              location,
+              isMobile,
+            })}
+            className="relative w-12"
+          >
+            <span className="text-2xl absolute -translate-y-4">
+              {hour}:{"00"}
+            </span>
+          </div>
+        )),
+      )}
+      {/*枠線*/}
+      {locationsToRender.flatMap((localLocation) => {
+        return scheduleHours.map((d2) => {
+          return scheduleHalfMinutes.map((d3) => {
+            const ns = calcScheduleStyle({
+              isTimeIndicator: true,
+              startHour: d2,
+              startMin: d3,
+              location: localLocation,
+              isMobile,
+            });
+            return (
+              <div
+                style={{
+                  gridRowStart: ns.gridRowStart as number,
+                  gridRowEnd: ns.gridRowEnd as number,
+                  gridColumnStart: ns.gridColumnEnd as number,
+                  gridColumnEnd: ns.gridColumnEnd as number,
+                }}
+                className={`border-t-2 border-black border-dashed mx-4 h-0`}
+                key={`line-${localLocation}-${d2}-${d3}-${isMobile ? "mobile" : "pc"}`}
+              ></div>
+            );
+          });
+        });
+      })}
+      {/*各アイテム*/}
+      {eventData.map((event) => {
+        const todaysEvent = day === "Day1" ? event.day1 : event.day2;
+        return todaysEvent
+          .filter((thisEvent) => locationsToRender.includes(thisEvent.location))
+          .map((thisEvent) => {
+            const placement = calcScheduleStyle({
+              isTimeIndicator: false,
+              startHour: thisEvent.start.slice(0, 2) as HourType,
+              startMin: thisEvent.start.slice(3, 5) as MinuteType,
+              endHour: thisEvent.end.slice(0, 2) as HourType,
+              endMin: thisEvent.end.slice(3, 5) as MinuteType,
+              location: thisEvent.location,
+              isMobile,
+            });
+            return (
+              <div
+                key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}-${isMobile ? "mobile" : "pc"}`}
+                style={placement}
+                className={`${locationColorMap[thisEvent.location][0]} m-1 mx-4 flex border-l-8 ${locationColorMap[thisEvent.location][1]}`}
+              >
+                <div className="flex flex-col justify-between">
+                  <div>{thisEvent.start}</div>
+                  <div>{thisEvent.end}</div>
+                </div>
+                
+                <div className="pl-4 xl:pl-12 text-2xl flex items-center">
+                  {event.name}
+                  <a href={`#eventD-${event.name}`}>
+                <Image src={arrowR} alt="jump"></Image>
+                </a>
+                </div>
+                
+              </div>
+            );
+          });
+      })}
     </>
   );
 };
@@ -479,19 +450,19 @@ const SchedulesTable = ({ day }: { day: Day }) => {
 export default function EventsPage() {
   const [currentDay, setCurrentDay] = useState<Day>("Day1");
   return (
-    <main className="px-36">
-      <h1 className="text-navy text-6xl font-bold mt-40">Events</h1>
+    <main className="px-6 lg:px-36">
+      <h1 className="text-navy lg:text-6xl text-4xl font-bold mt-20 lg:mt-40">Events</h1>
       <DaySwitcher
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
         className="my-18"
       ></DaySwitcher>
       <div className="overflow-x-scroll w-full">
-        <div className="">
+        <div className="font-medium">
           <SchedulesTable day={currentDay}></SchedulesTable>
         </div>
       </div>
-      <section className="grid grid-cols-2 gap-12 font-medium my-16 px-16">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 font-medium my-16 px-16">
         <div className="border-2 border-navy p-6">
           <div className="flex">
             <Image src={cloud_rain} alt="" className="size-10"></Image>
@@ -515,12 +486,13 @@ export default function EventsPage() {
         <h2 className="text-4xl border-l-4 border-l-navy font-medium my-16">
           イベント紹介
         </h2>
-        <div className="columns-2 space-x-8 space-y-8">
+        <div className="columns-1 md:columns-2 space-x-8 space-y-8">
           {eventData.map((event) => {
             return (
               <details
                 className="bg-[#5A44A926] p-6 break-inside-avoid"
                 key={event.name}
+                id={`eventD-${event.name}`}
               >
                 <summary className="text-2xl text-navy pb-6 relative">
                   <span className="text-black">{event.name}</span>
@@ -530,7 +502,7 @@ export default function EventsPage() {
                     </span>
                   )}
                 </summary>
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="flex">
                     <Image src={mapPin} alt="map icon"></Image>
                     <div>

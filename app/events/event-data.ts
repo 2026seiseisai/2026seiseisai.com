@@ -1,5 +1,5 @@
-type HourType = "09" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17";
-type MinuteType =
+export type HourType = "09" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17";
+export type MinuteType =
   | "00"
   | "05"
   | "10"

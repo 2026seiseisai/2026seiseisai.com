@@ -1,1 +1,461 @@
-﻿
+﻿.page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1440 / 2267;
+  font-size: 1.1111vw;
+  margin: 0 auto;
+  background: white;
+  transform-origin: top center;
+}
+
+.title {
+  position: absolute;
+  top: 1.7644%;
+  left: 11.1111%;
+  width: 77.7778%;
+  height: 4.2347%;
+  color: #0A1B6F;
+  font-size: 400%;
+  line-height: 150%;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.introduction {
+  position: absolute;
+  top: 7.0728%;
+  left: 10.8333%;
+  width: 77.7778%;
+  height: 0.9704%;
+  color: #000000;
+  font-size: 137.5%;
+  line-height: 122.2222%;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  position: absolute;
+  top: 10.6740%;
+  left: 0%;
+  width: 100%;
+  height: 89.3260%;
+  padding: 0 11.1111%;
+  box-sizing: border-box;
+}
+
+.rectangle1 {
+  position: absolute;
+  top: 3.6543%;
+  left: 20.1389%;
+  width: 59.7222%;
+  height: 13.4321%;
+  background: transparent;
+  border: 0.0694vw solid #000000;
+  box-sizing: border-box;
+}
+.rectangle2 {
+  position: absolute;
+  top: 17.1852%;
+  left: 20.1389%;
+  width: 59.7222%;
+  height: 13.4321%;
+  background: transparent;
+  border: 0.0694vw solid #000000;
+  box-sizing: border-box;
+}
+.rectangle3 {
+  position: absolute;
+  top: 40.1481%;
+  left: 20.1389%;
+  width: 29.8611%;
+  height: 14.1728%;
+  background: transparent;
+  border: 0.0694vw solid #000000;
+  box-sizing: border-box;
+}
+.rectangle4 {
+  position: absolute;
+  top: 40.1481%;
+  left: 50%;
+  width: 29.8611%;
+  height: 14.1728%;
+  background: transparent;
+  border: 0.0694vw solid #000000;
+  box-sizing: border-box;
+}
+.rectangle5 {
+  position: absolute;
+  top: 64.5926%;
+  left: 20.1389%;
+  width: 29.8611%;
+  height: 7.9012%;
+  background: transparent;
+  border: 0.0694vw solid #000000;
+  box-sizing: border-box;
+}
+.rectangle6 {
+  position: absolute;
+  top: 64.5926%;
+  left: 50%;
+  width: 29.8611%;
+  height: 7.9012%;
+  background: transparent;
+  border: 0.0694vw solid #000000;
+  box-sizing: border-box;
+}
+
+.sectionTitle {
+  position: absolute;
+  left: 20.4167%;
+  width: 11.4583%;
+  height: 2.5679%;
+  color: #0A1B6F;
+  font-size: 225%;
+  line-height: 61.1111%;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+.sectionText {
+  position: absolute;
+  left: 22.3611%;
+  width: 55.5556%;
+  height: 3.3704%;
+  color: #000000;
+  font-size: 150%;
+  line-height: 150%;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.title1 {
+  top: -0.3457%;
+}
+.downloadButton {
+  display: block;
+}
+.downloadButton img {
+  width: 100%;
+  height: 100%;
+}
+.doubleColor {
+  position: absolute;
+  top: 4.8395%;
+  left: 22.2222%;
+  width: 53.4722%;
+  height: 10.6173%;
+}
+.doubleColor_D {
+  position: absolute;
+  top: 14.6667%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
+}
+.doubleMono {
+  position: absolute;
+  top: 18.5679%;
+  left: 22.2222%;
+  width: 53.4722%;
+  height: 10.6173%;
+}
+.doubleMono_D {
+  position: absolute;
+  top: 28%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
+}
+.text1 {
+  top: 32.0864%;
+}
+
+.title2 {
+  top: 36.5926%;
+}
+.LogoColor {
+  position: absolute;
+  top: 41.6296%;
+  left: 23.5417%;
+  width: 23.0556%;
+  height: 10.8642%;
+}
+.LogoColor_D {
+  position: absolute;
+  top: 51.4074%;
+  left: 46.3611%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
+}
+.LogoMono {
+  position: absolute;
+  top: 41.6296%;
+  left: 53.1944%;
+  width: 23.0556%;
+  height: 10.8642%;
+}
+.LogoMono_D {
+  position: absolute;
+  top: 51.4074%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
+}
+.text2 {
+  top: 55.6481%;
+}
+
+.title3 {
+  top: 62.0247%;
+}
+.InfColor {
+  position: absolute;
+  top: 64.9383%;
+  left: 22.6389%;
+  width: 23.1944%;
+  height: 6.7654%;
+}
+.InfColor_D {
+  position: absolute;
+  top: 70.0741%;
+  left: 46.3611%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
+}
+.InfMono {
+  position: absolute;
+  top: 64.9383%;
+  left: 52.5%;
+  width: 23.1944%;
+  height: 6.7654%;
+}
+.InfMono_D {
+  position: absolute;
+  top: 70.0741%;
+  left: 76.7361%;
+  width: 2.6389%;
+  height: 1.8765%;
+  cursor: pointer;
+}
+.text3 {
+  top: 73.5864%;
+}
+/* タブレット・スマートフォン */
+@media (max-width: 1279px) {
+  .page {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 48px 24px 80px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  .title,
+  .introduction {
+    position: static;
+    width: 100%;
+    max-width: 760px;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .title {
+    margin-bottom: 24px;
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .introduction {
+    margin-bottom: 36px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .main {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 0;
+    width: 100%;
+    max-width: 760px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .rectangle1,
+  .rectangle2,
+  .rectangle3,
+  .rectangle4,
+  .rectangle5,
+  .rectangle6 {
+    display: none;
+  }
+
+  .sectionTitle,
+  .sectionText {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  .sectionTitle {
+    margin: 36px 0 0;
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .sectionText {
+    margin: 8px 24px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  .doubleColor,
+  .doubleMono,
+  .LogoColor,
+  .LogoMono,
+  .InfColor,
+  .InfMono {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: 1px solid #777;
+    object-fit: contain;
+  }
+
+  .doubleMono {
+    border-top: 0;
+  }
+
+  .LogoMono,
+  .InfMono {
+    border-left: 0;
+  }
+
+  .downloadButton {
+    position: relative;
+    inset: auto;
+    display: block;
+    align-self: end;
+    justify-self: end;
+    width: 38px;
+    height: 38px;
+    margin: 0 8px 8px 0;
+    z-index: 2;
+  }
+
+  .downloadButton:focus-visible {
+    outline: 3px solid #db5492;
+    outline-offset: 3px;
+  }
+
+  .title1 {
+    grid-area: 1 / 1 / 2 / -1;
+    margin-top: 0;
+  }
+
+  .doubleColor,
+  .doubleColor_D {
+    grid-area: 2 / 1 / 3 / -1;
+  }
+
+  .doubleMono,
+  .doubleMono_D {
+    grid-area: 3 / 1 / 4 / -1;
+  }
+
+  .text1 {
+    grid-area: 4 / 1 / 5 / -1;
+  }
+
+  .title2 {
+    grid-area: 5 / 1 / 6 / -1;
+  }
+
+  .LogoColor,
+  .LogoColor_D {
+    grid-area: 6 / 1 / 7 / 2;
+  }
+
+  .LogoMono,
+  .LogoMono_D {
+    grid-area: 6 / 2 / 7 / 3;
+  }
+
+  .text2 {
+    grid-area: 7 / 1 / 8 / -1;
+  }
+
+  .title3 {
+    grid-area: 8 / 1 / 9 / -1;
+  }
+
+  .InfColor,
+  .InfColor_D {
+    grid-area: 9 / 1 / 10 / 2;
+  }
+
+  .InfMono,
+  .InfMono_D {
+    grid-area: 9 / 2 / 10 / 3;
+  }
+
+  .text3 {
+    grid-area: 10 / 1 / 11 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 24px 16px 56px;
+  }
+
+  .title {
+    margin-bottom: 14px;
+    font-size: 24px;
+  }
+
+  .introduction {
+    margin-bottom: 28px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .main {
+    row-gap: 8px;
+  }
+
+  .sectionTitle {
+    margin-top: 28px;
+    font-size: 18px;
+  }
+
+  .sectionText {
+    margin: 8px 8px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .downloadButton {
+    width: 28px;
+    height: 28px;
+    margin: 0 4px 4px 0;
+  }
+}

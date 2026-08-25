@@ -1,12 +1,13 @@
 ﻿'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 type ClubItem = {
   id: string;
   name: string;
-  icon: string; // 現状はテキスト/絵文字のプレースホルダー。実際のアイコン画像に差し替え可能
+  icon: string; // publicフォルダ内の画像パス（例: '/club-icons/angou.png'）
   href: string;
 };
 
@@ -17,16 +18,17 @@ type Category = {
 };
 
 // TODO: あ行以外の部活データを実際の内容に差し替えてください
+// icon には、public/club-icons フォルダに置いた画像ファイルのパスを指定してください
 const categories: Category[] = [
   {
     id: 'a',
     label: 'あ行',
     items: [
-      { id: 'angou', name: '暗号同好会', icon: '🔒', href: '#' },
-      { id: 'igo', name: '囲碁将棋部', icon: '碁', href: '#' },
-      { id: 'eigo', name: '英語部', icon: 'AB', href: '#' },
-      { id: 'engei', name: '園芸部', icon: '🌱', href: '#' },
-      { id: 'origami', name: '折り紙研究部', icon: '折', href: '#' },
+      { id: 'angou', name: '暗号同好会', icon: '/club-icons/angou.png', href: '#' },
+      { id: 'igo', name: '囲碁将棋部', icon: '/club-icons/igo.png', href: '#' },
+      { id: 'eigo', name: '英語部', icon: '/club-icons/eigo.png', href: '#' },
+      { id: 'engei', name: '園芸部', icon: '/club-icons/engei.png', href: '#' },
+      { id: 'origami', name: '折り紙研究部', icon: '/club-icons/origami.png', href: '#' },
     ],
   },
   { id: 'ka', label: 'か行', items: [] },
@@ -163,7 +165,15 @@ function AccordionCategory({
           )}
           {category.items.map((item) => (
             <li className={styles.clubRow} key={item.id}>
-              <span className={styles.clubIcon}>{item.icon}</span>
+              <span className={styles.clubIcon}>
+                <Image
+                  src={item.icon}
+                  alt={item.name}
+                  fill
+                  sizes="40px"
+                  className={styles.clubIconImage}
+                />
+              </span>
               <span className={styles.clubName}>{item.name}</span>
               <a className={styles.readButton} href={item.href}>
                 読む <span aria-hidden>🔗</span>

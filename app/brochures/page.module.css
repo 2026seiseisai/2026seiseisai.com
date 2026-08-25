@@ -1,8 +1,12 @@
-﻿.page {
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
+
+.page {
   --color-teal: #1f6f83;
   --color-navy: #1c3a5e;
   --color-navy-hover: #142a45;
+  --color-navy-light: #eef2f7;
   --color-pink: #c2255c;
+  --color-pink-light: #fdeef3;
   --color-text: #374151;
   --color-text-light: #6b7280;
   --color-border: #e5e7eb;
@@ -10,8 +14,8 @@
   max-width: 960px;
   margin: 0 auto;
   padding: 48px 24px 96px;
-  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic',
-    'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+    'Yu Gothic', sans-serif;
   color: var(--color-text);
 }
 
@@ -94,7 +98,7 @@
 
 .downloadLabel {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
   white-space: nowrap;
 }
@@ -108,7 +112,7 @@
   padding: 8px 22px;
   border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
@@ -138,37 +142,49 @@
 }
 
 .accordionItem {
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
+/* ボタンデザインを刷新：
+   - 角丸を大きくして柔らかい印象に
+   - 左側にカラーの縦バーを添えてアクセントに
+   - 淡い背景色＋濃い文字色の「タグ」のような見た目に変更
+   - +/− アイコンは丸い枠で囲み、独立したボタンのように見せる */
 .accordionHeader {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--color-navy);
-  color: #fff;
+  background: var(--color-navy-light);
+  color: var(--color-navy);
   border: none;
-  border-radius: 4px;
-  padding: 12px 18px;
+  border-left: 5px solid var(--color-navy);
+  border-radius: 10px;
+  padding: 12px 14px 12px 18px;
   font-size: 1rem;
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(28, 58, 94, 0.06);
 }
 
 .accordionHeader:hover {
-  background: var(--color-navy-hover);
+  background: #e3e9f1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(28, 58, 94, 0.12);
 }
 
 .accordionHeaderOpen {
-  background: var(--color-pink);
+  background: var(--color-pink-light);
+  color: var(--color-pink);
+  border-left-color: var(--color-pink);
 }
 
 .accordionHeaderOpen:hover {
-  background: var(--color-pink);
-  opacity: 0.92;
+  background: #fbdfe9;
+  box-shadow: 0 4px 10px rgba(194, 37, 92, 0.15);
 }
 
 .accordionHeader:focus-visible {
@@ -177,14 +193,22 @@
 }
 
 .accordionIcon {
-  font-size: 1.3rem;
-  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  font-weight: 800;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .clubList {
   list-style: none;
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -199,23 +223,28 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+/* アイコンを表示する丸い枠。position: relative は、内側の
+   next/image（fillモード）が正しいサイズで表示されるために必須です */
 .clubIcon {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1.5px solid var(--color-navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  color: var(--color-navy);
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.clubIconImage {
+  object-fit: contain;
+  padding: 4px;
 }
 
 .clubName {
   flex: 1;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
 }
 
@@ -226,7 +255,7 @@
   background: var(--color-navy);
   color: #fff;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 6px 14px;
   border-radius: 20px;
   text-decoration: none;
@@ -295,3 +324,5 @@
     font-size: 0.88rem;
   }
 }
+
+

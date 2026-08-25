@@ -943,7 +943,6 @@ const Rects_中庭: Rect[] = [
         z2: -75,
     },
 ];
-
 /** 長方形 y: y座標(高さ) x1,x2: 端のx座標 z1,z2: 端のz座標 color: 表面の色(省略した場合は白) */
 export const Rects: Rect[] = [
     ...Rects_中学棟1階,
@@ -1658,4 +1657,3 @@ export const BazaarPositions: [string, number, number, number, string][] = [
     ["整理券", 300, 0, 600, "#EA5B6F"],
     ["金券", 70, 0, 625, "#EA5B6F"],
 ];
-

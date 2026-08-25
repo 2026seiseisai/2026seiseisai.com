@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { exhibitionIcons } from './map_2025_ver/(exhibition)/exhibition-icons';
-import { mapIcons } from './map_2025_ver/(map3d)/map-icons';
-import { Boxes, Color, ExhibitionPositions, Polygons, Rects } from './map_2025_ver/(map3d)/mapdata';
 import { floorCameras, roomCoordinates, type MapPoint3D } from './map-2026-coordinates';
 import type { MapFloor } from './map-2026-data';
-import { exhibitionIcons2026 } from './map-2026-icons';
+import { exhibitionIcons } from './map-2026-exhibition-icons';
+import { mapIcons } from './map-2026-facility-icons';
+import { Boxes, Color, ExhibitionPositions, Polygons, Rects } from './map-2026-geometry';
 import styles from './Map2026.module.css';
 
 type MapRoom = MapFloor['rooms'][number];
@@ -21,7 +20,6 @@ type MapScene = {
 const exhibitionIconAliases: Record<string, keyof typeof exhibitionIcons> = {
   'MGA（テーブルゲーム）同好会': 'MGA同好会',
   'Vocaloid&作曲同好会': 'VOCALOID&作曲同好会',
-  'チェス・オセロ研究同好会': 'チェス研究会',
   謎解き同好会: '謎解き研究会',
 };
 
@@ -243,9 +241,6 @@ function iconBillboard(svg: string, size: number) {
 }
 
 function exhibitionIconSvg(name: string) {
-  if (name in exhibitionIcons2026) {
-    return exhibitionIcons2026[name as keyof typeof exhibitionIcons2026];
-  }
   const iconName = exhibitionIconAliases[name] ?? name;
   return iconName in exhibitionIcons
     ? exhibitionIcons[iconName as keyof typeof exhibitionIcons]
@@ -300,9 +295,9 @@ function createRoomBubble(room: MapRoom): RoomBubble | null {
   const columns = room.exhibitions.length > 3 ? 2 : 1;
   const rows = hasExhibitions ? Math.ceil(room.exhibitions.length / columns) : 1;
   const columnWidth = 300;
-  const headerHeight = 42;
-  const rowHeight = 40;
-  const bodyPadding = 10;
+  const headerHeight = 48;
+  const rowHeight = 48;
+  const bodyPadding = 12;
   const tailHeight = 15;
   const bodyWidth = columnWidth * columns;
   const bodyHeight = headerHeight + rows * rowHeight + bodyPadding;
@@ -344,7 +339,7 @@ function createRoomBubble(room: MapRoom): RoomBubble | null {
   context.textBaseline = 'middle';
   context.fillStyle = '#0a1b6f';
   context.textAlign = 'center';
-  drawFittedText(context, room.name, bodyWidth / 2, headerHeight / 2 + 1, bodyWidth - 32, 18);
+  drawFittedText(context, room.name, bodyWidth / 2, headerHeight / 2 + 1, bodyWidth - 32, 22);
 
   if (hasExhibitions) {
     context.textAlign = 'left';
@@ -354,12 +349,12 @@ function createRoomBubble(room: MapRoom): RoomBubble | null {
       const row = index % rows;
       const rowCenter = headerHeight + row * rowHeight + rowHeight / 2;
       const columnStart = column * columnWidth;
-      drawFittedText(context, name, columnStart + 52, rowCenter, columnWidth - 66, 14);
+      drawFittedText(context, name, columnStart + 64, rowCenter, columnWidth - 80, 17);
     });
   } else {
     context.textAlign = 'center';
     context.fillStyle = '#7e889d';
-    context.font = '700 13px sans-serif';
+    context.font = '700 16px sans-serif';
     context.fillText('展示情報なし', bodyWidth / 2, headerHeight + rowHeight / 2);
   }
 
@@ -387,9 +382,9 @@ function createRoomBubble(room: MapRoom): RoomBubble | null {
   room.exhibitions.forEach((name, index) => {
     const column = Math.floor(index / rows);
     const row = index % rows;
-    const iconCenterX = column * columnWidth + 28;
+    const iconCenterX = column * columnWidth + 34;
     const iconCenterY = headerHeight + row * rowHeight + rowHeight / 2;
-    drawSvgIcon(context, texture, exhibitionIconSvg(name), iconCenterX, iconCenterY, 25);
+    drawSvgIcon(context, texture, exhibitionIconSvg(name), iconCenterX, iconCenterY, 31);
   });
 
   return { group, height: worldHeight };
@@ -422,7 +417,7 @@ function addRoomMarker(group: THREE.Group, room: MapRoom, [x, y, z]: MapPoint3D)
 function addFacilityIcons(scene: THREE.Scene, billboards: THREE.Object3D[]) {
   for (const [name, x, y, z] of ExhibitionPositions) {
     if (!(name in mapIcons)) continue;
-    const size = name.includes('トイレ') ? 24 : name === '階段' ? 29 : 34;
+    const size = name.includes('トイレ') ? 29 : name === '階段' ? 35 : 41;
     const icon = iconBillboard(mapIcons[name as keyof typeof mapIcons], size);
     icon.position.set(x, y + 20, z);
     icon.renderOrder = MAP_LABEL_RENDER_ORDER;

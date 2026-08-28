@@ -27,6 +27,12 @@ const NAV_ITEMS = [
 
 const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;
 
+const PUBLISHED_PATHS = new Set(['/', '/news', '/theme&logo', '/access']);
+
+function isPublishedPath(href: string) {
+  return PUBLISHED_PATHS.has(href) || href.startsWith('/news/');
+}
+
 function InfinityLogo() {
   return (
     <svg
@@ -122,6 +128,7 @@ function InfinityLogo() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const ticketIsPublished = isPublishedPath('/ticket');
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -167,26 +174,46 @@ export default function Header() {
         </Link>
 
         <div className="header-actions">
-          <Link
-            href="/ticket"
-            className="header-cta-link"
-            style={{
-              fontFamily: HEADER_BUTTON_FONT,
-              color: '#DB5492',
-              textDecoration: 'none',
-              fontSize: '18px',
-              fontWeight: 500,
-              lineHeight: 1,
-              padding: '0',
-              border: 'none',
-              whiteSpace: 'nowrap',
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            Web整理券
-          </Link>
+          {ticketIsPublished ? (
+            <Link
+              href="/ticket"
+              className="header-cta-link"
+              style={{
+                fontFamily: HEADER_BUTTON_FONT,
+                color: '#DB5492',
+                textDecoration: 'none',
+                fontSize: '18px',
+                fontWeight: 500,
+                lineHeight: 1,
+                padding: '0',
+                border: 'none',
+                whiteSpace: 'nowrap',
+                transition: 'opacity 0.2s',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            >
+              Web整理券
+            </Link>
+          ) : (
+            <span
+              aria-disabled="true"
+              className="header-cta-link"
+              style={{
+                fontFamily: HEADER_BUTTON_FONT,
+                color: '#999999',
+                fontSize: '18px',
+                fontWeight: 500,
+                lineHeight: 1,
+                padding: '0',
+                border: 'none',
+                whiteSpace: 'nowrap',
+                cursor: 'not-allowed',
+              }}
+            >
+              Web整理券
+            </span>
+          )}
 
           <Link
             href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"
@@ -372,53 +399,91 @@ export default function Header() {
               fontFamily: HEADER_BUTTON_FONT,
             }}
           >
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={`${item.label}-${item.href}`}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  color: '#DB5492',
-                  textDecoration: 'none',
-                  fontSize: 'clamp(36px, 10vw, 50px)',
-                  fontWeight: 500,
-                  lineHeight: 1.08,
-                  padding: '22px 0 18px',
-                  borderBottom: '1px solid #e7e9f2',
-                  letterSpacing: '0.01em',
-                  whiteSpace: 'normal',
-                  overflowWrap: 'anywhere',
-                  wordBreak: 'break-word',
-                }}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const itemIsPublished = isPublishedPath(item.href);
+              const itemStyle = {
+                color: itemIsPublished ? '#DB5492' : '#999999',
+                textDecoration: 'none',
+                fontSize: 'clamp(36px, 10vw, 50px)',
+                fontWeight: 500,
+                lineHeight: 1.08,
+                padding: '22px 0 18px',
+                borderBottom: '1px solid #e7e9f2',
+                letterSpacing: '0.01em',
+                whiteSpace: 'normal',
+                overflowWrap: 'anywhere',
+                wordBreak: 'break-word',
+              } as const;
+
+              return itemIsPublished ? (
+                <Link
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={itemStyle}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span
+                  key={`${item.label}-${item.href}`}
+                  aria-disabled="true"
+                  style={{ ...itemStyle, cursor: 'not-allowed' }}
+                >
+                  {item.label}
+                </span>
+              );
+            })}
 
             <div className="drawer-cta-wrap">
-              <Link
-                href="/ticket"
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: HEADER_BUTTON_FONT,
-                  textDecoration: 'none',
-                  backgroundColor: '#ffffff',
-                  color: '#0A1B6F',
-                  fontSize: 'clamp(20px, 5.4vw, 26px)',
-                  fontWeight: 500,
-                  lineHeight: 1.2,
-                  borderRadius: '999px',
-                  padding: '14px 22px',
-                  width: '100%',
-                  maxWidth: '100%',
-                  border: '2px solid #0A1B6F',
-                }}
-              >
-                Web整理券
-              </Link>
+              {ticketIsPublished ? (
+                <Link
+                  href="/ticket"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: HEADER_BUTTON_FONT,
+                    textDecoration: 'none',
+                    backgroundColor: '#ffffff',
+                    color: '#0A1B6F',
+                    fontSize: 'clamp(20px, 5.4vw, 26px)',
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    borderRadius: '999px',
+                    padding: '14px 22px',
+                    width: '100%',
+                    maxWidth: '100%',
+                    border: '2px solid #0A1B6F',
+                  }}
+                >
+                  Web整理券
+                </Link>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: HEADER_BUTTON_FONT,
+                    backgroundColor: '#d9d9d9',
+                    color: '#777777',
+                    fontSize: 'clamp(20px, 5.4vw, 26px)',
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    borderRadius: '999px',
+                    padding: '14px 22px',
+                    width: '100%',
+                    maxWidth: '100%',
+                    border: '2px solid #bdbdbd',
+                    cursor: 'not-allowed',
+                  }}
+                >
+                  Web整理券
+                </span>
+              )}
 
               <Link
                 href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"

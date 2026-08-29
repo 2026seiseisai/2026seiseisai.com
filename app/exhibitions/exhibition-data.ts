@@ -50,6 +50,7 @@ export const locations = {
   図書室: ExhibitionFloor.高校棟3階,
   情報教室: ExhibitionFloor.高校棟4階,
   美術室: ExhibitionFloor.高校棟4階,
+  第二体育館: ExhibitionFloor.第二体育館,
 } as const satisfies Record<string, ExhibitionFloor>;
 
 /*
@@ -74,6 +75,15 @@ export const locations = {
     },
  */
 const exhibitionDataRaw = {
+  　マジック同好会: {
+        location: "4年E組",
+        description: "対面でのマジックとマジックショーを展示しています！マジックに興味がない方も一度お越しください！"
+    },
+    電子工作部: {
+        location: "6年A組",
+        description: "大会に出場したロボコン機体やレゴを使用したロボット等を展示しています。山奥で育ったメカニック、とくとご覧あれ。"
+    },
+    
   /*
     園芸部: {
         location: "1年A組",
@@ -92,6 +102,7 @@ const exhibitionDataRaw = {
     },
     */
 
+  /* とりあえずコメントアウト
   書道部: {
     location: '1年A組',
     icon: exhibitionIcons['書道部'],
@@ -101,7 +112,7 @@ const exhibitionDataRaw = {
     twitter_link: 'https://x.com/tdj_shodou',
     club_magazine: clubMagazineLinks['書道部'],
     /*テスト用 */
-    /*instagram_link: "https://www.instagram.com/todaiji.official/",*/
+    /*instagram_link: "https://www.instagram.com/todaiji.official/",
     blogs: ['60/05'],
   },
   東菁会: {
@@ -484,6 +495,7 @@ const exhibitionDataRaw = {
       '普段はみんなで持ち寄って楽しんでいる同好会です。そんな中から茶葉を展示しております。紅茶を知らない人も是非！',
     twitter_link: 'https://x.com/TOUDAIJIteaclub',
   },
+  */
 } as const;
 
 export const exhibitionData: Readonly<

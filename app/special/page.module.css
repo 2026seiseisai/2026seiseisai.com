@@ -1,1 +1,198 @@
-﻿
+﻿body {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fefefe;
+}
+
+/* 全体の余白と透かし文字 */
+.main {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0;
+  padding: 40px 0px 0px 80px;
+}
+.main::before {
+  content: "SPECIAL";
+  position: absolute;
+  top: 400px;
+  left: 70%;
+  transform: translateX(-50%) scaleX(0.6);
+  font-size: 200px;
+  font-weight: 1000;
+  color:#0A1B6F0D;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* タイトル */
+.title {
+  color: #0A1B6F;
+  font-size: 70px;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+  white-space: normal;
+}
+/* 説明文 */
+.description {
+  color: #0B0E0F;
+  font-size: 30px;
+  line-height: 1.8;
+  max-width: 2004px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 禁止事項セクション */
+.rules {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  padding-left: 20px;
+}
+
+/* 左の縦線 */
+.rules::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 320px;
+  background-color: #00AABE;
+}
+/* 注意見出し */
+.ruleTitle {
+  color: #DB5492;
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+/* 注意リスト */
+.ruleList {
+  list-style-type: disc;
+  padding-left: 2rem;
+  color: #0B0E0F;
+  font-size: 30px;
+  line-height: 1.8;
+}
+
+/* 壁紙 */
+.wallpaperHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.sectionTitlewallpaper {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin-top: 45px;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1.5;
+  color: #000000;
+}
+.sectionDescriptionWallpaper {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* アイコン */
+.iconHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.sectionTitleicon{
+font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: #000000;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+.sectionDescriptionIcon{
+font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+/* ヘッダー */
+.headerHeader {
+  display: flex; 
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.sectionTitleheader{
+font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: #000000;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+.sectionDescriptionHeader{
+font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  .main {
+    padding: 40px 20px;
+  }
+
+  .title {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .ruleTitle {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .ruleList {
+    font-size: 18px;
+  }
+
+  .rules {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rules::before {
+    display: none;
+  }
+}

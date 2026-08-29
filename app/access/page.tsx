@@ -105,7 +105,7 @@ const AccessPage: NextPage = () => {
         <h2 className={styles.sectionHeading}>高の原駅からの行き方</h2>
         <div className={styles.videoWrapper}>
           <iframe
-            src="https://www.youtube.com/embed/ZDUpFBZTVwQ"
+            src="https://www.youtube.com/embed/Xavpmvhk8ng"
             title="高の原駅からの行き方"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

@@ -209,6 +209,7 @@ const exhibitionDataRaw = {
         description:
             "世界のさまざまな民族の音楽についての模造紙やいろいろな楽器を展示しております！",
         twitter_link: "https://x.com/tdjminon2",
+        blog: ["62/2"],
     },
     "鉄道研究部": {
         location: "1年E組",
@@ -216,6 +217,7 @@ const exhibitionDataRaw = {
         description:
             "鉄道模型や写真、鉄道グッズの展示、Nゲージの運転体験などをしています。みなさんをお待ちしてます！",
         twitter_link: "https://x.com/tdj_tekken",
+        blog: ["62/5"],
     },
     "独楽研究会": {
         location: "3年A組",
@@ -229,6 +231,7 @@ const exhibitionDataRaw = {
         description:
             "興味深い実験や殆ど全ての人が見たことのないであろう生物の展示など、生物、化学、物理、地学などの科学にまつわる活動の成果を展示、実演します。部員達の努力の結晶を是非ご覧ください。",
         twitter_link: "https://x.com/tdjscienceclub",
+        events: ["科学部演示実験"],
     },
     "登山同好会": {
         location: "第二体育館",
@@ -242,6 +245,7 @@ const exhibitionDataRaw = {
         description:
             "部員が制作したゲームを実際に遊んで楽しむ展示や、活動内容の紹介を行います。",
         twitter_link: "https://x.com/tdj_sip",
+        events: ["レゴプログラミング講習会"],
     },
     "旅行同好会": {
         location: "第二体育館",
@@ -263,6 +267,7 @@ const exhibitionDataRaw = {
         description:
             "ロケット研究部が皆さんを宇宙の世界へご案内します！大型ロケット模型や過去に打ち上げた実機の\n展示に加え、実際にロケットを製作できる体験イベント(要整理券)も開催。",
         twitter_link: "https://x.com/rockettdj63",
+        events: ["ロケット発射実験"],
     },
     "Vocaloid&作曲同好会": {
         location: "5年D組",
@@ -284,6 +289,7 @@ const exhibitionDataRaw = {
         description:
             "謎解きに必要なのは｢ひらめき｣だけ。\n手軽にスッキリしたい｢初心者｣の方から、\n手応えのある謎を探す｢挑戦者｣の方まで、\n満足できるような謎があなたを待っています！\n(もちろん、ヒントもあるよ)\n今年は様々なコンテンツがあるので是非！\nただこの部屋何か秘密が隠されているようで…",
         twitter_link: "https://x.com/tdj_nazo",
+        blog: ["62/1"],
     },
     "数学研究部": {
         location: "6年B組",
@@ -311,6 +317,7 @@ const exhibitionDataRaw = {
         description:
             "設立、文化祭展示2年目の自動車研究会です。昨年好評だったラジコンレースはより走りやすく進化し、もちろん去年に引き続き1から作った大会出場のバッテリーカーもバージョンアップし展示。教室内の展示も見ていて少しも退屈しない、楽しく興味深いものを取り揃えています！特設ジオラマも設置しているので、ぜひ皆様のお気に入りのミニカーをご持参いただき撮影しましょう！",
         twitter_link: "https://x.com/automobile_tdj",
+        blog: ["62/4"],
     },
     "暗号同好会": {
         location: "4年D組",

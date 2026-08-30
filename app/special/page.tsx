@@ -11,12 +11,21 @@ export default function SpecialPage() {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>SPECIAL</h1>
-      <p className={styles.description}>
+      <p className={`${styles.description} ${styles.pcOnly}`}>
         第62回菁々祭のテーマ &quot;Infinity&quot; をイメージして作られた壁紙やアイコン・ヘッダーなどに使える<br />
         画像をダウンロードすることができます。菁々祭に向け、SNS上でも &quot;Infinity&quot; を感じて<br />
         盛り上がっていきましょう！使用にあたっては、下記の禁止事項を遵守していただくよう<br />
         お願いいたします。
-      </p>
+     </p>
+     <p className={`${styles.description} ${styles.spOnly}`}>
+       {`第62回菁々祭のテーマ "Infinity" をイメージして
+       作られた壁紙やアイコン・ヘッダーなどに
+       使える画像をダウンロードすることができます。
+       菁々祭に向け、SNS上でも "Infinity" を感じて
+       盛り上がっていきましょう！使用にあたっては、
+       下記の禁止事項を遵守していただくよう
+       お願いいたします。`}
+     </p>
 
       <section className={styles.rules}>
        <h2 className={styles.ruleTitle}>禁止事項</h2>

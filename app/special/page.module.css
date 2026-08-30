@@ -5,6 +5,10 @@
   background-color: #fefefe;
 }
 
+body::-webkit-scrollbar {
+  display: none; /* ← スクロールバー非表示（Chrome, Safari） */
+}
+
 /* 全体の余白と透かし文字 */
 .main {
   position: relative;
@@ -16,8 +20,8 @@
 .main::before {
   content: "SPECIAL";
   position: absolute;
-  top: 310px;
-  left: 80%;
+  top: 350Px;
+  left: 65%;
   transform: translateX(-40%) scaleX(0.3);
   font-family: 'Odibee Sans', sans-serif;
   font-size: 450;
@@ -37,13 +41,17 @@
   white-space: normal;
 }
 /* 説明文 */
+.pcOnly { display: block; }
+.spOnly { display: none; }
 .description {
   color: #0B0E0F;
   font-size: 30px;
   line-height: 1.8;
   max-width: 2004px;
+  text-align: left;
   margin-bottom: 60px;
   position: relative;
+  white-space: normal;
   z-index: 1;
 }
 
@@ -107,25 +115,34 @@
   color: #000000;
 }
 .wallpaperGrid {
-   display: flex;
-  justify-content: flex-start; /* ← center から変更 */
+  display: flex;
+  justify-content: flex-start;
   gap: 55px;
-  flex-wrap: wrap;
   margin-top: 40px;
   padding-left: 100px;
+  flex-wrap: nowrap;        /* 横一列に並べる */
+  overflow-x: auto;         /* ← PCでも横スクロールできるようにする */
+  overflow-y: hidden;       /* ← 上下スクロール禁止 */
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 .wallpaperItem {
   position: relative;
   width: 170px;
   height: 340px;
   background-color: #d9d9d9;
+  flex: 0 0 auto; /* ← 横並び固定 */
+  scroll-snap-align: start; /* ← スワイプ時に左端で止まる */
+  overflow: visible;
 }
 
 .wallpaperDownloadButton {
   position: absolute;
-  bottom: -20px;
-  right: -20px;
+  bottom: 10px;
+  right: 10px;
   width: 60px;
   height: 60px;
   background-color: #00AABE;
@@ -167,14 +184,21 @@ font-family: 'Noto Sans JP', sans-serif;
   color: #000000;
   margin-bottom: 16px;
 }
+
 .iconGrid {
   display: flex;
-  justify-content: flex-start; /* 左寄せ */
-  gap: 100px; /* 丸同士の間隔を調整 */
-  flex-wrap: wrap;
-  margin-top: 40px;
+  justify-content: flex-start;
+  gap: 100px;
   padding-left: 150px;
+  flex-wrap: nowrap;        /* ← 折り返し禁止（横一列に並べる） */
+  overflow-x: auto;         /* ← PCでも横スクロールできるようにする */
+  overflow-y: hidden;       /* ← 上下スクロール禁止 */
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  height: 260px;            /* ← アイコン＋赤丸が収まる高さに調整 */
 }
+
 
 .iconItem {
   position: relative;
@@ -235,13 +259,20 @@ font-family: 'Noto Sans JP', sans-serif;
 }
 
 /* ヘッダー画像の並び */
-.headerGrid {
+ .headerGrid {
   display: flex;
   justify-content: flex-start;
   gap: 160px;
-  flex-wrap: wrap;
   padding-left: 200px;
+
+  flex-wrap: nowrap;        /* ← 折り返し禁止（横一列に並べる） */
+  overflow-x: auto;         /* ← 横スクロール有効化 */
+  overflow-y: hidden;       /* ← 上下スクロール禁止 */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  height: 160px;            /* ← ヘッダー画像＋赤丸が収まる高さ */
 }
+
 
 /* 画像の枠（横長） */
 .headerItem {
@@ -280,47 +311,122 @@ font-family: 'Noto Sans JP', sans-serif;
   height: 32px;
 }
 
-/* 📱 スマホ・タブレット対応 */
+/* スマホ対応 */
 @media (max-width: 1024px) {
+
+  body::-webkit-scrollbar {
+    display: none; /* ← スクロールバー非表示（Chrome, Safari） */
+  }
+
   .main {
-    padding: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0;
+    padding: 20px 0px 0px 30px;
   }
 
   .title {
-    font-size: 50px;
-    text-align: center;
+    font-size: 30px;
   }
-
+  .pcOnly { display: none; }
+  .spOnly { display: block; }
   .description {
-    font-size: 22px;
-    line-height: 1.6;
-    text-align: center;
-    margin: 0 auto 40px;
-  }
+  color: #0B0E0F;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 2004px;
+  text-align: left;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+  white-space: pre-line;
+}
+
 
   .rules {
     padding-left: 10px;
   }
 
+  .rules::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 170px;
+  background-color: #00AABE;}
+
   .ruleTitle {
-    font-size: 36px;
-    text-align: center;
+    font-size: 22px;
+    text-align: left;
+    color: #DB5492;
+    margin-bottom: -15px;
   }
 
+  .main::before {
+  content: "SPECIAL";
+  position: absolute;
+  top: 270px;
+  left: 65%;
+  transform: translateX(-40%) scaleX(0.3);
+  font-family: 'Odibee Sans', sans-serif;
+  font-size: 180;
+  font-weight: 400;
+  color: #0A1B6F0D;
+}
+
   .ruleList {
-    font-size: 22px;
+    font-size: 14px;
+  }
+
+  .wallpaperHeader {
+    display: flex; /* ← 念のため再指定 */
+    flex-direction: column; /* ← 縦並びに変更 */
+    align-items: flex-start; /* ← 左寄せ */
+    gap: 0;
+  }
+
+  .wallpaperTitle h1 {
+    font-size: 28px;
+  }
+
+  .wallpaperTitle p {
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   /* Wallpaper */
   .wallpaperGrid {
-    justify-content: center;
-    gap: 30px;
-    padding-left: 0;
-  }
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  padding-left: 0;
+  flex-wrap: nowrap; /* 横並び固定 */
+  overflow-x: auto;  /* 横スクロール */
+  overflow-y: hidden; /* ← 上下スクロール禁止 */
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  height: 300px; /* ← これが最重要！青い丸が収まる高さにする */
+}
+
 
   .wallpaperItem {
+    flex: 0 0 auto; /* ← 横並び固定 */
+    scroll-snap-align: start;
     width: 140px;
     height: 280px;
+    overflow: visible;
+  }
+
+  .sectionTitlewallpaper{
+    font-size: 22px;
+    color: #0A1B6F;
+  }
+
+ .sectionDescriptionWallpaper{
+    font-size: 14px;
   }
 
   .wallpaperDownloadButton {
@@ -331,15 +437,45 @@ font-family: 'Noto Sans JP', sans-serif;
   }
 
   /* Icon */
+  .iconHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 0;
+  }
+
+  .sectionTitleicon{
+    font-size: 22px;
+    margin-bottom: 0px;
+    color: #0A1B6F;
+  }
+
+  .sectionDescriptionIcon{
+    font-size: 14px;
+  }
+
+  /* アイコンを横スクロールにする */
   .iconGrid {
-    justify-content: center;
+    display: flex;
+    justify-content: flex-start;
     gap: 40px;
-    padding-left: 0;
+    padding-left: 10px;
+
+    flex-wrap: nowrap;        /* ← 折り返し禁止（横一列に並べる） */
+    overflow-x: auto;         /* ← 横スクロール有効化 */
+    overflow-y: hidden;       /* ← 上下スクロール禁止 */
+    display: flex;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 220px;            /* ← アイコンの高さ＋余白分 */
   }
 
   .iconItem {
+    flex: 0 0 auto;           /* ← 横並び固定 */
     width: 180px;
     height: 180px;
+    scroll-snap-align: start; /* ← スワイプ時にピタッと止まる */
   }
 
   .downloadButton {
@@ -350,16 +486,51 @@ font-family: 'Noto Sans JP', sans-serif;
   }
 
   /* Header */
+
+  .headerHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .headerSection {
+  margin-top: -10px;
+}
+
+
+  .sectionTitleheader{
+    font-size: 22px;
+    color: #0A1B6F;
+    margin-bottom: 0px;
+  }
+
+  .sectionDescriptionHeader{
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  /* 📱 Header を横スクロールにする */
   .headerGrid {
-    justify-content: center;
+    display: flex;
+    justify-content: flex-start;
     gap: 40px;
-    padding-left: 0;
+    padding-left: 10px;
+
+    flex-wrap: nowrap;        /* ← 折り返し禁止（横一列に並べる） */
+    overflow-x: auto;         /* ← 横スクロール有効化 */
+    overflow-y: hidden;       /* ← 上下スクロール禁止 */
+    display: flex;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 160px;            /* ← ヘッダー画像＋丸が収まる高さ */
   }
 
   .headerItem {
-    width: 90%;
-    max-width: 400px;
-    height: 120px;
+    flex: 0 0 auto;           /* ← 横並び固定 */
+    width: 300px;
+    height: 110px;
+    scroll-snap-align: start; /* ← スワイプ時にピタッと止まる */
   }
 
   .headerDownloadButton {
@@ -367,44 +538,6 @@ font-family: 'Noto Sans JP', sans-serif;
     right: -15px;
     width: 50px;
     height: 50px;
-  }
-}
-
-/* 📱 さらに小さいスマホ（480px以下） */
-@media (max-width: 480px) {
-  .title {
-    font-size: 36px;
-  }
-
-  .description {
-    font-size: 18px;
-  }
-
-  .sectionTitlewallpaper,
-  .sectionTitleicon,
-  .sectionTitleheader {
-    font-size: 36px;
-    text-align: center;
-  }
-
-  .sectionDescriptionWallpaper,
-  .sectionDescriptionIcon,
-  .sectionDescriptionHeader {
-    font-size: 20px;
-    text-align: center;
-  }
-
-  .wallpaperGrid,
-  .iconGrid,
-  .headerGrid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .wallpaperItem,
-  .iconItem,
-  .headerItem {
-    width: 80%;
   }
 }
 

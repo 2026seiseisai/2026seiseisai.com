@@ -1,4 +1,11 @@
 ﻿import styles from "./page.module.css";
+import { Odibee_Sans } from 'next/font/google';
+const odibee = Odibee_Sans({
+  weight: '400',
+  subsets: ['latin'],
+});
+<h1 className={`${styles.title} ${odibee.className}`}>SPECIAL</h1>
+
 
 export default function SpecialPage() {
   return (
@@ -21,15 +28,22 @@ export default function SpecialPage() {
          </ul>
      </section>
 
+      
       <section className={styles.wallpaperSection}>
        <div className={styles.wallpaperHeader}>
-           <h2 className={styles.sectionTitlewallpaper}>Wallpaper</h2>
-           <p className={styles.sectionDescriptionWallpaper}>壁紙にどうぞ！</p>
+         <h2 className={styles.sectionTitlewallpaper}>Wallpaper</h2>
+         <p className={styles.sectionDescriptionWallpaper}>壁紙にどうぞ！</p>
        </div>
        <div className={styles.wallpaperGrid}>
-         {/* 画像を並べる */}
+         {[1, 2, 3, 4, 5].map((num) => (
+           <div key={num} className={styles.wallpaperItem}>
+             <img src={`/images/icon${num}.png`} alt={`Icon ${num}`} className={styles.iconImage} />
+               <a href={`/images/icon${num}.png`} download className={styles.wallpaperDownloadButton}>
+             <img src="/images/Frame_492_b.svg" alt="Download" />
+               </a>
+           </div>))}
        </div>
-      </section>
+     </section>
 
 
       <section className={styles.iconSection}>
@@ -38,17 +52,29 @@ export default function SpecialPage() {
           <p className={styles.sectionDescriptionIcon}>アカウントなどのアイコンにどうぞ！</p>
         </div>
         <div className={styles.iconGrid}>
-          {/* 画像を並べる */}
-        </div>
+         {[1, 2, 3].map((num) => (
+         <div key={num} className={styles.iconItem}>
+           <a href={`/images/icon${num}.png`} download className={styles.downloadButton}>
+             <img src="/images/Frame_492_r.svg" alt="Download" />
+           </a>
+         </div>
+         ))}
+         </div>
       </section>
 
       <section className={styles.headerSection}>
        <div className={styles.headerHeader}>
          <h2 className={styles.sectionTitleheader}>Header</h2>
-         <p className={styles.sectionDescriptionHeader}>アカウントなどのヘッダーにどうぞ！</p>
+           <p className={styles.sectionDescriptionHeader}>アカウントなどのヘッダーにどうぞ！</p>
        </div>
        <div className={styles.headerGrid}>
-         {/* 画像を並べる */}
+         {[1, 2].map((num) => (
+         <div key={num} className={styles.headerItem}>
+           <img src={`/images/header${num}.png`}  alt={`Header ${num}`} className={styles.headerImage} />
+             <a href={`/images/header${num}.png`} download className={styles.headerDownloadButton}>
+           <img src="/images/Frame_492_r.svg" alt="Download" />
+             </a>
+         </div> ))}
        </div>
       </section>
 

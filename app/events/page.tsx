@@ -1,5 +1,5 @@
 ﻿"use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { eventData, HourType, locations, MinuteType } from "./event-data";
 import map1 from "./map 1.svg";
 import cloud_rain from "./cloud_rain 1.svg";
@@ -142,6 +142,7 @@ const locationPlacementMap: Record<Location, number> = {
   視聴覚室: 5,
   転心殿前: 6,
   音楽室: 7,
+  小講堂:8
 };
 
 const locationColorMap: Record<Location, string[]> = {
@@ -152,6 +153,7 @@ const locationColorMap: Record<Location, string[]> = {
   視聴覚室: ["bg-indigo-100", "border-indigo-600"],
   転心殿前: ["bg-purple-100", "border-purple-600"],
   音楽室: ["bg-pink-100", "border-pink-600"],
+  小講堂: ["bg-slate-100", "border-slate-600"],
 };
 
 const mobileLocationOrder: Location[] = [
@@ -256,7 +258,7 @@ function calcScheduleStyle({
   };
 }
 
-const SchedulesTable = ({ day }: { day: Day }) => {
+const SchedulesTable = ({ day, onEventJump }: { day: Day; onEventJump: (name: string) => void }) => {
   const rows = scheduleHours.length * scheduleMinutes.length + additionalRows;
   const cols = 7 * 2;
   const colsRepeats = cols / 2;
@@ -282,13 +284,13 @@ const SchedulesTable = ({ day }: { day: Day }) => {
   return (
     <>
       <div
-        className={`hidden lg:grid w-[300vw] lg:w-[150vw] gap-0 font-medium`}
+        className={`hidden lg:grid min-w-[980px] w-[150vw] gap-0 font-medium`}
         style={{
-          gridTemplateRows: `repeat(${rows}, minmax(0,1fr))`,
-          gridTemplateColumns: `repeat(${colsRepeats}, auto minmax(0,1fr))`,
+          gridTemplateRows: `repeat(${rows}, 1.15rem)`,
+          gridTemplateColumns: `repeat(${colsRepeats}, minmax(3.5rem, 0.55fr) minmax(7rem, 1fr))`,
         }}
       >
-        <ScheduleGrid day={day} locationsToRender={[...locations]} />
+        <ScheduleGrid day={day} locationsToRender={[...locations]} onEventJump={onEventJump} />
       </div>
       <div className="lg:hidden">
         <div className={css.embla} ref={emblaRef}>
@@ -298,14 +300,15 @@ const SchedulesTable = ({ day }: { day: Day }) => {
                 <div
                   className="grid rounded-2xl bg-white px-2 py-4"
                   style={{
-                    gridTemplateRows: `repeat(${rows}, minmax(0,1fr))`,
-                    gridTemplateColumns: "auto minmax(0, 1fr)",
+                    gridTemplateRows: `repeat(${rows}, 0.82rem)`,
+                    gridTemplateColumns: "3.5rem minmax(0, 1fr)",
                   }}
                 >
                   <ScheduleGrid
                     day={day}
                     locationsToRender={[location]}
                     isMobile
+                    onEventJump={onEventJump}
                   />
                 </div>
               </div>
@@ -321,10 +324,12 @@ const ScheduleGrid = ({
   day,
   locationsToRender,
   isMobile = false,
+  onEventJump,
 }: {
   day: Day;
   locationsToRender: Location[];
   isMobile?: boolean;
+  onEventJump?: (name: string) => void;
 }) => {
   return (
     <>
@@ -373,9 +378,9 @@ const ScheduleGrid = ({
               location,
               isMobile,
             })}
-            className="relative w-12"
+            className="relative w-14"
           >
-            <span className="text-2xl absolute -translate-y-4">
+            <span className="text-base whitespace-nowrap absolute -translate-y-2">
               {hour}:{"00"}
             </span>
           </div>
@@ -426,18 +431,18 @@ const ScheduleGrid = ({
               <div
                 key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}-${isMobile ? "mobile" : "pc"}`}
                 style={placement}
-                className={`${locationColorMap[thisEvent.location][0]} m-1 mx-4 flex border-l-8 ${locationColorMap[thisEvent.location][1]}`}
+                className={`${locationColorMap[thisEvent.location][0]} m-0.5 mx-1 relative flex min-w-0 items-center justify-center border-l-4 ${locationColorMap[thisEvent.location][1]}`}
               >
-                <div className="flex flex-col justify-between">
+                <div className="absolute left-1 top-0 bottom-0 flex flex-col justify-between text-sm leading-none py-0.5 whitespace-nowrap">
                   <div>{thisEvent.start}</div>
                   <div>{thisEvent.end}</div>
                 </div>
                 
-                <div className="pl-4 xl:pl-12 text-2xl flex items-center">
+                <div className="px-7 text-lg xl:text-base whitespace-nowrap flex min-w-0 items-center">
                   {event.name}
-                  <a href={`#eventD-${event.name}`}>
-                <Image src={arrowR} alt="jump"></Image>
-                </a>
+                  <button type="button" className="ml-1 shrink-0" onClick={() => onEventJump?.(event.name)} aria-label={`${event.name}の紹介を開く`}>
+                    <Image src={arrowR} alt="" width={20} height={20}></Image>
+                  </button>
                 </div>
                 
               </div>
@@ -450,6 +455,42 @@ const ScheduleGrid = ({
 
 export default function EventsPage() {
   const [currentDay, setCurrentDay] = useState<Day>("Day1");
+  const scheduleViewportRef = useRef<HTMLDivElement>(null);
+  const scrollHintDismissedRef = useRef(false);
+  const [showScrollHint, setShowScrollHint] = useState(false);
+
+  useEffect(() => {
+    const viewport = scheduleViewportRef.current;
+    if (!viewport) return;
+    const updateHint = () => {
+      if (viewport.scrollLeft > 0) {
+        scrollHintDismissedRef.current = true;
+        setShowScrollHint(false);
+        return;
+      }
+      setShowScrollHint(
+        !scrollHintDismissedRef.current && viewport.scrollWidth > viewport.clientWidth + 4,
+      );
+    };
+    updateHint();
+    const hintTimer = window.setTimeout(() => {
+      scrollHintDismissedRef.current = true;
+      setShowScrollHint(false);
+    }, 2000);
+    viewport.addEventListener("scroll", updateHint, { passive: true });
+    window.addEventListener("resize", updateHint);
+    return () => {
+      window.clearTimeout(hintTimer);
+      viewport.removeEventListener("scroll", updateHint);
+      window.removeEventListener("resize", updateHint);
+    };
+  }, []);
+  const jumpToEvent = (name: string) => {
+    const target = document.getElementById(`eventD-${name}`) as HTMLDetailsElement | null;
+    if (!target) return;
+    target.open = true;
+    requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "center" }));
+  };
   return (
     <main className="px-6 lg:px-36">
       <h1 className="text-navy lg:text-6xl text-4xl font-bold mt-20 lg:mt-40">Events</h1>
@@ -458,9 +499,17 @@ export default function EventsPage() {
         setCurrentDay={setCurrentDay}
         className="my-18"
       ></DaySwitcher>
-      <div className="overflow-x-scroll w-full">
+      <div ref={scheduleViewportRef} className="relative overflow-x-auto w-full">
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none hidden lg:flex absolute inset-0 z-10 items-start justify-center pt-8 bg-black/35 text-sm text-white transition-opacity duration-500 ease-out ${showScrollHint ? "opacity-100" : "opacity-0"}`}
+        >
+          <span className="rounded-full bg-black/65 px-4 py-2 shadow-lg">
+            横にスクロールできます&nbsp; →
+          </span>
+        </div>
         <div className="font-medium">
-          <SchedulesTable day={currentDay}></SchedulesTable>
+          <SchedulesTable day={currentDay} onEventJump={jumpToEvent}></SchedulesTable>
         </div>
       </div>
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 font-medium my-16 md:px-16">
@@ -487,15 +536,15 @@ export default function EventsPage() {
         <h2 className="text-4xl border-l-4 border-l-navy font-medium my-16">
           イベント紹介
         </h2>
-        <div className="columns-1 md:columns-2 space-x-8 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {eventData.map((event) => {
             return (
               <details
-                className="bg-[#5A44A926] p-6 break-inside-avoid"
+                className="bg-[#5A44A926] p-4 md:p-5"
                 key={event.name}
                 id={`eventD-${event.name}`}
               >
-                <summary className="text-2xl text-navy pb-6 relative">
+                <summary className="text-xl text-navy pb-4 relative pr-16">
                   <span className="text-black">{event.name}</span>
                   {event.ticket && (
                     <span className="absolute top-1/2 -translate-y-1/2 right-0 bg-pink rounded-full text-white text-base px-3 py-1">
@@ -503,24 +552,24 @@ export default function EventsPage() {
                     </span>
                   )}
                 </summary>
-                <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="flex">
                     <Image src={mapPin} alt="map icon"></Image>
                     <div>
                       <h4 className="text-xl">【1日目】</h4>
 
-                      <table className="text-xl">
+                      <table className="text-base whitespace-nowrap">
                         <tbody>
                           {event.day1.map((today) => {
                             return (
                               <tr
                                 key={`ev${event.name}-day1-${today.start}-${today.end}`}
                               >
-                                <td className="p-2">{today.location}</td>
-                                <td className="p-2">
+                                <td className="p-1">{today.location}</td>
+                                <td className="p-1">
                                   {today.start}-{today.end}
                                 </td>
-                                <td className="p-2">{today.label}</td>
+                                <td className="p-1">{today.label}</td>
                               </tr>
                             );
                           })}
@@ -537,18 +586,18 @@ export default function EventsPage() {
                     <div>
                       <h4 className="text-xl">【2日目】</h4>
 
-                      <table className="text-xl">
+                      <table className="text-base whitespace-nowrap">
                         <tbody>
                           {event.day2.map((today) => {
                             return (
                               <tr
                                 key={`ev${event.name}-day1-${today.start}-${today.end}`}
                               >
-                                <td className="p-2">{today.location}</td>
-                                <td className="p-2">
+                                <td className="p-1">{today.location}</td>
+                                <td className="p-1">
                                   {today.start}-{today.end}
                                 </td>
-                                <td className="p-2">{today.label}</td>
+                                <td className="p-1">{today.label}</td>
                               </tr>
                             );
                           })}
@@ -560,7 +609,7 @@ export default function EventsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="text-xl pt-6">{event.description}</div>
+                <div className="text-base pt-4">{event.description}</div>
               </details>
             );
           })}

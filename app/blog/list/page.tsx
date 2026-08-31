@@ -1,7 +1,7 @@
 ﻿"use client";
 import type { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
-import BlogCard from "./blog-card";
+import BlogCard from "../blog-card";
 
 export default function BlogList({
     blogs,

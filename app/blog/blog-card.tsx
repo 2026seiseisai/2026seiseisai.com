@@ -1,4 +1,4 @@
-import { getBlogMetadata } from "@/impl/blog";
+import { getBlogMetadata } from "@/app/blog/blog";
 import BlogCardImpl from "./blog-card-impl";
 
 export default function BlogCard({

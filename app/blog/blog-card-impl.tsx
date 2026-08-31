@@ -1,5 +1,5 @@
 "use client";
-import type { BlogMetadata } from "@/impl/blog";
+import type { BlogMetadata } from "@/app/blog/blog";
 import spinnerStyles from "./spinner.module.scss";
 
 import Image from "next/image";

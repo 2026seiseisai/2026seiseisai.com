@@ -1,4 +1,4 @@
-﻿import { getAllBlogs } from "@/impl/blog";
+﻿import { getAllBlogs } from "@/app/blog/blog";
 import BlogList from "./list";
 
 export const metadata = {

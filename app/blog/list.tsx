@@ -19,11 +19,11 @@ export default function BlogList({
     const [displaying, setDisplaying] = useState("");
     useEffect(() => {
         const saved = sessionStorage.getItem("blog-display");
-        if (saved !== null && ["59", "60", "61"].includes(saved)) {
+        if (saved !== null && ["59", "60", "61", "62"].includes(saved)) {
             setDisplaying(saved);
         } else {
-            setDisplaying("61");
-            sessionStorage.setItem("blog-display", "61");
+            setDisplaying("62");
+            sessionStorage.setItem("blog-display", "62");
         }
     }, []);
     const blogsRef = useRef(blogs);
@@ -44,78 +44,54 @@ export default function BlogList({
     return (
         <>
             <div className="mb-[38px] flex w-full justify-center select-none">
-                <div className="relative h-[34px] w-[min(max(72svw,250px),320px)] md:h-[45px] md:w-[400px]">
-                    <div className="absolute inset-0 bg-[#0b0e0f] [clip-path:polygon(6%_0,100%_0,94%_100%,0_100%)]"></div>
-                    <div
-                        className="absolute inset-0
-                            [clip-path:polygon(0%_2px,100%_2px,100%_calc(100%-2px),0_calc(100%-2px))]"
-                    >
-                        <div
-                            className="h-full w-full bg-white
-                                [clip-path:polygon(calc(6%+2px)_0,calc(100%-2px)_0,calc(94%-2px)_100%,2px_100%)]"
-                        ></div>
-                    </div>
-                    <div
-                        className="absolute inset-0 flex items-center justify-center overflow-hidden text-center
-                            text-[22px] tracking-[-2%] text-[#de0d22] md:text-[32px]"
-                    >
+
+                <div className="relative h-[54px] w-[min(max(72svw,250px),596px)] border-2 bg-[#D9D9D9] border-[#0b0e0f] rounded-[40px] flex items-center">
+    <div
+        className="absolute top-[0.5px] left-0 w-1/4 max-w-[149px] h-[50px] bg-[#DB5492] border-2 border-[#0A2B6F] rounded-[40px] transition-transform duration-300 ease-in-out pointer-events-none z-0"
+        style={{
+            transform:
+                displaying === "62"
+                    ? "translateX(0.5%)"
+                    : displaying === "61"
+                      ? "translateX(100.5%)"
+                      : displaying === "60"
+                        ? "translateX(199.5%)"
+                        : displaying === "59"
+                          ? "translateX(299.5%)"
+                          : "translateX(0%)",
+        }}
+    />
+
+                    {/* タブテキスト部分（クリックイベント用） */}
+                    <div className="absolute inset-0 flex items-center justify-between text-center text-[22px] tracking-[-2%] text-[#fff] md:text-[32px] px-0 z-10">
                         <p
-                            className="h-min w-[29%] transform-[opacity] cursor-pointer duration-300 hover:opacity-70
-                                md:transform-[translateY(-2px)]"
+                            className={`h-full w-[149px] flex items-center justify-center cursor-pointer duration-300 transition-colors ${displaying === "62" ? "text-white font-bold" : "text-[#fff] hover:opacity-70"}`}
+                            onClick={() => setBlogDisplayState("62")}
+                        >
+                            62<span className="text-[16px] md:text-[24px]">nd</span>
+                        </p>
+                        <p
+                            className={`h-full w-[149px] flex items-center justify-center cursor-pointer duration-300 transition-colors ${displaying === "61" ? "text-white font-bold" : "text-[#fff] hover:opacity-70"}`}
                             onClick={() => setBlogDisplayState("61")}
                         >
                             61<span className="text-[16px] md:text-[24px]">st</span>
                         </p>
                         <p
-                            className="h-min w-[29%] transform-[opacity] cursor-pointer duration-300 hover:opacity-70
-                                md:transform-[translateY(-2px)]"
+                            className={`h-full w-[149px] flex items-center justify-center cursor-pointer duration-300 transition-colors ${displaying === "60" ? "text-white font-bold" : "text-[#fff] hover:opacity-70"}`}
                             onClick={() => setBlogDisplayState("60")}
                         >
                             60<span className="text-[16px] md:text-[24px]">th</span>
                         </p>
                         <p
-                            className="h-min w-[29%] transform-[opacity] cursor-pointer duration-300 hover:opacity-70
-                                md:transform-[translateY(-2px)]"
+                            className={`h-full w-[149px] flex items-center justify-center cursor-pointer duration-300 transition-colors ${displaying === "59" ? "text-white font-bold" : "text-[#fff] hover:opacity-70"}`}
                             onClick={() => setBlogDisplayState("59")}
                         >
                             59<span className="text-[16px] md:text-[24px]">th</span>
                         </p>
                     </div>
-                    <div
-                        className="pointer-events-none absolute inset-0
-                            [clip-path:polygon(0%_5px,100%_5px,100%_calc(100%-5px),0_calc(100%-5px))]"
-                    >
-                        <div
-                            className="h-full w-full transition-[clip-path] duration-200 ease-in-out"
-                            style={{
-                                clipPath:
-                                    displaying == "61"
-                                        ? "polygon(calc(6% + 5px) 0,calc(42% - 5px) 0,calc(36% - 5px) 100%,5px 100%)"
-                                        : displaying == "60"
-                                          ? "polygon(calc(35% + 5px) 0,calc(71% - 5px) 0,calc(65% - 5px) 100%,calc(29% + 5px) 100%)"
-                                          : displaying == "59"
-                                            ? "polygon(calc(64% + 5px) 0,calc(100% - 5px) 0,calc(94% - 5px) 100%,calc(58% + 5px) 100%)"
-                                            : "polygon(0 0, 0 0)",
-                            }}
-                        >
-                            <div
-                                className="flex h-full w-full items-center justify-center overflow-hidden bg-[#de0d22]
-                                    text-center text-[22px] tracking-[-2%] text-white md:text-[32px]"
-                            >
-                                <p className="h-min w-[29%] md:transform-[translateY(-2px)]">
-                                    61<span className="text-[16px] md:text-[24px]">st</span>
-                                </p>
-                                <p className="h-min w-[29%] md:transform-[translateY(-2px)]">
-                                    60<span className="text-[16px] md:text-[24px]">th</span>
-                                </p>
-                                <p className="h-min w-[29%] md:transform-[translateY(-2px)]">
-                                    59<span className="text-[16px] md:text-[24px]">th</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+            
             <div
                 className={"mx-auto mb-[18px] flex max-w-[calc(100svw-40px)] flex-wrap justify-around md:max-w-[82svw]"}
             >

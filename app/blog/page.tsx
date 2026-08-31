@@ -2,17 +2,14 @@
 import BlogList from "./list";
 
 export const metadata = {
-    title: "Blog | 第61回菁々祭「分秒」 - 東大寺学園文化祭2025",
+    title: "Blog | 東大寺学園菁々祭「Infinity」公式ホームページ",
 };
 
 export default async function Page() {
     return (
         <>
-            <h1
-                className="mt-[30px] mb-[25px] ml-[20px] text-[28px] font-bold md:mb-[30px] md:ml-[10svw]
-                    md:text-[40px]"
-            >
-                <span className="text-[#de0d22]">B</span>log
+            <h1 className="blogtitle font-bold text-[64px] ml-[160px]">
+                <span className="text-[#0A2B6F]">Blog</span>
             </h1>
             <BlogList blogs={getAllBlogs()} />
         </>

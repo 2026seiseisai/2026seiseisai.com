@@ -22,7 +22,7 @@ const NAV_ITEMS = [
   { label: 'Blog', href: '/blog/blog一覧' },
   { label: 'Special', href: '/special' },
   { label: 'Brochures', href: '/brochures' },
-  { label: 'Achieves', href: '/achieves' },
+  { label: 'Archives', href: '/archives' },
 ];
 
 const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;

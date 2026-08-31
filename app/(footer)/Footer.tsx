@@ -30,7 +30,7 @@ const FOOTER_DATA = [
       { label: 'Blog', href: '/blog/blog一覧' },
       { label: 'Special', href: '/special' },
       { label: 'Brochures', href: '/brochures' },
-      { label: 'Achieves', href: '/achieves' },
+      { label: 'Archives', href: '/archives' },
     ],
   },
 ];

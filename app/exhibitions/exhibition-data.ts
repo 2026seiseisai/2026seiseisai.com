@@ -94,6 +94,7 @@ const exhibitionDataRaw = {
         description:
             "4つの部門に別れ、日々活動しているメカニック達の使用している機体を見ることができます。今年だけのオリジナル展示や、大会出場機体をご覧になれますので是非お越しください。",
         twitter_link: "https://x.com/tdj_dennkou",
+        blogs: ["62/05"],
     },
     "ポケモン同好会": {
         location: "5年A組",
@@ -108,6 +109,7 @@ const exhibitionDataRaw = {
         description:
             "部員の制作した作品を多数展示します！\nかなりボリュームのある展示を是非見に来てください！",
         twitter_link: "https://x.com/tdj_oriken",
+        blogs: ["59/06"],
     },
     "ルービックキューブ同好会": {
         location: "5年D組",
@@ -121,6 +123,7 @@ const exhibitionDataRaw = {
         icon: exhibitionIcons["新聞部"],
         description:
             "歴代新聞部の記事や最新の記事等をまとめています。新聞を通して学校の歴史を感じられるので、ぜひ来てください。",
+        blogs: ["59/03"],
     },
     "書道部": {
         location: "1年B組",
@@ -196,6 +199,7 @@ const exhibitionDataRaw = {
         description:
             "歴史に没入できる展示を用意しております。是非教室に足を運んで、実際に歴史の重みを感じてください。",
         twitter_link: "https://x.com/tdj_seisikai2",
+        blogs: ["62/02"],
     },
     "紅茶同好会": {
         location: "5年B組",
@@ -209,7 +213,7 @@ const exhibitionDataRaw = {
         description:
             "世界のさまざまな民族の音楽についての模造紙やいろいろな楽器を展示しております！",
         twitter_link: "https://x.com/tdjminon2",
-        blog: ["62/2"],
+        blogs: ["62/02"],
     },
     "鉄道研究部": {
         location: "1年E組",
@@ -217,7 +221,7 @@ const exhibitionDataRaw = {
         description:
             "鉄道模型や写真、鉄道グッズの展示、Nゲージの運転体験などをしています。みなさんをお待ちしてます！",
         twitter_link: "https://x.com/tdj_tekken",
-        blog: ["62/5"],
+        blogs: ["62/05", "59/02"],
     },
     "独楽研究会": {
         location: "3年A組",
@@ -260,6 +264,7 @@ const exhibitionDataRaw = {
         icon: exhibitionIcons["囲碁将棋部"],
         description:
             "部員と対局したい方ぜひ5Cに来てください！",
+        blogs: ["59/02"],
     },
     "ロケット研究部": {
         location: "6年E組",
@@ -268,6 +273,7 @@ const exhibitionDataRaw = {
             "ロケット研究部が皆さんを宇宙の世界へご案内します！大型ロケット模型や過去に打ち上げた実機の\n展示に加え、実際にロケットを製作できる体験イベント(要整理券)も開催。",
         twitter_link: "https://x.com/rockettdj63",
         events: ["ロケット発射実験"],
+        blogs: ["61/02"],
     },
     "Vocaloid&作曲同好会": {
         location: "5年D組",
@@ -275,6 +281,7 @@ const exhibitionDataRaw = {
         description:
             "Vocaloid&作曲同好会です。例年通りの壁や新曲発表に加えDJに関する展示なども行う予定です。是非いらっしゃい。",
         twitter_link: "https://x.com/tdj_tvoc",
+        blogs: ["59/02"],
     },
     "クイズ研究部": {
         location: "第二体育館",
@@ -282,6 +289,7 @@ const exhibitionDataRaw = {
         description:
             "部員が作ったペーパークイズを解いたり、早押しボタンを用いて早押しクイズを体験したりすることができます。",
         twitter_link: "https://x.com/tdjquiz",
+        blogs: ["60/09", "59/02"],
     },
     "謎解き同好会": {
         location: "4年D組",
@@ -289,7 +297,7 @@ const exhibitionDataRaw = {
         description:
             "謎解きに必要なのは｢ひらめき｣だけ。\n手軽にスッキリしたい｢初心者｣の方から、\n手応えのある謎を探す｢挑戦者｣の方まで、\n満足できるような謎があなたを待っています！\n(もちろん、ヒントもあるよ)\n今年は様々なコンテンツがあるので是非！\nただこの部屋何か秘密が隠されているようで…",
         twitter_link: "https://x.com/tdj_nazo",
-        blog: ["62/1"],
+        blogs: ["62/01"],
     },
     "数学研究部": {
         location: "6年B組",
@@ -310,6 +318,7 @@ const exhibitionDataRaw = {
         description:
             "部員のみんなで作ったボードゲームがいっぱい！楽しく遊びましょう！",
         twitter_link: "https://x.com/tdj_mgadoukou",
+        blogs: ["59/02"],
     },
     "自動車研究会": {
         location: "4年C組",
@@ -317,7 +326,7 @@ const exhibitionDataRaw = {
         description:
             "設立、文化祭展示2年目の自動車研究会です。昨年好評だったラジコンレースはより走りやすく進化し、もちろん去年に引き続き1から作った大会出場のバッテリーカーもバージョンアップし展示。教室内の展示も見ていて少しも退屈しない、楽しく興味深いものを取り揃えています！特設ジオラマも設置しているので、ぜひ皆様のお気に入りのミニカーをご持参いただき撮影しましょう！",
         twitter_link: "https://x.com/automobile_tdj",
-        blog: ["62/4"],
+        blogs: ["62/04"],
     },
     "暗号同好会": {
         location: "4年D組",

@@ -77,7 +77,7 @@ const AccessPage: NextPage = () => {
           <div className={styles.mapDescription}>
             <p>近鉄高の原駅より</p>
             <p>徒歩 約25分</p>
-            <p>バス 約7分（料金 約250円）</p>
+            <p>バス 約7分（料金 250円）</p>
             <br />
             <p>近鉄平城駅より</p>
             <p>徒歩 約25分</p>
@@ -102,11 +102,11 @@ const AccessPage: NextPage = () => {
         />
 
         {/* 7. 高の原駅からの行き方（YouTube動画埋め込み） */}
-        <h2 className={styles.sectionHeading}>高の原駅からの行き方</h2>
+        <h2 className={styles.sectionHeading}>高の原•平城駅からの行き方</h2>
         <div className={styles.videoWrapper}>
           <iframe
             src="https://www.youtube.com/embed/Xavpmvhk8ng"
-            title="高の原駅からの行き方"
+            title="高の原•平城駅からの行き方"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>

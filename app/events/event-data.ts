@@ -1,5 +1,5 @@
-type HourType = "09" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17";
-type MinuteType =
+export type HourType = "09" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17";
+export type MinuteType =
   | "00"
   | "05"
   | "10"
@@ -34,6 +34,7 @@ export const locations = [
   "転心殿前",
   "グラウンド",
   "物理室",
+  "小講堂"
 ] as const;
 
 export const eventNames = [
@@ -45,10 +46,10 @@ export const eventNames = [
   "マッスルコンテスト",
   "T(DJ)² ",
   "中夜祭",
-  "室内楽",
-  "コンサート",
+  "室内学部定期演奏会",
+  "靑々コンサート",
   "PTAコーラス",
-  "音楽",
+  "音楽部ライブ",
   "テラボンバー",
   "模擬授業",
   "マーダーミステリー体験会",
@@ -66,6 +67,10 @@ export const eventNames = [
   "結婚式",
   "展示団体賞授賞式",
   "T1グランプリ",
+  "中2パフォーマンス",
+  "E卍ILE",
+  "PERFECT HUMAN",
+  "映画祭",
 ] as const;
 
 // const sampleEventData: EventData[] = [
@@ -99,31 +104,40 @@ export const eventData: EventData[] = [
     description:
       "コーラス:クラスごとに磨き上げた光る歌の響き。それぞれの絆と思いをのせた、最高の歌声を届けます！;演劇:宮沢賢治の童話『注文の多い料理店』をホラー風にアレンジしました。おどろおどろしい演出に残暑も吹き飛ぶ……？",
     day1: [
+      
+    ],
+    day2: [
       {
         location: "体育館",
         start: "09:00",
         end: "10:30",
       },
     ],
-    day2: [],
   },
   {
     name: "中2演劇",
     description:
       "名探偵コナンの第1話「ジェットコースター殺人事件を上演します。高校生探偵の工藤新一の推理とその後の運命は…。",
     day1: [
+      
+    ],
+    day2: [
       {
         location: "体育館",
-        start: "10:50",
-        end: "11:10",
-      },
-      {
-        location: "体育館",
-        start: "11:10",
-        end: "11:50",
+        start: "12:10",
+        end: "12:50",
       },
     ],
-    day2: [],
+  },
+  {
+    name:"中2演劇",
+    description:"",
+    day1:[],
+    day2:[{
+      location:"体育館",
+      start:"12:10",
+      end:"12:50"
+    }]
   },
   {
     name: "TDJ48",
@@ -132,39 +146,69 @@ export const eventData: EventData[] = [
     day1: [
       {
         location: "体育館",
-        start: "12:10",
-        end: "12:30",
+        start: "11:20",
+        end: "11:40",
       },
+      {
+        location:"体育館",
+        start:"15:50",
+        end:"16:10"
+      }
     ],
     day2: [
       {
         location: "体育館",
-        start: "10:20",
-        end: "10:30",
+        start: "10:40",
+        end: "10:55",
       },
       {
         location: "体育館",
         start: "16:50",
-        end: "17:00",
+        end: "17:10",
       },
     ],
   },
+  {
+    name:"E卍ILE",
+    description:"",
+    day1:[{
+      location:"体育館",
+      start:"15:30",
+      end:"15:50"
+    }],
+    day2:[{
+      location:"体育館",
+      start:"11:10",
+      end:"11:25"
+    },{
+      location:"体育館",
+      start:"15:30",
+      end:"15:50"
+    }]
+  },
+
   {
     name: "ラブライブサンスクリット",
     description:
       "目指すのは、未完成でも熱を持った、みんなで作る芸術。1年をかけて作り上げたキセキの時間をご覧あれ。",
     day1: [
       {
+        location:"体育館",
+        start:"11:40",
+        end:"12:00"
+      },
+
+      {
         location: "体育館",
-        start: "12:30",
-        end: "12:50",
+        start: "16:30",
+        end: "16:50",
       },
     ],
     day2: [
       {
         location: "体育館",
-        start: "11:00",
-        end: "11:20",
+        start: "11:25",
+        end: "11:40",
       },
       {
         location: "体育館",
@@ -174,21 +218,37 @@ export const eventData: EventData[] = [
     ],
   },
   {
+    name:"PERFECT HUMAN",
+    description:"",
+    day1:[{
+      location:"体育館",
+      start:"16:50",
+      end:"17:00"
+    }],
+    day2:[]
+  },
+
+  {
     name: "寺マス",
     description:
       "2日だけの魔法にかかったアイドルが、最高のステージで輝きマス!　のマスの部分\nプロデューサーさん、菁々祭ですよっ、菁々祭!!!",
     day1: [
       {
         location: "体育館",
-        start: "12:50",
-        end: "13:10",
+        start: "12:00",
+        end: "12:20",
       },
+      {
+        location:"体育館",
+        start:"16:10",
+        end:"16:30"
+      }
     ],
     day2: [
       {
         location: "体育館",
-        start: "10:30",
-        end: "10:50",
+        start: "10:55",
+        end: "11:10",
       },
       {
         location: "体育館",
@@ -201,13 +261,13 @@ export const eventData: EventData[] = [
     name: "マッスルコンテスト",
     description: "筋肉で学校を揺らせ！漢たちの迸る肉体美に刮目せよ！",
     day1: [
-      {
-        location: "体育館",
-        start: "13:20",
-        end: "14:10",
-      },
+
     ],
-    day2: [],
+    day2: [{
+      location:"体育館",
+      start:"13:00",
+      end:"13:50"
+    }],
   },
   {
     name: "T(DJ)² ",
@@ -216,7 +276,7 @@ export const eventData: EventData[] = [
     day1: [
       {
         location: "体育館",
-        start: "14:20",
+        start: "14:00",
         end: "15:00",
       },
     ],
@@ -234,70 +294,54 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: "中夜祭",
-    description: "",
-    day1: [
-      {
-        location: "体育館",
-        start: "15:30",
-        end: "17:00",
-      },
-    ],
-    day2: [],
-  },
-  {
     name: "中3演劇",
     description:
       "人の言葉を話せるようになったクマは、人間社会の中で暮らすことを決意。果たして人とクマは共存できるのでしょうか…。",
-    day1: [],
-    day2: [
-      {
+    day1: [{
         location: "体育館",
         start: "09:00",
         end: "10:00",
-      },
-    ],
-  },
-  {
-    name: "寺ザイル",
-    description: "",
-    day1: [],
+      },],
     day2: [
-      {
-        location: "体育館",
-        start: "10:50",
-        end: "11:00",
-      },
-      {
-        location: "体育館",
-        start: "15:30",
-        end: "15:50",
-      },
+      
     ],
   },
+
   {
     name: "中2コーラス",
     description: "",
-    day1: [],
-    day2: [
-      {
+    day1: [{
         location: "体育館",
-        start: "11:30",
-        end: "12:20",
-      },
+        start: "10:20",
+        end: "11:00",
+      },],
+    day2: [
+      
     ],
+  },
+  {
+    name:"中2パフォーマンス",
+    description:"",
+    day1:[],
+    day2:[{
+      location:"体育館",
+      start:"11:50",
+      end:"12:10"
+    }]
   },
   {
     name: "令和の小町コンテスト",
     description:
       "花の色はうつりにけりないたずらにわが身世にふるながめせしまに”  永遠の美貌を手にするものは誰だ。",
-    day1: [],
-    day2: [
+    day1: [
       {
         location: "体育館",
         start: "12:40",
         end: "13:50",
       },
+    ],
+    day2: [
+      
     ],
   },
   {
@@ -347,7 +391,7 @@ export const eventData: EventData[] = [
   },
   //enyukan
   {
-    name: "室内楽",
+    name: "室内学部定期演奏会",
     description:
       "クラシックから映画音楽まで、室内楽ならではの生の迫力をぜひ会場でお楽しみください。",
     day1: [
@@ -366,7 +410,7 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: "コンサート",
+    name: "靑々コンサート",
     description:
       "学園中から集結した楽器の猛者たちによる、クラシック主体の熱き演奏会。それぞれの楽器が持つポテンシャルと、美しき旋律の魔法にどっぷりと酔いしれてください！",
     day1: [
@@ -390,14 +434,14 @@ export const eventData: EventData[] = [
     day1: [
       {
         location: "圓融館",
-        start: "12:40",
-        end: "13:40",
+        start: "12:50",
+        end: "13:10",
       },
     ],
     day2: [],
   },
   {
-    name: "音楽",
+    name: "音楽部ライブ",
     description: "",
     day1: [
       {
@@ -477,18 +521,7 @@ export const eventData: EventData[] = [
       },
     ],
   },
-  {
-    name: "T1グランプリ",
-    description: "",
-    day1: [],
-    day2: [
-      {
-        location: "視聴覚室",
-        start: "12:50",
-        end: "13:30",
-      },
-    ],
-  },
+
   //音楽室
   {
     name: "有志バンド",
@@ -659,4 +692,41 @@ export const eventData: EventData[] = [
       },
     ],
   },
+  {
+    name:"映画祭",
+    description:"",
+    day1:[{
+      location:"小講堂",
+      start:"10:00",
+      end:"10:40",
+    },
+  {
+      location:"小講堂",
+      start:"12:30",
+      end:"13:10",
+    },
+  {
+      location:"小講堂",
+      start:"14:10",
+      end:"14:50",
+    }],
+    day2:[
+      {
+      location:"小講堂",
+      start:"09:30",
+      end:"10:10",
+    },
+    {
+      location:"小講堂",
+      start:"11:50",
+      end:"12:30",
+    },
+    {
+      location:"小講堂",
+      start:"13:30",
+      end:"14:10",
+    }
+    ]
+  },
+  
 ] as const satisfies EventData[];

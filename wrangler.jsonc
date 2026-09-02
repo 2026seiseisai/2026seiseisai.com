@@ -3,23 +3,27 @@
   "main": ".open-next/worker.js",
   "name": "2026seiseisaicom",
   "compatibility_date": "2026-05-12",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
   },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "2026seiseisaicom"
-    }
+      "service": "2026seiseisaicom",
+    },
   ],
   "images": {
-    "binding": "IMAGES"
+    "binding": "IMAGES",
   },
+  "kv_namespaces": [
+    {
+      "binding": "EXHIBITION_AWARD_VOTES",
+      "id": "REPLACE_WITH_EXHIBITION_AWARD_KV_ID",
+    },
+  ],
   "observability": {
-    "enabled": true
-  }
+    "enabled": true,
+  },
 }

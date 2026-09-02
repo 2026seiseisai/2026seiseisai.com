@@ -14,56 +14,7 @@ export type PublicNews = {
   updatedAt: string;
 };
 
-// ローカルのapps/api（http://localhost:3002）へ向けられるのは開発時だけに限る。
-const allowsLocalApiOrigin = process.env.NODE_ENV !== 'production';
-
-function isLoopbackHost(hostname: string): boolean {
-  const normalized = hostname.toLowerCase().replace(/\.$/u, '');
-  const unbracketed = normalized.replace(/^\[|\]$/gu, '');
-
-  return (
-    normalized === 'localhost' ||
-    normalized.endsWith('.localhost') ||
-    /^127(?:\.\d{1,3}){3}$/u.test(normalized) ||
-    unbracketed === '::1' ||
-    /^::ffff:7f[0-9a-f]{2}:[0-9a-f]{1,4}$/u.test(unbracketed)
-  );
-}
-
-function getApiOrigin(): URL {
-  const configuredOrigin = process.env.API_PUBLIC_ORIGIN?.trim();
-
-  if (!configuredOrigin) {
-    throw new Error('API_PUBLIC_ORIGIN is required to load News.');
-  }
-
-  let url: URL;
-  try {
-    url = new URL(configuredOrigin);
-  } catch {
-    throw new Error('API_PUBLIC_ORIGIN must be an absolute URL.');
-  }
-
-  const loopback = isLoopbackHost(url.hostname);
-
-  if (loopback && !allowsLocalApiOrigin) {
-    throw new Error('API_PUBLIC_ORIGIN must not use a loopback host.');
-  }
-
-  if (url.protocol !== 'https:' && !(loopback && url.protocol === 'http:')) {
-    throw new Error('API_PUBLIC_ORIGIN must use HTTPS.');
-  }
-
-  if (url.username || url.password) {
-    throw new Error('API_PUBLIC_ORIGIN must not contain credentials.');
-  }
-
-  if (url.pathname !== '/' || url.search || url.hash) {
-    throw new Error('API_PUBLIC_ORIGIN must be a canonical origin without a path.');
-  }
-
-  return new URL(url.origin);
-}
+const NEWS_API_ORIGIN = new URL('https://api.seiseisai.com');
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -119,9 +70,7 @@ function readEnvelope(value: unknown): unknown {
  * 実際の配信元への到達はCDNに依存
  */
 async function fetchApi(pathname: string): Promise<Response> {
-  const origin = getApiOrigin();
-
-  return fetch(new URL(pathname, origin), {
+  return fetch(new URL(pathname, NEWS_API_ORIGIN), {
     cache: 'no-store',
     headers: { Accept: 'application/json' },
   });

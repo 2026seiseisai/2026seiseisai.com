@@ -20,7 +20,7 @@
   "kv_namespaces": [
     {
       "binding": "EXHIBITION_AWARD_VOTES",
-      "id": "REPLACE_WITH_EXHIBITION_AWARD_KV_ID",
+      "id": "123fda36aaef4fc7b5fbbbbac80d4b9b",
     },
   ],
   "observability": {

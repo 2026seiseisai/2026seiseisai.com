@@ -96,7 +96,6 @@ export default function Footer() {
   const [imgError, setImgError] = useState(false);
   const contactIsPublished = isPublishedPath('/contact');
   const privacyPolicyIsPublished = isPublishedPath('/privacy-policy');
-  const ticketIsPublished = isPublishedPath('/ticket');
 
   return (
     <footer
@@ -397,49 +396,28 @@ export default function Footer() {
                     {sns.icon}
                   </a>
                 ))}
-                {ticketIsPublished ? (
-                  <Link
-                    href="/ticket"
-                    style={{
-                      textDecoration: 'none',
-                      color: '#0A1B6F',
-                      backgroundColor: '#ffffff',
-                      border: '2px solid #0A1B6F',
-                      borderRadius: '999px',
-                      padding: '8px 14px',
-                      fontSize: '14px',
-                      fontWeight: '700',
-                      lineHeight: 1,
-                      whiteSpace: 'nowrap',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    Web整理券
-                  </Link>
-                ) : (
-                  <span
-                    aria-disabled="true"
-                    style={{
-                      color: '#777777',
-                      backgroundColor: '#d9d9d9',
-                      border: '2px solid #bdbdbd',
-                      borderRadius: '999px',
-                      padding: '8px 14px',
-                      fontSize: '14px',
-                      fontWeight: '700',
-                      lineHeight: 1,
-                      whiteSpace: 'nowrap',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'not-allowed',
-                    }}
-                  >
-                    Web整理券
-                  </span>
-                )}
+                <Link
+                  href="https://tickets.seiseisai.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'none',
+                    color: '#0A1B6F',
+                    backgroundColor: '#ffffff',
+                    border: '2px solid #0A1B6F',
+                    borderRadius: '999px',
+                    padding: '8px 14px',
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    lineHeight: 1,
+                    whiteSpace: 'nowrap',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  Web整理券
+                </Link>
               </div>
             </div>
           </div>

@@ -128,7 +128,6 @@ function InfinityLogo() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const ticketIsPublished = isPublishedPath('/ticket');
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -174,46 +173,28 @@ export default function Header() {
         </Link>
 
         <div className="header-actions">
-          {ticketIsPublished ? (
-            <Link
-              href="/ticket"
-              className="header-cta-link"
-              style={{
-                fontFamily: HEADER_BUTTON_FONT,
-                color: '#DB5492',
-                textDecoration: 'none',
-                fontSize: '18px',
-                fontWeight: 500,
-                lineHeight: 1,
-                padding: '0',
-                border: 'none',
-                whiteSpace: 'nowrap',
-                transition: 'opacity 0.2s',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-            >
-              Web整理券
-            </Link>
-          ) : (
-            <span
-              aria-disabled="true"
-              className="header-cta-link"
-              style={{
-                fontFamily: HEADER_BUTTON_FONT,
-                color: '#999999',
-                fontSize: '18px',
-                fontWeight: 500,
-                lineHeight: 1,
-                padding: '0',
-                border: 'none',
-                whiteSpace: 'nowrap',
-                cursor: 'not-allowed',
-              }}
-            >
-              Web整理券
-            </span>
-          )}
+          <Link
+            href="https://tickets.seiseisai.com/"
+            className="header-cta-link"
+            style={{
+              fontFamily: HEADER_BUTTON_FONT,
+              color: '#DB5492',
+              textDecoration: 'none',
+              fontSize: '18px',
+              fontWeight: 500,
+              lineHeight: 1,
+              padding: '0',
+              border: 'none',
+              whiteSpace: 'nowrap',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Web整理券
+          </Link>
 
           <Link
             href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"
@@ -436,54 +417,31 @@ export default function Header() {
             })}
 
             <div className="drawer-cta-wrap">
-              {ticketIsPublished ? (
-                <Link
-                  href="/ticket"
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: HEADER_BUTTON_FONT,
-                    textDecoration: 'none',
-                    backgroundColor: '#ffffff',
-                    color: '#0A1B6F',
-                    fontSize: 'clamp(20px, 5.4vw, 26px)',
-                    fontWeight: 500,
-                    lineHeight: 1.2,
-                    borderRadius: '999px',
-                    padding: '14px 22px',
-                    width: '100%',
-                    maxWidth: '100%',
-                    border: '2px solid #0A1B6F',
-                  }}
-                >
-                  Web整理券
-                </Link>
-              ) : (
-                <span
-                  aria-disabled="true"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: HEADER_BUTTON_FONT,
-                    backgroundColor: '#d9d9d9',
-                    color: '#777777',
-                    fontSize: 'clamp(20px, 5.4vw, 26px)',
-                    fontWeight: 500,
-                    lineHeight: 1.2,
-                    borderRadius: '999px',
-                    padding: '14px 22px',
-                    width: '100%',
-                    maxWidth: '100%',
-                    border: '2px solid #bdbdbd',
-                    cursor: 'not-allowed',
-                  }}
-                >
-                  Web整理券
-                </span>
-              )}
+              <Link
+                href="https://tickets.seiseisai.com/"
+                onClick={() => setMenuOpen(false)}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: HEADER_BUTTON_FONT,
+                  textDecoration: 'none',
+                  backgroundColor: '#ffffff',
+                  color: '#0A1B6F',
+                  fontSize: 'clamp(20px, 5.4vw, 26px)',
+                  fontWeight: 500,
+                  lineHeight: 1.2,
+                  borderRadius: '999px',
+                  padding: '14px 22px',
+                  width: '100%',
+                  maxWidth: '100%',
+                  border: '2px solid #0A1B6F',
+                }}
+              >
+                Web整理券
+              </Link>
 
               <Link
                 href="https://mirai-compass.net/usr/tdijgj/event/evtIndex.jsf"

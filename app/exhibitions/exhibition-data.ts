@@ -289,6 +289,7 @@ const exhibitionDataRaw = {
         description:
             "部員が作ったペーパークイズを解いたり、早押しボタンを用いて早押しクイズを体験したりすることができます。",
         twitter_link: "https://x.com/tdjquiz",
+        events: ["テラボンバー"],
         blogs: ["60/09", "59/02"],
     },
     "謎解き同好会": {

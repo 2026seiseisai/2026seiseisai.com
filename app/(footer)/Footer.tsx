@@ -30,7 +30,7 @@ const FOOTER_DATA = [
       { label: 'Blog', href: '/blog/blog一覧' },
       { label: 'Special', href: '/special' },
       { label: 'Brochures', href: '/brochures' },
-      { label: 'Achieves', href: '/achieves' },
+      { label: 'Archives', href: '/archives' },
     ],
   },
 ];
@@ -86,8 +86,16 @@ const SNS_LINKS = [
   },
 ];
 
+const PUBLISHED_PATHS = new Set(['/', '/news', '/theme&logo', '/access']);
+
+function isPublishedPath(href: string) {
+  return PUBLISHED_PATHS.has(href) || href.startsWith('/news/');
+}
+
 export default function Footer() {
   const [imgError, setImgError] = useState(false);
+  const contactIsPublished = isPublishedPath('/contact');
+  const privacyPolicyIsPublished = isPublishedPath('/privacy-policy');
 
   return (
     <footer
@@ -174,38 +182,84 @@ export default function Footer() {
               gap: '8px',
             }}
           >
-            <Link
-              href="/contact"
-              className="footer-action-link"
-              style={{
-                color: '#333',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-              }}
-            >
-              <span style={{ fontSize: '11px', color: '#999' }}>&gt;&gt;</span>
-              お問い合わせ
-            </Link>
-            <Link
-              href="/privacy-policy"
-              className="footer-action-link"
-              style={{
-                color: '#333',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-              }}
-            >
-              <span style={{ fontSize: '11px', color: '#999' }}>&gt;&gt;</span>
-              プライバシーポリシー
-            </Link>
+            {contactIsPublished ? (
+              <Link
+                href="/contact"
+                className="footer-action-link"
+                style={{
+                  color: '#333',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  fontWeight: '700',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
+                <span style={{ fontSize: '11px', color: '#999' }}>
+                  &gt;&gt;
+                </span>
+                お問い合わせ
+              </Link>
+            ) : (
+              <span
+                aria-disabled="true"
+                className="footer-action-link"
+                style={{
+                  color: '#999999',
+                  fontSize: '13px',
+                  fontWeight: '700',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  cursor: 'not-allowed',
+                }}
+              >
+                <span style={{ fontSize: '11px', color: '#999999' }}>
+                  &gt;&gt;
+                </span>
+                お問い合わせ
+              </span>
+            )}
+            {privacyPolicyIsPublished ? (
+              <Link
+                href="/privacy-policy"
+                className="footer-action-link"
+                style={{
+                  color: '#333',
+                  textDecoration: 'none',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
+                <span style={{ fontSize: '11px', color: '#999' }}>
+                  &gt;&gt;
+                </span>
+                プライバシーポリシー
+              </Link>
+            ) : (
+              <span
+                aria-disabled="true"
+                className="footer-action-link"
+                style={{
+                  color: '#999999',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  cursor: 'not-allowed',
+                }}
+              >
+                <span style={{ fontSize: '11px', color: '#999999' }}>
+                  &gt;&gt;
+                </span>
+                プライバシーポリシー
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -268,24 +322,38 @@ export default function Footer() {
                     gap: '10px',
                   }}
                 >
-                  {section.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="footer-link"
-                        style={{
-                          color: '#DB5492',
-                          textDecoration: 'none',
-                          fontSize: '32px',
-                          fontWeight: '700',
-                          letterSpacing: '0.01em',
-                          display: 'inline-block',
-                        }}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {section.links.map((link) => {
+                    const linkIsPublished = isPublishedPath(link.href);
+                    const linkStyle = {
+                      color: linkIsPublished ? '#DB5492' : '#999999',
+                      textDecoration: 'none',
+                      fontSize: '32px',
+                      fontWeight: '700',
+                      letterSpacing: '0.01em',
+                      display: 'inline-block',
+                    } as const;
+
+                    return (
+                      <li key={link.label}>
+                        {linkIsPublished ? (
+                          <Link
+                            href={link.href}
+                            className="footer-link"
+                            style={linkStyle}
+                          >
+                            {link.label}
+                          </Link>
+                        ) : (
+                          <span
+                            aria-disabled="true"
+                            style={{ ...linkStyle, cursor: 'not-allowed' }}
+                          >
+                            {link.label}
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
@@ -329,7 +397,9 @@ export default function Footer() {
                   </a>
                 ))}
                 <Link
-                  href="/ticket"
+                  href="https://tickets.seiseisai.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     textDecoration: 'none',
                     color: '#0A1B6F',

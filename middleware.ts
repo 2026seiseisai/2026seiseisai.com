@@ -12,8 +12,14 @@ export function middleware(request: NextRequest) {
     pathname === '/' ||
     pathname === '/news' ||
     pathname.startsWith('/news/') ||
+    pathname === '/events'||
     pathname === '/access' ||
     pathname === '/theme&logo' ||
+    pathname === '/special' ||
+    pathname === '/exhibition-award' ||
+    pathname.startsWith('/exhibition-award/') ||
+    pathname === '/exhibitions' ||
+    pathname.startsWith('/exhibitions/') ||
     pathname === '/404dummy'
   ) {
     return NextResponse.next();

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
-
+import { exhibitionIcons } from './map-2026-exhibition-icon
 type ClubItem = {
   id: string;
   name: string;

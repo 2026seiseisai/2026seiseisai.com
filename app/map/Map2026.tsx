@@ -1,25 +1,51 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Map3D2026 from './Map3D2026';
-import { mapFloors, type Building } from './map-2026-data';
+import { mapFloors, type Building, type MapRoom } from './map-2026-data';
 import styles from './Map2026.module.css';
 
-const buildingLabels: Record<Building, string> = {
-  junior: '中学棟',
-  senior: '高校棟',
-  other: 'その他',
+const buildingOptions: Record<Building, { label: string; defaultFloorId: string }> = {
+  junior: { label: '中学棟', defaultFloorId: 'junior-1' },
+  senior: { label: '高校棟', defaultFloorId: 'senior-2' },
+  library: { label: '図書館棟', defaultFloorId: 'library-1' },
+  other: { label: '体育館', defaultFloorId: 'other' },
+  bazaar: { label: 'バザー', defaultFloorId: 'bazaar' },
 };
 
+const buildings = Object.keys(buildingOptions) as Building[];
+const floorsById = new Map(mapFloors.map((floor) => [floor.id, floor]));
+const floorsByBuilding = new Map(
+  buildings.map((building) => [building, mapFloors.filter((floor) => floor.building === building)] as const),
+);
+
+function VenueCard({ room }: { room: MapRoom }) {
+  const hasExhibitions = room.exhibitions.length > 0;
+
+  return (
+    <article className={hasExhibitions ? styles.roomActive : styles.room}>
+      <h3>{room.label ?? room.name}</h3>
+      {hasExhibitions ? (
+        <ul>
+          {room.exhibitions.map((exhibition) => (
+            <li key={exhibition}>{exhibition}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>展示なし</p>
+      )}
+    </article>
+  );
+}
+
 export default function Map2026() {
-  const [building, setBuilding] = useState<Building>('senior');
-  const floors = useMemo(() => mapFloors.filter((floor) => floor.building === building), [building]);
   const [activeFloorId, setActiveFloorId] = useState('senior-2');
-  const activeFloor = floors.find((floor) => floor.id === activeFloorId) ?? floors[0];
+  const activeFloor = floorsById.get(activeFloorId) ?? mapFloors[0];
+  const building = activeFloor.building;
+  const floors = floorsByBuilding.get(building) ?? [];
 
   const selectBuilding = (nextBuilding: Building) => {
-    setBuilding(nextBuilding);
-    setActiveFloorId(mapFloors.find((floor) => floor.building === nextBuilding)?.id ?? 'other');
+    setActiveFloorId(buildingOptions[nextBuilding].defaultFloorId);
   };
 
   return (
@@ -32,7 +58,7 @@ export default function Map2026() {
 
       <section className={styles.map} aria-label="会場マップ">
         <div className={styles.buildingTabs} role="tablist" aria-label="棟を選択">
-          {(Object.keys(buildingLabels) as Building[]).map((item) => (
+          {buildings.map((item) => (
             <button
               key={item}
               type="button"
@@ -41,7 +67,7 @@ export default function Map2026() {
               className={building === item ? styles.buildingTabActive : styles.buildingTab}
               onClick={() => selectBuilding(item)}
             >
-              {buildingLabels[item]}
+              {buildingOptions[item].label}
             </button>
           ))}
         </div>
@@ -64,29 +90,19 @@ export default function Map2026() {
           <div className={styles.floorContent}>
             <div className={styles.floorTitleWrap}>
               <h2>{activeFloor.title}</h2>
-              <span>{activeFloor.rooms.filter((room) => room.exhibitions.length > 0).length} 会場</span>
             </div>
 
             <Map3D2026 floor={activeFloor} />
 
-            <div className={styles.floorPlan}>
-              <div className={styles.roomGrid}>
-                {activeFloor.rooms.map((room) => (
-                  <article key={room.name} className={room.exhibitions.length > 0 ? styles.roomActive : styles.room}>
-                    <h3>{room.name}</h3>
-                    {room.exhibitions.length > 0 ? (
-                      <ul>
-                        {room.exhibitions.map((exhibition) => (
-                          <li key={exhibition}>{exhibition}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p>展示情報なし</p>
-                    )}
-                  </article>
-                ))}
+            {activeFloor.rooms.length > 0 && (
+              <div className={styles.floorPlan}>
+                <div className={styles.roomGrid}>
+                  {activeFloor.rooms.map((room) => (
+                    <VenueCard key={room.name} room={room} />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

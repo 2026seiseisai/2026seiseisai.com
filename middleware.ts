@@ -15,6 +15,7 @@ export function middleware(request: NextRequest) {
     pathname === '/events'||
     pathname === '/access' ||
     pathname === '/contact' ||
+    pathname === '/privacy-policy' ||
     pathname === '/theme&logo' ||
     pathname === '/special' ||
     pathname === '/exhibition-award' ||

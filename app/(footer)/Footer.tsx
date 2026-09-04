@@ -92,6 +92,7 @@ const PUBLISHED_PATHS = new Set([
   '/theme&logo',
   '/access',
   '/contact',
+  '/privacy-policy',
 ]);
 
 function isPublishedPath(href: string) {

@@ -17,21 +17,33 @@ import doubleColorDownload from './double-color.png';
 function DownloadButton({
   file,
   fileName,
+  label,
   className,
 }: {
   file: { src: string };
   fileName: string;
+  label: string;
   className: string;
 }) {
   const downloadName = fileName.replace(/-D(?=\.[^.]+$)/, '');
+  const accessibleLabel = `${label}をPNG形式でダウンロード`;
 
   return (
     <a
       href={file.src}
       download={downloadName}
+      aria-label={accessibleLabel}
+      title={accessibleLabel}
       className={`${styles.downloadButton} ${className}`}
     >
-      <Image src={downloadPicture} alt="Download" width={38} height={38} />
+      <span className={styles.downloadFormat}>PNG</span>
+      <Image
+        src={downloadPicture}
+        alt=""
+        aria-hidden="true"
+        width={28}
+        height={28}
+      />
     </a>
   );
 }
@@ -45,28 +57,24 @@ export default function App() {
       </p>
 
       <div className={styles.main}>
-        <div className={styles.rectangle1} aria-hidden="true" />
-        <div className={styles.rectangle2} aria-hidden="true" />
-        <div className={styles.rectangle3} aria-hidden="true" />
-        <div className={styles.rectangle4} aria-hidden="true" />
-        <div className={styles.rectangle5} aria-hidden="true" />
-        <div className={styles.rectangle6} aria-hidden="true" />
         <h2 className={`${styles.sectionTitle} ${styles.title1}`}>Logotype</h2>
         <Image
           src={doubleColor}
-          alt="Logo and Inf Color"
+          alt="Infinity ロゴタイプ（カラー）"
           className={styles.doubleColor}
           width={770}
           height={215}
+          loading="eager"
         />
         <DownloadButton
           file={doubleColorDownload}
           fileName="double-color-D.png"
+          label="Infinity ロゴタイプ（カラー）"
           className={styles.doubleColor_D}
         />
         <Image
           src={doubleMono}
-          alt="Logo and Inf Mono"
+          alt="Infinity ロゴタイプ（モノクロ）"
           className={styles.doubleMono}
           width={770}
           height={215}
@@ -74,6 +82,7 @@ export default function App() {
         <DownloadButton
           file={doubleMonoDownload}
           fileName="double-mono-D.png"
+          label="Infinity ロゴタイプ（モノクロ）"
           className={styles.doubleMono_D}
         />
         <p className={`${styles.sectionText} ${styles.text1}`}>
@@ -83,7 +92,7 @@ export default function App() {
         <h2 className={`${styles.sectionTitle} ${styles.title2}`}>Logo</h2>
         <Image
           src={LogoColor}
-          alt="Logo Color"
+          alt="Infinity シンボルロゴ（カラー）"
           className={styles.LogoColor}
           width={332}
           height={220}
@@ -91,11 +100,12 @@ export default function App() {
         <DownloadButton
           file={logoColorDownload}
           fileName="Logo-color-D.png"
+          label="Infinity シンボルロゴ（カラー）"
           className={styles.LogoColor_D}
         />
         <Image
           src={LogoMono}
-          alt="Logo Mono"
+          alt="Infinity シンボルロゴ（モノクロ）"
           className={styles.LogoMono}
           width={332}
           height={220}
@@ -103,6 +113,7 @@ export default function App() {
         <DownloadButton
           file={logoMonoDownload}
           fileName="Logo-mono-D.png"
+          label="Infinity シンボルロゴ（モノクロ）"
           className={styles.LogoMono_D}
         />
         <p className={`${styles.sectionText} ${styles.text2}`}>
@@ -112,7 +123,7 @@ export default function App() {
         <h2 className={`${styles.sectionTitle} ${styles.title3}`}>Typo</h2>
         <Image
           src={InfColor}
-          alt="Inf Color"
+          alt="Infinity 文字ロゴ（カラー）"
           className={styles.InfColor}
           width={334}
           height={137}
@@ -120,11 +131,12 @@ export default function App() {
         <DownloadButton
           file={infColorDownload}
           fileName="Inf-color-D.png"
+          label="Infinity 文字ロゴ（カラー）"
           className={styles.InfColor_D}
         />
         <Image
           src={InfMono}
-          alt="Inf Mono"
+          alt="Infinity 文字ロゴ（モノクロ）"
           className={styles.InfMono}
           width={334}
           height={137}
@@ -132,6 +144,7 @@ export default function App() {
         <DownloadButton
           file={infMonoDownload}
           fileName="Inf-mono-D.png"
+          label="Infinity 文字ロゴ（モノクロ）"
           className={styles.InfMono_D}
         />
         <p className={`${styles.sectionText} ${styles.text3}`}>

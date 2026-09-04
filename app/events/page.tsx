@@ -302,6 +302,7 @@ const SchedulesTable = ({ day, onEventJump }: { day: Day; onEventJump: (name: st
                   style={{
                     gridTemplateRows: `repeat(${rows}, 0.82rem)`,
                     gridTemplateColumns: "3.5rem minmax(0, 1fr)",
+                    userSelect:"none"
                   }}
                 >
                   <ScheduleGrid
@@ -458,6 +459,12 @@ export default function EventsPage() {
   const scheduleViewportRef = useRef<HTMLDivElement>(null);
   const scrollHintDismissedRef = useRef(false);
   const [showScrollHint, setShowScrollHint] = useState(false);
+  const dragStateRef = useRef({
+    dragging: false,
+    startX: 0,
+    startScrollLeft: 0,
+    pointerId: -1,
+  });
 
   useEffect(() => {
     const viewport = scheduleViewportRef.current;
@@ -491,15 +498,60 @@ export default function EventsPage() {
     target.open = true;
     requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "center" }));
   };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === "touch" || e.pointerType === "pen") return;
+    const viewport = scheduleViewportRef.current;
+    if (!viewport) return;
+
+    dragStateRef.current.dragging = true;
+    dragStateRef.current.startX = e.clientX;
+    dragStateRef.current.startScrollLeft = viewport.scrollLeft;
+    dragStateRef.current.pointerId = e.pointerId;
+    viewport.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const viewport = scheduleViewportRef.current;
+    if (!viewport || !dragStateRef.current.dragging) return;
+
+    const dx = e.clientX - dragStateRef.current.startX;
+    viewport.scrollLeft = dragStateRef.current.startScrollLeft - dx;
+  };
+
+  const stopDragging = (e?: React.PointerEvent<HTMLDivElement>) => {
+    const viewport = scheduleViewportRef.current;
+    if (viewport && dragStateRef.current.pointerId !== -1) {
+      try {
+        viewport.releasePointerCapture(dragStateRef.current.pointerId);
+      } catch {
+        // ignore if capture already ended
+      }
+    }
+    dragStateRef.current.dragging = false;
+    dragStateRef.current.pointerId = -1;
+    if (e) {
+      e.currentTarget.style.cursor = "grab";
+    }
+  };
+
   return (
     <main className="px-6 lg:px-36">
-      <h1 className="text-navy lg:text-6xl text-4xl font-bold mt-20 lg:mt-40">Events</h1>
+      <h1 className="text-navy lg:text-6xl text-4xl font-bold mt-20 lg:mt-30">Events</h1>
       <DaySwitcher
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
-        className="my-18"
+        className="my-9"
       ></DaySwitcher>
-      <div ref={scheduleViewportRef} className="relative overflow-x-auto w-full">
+      <div
+        ref={scheduleViewportRef}
+        className="relative overflow-x-auto w-full lg:cursor-grab lg:active:cursor-grabbing"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={stopDragging}
+        onPointerCancel={stopDragging}
+        onPointerLeave={stopDragging}
+      >
         <div
           aria-hidden="true"
           className={`pointer-events-none hidden lg:flex absolute inset-0 z-10 items-start justify-center pt-8 bg-black/35 text-sm text-white transition-opacity duration-500 ease-out ${showScrollHint ? "opacity-100" : "opacity-0"}`}
@@ -544,7 +596,7 @@ export default function EventsPage() {
                 key={event.name}
                 id={`eventD-${event.name}`}
               >
-                <summary className="text-xl text-navy pb-4 relative pr-16">
+                <summary className="text-xl text-navy relative pr-16">
                   <span className="text-black">{event.name}</span>
                   {event.ticket && (
                     <span className="absolute top-1/2 -translate-y-1/2 right-0 bg-pink rounded-full text-white text-base px-3 py-1">
@@ -552,7 +604,7 @@ export default function EventsPage() {
                     </span>
                   )}
                 </summary>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-6">
                   <div className="flex">
                     <Image src={mapPin} alt="map icon"></Image>
                     <div>

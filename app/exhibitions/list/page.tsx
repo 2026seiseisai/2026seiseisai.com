@@ -6,4 +6,5 @@ export default function ExhibitionsListPage() {
       <h1>Exhibition一覧</h1>
     </main>
   );
+  */テスト/*
 }

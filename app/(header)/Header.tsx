@@ -22,10 +22,16 @@ const NAV_ITEMS = [
   { label: 'Blog', href: '/blog/blog一覧' },
   { label: 'Special', href: '/special' },
   { label: 'Brochures', href: '/brochures' },
-  { label: 'Achieves', href: '/achieves' },
+  { label: 'Archives', href: '/archives' },
 ];
 
 const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;
+
+const PUBLISHED_PATHS = new Set(['/', '/news', '/theme&logo', '/access']);
+
+function isPublishedPath(href: string) {
+  return PUBLISHED_PATHS.has(href) || href.startsWith('/news/');
+}
 
 function InfinityLogo() {
   return (
@@ -168,7 +174,7 @@ export default function Header() {
 
         <div className="header-actions">
           <Link
-            href="/ticket"
+            href="https://tickets.seiseisai.com/"
             className="header-cta-link"
             style={{
               fontFamily: HEADER_BUTTON_FONT,
@@ -184,6 +190,8 @@ export default function Header() {
             }}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Web整理券
           </Link>
@@ -372,33 +380,48 @@ export default function Header() {
               fontFamily: HEADER_BUTTON_FONT,
             }}
           >
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={`${item.label}-${item.href}`}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  color: '#DB5492',
-                  textDecoration: 'none',
-                  fontSize: 'clamp(36px, 10vw, 50px)',
-                  fontWeight: 500,
-                  lineHeight: 1.08,
-                  padding: '22px 0 18px',
-                  borderBottom: '1px solid #e7e9f2',
-                  letterSpacing: '0.01em',
-                  whiteSpace: 'normal',
-                  overflowWrap: 'anywhere',
-                  wordBreak: 'break-word',
-                }}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const itemIsPublished = isPublishedPath(item.href);
+              const itemStyle = {
+                color: itemIsPublished ? '#DB5492' : '#999999',
+                textDecoration: 'none',
+                fontSize: 'clamp(36px, 10vw, 50px)',
+                fontWeight: 500,
+                lineHeight: 1.08,
+                padding: '22px 0 18px',
+                borderBottom: '1px solid #e7e9f2',
+                letterSpacing: '0.01em',
+                whiteSpace: 'normal',
+                overflowWrap: 'anywhere',
+                wordBreak: 'break-word',
+              } as const;
+
+              return itemIsPublished ? (
+                <Link
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={itemStyle}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span
+                  key={`${item.label}-${item.href}`}
+                  aria-disabled="true"
+                  style={{ ...itemStyle, cursor: 'not-allowed' }}
+                >
+                  {item.label}
+                </span>
+              );
+            })}
 
             <div className="drawer-cta-wrap">
               <Link
-                href="/ticket"
+                href="https://tickets.seiseisai.com/"
                 onClick={() => setMenuOpen(false)}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

@@ -1,5 +1,1 @@
-﻿import NotFoundDummyPage from '../404dummy/page';
-
-export default function ExhibitionsPage() {
-  return <NotFoundDummyPage />;
-}
+﻿export { default } from './list/page';

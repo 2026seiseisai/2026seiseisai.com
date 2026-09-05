@@ -1,1 +1,328 @@
-﻿
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
+
+.page {
+  --color-teal: #1f6f83;
+  --color-navy: #1c3a5e;
+  --color-navy-hover: #142a45;
+  --color-navy-light: #eef2f7;
+  --color-pink: #c2255c;
+  --color-pink-light: #fdeef3;
+  --color-text: #374151;
+  --color-text-light: #6b7280;
+  --color-border: #e5e7eb;
+
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+    'Yu Gothic', sans-serif;
+  color: var(--color-text);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin: 0 0 20px;
+}
+
+.lead {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--color-text);
+  margin: 0 0 48px;
+}
+
+.section {
+  margin-bottom: 56px;
+}
+
+/* --- セクション見出し（横線 + 中央タイトル） --- */
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.headingText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.headingText h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--color-teal);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+}
+
+.body {
+  font-size: 0.9rem;
+  line-height: 1.95;
+  color: var(--color-text);
+  margin: 0 0 32px;
+}
+
+/* --- ダウンロードボタン群 --- */
+.downloads {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.downloadItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.downloadLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.downloadButton:hover {
+  background: var(--color-navy-hover);
+  transform: translateY(-1px);
+}
+
+.downloadButton:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* --- アコーディオン（部活一覧） --- */
+.accordionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordionItem {
+  border-radius: 10px;
+}
+
+/* ボタンデザインを刷新：
+   - 角丸を大きくして柔らかい印象に
+   - 左側にカラーの縦バーを添えてアクセントに
+   - 淡い背景色＋濃い文字色の「タグ」のような見た目に変更
+   - +/− アイコンは丸い枠で囲み、独立したボタンのように見せる */
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-navy-light);
+  color: var(--color-navy);
+  border: none;
+  border-left: 5px solid var(--color-navy);
+  border-radius: 10px;
+  padding: 12px 14px 12px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(28, 58, 94, 0.06);
+}
+
+.accordionHeader:hover {
+  background: #e3e9f1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(28, 58, 94, 0.12);
+}
+
+.accordionHeaderOpen {
+  background: var(--color-pink-light);
+  color: var(--color-pink);
+  border-left-color: var(--color-pink);
+}
+
+.accordionHeaderOpen:hover {
+  background: #fbdfe9;
+  box-shadow: 0 4px 10px rgba(194, 37, 92, 0.15);
+}
+
+.accordionHeader:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+.accordionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.clubList {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.clubRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* アイコンを表示する丸い枠。position: relative は、内側の
+   next/image（fillモード）が正しいサイズで表示されるために必須です */
+.clubIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-navy);
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.clubIconImage {
+  object-fit: contain;
+  padding: 4px;
+}
+
+.clubName {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.readButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.readButton:hover {
+  background: var(--color-navy-hover);
+}
+
+.readButton:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+.clubEmpty {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  padding: 10px 4px;
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 700px) {
+  .page {
+    padding: 32px 16px 64px;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .lead {
+    margin-bottom: 36px;
+  }
+
+  .sectionHeading {
+    gap: 12px;
+  }
+
+  .headingText h2 {
+    font-size: 1.4rem;
+  }
+
+  .accordionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .downloads {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .clubRow {
+    gap: 10px;
+  }
+
+  .clubName {
+    font-size: 0.88rem;
+  }
+}
+
+

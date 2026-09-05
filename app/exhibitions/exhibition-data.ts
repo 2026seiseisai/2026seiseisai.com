@@ -95,7 +95,6 @@ const exhibitionDataRaw = {
     description:
       '4つの部門に別れ、日々活動しているメカニック達の使用している機体を見ることができます。今年だけのオリジナル展示や、大会出場機体をご覧になれますので是非お越しください。',
     twitter_link: 'https://x.com/tdj_dennkou',
-    blogs: ['62/05'],
   },
   ポケモン同好会: {
     location: '5年A組',
@@ -201,7 +200,6 @@ const exhibitionDataRaw = {
     description:
       '歴史に没入できる展示を用意しております。是非教室に足を運んで、実際に歴史の重みを感じてください。',
     twitter_link: 'https://x.com/tdj_seisikai2',
-    blogs: ['62/02'],
   },
   紅茶同好会: {
     location: '5年B組',

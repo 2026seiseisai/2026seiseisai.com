@@ -22,6 +22,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/exhibition-award/') ||
     pathname === '/exhibitions' ||
     pathname.startsWith('/exhibitions/') ||
+    pathname === '/brochures' ||
     pathname === '/404dummy'
   ) {
     return NextResponse.next();

@@ -1,7 +1,6 @@
 ﻿'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import styles from './page.module.css';
 import { exhibitionIcons } from '../map/map-2026-exhibition-icons';
 import { clubMagazineLinks } from './brochures-data';
@@ -81,7 +80,7 @@ const categories: Category[] = [
   { id: 'ra', 
     label: 'ら行', 
     items: [
-      { id: 'ramen', name: 'ラーメン研究会', icon: exhibitionIcons['ラーメン研究会'], href: clubMagazineLinks.ramen },
+      { id: 'ramen', name: 'ラーメン研究会', icon: exhibitionIcons['ラーメン研究会'], href: clubMagazineLinks.rame },
       { id: 'ryokou', name: '旅行同好会', icon: exhibitionIcons['旅行同好会'], href: '#' },
       { id: 'rubikku', name: 'ルービックキューブ同好会', icon: exhibitionIcons['ルービックキューブ同好会'], href: '#' },
       { id: 'rekisi', name: '歴史部菁史会', icon: exhibitionIcons['歴史部菁史会'], href: '#' },
@@ -220,12 +219,11 @@ function AccordionCategory({
           {category.items.map((item) => (
             <li className={styles.clubRow} key={item.id}>
               <span className={styles.clubIcon}>
-                <Image
-                  src={item.icon}
-                  alt={item.name}
-                  fill
-                  sizes="40px"
+                <span
+                  role="img"
+                  aria-label={item.name}
                   className={styles.clubIconImage}
+                  dangerouslySetInnerHTML={{ __html: item.icon }}
                 />
               </span>
               <span className={styles.clubName}>{item.name}</span>

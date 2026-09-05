@@ -267,7 +267,7 @@ function calcScheduleStyle({
     gridRowEnd: rowEnd + additionalRows,
   };
 }
-const numberOfPlace = 8;
+const numberOfPlace = 13;
 const SchedulesTable = ({
   day,
   onEventJump,
@@ -300,7 +300,7 @@ const SchedulesTable = ({
   return (
     <>
       <div
-        className={`hidden lg:grid min-w-[980px] w-[150vw] gap-0 font-medium`}
+        className={`hidden lg:grid min-w-[980px] w-[250vw] gap-0 font-medium`}
         style={{
           gridTemplateRows: `repeat(${rows}, 1.15rem)`,
           gridTemplateColumns: `repeat(${colsRepeats}, minmax(3.5rem, 0.55fr) minmax(7rem, 1fr))`,
@@ -459,7 +459,7 @@ const ScheduleGrid = ({
                   <div>{thisEvent.end}</div>
                 </div>
 
-                <div className="px-10 text-lg xl:text-base flex min-w-0 items-center">
+                <div className="px-10 text-lg xl:text-base flex min-w-0 items-center whitespace-break-spaces">
                   {event.name}
                   <button
                     type="button"

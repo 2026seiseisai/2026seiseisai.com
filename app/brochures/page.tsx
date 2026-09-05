@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { exhibitionIcons } from '../map/map-2026-exhibition-icons';
+import { clubMagazineLinks } from './brochures-data';
 
 type ClubItem = {
   id: string;
@@ -24,27 +26,79 @@ const categories: Category[] = [
     id: 'a',
     label: 'あ行',
     items: [
-      { id: 'angou', name: '暗号同好会', icon: '/club-icons/angou.png', href: '#' },
-      { id: 'igo', name: '囲碁将棋部', icon: '/club-icons/igo.png', href: '#' },
-      { id: 'eigo', name: '英語部', icon: '/club-icons/eigo.png', href: '#' },
-      { id: 'engei', name: '園芸部', icon: '/club-icons/engei.png', href: '#' },
-      { id: 'origami', name: '折り紙研究部', icon: '/club-icons/origami.png', href: '#' },
+      { id: 'angou', name: '暗号同好会', icon: exhibitionIcons['暗号同好会'], href: '#' },
+      { id: 'igo', name: '囲碁将棋部', icon: exhibitionIcons['囲碁将棋部'], href: clubMagazineLinks.igoshougi },
+      { id: 'eigo', name: '英語部', icon: exhibitionIcons['英語部'], href: clubMagazineLinks.eigo },
+      { id: 'engei', name: '園芸部', icon: exhibitionIcons['園芸部'], href: '#' },
+      { id: 'osero', name: 'オセロ同好会', icon: exhibitionIcons['オセロ同好会'], href: clubMagazineLinks.osero },
+      { id: 'origami', name: '折り紙研究部', icon: exhibitionIcons['折り紙研究部'], href: '#' },
     ],
   },
-  { id: 'ka', label: 'か行', items: [] },
-  { id: 'sa', label: 'さ行', items: [] },
-  { id: 'ta', label: 'た行', items: [] },
-  { id: 'na', label: 'な行', items: [] },
-  { id: 'ha', label: 'は行', items: [] },
-  { id: 'ra', label: 'ら行', items: [] },
-  { id: 'az', label: 'A - Z', items: [] },
+  { id: 'ka', 
+    label: 'か行', 
+    items: [
+      { id: 'kagaku', name: '科学部', icon: exhibitionIcons['科学部'], href: clubMagazineLinks.kagaku },
+      { id: 'quiz', name: 'クイズ研究部', icon: exhibitionIcons['クイズ研究部'], href: clubMagazineLinks.quiz },
+      { id: 'koutya', name: '紅茶同好会', icon: exhibitionIcons['紅茶同好会'], href: clubMagazineLinks.koutya },
+      { id: 'koma', name: '独楽研究会', icon: exhibitionIcons['独楽研究会'], href: clubMagazineLinks.koma },
+    ] },
+  { id: 'sa', 
+    label: 'さ行', 
+    items: [
+      { id: 'syasin', name: '写真部', icon: exhibitionIcons['写真部'], href: '#' },
+      { id: 'syodou', name: '書道部', icon: exhibitionIcons['書道部'], href: '#' },
+      { id: 'sinbun', name: '新聞部', icon: exhibitionIcons['新聞部'], href: clubMagazineLinks.sinbun },
+      { id: 'jidousya', name: '自動車研究会', icon: exhibitionIcons['自動車研究会'], href: clubMagazineLinks.jidousha },
+      { id: 'jyouhou', name: '情報研究部', icon: exhibitionIcons['情報研究部'], href: '#' },
+      { id: 'suugaku', name: '数学研究部', icon: exhibitionIcons['数学研究部'], href: clubMagazineLinks.suugaku },
+    ] },
+  { id: 'ta', 
+    label: 'た行', 
+    items: [
+      { id: 'chesu', name: 'チェス研究会', icon: exhibitionIcons['チェス研究会'], href: clubMagazineLinks.chesu },
+      { id: 'tiri', name: '地理研究会', icon: exhibitionIcons['地理研究会'], href: '#' },
+      { id: 'tetudou', name: '鉄道研究部', icon: exhibitionIcons['鉄道研究部'], href: '#' },
+      { id: 'dennsikousaku', name: '電子工作部', icon: exhibitionIcons['電子工作部'], href: clubMagazineLinks.denshikousaku },
+      { id: 'touhou', name: '東方研究会', icon: exhibitionIcons['東方研究会'], href: clubMagazineLinks.touhou },
+      { id: 'tozan', name: '登山同好会', icon: exhibitionIcons['登山同好会'], href: '#' },
+      { id: 'douro', name: '道路研究会', icon: exhibitionIcons['道路研究会'], href: '#' },
+      { id: 'doraemon', name: 'ドラえもん研究会', icon: exhibitionIcons['ドラえもん研究会'], href: '#' },
+    ] },
+  { id: 'na', 
+    label: 'な行', 
+    items: [
+      { id: 'nazo', name: '謎解き研究会', icon: exhibitionIcons['謎解き研究会'], href: clubMagazineLinks.nazotoki },
+    ] },
+  { id: 'ha', 
+    label: 'は行', 
+    items: [
+      { id: 'bijyutu', name: '美術部', icon: exhibitionIcons['美術部'], href: clubMagazineLinks.bijyutu },
+      { id: 'bunngei', name: '文藝同好会', icon: exhibitionIcons['文藝同好会'], href: '#' },
+      { id: 'pokemon', name: 'ポケモン同好会', icon: exhibitionIcons['ポケモン同好会'], href: '#' },
+      { id: 'majikku', name: 'マジック同好会', icon: exhibitionIcons['マジック同好会'], href: '#' },
+      { id: 'minnzoku', name: '民族音楽同好会', icon: exhibitionIcons['民族音楽同好会'], href: clubMagazineLinks.minnzokuonngaku },
+    ] },
+  { id: 'ra', 
+    label: 'ら行', 
+    items: [
+      { id: 'ramen', name: 'ラーメン研究会', icon: exhibitionIcons['ラーメン研究会'], href: clubMagazineLinks.ramen },
+      { id: 'ryokou', name: '旅行同好会', icon: exhibitionIcons['旅行同好会'], href: '#' },
+      { id: 'rubikku', name: 'ルービックキューブ同好会', icon: exhibitionIcons['ルービックキューブ同好会'], href: '#' },
+      { id: 'rekisi', name: '歴史部菁史会', icon: exhibitionIcons['歴史部菁史会'], href: '#' },
+      { id: 'roketto', name: 'ロケット研究部', icon: exhibitionIcons['ロケット研究部'], href: clubMagazineLinks.roketto },
+    ] },
+  { id: 'az', 
+    label: 'A - Z', 
+    items: [
+      { id: 'MGA', name: 'MGA同好会', icon: exhibitionIcons['MGA同好会'], href: '#' },
+      { id: 'vocaloid', name: 'ボーカロイド＆作曲同好会', icon: exhibitionIcons['VOCALOID&作曲同好会'], href: '#' },
+    ] },
 ];
 
 // TODO: 実際のPDFファイルのパスに差し替えてください（例: /pamphlets/pamphlet-high.pdf）
 const pamphlets = [
-  { label: '高画質版', size: '13.8MB', href: '#' },
-  { label: '中画質版', size: '7.1MB', href: '#' },
-  { label: '低画質版', size: '3.5MB', href: '#' },
+  { label: '高画質版', size: '13.8MB', href: '/brochures-data/62ndpamphlet.pdf' },
+  { label: '低画質版', size: '3.5MB', href: '/brochures-data/01-44-combined.pdf'},
 ];
 
 export default function BrochuresPage() {

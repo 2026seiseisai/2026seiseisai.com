@@ -11,9 +11,10 @@
   --color-text-light: #6b7280;
   --color-border: #e5e7eb;
 
-  max-width: 960px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px 96px;
+  padding: 48px clamp(20px, 5vw, 80px) 96px;
   font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
     'Yu Gothic', sans-serif;
   color: var(--color-text);
@@ -142,13 +143,13 @@
 }
 
 .accordionItem {
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
-/* ボタンデザインを刷新：
-   - 角丸を大きくして柔らかい印象に
+/* ボタンデザイン：
+   - 角丸を控えめにして、四角に近い印象に
    - 左側にカラーの縦バーを添えてアクセントに
-   - 淡い背景色＋濃い文字色の「タグ」のような見た目に変更
+   - 淡い背景色＋濃い文字色の「タグ」のような見た目
    - +/− アイコンは丸い枠で囲み、独立したボタンのように見せる */
 .accordionHeader {
   width: 100%;
@@ -159,7 +160,7 @@
   color: var(--color-navy);
   border: none;
   border-left: 5px solid var(--color-navy);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 12px 14px 12px 18px;
   font-size: 1rem;
   font-weight: 700;
@@ -280,10 +281,6 @@
 
 /* --- レスポンシブ対応 --- */
 @media (max-width: 700px) {
-  .page {
-    padding: 32px 16px 64px;
-  }
-
   .title {
     font-size: 1.9rem;
   }
@@ -324,5 +321,3 @@
     font-size: 0.88rem;
   }
 }
-
-

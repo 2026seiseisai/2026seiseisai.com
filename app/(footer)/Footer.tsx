@@ -86,7 +86,14 @@ const SNS_LINKS = [
   },
 ];
 
-const PUBLISHED_PATHS = new Set(['/', '/news', '/theme&logo', '/access']);
+const PUBLISHED_PATHS = new Set([
+  '/',
+  '/news',
+  '/theme&logo',
+  '/access',
+  '/contact',
+  '/privacy-policy',
+]);
 
 function isPublishedPath(href: string) {
   return PUBLISHED_PATHS.has(href) || href.startsWith('/news/');

@@ -260,6 +260,7 @@ function calcScheduleStyle({
     gridRowEnd: rowEnd + additionalRows,
   };
 }
+
 const SchedulesTable = ({
   day,
   onEventJump,
@@ -448,10 +449,15 @@ const ScheduleGrid = ({
                   <div>{thisEvent.start}</div>
                   <div>{thisEvent.end}</div>
                 </div>
-                
+
                 <div className="px-7 text-lg xl:text-base whitespace-nowrap flex min-w-0 items-center">
                   {event.name}
-                  <button type="button" className="ml-1 shrink-0" onClick={() => onEventJump?.(event.name)} aria-label={`${event.name}の紹介を開く`}>
+                  <button
+                    type="button"
+                    className="ml-1 shrink-0"
+                    onClick={() => onEventJump?.(event.name)}
+                    aria-label={`${event.name}の紹介を開く`}
+                  >
                     <Image src={arrowR} alt="" width={20} height={20}></Image>
                   </button>
                 </div>

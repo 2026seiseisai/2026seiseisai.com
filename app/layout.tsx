@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Noto_Sans_JP } from 'next/font/google';
 import './globals.css';
-import Header from './(header)/Header';
-import Footer from './(footer)/Footer';
+import SiteChrome from './SiteChrome';
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
@@ -47,9 +46,7 @@ export default function RootLayout({
         className={`${notoSansJP.className} ${notoSansJP.variable}`}
         style={{ margin: 0, padding: '72px 0 0 0' }}
       >
-        <Header />
-        {children}
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

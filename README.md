@@ -56,3 +56,15 @@ npm run dev
 補足:
 
 - `.vscode/launch.json` が用意されている環境では、F5 (または Fn+F5) で起動できます。
+
+## 展示賞投票の運用
+
+投票ページは `/exhibition-award`、集計ページは `/exhibition-award/results` です。投票ページを最初に Wi-Fi 接続中に開いておくと、サービスワーカーが画面をキャッシュし、オフライン中の投票を端末内に保存します。再接続時に自動で API へ送信されます。
+
+集計を有効にするには、Cloudflare KV Namespace を作成し、表示された ID を `wrangler.jsonc` の `EXHIBITION_AWARD_VOTES` に設定してください。
+
+```powershell
+npx wrangler kv namespace create EXHIBITION_AWARD_VOTES
+```
+
+投票データは投票 ID を KV のキーにして保存するため、再送時に同じ投票が重複登録されません。集計ページは KV の保存済み投票を読み込み、展示団体ごとに票数を表示します。

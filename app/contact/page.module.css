@@ -1,1 +1,408 @@
-﻿
+.page {
+  --navy: #0a1b6f;
+  --pink: #db5492;
+  --teal: #00aabe;
+  --ink: #0b0e0f;
+  --muted: #5f6474;
+  --line: #dfe3ee;
+  min-height: 100vh;
+  padding: clamp(48px, 6vw, 88px) 24px clamp(96px, 11vw, 168px);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgb(219 84 146 / 6%) 0 18%, transparent 18% 100%),
+    #f5f6fa;
+  color: var(--ink);
+}
+
+.shell {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.hero {
+  position: relative;
+  min-height: 430px;
+  padding: clamp(40px, 6vw, 76px);
+  overflow: hidden;
+  border-top: 7px solid var(--navy);
+  background: #fff;
+  box-shadow: 0 24px 70px rgb(10 27 111 / 9%);
+  isolation: isolate;
+}
+
+.hero::before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 42%;
+  height: 8px;
+  background: linear-gradient(90deg, var(--pink) 0 48%, var(--teal) 48% 100%);
+  content: '';
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.sectionLabel {
+  margin: 0;
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+}
+
+.title {
+  margin: 0 0 30px;
+  color: var(--navy);
+  font-size: clamp(58px, 9vw, 112px);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+}
+
+.title::first-letter {
+  color: var(--pink);
+}
+
+.lead {
+  margin: 0 0 22px;
+  color: var(--ink);
+  font-size: clamp(20px, 2.25vw, 30px);
+  font-weight: 700;
+  line-height: 1.65;
+  word-break: auto-phrase;
+}
+
+.description {
+  margin: 0;
+  color: #343844;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 500;
+  line-height: 1.9;
+}
+
+.infinityMark {
+  position: absolute;
+  right: clamp(-86px, -4vw, -20px);
+  bottom: clamp(-108px, -7vw, -48px);
+  z-index: 1;
+  color: rgb(10 27 111 / 5.5%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(300px, 38vw, 560px);
+  font-weight: 700;
+  letter-spacing: -0.12em;
+  line-height: 0.68;
+  pointer-events: none;
+  transform: rotate(-7deg);
+  user-select: none;
+}
+
+.channels,
+.formSection {
+  margin-top: clamp(58px, 8vw, 96px);
+}
+
+.sectionHeading {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.sectionHeading h2,
+.formHeading h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.sectionHeading > div > p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.channelGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.channelCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-height: 144px;
+  align-items: center;
+  gap: 16px;
+  padding: 26px 24px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.channelCard::after {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  height: 4px;
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.xCard::after {
+  background: var(--navy);
+}
+
+.instagramCard::after {
+  background: var(--pink);
+}
+
+.emailCard::after {
+  background: var(--teal);
+}
+
+.channelCard:hover {
+  background: #fbfcff;
+  transform: translateY(-3px);
+}
+
+.channelCard:hover::after {
+  transform: scaleX(1);
+}
+
+.channelCard:focus-visible,
+.openFormLink:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 4px;
+}
+
+.channelIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--navy);
+}
+
+.channelIcon svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+.emailCard .channelIcon svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.channelCopy {
+  min-width: 0;
+}
+
+.channelName,
+.channelDetail {
+  display: block;
+}
+
+.channelName {
+  color: var(--navy);
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.channelDetail {
+  margin-top: 7px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrowIcon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.formHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.formHeading .sectionLabel {
+  margin-bottom: 9px;
+}
+
+.openFormLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-bottom: 2px solid var(--teal);
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.openFormLink .arrowIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.formFrame {
+  position: relative;
+  padding: clamp(8px, 1.2vw, 14px);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--navy);
+  background: #fff;
+  box-shadow: 0 20px 60px rgb(10 27 111 / 8%);
+}
+
+.formFrame::before,
+.formFrame::after {
+  position: absolute;
+  top: -6px;
+  width: 72px;
+  height: 6px;
+  content: '';
+}
+
+.formFrame::before {
+  right: 72px;
+  background: var(--pink);
+}
+
+.formFrame::after {
+  right: 0;
+  background: var(--teal);
+}
+
+.formFrame iframe {
+  display: block;
+  width: 100%;
+  height: 820px;
+  border: 0;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 0;
+  }
+
+  .infinityMark {
+    right: -90px;
+    opacity: 0.8;
+  }
+
+  .channelGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .channelCard {
+    min-height: 112px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 32px 16px 96px;
+  }
+
+  .hero {
+    padding: 28px 24px 36px;
+  }
+
+  .title {
+    margin-bottom: 28px;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+
+  .infinityMark {
+    right: -104px;
+    bottom: -28px;
+    font-size: 330px;
+  }
+
+  .sectionHeading {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .channelCard {
+    min-height: 104px;
+    padding: 20px 18px;
+  }
+
+  .channelIcon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .channelIcon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .channelName {
+    font-size: 19px;
+  }
+
+  .formHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .formFrame {
+    margin-right: -16px;
+    margin-left: -16px;
+    padding: 4px;
+  }
+
+  .formFrame iframe {
+    height: 920px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channelCard,
+  .channelCard::after {
+    transition: none;
+  }
+}

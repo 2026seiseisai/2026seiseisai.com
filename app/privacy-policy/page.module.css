@@ -1,1 +1,242 @@
 ﻿
+.page {
+  --navy: #0a1b6f;
+  --pink: #db5492;
+  --teal: #00aabe;
+  --ink: #151724;
+  --muted: #5f6474;
+  --line: #dfe3ee;
+  min-height: 100vh;
+  padding: clamp(48px, 6vw, 88px) 24px clamp(96px, 10vw, 148px);
+  background:
+    linear-gradient(135deg, rgb(219 84 146 / 5%) 0 18%, transparent 18% 100%),
+    #f5f6fa;
+  color: var(--ink);
+}
+
+.sheet {
+  position: relative;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-top: 7px solid var(--navy);
+  background: #fff;
+  box-shadow: 0 24px 70px rgb(10 27 111 / 9%);
+}
+
+.sheet::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(180px, 30%, 336px);
+  height: 8px;
+  background: linear-gradient(90deg, var(--pink) 0 48%, var(--teal) 48% 100%);
+  content: '';
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 242px;
+  align-items: center;
+  padding: clamp(44px, 6vw, 76px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.sectionLabel {
+  margin: 0;
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+}
+
+.title {
+  margin: 12px 0 16px;
+  color: var(--navy);
+  font-size: clamp(54px, 7.2vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+}
+
+.title span {
+  color: var(--pink);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(16px, 1.7vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.watermark {
+  position: absolute;
+  right: -0.06em;
+  bottom: -0.08em;
+  z-index: 0;
+  color: rgb(10 27 111 / 5.5%);
+  font-size: clamp(92px, 13vw, 180px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.78;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.content {
+  padding: 0 clamp(36px, 6vw, 76px) clamp(68px, 8vw, 96px);
+}
+
+.policySection {
+  display: grid;
+  grid-template-columns: minmax(190px, 235px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 68px);
+  padding: clamp(32px, 4vw, 46px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.sectionHeading h2 {
+  margin: 8px 0 0;
+  color: var(--navy);
+  font-size: clamp(21px, 2.1vw, 27px);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+  word-break: auto-phrase;
+}
+
+.sectionBody {
+  min-width: 0;
+}
+
+.sectionBody p {
+  margin: 0;
+  color: #343844;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.sectionBody p + p {
+  margin-top: 16px;
+}
+
+.externalLink,
+.textLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+  margin: 0 0.16em;
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.externalLink:hover,
+.textLink:hover {
+  color: var(--pink);
+}
+
+.externalLink:focus-visible,
+.textLink:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid var(--pink);
+  outline-offset: 4px;
+}
+
+.externalLink span {
+  font-size: 0.82em;
+  text-decoration: none;
+}
+
+.updatedAt {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 32px 16px 96px;
+  }
+
+  .hero {
+    min-height: 204px;
+    align-items: flex-start;
+    padding: 32px 24px 42px;
+  }
+
+  .title {
+    margin-top: 10px;
+    font-size: clamp(41px, 13vw, 58px);
+    letter-spacing: -0.07em;
+  }
+
+  .watermark {
+    right: -0.08em;
+    bottom: -0.04em;
+    font-size: clamp(78px, 27vw, 112px);
+    opacity: 0.72;
+  }
+
+  .content {
+    padding: 0 24px 64px;
+  }
+
+  .policySection {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 30px 0;
+  }
+
+  .sectionHeading h2 {
+    margin-top: 6px;
+    font-size: 23px;
+  }
+
+  .sectionBody p {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .updatedAt {
+    margin-top: 14px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero {
+    min-height: 190px;
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .title {
+    font-size: clamp(37px, 12vw, 47px);
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .content {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+}

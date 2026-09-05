@@ -114,21 +114,7 @@ export const eventData: EventData[] = [
       },
     ],
   },
-  {
-    name: "中2演劇",
-    description:
-      "名探偵コナンの第1話「ジェットコースター殺人事件を上演します。高校生探偵の工藤新一の推理とその後の運命は…。",
-    day1: [
-      
-    ],
-    day2: [
-      {
-        location: "体育館",
-        start: "12:10",
-        end: "12:50",
-      },
-    ],
-  },
+
   {
     name:"中2演劇",
     description:"",

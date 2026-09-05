@@ -257,10 +257,10 @@ function calcScheduleStyle({
     gridRowEnd: rowEnd + additionalRows,
   };
 }
-
+const numberOfPlace = 8
 const SchedulesTable = ({ day, onEventJump }: { day: Day; onEventJump: (name: string) => void }) => {
   const rows = scheduleHours.length * scheduleMinutes.length + additionalRows;
-  const cols = 7 * 2;
+  const cols = numberOfPlace * 2;
   const colsRepeats = cols / 2;
   const [emblaRef] = useEmblaCarousel();
 
@@ -439,9 +439,9 @@ const ScheduleGrid = ({
                   <div>{thisEvent.end}</div>
                 </div>
                 
-                <div className="px-7 text-lg xl:text-base whitespace-nowrap flex min-w-0 items-center">
+                <div className="px-10 text-lg xl:text-base flex min-w-0 items-center">
                   {event.name}
-                  <button type="button" className="ml-1 shrink-0" onClick={() => onEventJump?.(event.name)} aria-label={`${event.name}の紹介を開く`}>
+                  <button type="button" className="ml-1 shrink-0 pointer-events-auto" onClick={() => {onEventJump?.(event.name)}} aria-label={`${event.name}の紹介を開く`}>
                     <Image src={arrowR} alt="" width={20} height={20}></Image>
                   </button>
                 </div>
@@ -501,6 +501,9 @@ export default function EventsPage() {
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType === "touch" || e.pointerType === "pen") return;
+    if ((e.target as HTMLElement | null)?.closest("button, a, input, textarea, select, summary")) {
+      return;
+    }
     const viewport = scheduleViewportRef.current;
     if (!viewport) return;
 

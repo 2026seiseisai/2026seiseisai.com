@@ -98,7 +98,6 @@ const categories: Category[] = [
 // TODO: 実際のPDFファイルのパスに差し替えてください（例: /pamphlets/pamphlet-high.pdf）
 const pamphlets = [
   { label: '高画質版', size: '13.8MB', href: '#' },
-  { label: '中画質版', size: '7.1MB', href: '#' },
   { label: '低画質版', size: '3.5MB', href: '#' },
 ];
 

@@ -29,6 +29,10 @@ const linkHostRoots = [
 function safeLink(value: string): string | null {
   const candidate = value.trim();
   if (!candidate || candidate.length > 2048 || unsafeUrl.test(candidate)) return null;
+  // お問い合わせ先だけを許可し、宛先追加やメールヘッダー指定は受け付けない。
+  if (/^mailto:support@seiseisai\.com$/iu.test(candidate)) {
+    return 'mailto:support@seiseisai.com';
+  }
 
   if (candidate.startsWith('/')) {
     if (candidate.startsWith('//')) return null;
@@ -93,7 +97,7 @@ function inlineMarkdown(value: string, keyPrefix: string): ReactNode[] {
         ),
       );
     } else if (token.startsWith('**') || token.startsWith('__')) {
-      nodes.push(<strong key={key}>{token.slice(2, -2)}</strong>);
+      nodes.push(<strong key={key}>{inlineMarkdown(token.slice(2, -2), key)}</strong>);
     } else if (token.startsWith('`')) {
       nodes.push(<code key={key}>{token.slice(1, -1)}</code>);
     } else {

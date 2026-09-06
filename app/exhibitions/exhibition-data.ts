@@ -95,6 +95,7 @@ const exhibitionDataRaw = {
     description:
       '4つの部門に別れ、日々活動しているメカニック達の使用している機体を見ることができます。今年だけのオリジナル展示や、大会出場機体をご覧になれますので是非お越しください。',
     twitter_link: 'https://x.com/tdj_dennkou',
+    events: ['レゴプログラミング講習会'],
   },
   ポケモン同好会: {
     location: '5年A組',
@@ -249,7 +250,6 @@ const exhibitionDataRaw = {
     description:
       '部員が制作したゲームを実際に遊んで楽しむ展示や、活動内容の紹介を行います。',
     twitter_link: 'https://x.com/tdj_sip',
-    events: ['レゴプログラミング講習会'],
   },
   旅行同好会: {
     location: '第二体育館',

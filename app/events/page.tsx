@@ -65,7 +65,7 @@ const DaySwitcher = ({
           1日目
         </span>
         <span className={buttonLabelCN} aria-label="9月6日 土曜日">
-          9.06 sat
+          9.12 sat
         </span>
       </button>
 
@@ -88,7 +88,7 @@ const DaySwitcher = ({
           2日目
         </span>
         <span className={buttonLabelCN} aria-label="9月7日 日曜日">
-          9.07 sun
+          9.13 sun
         </span>
       </button>
       <button
@@ -174,6 +174,11 @@ const mobileLocationOrder: Location[] = [
   "転心殿前",
   "グラウンド",
   "物理室",
+  "3年B組",
+  "3年E組",
+  "5年A組",
+  "4年E組",
+  "6年E組",
 ];
 
 const scheduleHours: HourType[] = [
@@ -631,11 +636,11 @@ export default function EventsPage() {
         <h2 className="text-4xl border-l-4 border-l-navy font-medium my-16">
           イベント紹介
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div className="columns-1 md:columns-2 gap-4 md:gap-6">
           {eventData.map((event) => {
             return (
               <details
-                className="bg-[#5A44A926] p-4 md:p-5"
+                className="mb-4 break-inside-avoid bg-[#5A44A926] p-4 md:p-5"
                 key={event.name}
                 id={`eventD-${event.name}`}
               >

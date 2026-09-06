@@ -91,6 +91,7 @@ const PUBLISHED_PATHS = new Set([
   '/news',
   '/theme&logo',
   '/access',
+  '/events',
   '/contact',
   '/privacy-policy',
 ]);

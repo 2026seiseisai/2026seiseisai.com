@@ -15,8 +15,9 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px clamp(20px, 5vw, 80px) 96px;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
-    'Yu Gothic', sans-serif;
+  font-family:
+    'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic',
+    sans-serif;
   color: var(--color-text);
 }
 
@@ -115,7 +116,9 @@
   font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .downloadButton:hover {
@@ -166,7 +169,9 @@
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.15s ease,
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
     box-shadow 0.2s ease;
   box-shadow: 0 1px 2px rgba(28, 58, 94, 0.06);
 }
@@ -225,8 +230,7 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-/* アイコンを表示する丸い枠。position: relative は、内側の
-   next/image（fillモード）が正しいサイズで表示されるために必須です */
+/* アイコンを表示する丸い枠 */
 .clubIcon {
   flex-shrink: 0;
   width: 40px;
@@ -239,8 +243,12 @@
 }
 
 .clubIconImage {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   padding: 4px;
+  box-sizing: border-box;
 }
 
 .clubName {
@@ -335,28 +343,40 @@
   transition: opacity 0.2s ease;
 }
 
-.bulkDownloadButton:hover {
-  opacity: 0.85;
-}
+  .bulkDownloadButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--color-teal);
+    color: #fff;
+    border: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
 
-.partDownloadButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-navy-light);
-  color: var(--color-navy);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 6px 10px;
-  border-radius: 20px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 0.2s ease;
-}
+  .bulkDownloadButton:hover {
+    opacity: 0.85;
+  }
 
-.partDownloadButton:hover {
-  background: #e3e9f1;
-}
+  .partDownloadButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-navy-light);
+    color: var(--color-navy);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+  }
 
 /* --- レスポンシブ対応 --- */
 @media (max-width: 700px) {

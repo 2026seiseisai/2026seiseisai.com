@@ -224,6 +224,7 @@
 .clubRow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 14px;
   padding: 10px 4px;
   border-bottom: 1px solid var(--color-border);
@@ -252,6 +253,7 @@
 
 .clubName {
   flex: 1;
+  min-width: 100px;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text);
@@ -316,25 +318,30 @@
   }
 }
 
-@media (max-width: 420px) {
-  .title {
-    font-size: 1.6rem;
-  }
+/* --- 複数号ある部誌（鉄道研究部など）のダウンロードボタン群 --- */
+.multiDownloads {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 
-  .clubRow {
-    gap: 10px;
-  }
-
-  .clubName {
-    font-size: 0.88rem;
-  }
-  .multiDownloads {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
+.bulkDownloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-teal);
+  color: #fff;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
 
   .bulkDownloadButton {
     display: inline-flex;
@@ -371,19 +378,53 @@
     transition: background-color 0.2s ease;
   }
 
-  .partDownloadButton:hover {
-    background: #e3e9f1;
+/* --- レスポンシブ対応 --- */
+@media (max-width: 700px) {
+  .title {
+    font-size: 1.9rem;
   }
 
-  @media (max-width: 480px) {
-    .clubRow {
-      flex-wrap: wrap;
-    }
+  .lead {
+    margin-bottom: 36px;
+  }
 
-    .multiDownloads {
-      width: 100%;
-      justify-content: flex-start;
-      padding-left: 54px;
-    }
+  .sectionHeading {
+    gap: 12px;
+  }
+
+  .headingText h2 {
+    font-size: 1.4rem;
+  }
+
+  .accordionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .downloads {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .multiDownloads {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 54px;
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .clubRow {
+    gap: 10px;
+  }
+
+  .clubName {
+    font-size: 0.88rem;
   }
 }

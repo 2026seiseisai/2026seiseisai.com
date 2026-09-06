@@ -174,6 +174,11 @@ const mobileLocationOrder: Location[] = [
   "転心殿前",
   "グラウンド",
   "物理室",
+  "3年B組",
+  "3年E組",
+  "5年A組",
+  "4年E組",
+  "6年E組",
 ];
 
 const scheduleHours: HourType[] = [

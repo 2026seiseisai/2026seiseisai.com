@@ -9,7 +9,22 @@ type NewsBodyProps = {
 
 const inlineToken = /(\[[^\]\n]{1,240}\]\([^\s)\n]{1,2048}\)|\*\*[^*\n]+\*\*|__[^_\n]+__|`[^`\n]+`|\*[^*\n]+\*|_[^_\n]+_)/gu;
 const unsafeUrl = /[\\\u0000-\u001f\u007f]|%(?:25)*(?:2f|5c|00|0[1-9a-f]|1[0-9a-f]|7f)/iu;
-const officialHosts = new Set(['seiseisai.com', 'www.seiseisai.com']);
+const exactLinkHosts = new Set([
+  'seiseisai.com',
+  'www.seiseisai.com',
+  'instagram.com',
+  'www.instagram.com',
+]);
+// 整理券サイト・管理画面のお知らせと同じリンク許可範囲。
+const linkHostRoots = [
+  'tdj.ac.jp',
+  'mirai-compass.net',
+  'youtube.com',
+  'youtu.be',
+  'youtube-nocookie.com',
+  'x.com',
+  'twitter.com',
+];
 
 function safeLink(value: string): string | null {
   const candidate = value.trim();
@@ -30,12 +45,15 @@ function safeLink(value: string): string | null {
 
   try {
     const parsed = new URL(candidate);
+    const hostname = parsed.hostname.toLowerCase();
+    const allowedHost = exactLinkHosts.has(hostname) ||
+      linkHostRoots.some((root) => hostname === root || hostname.endsWith(`.${root}`));
     if (
       parsed.protocol !== 'https:' ||
       parsed.username ||
       parsed.password ||
       parsed.port ||
-      !officialHosts.has(parsed.hostname.toLowerCase())
+      !allowedHost
     ) {
       return null;
     }

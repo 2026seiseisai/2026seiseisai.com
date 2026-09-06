@@ -8,6 +8,5 @@ export default async function ExhibitionDetailPage({
   params,
 }: ExhibitionDetailPageProps) {
   const { slug } = await params;
-
   return <ExhibitionDetail slug={slug} />;
 }

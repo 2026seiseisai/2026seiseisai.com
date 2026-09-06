@@ -769,10 +769,10 @@ export const eventData: EventData[] = [
   {
     name: '忍finity迷路',
     description:
-      '9時から14時30分まで、30分ごとの入場です。それぞれ約1時間周り、グラウンドにて整理券の配布を行います。',
+      '9時から14時30分まで、30分ごとの入場です。それぞれ約1時間前に、グラウンドにて整理券の配布を行います。',
     ticket: true,
-    day1: [{ location: '3年E組', start: '09:00', end: '15:00' }],
-    day2: [{ location: '3年E組', start: '09:00', end: '15:00' }],
+    day1: [{ location: '3年E組', start: '10:30', end: '15:00' }],
+    day2: [{ location: '3年E組', start: '09:00', end: '14:30' }],
   },
   {
     name: 'ラジコンレース大会',

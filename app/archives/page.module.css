@@ -1,1 +1,154 @@
-﻿
+﻿.main {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  padding: 40px 6% 40px 6%;
+}
+.title {
+  color: #0A1B6F;
+  font-size: 48px;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 10px;
+  position: relative;
+}
+.explain {
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  position: relative;
+}
+.background{
+    width: 100%;
+    height:50%;
+    background-color: #0A1B6F0D;
+    position: relative;
+    margin-top:20px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgb(150, 150, 150);
+}
+.center {
+  text-align: center;
+  color: #000;
+  font-size: 22px;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+}
+.year {
+  font-size: 30px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.color2025 {
+  color: #e61321;
+}
+.color2025:hover {
+  color: #ac0f1a;
+}
+.color2024 {
+  color: #FF0084;
+}
+.color2024:hover {
+  color: #cc0069;
+}
+.color2023 {
+  color: rgb(82, 204, 137)
+}
+.color2023:hover {
+  color: rgb(61, 153, 102)
+}
+.color2022 {
+  color: rgb(192, 74, 136);
+}
+.color2022:hover {
+  color: rgb(144, 55, 102);
+}
+.color2021 {
+  color: #000
+}
+.color2021:hover {
+  color: #7a7a7a
+}
+.color2020 {
+  color: rgb(242, 150, 0);
+}
+.color2020:hover {
+  color: rgb(182, 113, 0);
+}
+.color2019 {
+  color: rgb(1, 160, 226);
+}
+.color2019:hover {
+  color: rgb(1, 120, 170);
+}
+.color2017 {
+  color: rgb(171, 68, 67);
+}
+.color2017:hover {
+  color: rgb(128, 51, 50);
+}
+.color2016 {
+  color: rgb(65, 93, 139);
+}
+.color2016:hover {
+  color: rgb(49, 70, 105);
+}
+.color2015 {
+  color: rgb(0, 0, 0);
+}
+.color2015:hover {
+  color: #7a7a7a;
+}
+.color2013 {
+  color: rgb(75, 206, 74);
+}
+.color2013:hover {
+  color: rgb(56, 154, 55);
+}
+.color2012 {
+  color: rgb(148, 149, 197);
+}
+.color2012:hover {
+  color: rgb(111, 112, 148);
+}
+.color2011 {
+  color: rgb(157, 109, 121);
+}  
+.color2011:hover {
+  color: rgb(118, 82, 92);
+} 
+.color2009 {
+  color: rgb(0, 0, 0);
+}
+.color2009:hover {
+ color: #7a7a7a;
+}
+.color2008 {
+  color: rgb(0, 0, 1);
+}
+.color2008:hover {
+    color: #7a7a7a;
+}
+.color2002 {
+  color: rgb(0, 0, 0);
+}
+.color2002:hover {
+  color: #7a7a7a;
+}
+.link {
+    text-align: center;
+  font-size: 18px;
+  font-weight: 200;
+  position: relative;
+  letter-spacing: 0.03em;
+  text-decoration: underline;
+}
+.logo {
+    padding: 0px 6% 5px 6%;
+    display: flex;
+  justify-content: flex-start;
+  gap: 100px;
+  padding-top: 15px;
+}

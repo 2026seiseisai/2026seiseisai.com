@@ -10,7 +10,8 @@ type ClubItem = {
   id: string;
   name: string;
   icon: string; // publicフォルダ内の画像パス（例: '/club-icons/angou.png'）
-  href: string;
+  href?: string;
+  parts?: { label: string; href: string }[]; 
 };
 
 type Category = {
@@ -57,7 +58,14 @@ const categories: Category[] = [
     items: [
       { id: 'chesu', name: 'チェス研究会', icon: exhibitionIcons['チェス研究会'], href: clubMagazineLinks.chesu },
       { id: 'tiri', name: '地理研究会', icon: exhibitionIcons['地理研究会'], href: '#' },
-      { id: 'tetudou', name: '鉄道研究部', icon: exhibitionIcons['鉄道研究部'], href: '#' },
+      { id: 'tetudou', name: '鉄道研究部', icon: exhibitionIcons['鉄道研究部'],
+        parts: [
+          {label: '東大路快速' , href: clubMagazineLinks.tetudou1 },
+          {label: '急行みささぎ' , href: clubMagazineLinks.tetudou2 },
+          {label: '準急わかくさ' , href: clubMagazineLinks.tetudou3 },
+          {label: '臨時' , href: clubMagazineLinks.tetudou4 },
+        ]
+      },
       { id: 'dennsikousaku', name: '電子工作部', icon: exhibitionIcons['電子工作部'], href: clubMagazineLinks.denshikousaku },
       { id: 'touhou', name: '東方研究会', icon: exhibitionIcons['東方研究会'], href: clubMagazineLinks.touhou },
       { id: 'tozan', name: '登山同好会', icon: exhibitionIcons['登山同好会'], href: '#' },
@@ -115,7 +123,7 @@ export default function BrochuresPage() {
     <main className={styles.page}>
       <h1 className={styles.title}>Brochures</h1>
       <p className={styles.lead}>
-        ここでは菁々祭パンフレット、ならびに各部活の部誌をご覧いただけます。菁々祭終了後も公開しておりますので、現地で手に入れることのできなかった部誌もお読みいただけます。
+        ここでは菁々祭パンフレット、ならびに9/12からは各部活の部誌をご覧いただけます。菁々祭終了後も公開しておりますので、現地で手に入れることのできなかった部誌もお読みいただけます。
       </p>
 
       {/* Pamphlet セクション */}
@@ -188,7 +196,18 @@ export default function BrochuresPage() {
     </main>
   );
 }
-
+// 複数のPDFを、少し間隔を空けながら順番にダウンロードします
+function handleBulkDownload(hrefs: string[]) {
+  hrefs.forEach((url, index) => {
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.click();
+    }, index * 400);
+  });
+}
 function AccordionCategory({
   category,
   isOpen,
@@ -229,9 +248,38 @@ function AccordionCategory({
                 />
               </span>
               <span className={styles.clubName}>{item.name}</span>
-              <a className={styles.readButton} href={item.href}>
-                読む <span aria-hidden>🔗</span>
-              </a>
+
+{item.parts ? (
+  <div className={styles.multiDownloads}>
+    <button
+      type="button"
+      className={styles.bulkDownloadButton}
+      onClick={() => handleBulkDownload(item.parts!.map((p) => p.href))}
+    >
+      まとめて <span aria-hidden>⬇</span>
+    </button>
+    {item.parts!.map((part) => (
+    <a
+    key={part.label}
+    className={styles.partDownloadButton}
+    href={part.href}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {part.label}
+  </a>
+))}
+  </div>
+) : (
+    <a
+    className={styles.readButton}
+    href={item.href}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    読む <span aria-hidden>🔗</span>
+  </a>
+)}
             </li>
           ))}
         </ul>

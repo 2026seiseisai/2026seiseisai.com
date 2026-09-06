@@ -123,7 +123,7 @@ export default function BrochuresPage() {
     <main className={styles.page}>
       <h1 className={styles.title}>Brochures</h1>
       <p className={styles.lead}>
-        ここでは菁々祭パンフレット、ならびに9/12からは各部活の部誌をご覧いただけます。菁々祭終了後も公開しておりますので、現地で手に入れることのできなかった部誌もお読みいただけます。
+        ここでは菁々祭パンフレット、ならびに各部活の部誌をご覧いただけます。菁々祭終了後も公開しておりますので、現地で手に入れることのできなかった部誌もお読みいただけます。なお、部誌は9/12までは閲覧することができません。
       </p>
 
       {/* Pamphlet セクション */}

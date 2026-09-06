@@ -1,10 +1,10 @@
 'use client';
 
 import {
-  useEffect,
-  useState,
-  useMemo,
   useCallback,
+  useEffect,
+  useMemo,
+  useState,
   type CSSProperties,
 } from 'react';
 import dynamic from 'next/dynamic';
@@ -13,12 +13,15 @@ import Link from 'next/link';
 import animationData from '@/app/(top)/Infinity animation.json';
 import tdjLogo from '@/app/(top)/TDJ-Logo.svg';
 import infinityRogotype from '@/app/(top)/Infinity rogotype.svg';
+import PhotoCurrent from './components/PhotoCurrent';
+import styles from './page.module.css';
 
 const SplashScreen = dynamic(() => import('./components/SplashScreen'), {
   ssr: false,
 });
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+const INTRO_SESSION_KEY = 'seiseisai-infinity-intro-v2';
 
 export type HomeNewsArticle = {
   id: string;
@@ -182,8 +185,9 @@ function Countdown() {
         backgroundColor: '#0A1B6F',
         borderRadius: '8px',
         padding: '3vw 4vw',
-        width: 'calc(100% - 26vw)',
-        margin: '0 13vw 64px',
+        width: '100%',
+        maxWidth: '960px',
+        margin: '0 auto 64px',
         boxSizing: 'border-box',
         color: '#fff',
       };
@@ -191,7 +195,7 @@ function Countdown() {
   const countdownTitleStyle: CSSProperties = isMobile
     ? {
         fontWeight: '900',
-        fontSize: '40px',
+        fontSize: 'clamp(28px, 7.8vw, 40px)',
         letterSpacing: '-0.02em',
         color: '#fff',
         lineHeight: 1,
@@ -577,69 +581,96 @@ function Countdown() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Page */
-/* ------------------------------------------------------------------ */
 export default function HomeClient({
   newsArticles,
 }: {
   newsArticles: HomeNewsArticle[];
 }) {
-  const [splashDone, setSplashDone] = useState<boolean>(false);
+  const [splashDone, setSplashDone] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  // Read sessionStorage on client after mount to decide whether to skip splash.
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
     const timeoutId = window.setTimeout(() => {
-      if (sessionStorage.getItem('splashSeen') === '1') {
-        setSplashDone(true);
+      try {
+        if (window.sessionStorage.getItem(INTRO_SESSION_KEY) === '1') {
+          setSplashDone(true);
+        }
+      } catch {
+        // Storage can be unavailable in strict browsing modes.
       }
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotionPreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+
+    updateMotionPreference();
+    mediaQuery.addEventListener('change', updateMotionPreference);
+    return () => mediaQuery.removeEventListener('change', updateMotionPreference);
+  }, []);
+
   const handleSplashFinish = useCallback(() => {
     try {
-      sessionStorage.setItem('splashSeen', '1');
+      window.sessionStorage.setItem(INTRO_SESSION_KEY, '1');
     } catch {
-      /* ignore */
+      // The homepage remains usable when storage is unavailable.
     }
     setSplashDone(true);
   }, []);
 
   return (
-    <div className="page-common">
-      {!splashDone && <SplashScreen onFinish={handleSplashFinish} />}
+    <div className={`page-common ${styles.page}`}>
+      {!splashDone ? (
+        <SplashScreen onFinish={handleSplashFinish} />
+      ) : null}
       <div
         style={{
           opacity: splashDone ? 1 : 0,
-          transition: 'opacity 0.4s ease 0.1s',
+          transition: prefersReducedMotion ? 'none' : 'opacity 0.4s ease 0.1s',
           pointerEvents: splashDone ? 'all' : 'none',
         }}
       >
-        {/* Hero Lottie */}
         <div className="hero-lottie-section">
+          <h1 className="visually-hidden">第62回菁々祭 Infinity</h1>
           <div className="hero-lottie-box">
-            <Lottie
-              animationData={animationData}
-              loop={true}
-              autoplay={true}
-              style={{ width: '100%', height: '100%' }}
-            />
+            {splashDone ? (
+              prefersReducedMotion ? (
+                <Image
+                  src={infinityRogotype}
+                  alt=""
+                  priority
+                  style={{
+                    display: 'block',
+                    width: 'min(90vw, 920px)',
+                    height: 'auto',
+                    margin: 'clamp(48px, 10vw, 120px) auto',
+                  }}
+                />
+              ) : (
+                <Lottie
+                  animationData={animationData}
+                  loop
+                  autoplay
+                  style={{ width: '100%', height: '100%' }}
+                />
+              )
+            ) : null}
           </div>
         </div>
 
-        <main style={{ padding: '16px 5vw', boxSizing: 'border-box' }}>
+        <main className={styles.main}>
           <Countdown />
 
-          {/* ---- NEWS ---- */}
           <NewsTeaser articles={newsArticles} />
 
-          {/* ---- SEISEISAI ---- */}
           <section className="content-section">
             <SectionLabel text="SEISEISAI" />
+            <PhotoCurrent />
             <div className="two-col-body">
               <div className="two-col-left">
                 <Image
@@ -669,7 +700,6 @@ export default function HomeClient({
             </div>
           </section>
 
-          {/* ---- Infinity ---- */}
           <section className="content-section">
             <SectionLabel text="Infinity" />
             <div className="two-col-body">
@@ -700,7 +730,6 @@ export default function HomeClient({
             </div>
           </section>
 
-          {/* ---- LOGO-PV ---- */}
           <section className="content-section">
             <SectionLabel text="LOGO-PV" />
             <div className="two-col-body">
@@ -709,6 +738,8 @@ export default function HomeClient({
                   <iframe
                     src="https://www.youtube.com/embed/gEj_JFokp90"
                     title="LOGO-PV YouTube"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     style={{
                       border: 0,
@@ -726,7 +757,6 @@ export default function HomeClient({
             </div>
           </section>
 
-          {/* ---- ACCESS ---- */}
           <section className="content-section">
             <SectionLabel text="ACCESS" />
             <div className="two-col-body">
@@ -736,7 +766,7 @@ export default function HomeClient({
                   width="100%"
                   height="100%"
                   style={{ border: 0, borderRadius: '6px' }}
-                  allowFullScreen={true}
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Google Map"
@@ -758,7 +788,7 @@ export default function HomeClient({
                     href="https://tdj.ac.jp/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: '#00AABE', fontSize: '14px' }}
+                    style={{ color: '#007A8A', fontSize: '14px' }}
                   >
                     https://tdj.ac.jp/
                   </a>

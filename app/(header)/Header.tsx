@@ -33,6 +33,8 @@ const PUBLISHED_PATHS = new Set([
   '/theme&logo',
   '/access',
   '/events',
+  '/brochures',
+  '/archives',
 ]);
 
 function isPublishedPath(href: string) {

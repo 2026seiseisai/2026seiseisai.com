@@ -631,11 +631,11 @@ export default function EventsPage() {
         <h2 className="text-4xl border-l-4 border-l-navy font-medium my-16">
           イベント紹介
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div className="columns-1 md:columns-2 gap-4 md:gap-6">
           {eventData.map((event) => {
             return (
               <details
-                className="bg-[#5A44A926] p-4 md:p-5"
+                className="mb-4 break-inside-avoid bg-[#5A44A926] p-4 md:p-5"
                 key={event.name}
                 id={`eventD-${event.name}`}
               >

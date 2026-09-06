@@ -65,7 +65,7 @@ const DaySwitcher = ({
           1日目
         </span>
         <span className={buttonLabelCN} aria-label="9月6日 土曜日">
-          9.06 sat
+          9.12 sat
         </span>
       </button>
 
@@ -88,7 +88,7 @@ const DaySwitcher = ({
           2日目
         </span>
         <span className={buttonLabelCN} aria-label="9月7日 日曜日">
-          9.07 sun
+          9.13 sun
         </span>
       </button>
       <button

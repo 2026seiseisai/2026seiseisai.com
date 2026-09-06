@@ -27,7 +27,13 @@ const NAV_ITEMS = [
 
 const HEADER_BUTTON_FONT = `${anton.style.fontFamily}, var(--font-noto-sans-jp), sans-serif`;
 
-const PUBLISHED_PATHS = new Set(['/', '/news', '/theme&logo', '/access']);
+const PUBLISHED_PATHS = new Set([
+  '/',
+  '/news',
+  '/theme&logo',
+  '/access',
+  '/events',
+]);
 
 function isPublishedPath(href: string) {
   return PUBLISHED_PATHS.has(href) || href.startsWith('/news/');

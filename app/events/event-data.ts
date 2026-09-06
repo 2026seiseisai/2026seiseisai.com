@@ -245,24 +245,7 @@ export const eventData: EventData[] = [
     ],
     day2: [],
   },
-  {
-    name: '中夜祭',
-    description: '',
-    day1: [
-      {
-        location: '体育館',
-        start: '15:30',
-        end: '17:00',
-      },
-    ],
-    day2: [
-      {
-        location: '体育館',
-        start: '15:30',
-        end: '17:10',
-      },
-    ],
-  },
+
 
   {
     name: '寺マス',

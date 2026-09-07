@@ -223,7 +223,7 @@ export default function ExhibitionsListPage() {
                                         <svg viewBox="0 0 19.84 19.84"><circle cx="9.92" cy="9.92" r="9.92" fill="#231815" strokeWidth="0"/><path d="M9.92.42a9.5 9.5 0 1 0 .02 19.02A9.5 9.5 0 0 0 9.92.42m4.13 17.14-.03.12h-8.2l-1.14-4.42-.77-3-2.45 1.72-.22-.22 2.35-3.29 1.68.59.8 1.3 3.85-8.07 3.85 8.07 3.13-5.1.28.12-3.14 12.2Z" strokeWidth="0" fill="#fff"/><path d="m16.63 6.3-1.68 6.53-1.02-2.14zM3.83 9.94l-1.8 1.26 1.56-2.18zm2.08.75L4.9 12.83 3.88 8.9l1.19.42zm8.89 2.55-4.72 3.96V3.34zm-.08.47-.47 1.83-3.44 1.44zm-.57 2.21-.37 1.45h-3.09zm-5 1.45H6.07l-.38-1.45zm-.12-.39-3.44-1.44-.47-1.83zm.74-13.64V17.2l-4.73-3.96z" strokeWidth="0" fill="#fff"/><path d="M.14.14H19.7V19.7H.14z" strokeWidth="0" fill="none"/></svg>
                                     </td>
                                     <td><a href="">折り紙研究部</a></td>
-                                    <td></td>
+                                    <td>5年E組</td>
                                     <td><svg className="xicon"><use href="#xsvg"/></svg><a href="https://x.com/tdj_oriken"><svg className="linkicon"><use href="#linksvg"/></svg></a></td>
                                 </tr>
                                 <tr>

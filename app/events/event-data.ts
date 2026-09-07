@@ -75,7 +75,10 @@ export const eventNames = [
   '音楽部ライブ',
   '有志バンド',
   'テラボンバー',
-  '模擬授業',
+  '模擬授業「小説『夏帽子』」',
+  '模擬授業「イギリス一周」',
+  '模擬授業「アメリカ一周」',
+  '模擬授業「映画『もののけ姫』にみる中世日本の社会」',
   'マーダーミステリー体験会',
   '映画祭',
   'お化け屋敷',
@@ -269,7 +272,8 @@ export const eventData: EventData[] = [
   },
   {
     name: 'E卍ILE',
-    description: '',
+    description:
+      '２日間のステージを彩る東大寺学園から輩出されたアイドルたち！パッションに満ちた漢たちのダンスが今始まる！',
     day1: [
       {
         location: '体育館',
@@ -292,7 +296,7 @@ export const eventData: EventData[] = [
   },
   {
     name: 'PERFECT HUMAN',
-    description: '',
+    description: 'その血と魂を今ささげろ',
     day1: [
       {
         location: '体育館',
@@ -317,7 +321,7 @@ export const eventData: EventData[] = [
   },
   {
     name: '中2パフォーマンス',
-    description: '',
+    description: '笑いと感動で菁々祭を盛り上げます！',
     day1: [],
     day2: [
       {
@@ -450,7 +454,8 @@ export const eventData: EventData[] = [
   },
   {
     name: '音楽部ライブ',
-    description: '',
+    description:
+      '音楽部によるバンド演奏です！様々なジャンルの邦楽や洋楽のコピー、オリジナル楽曲を演奏します！ぜひお越し下さい！',
     day1: [
       {
         location: '圓融館',
@@ -470,7 +475,7 @@ export const eventData: EventData[] = [
   {
     name: '有志バンド',
     description:
-      '今年結成のゴキゲンなバンド。一度は聞いたことのある名曲を演奏する。ロックサウンドを全身で感じろ！',
+      '今年も音楽室でライブやります！！最近の曲から古めの曲まで幅広くやります！ぜひ来てください！',
     day1: [
       {
         location: '音楽室',
@@ -502,35 +507,57 @@ export const eventData: EventData[] = [
     day2: [],
   },
   {
-    name: '模擬授業',
-    description: '',
+    name: '模擬授業「小説『夏帽子』」',
+    description: '一夏の恋を経験して青年は…夏の名作を一緒に味わいましょう。',
     ticket: true,
     day1: [
       {
         location: '視聴覚室',
         start: '11:30',
         end: '12:00',
-        label: '「小説『夏帽子』」',
       },
+    ],
+    day2: [],
+  },
+  {
+    name: '模擬授業「イギリス一周」',
+    description:
+      'A Journey around the UK": learn more about the UK through interactive activities.',
+    ticket: true,
+    day1: [
       {
         location: '視聴覚室',
         start: '12:30',
         end: '13:00',
-        label: '「イギリス一周」',
       },
     ],
+    day2: [],
+  },
+  {
+    name: '模擬授業「アメリカ一周」',
+    description:
+      'A Journey around the US": learn more about the US through interactive activities.',
+    ticket: true,
+    day1: [],
     day2: [
       {
         location: '視聴覚室',
         start: '11:50',
         end: '12:20',
-        label: '「アメリカ一周」',
       },
+    ],
+  },
+  {
+    name: '模擬授業「映画『もののけ姫』にみる中世日本の社会」',
+    description:
+      '宮崎駿監督の傑作『もののけ姫』。私たちはこの作品を壮大なファンタジーとして受け止めていますが、その背景には緻密に構成された「生々しい中世の現実」が息づいています。なぜエボシ御前はあれほどまでに強気だったのか？ なぜタタラ場には武装が必要だったのか？ 模擬授業では、映画のモデルとなった15世紀から16世紀の日本がいかに刺激的で、私たちの想像を超えた場所であったかを紐解きます。ファンタジーの皮を被った「リアルな歴史」の深淵へ、共に向かいましょう。',
+    ticket: true,
+    day1: [],
+    day2: [
       {
         location: '視聴覚室',
         start: '14:00',
         end: '14:30',
-        label: '「映画『もののけ姫』にみる中世日本の社会」',
       },
     ],
   },
@@ -596,7 +623,8 @@ export const eventData: EventData[] = [
   //enshusituB,C
   {
     name: 'お化け屋敷',
-    description: '',
+    description:
+      '一歩足を踏み入れたら、もう後戻りはできません。暑い夏に背筋が凍るお化け屋敷開催中！',
     ticket: true,
     day1: [
       {
@@ -864,7 +892,8 @@ export const eventData: EventData[] = [
   },
   {
     name: 'ロケット製作体験',
-    description: '',
+    description:
+      'ロケット研究部の部員と一緒に、普段部員が製作しているロケット作りに挑戦してみませんか？完成したロケットは持ち帰ることができます。工作好きの方も、ロケットに興味がある方も大歓迎です！',
     ticket: true,
     day1: [
       { location: '6年E組', start: '10:00', end: '10:45' },

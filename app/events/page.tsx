@@ -143,11 +143,12 @@ const locationPlacementMap: Record<Location, number> = {
   転心殿前: 6,
   音楽室: 7,
   小講堂: 8,
-  "3年B組": 9,
-  "3年E組": 10,
-  "5年A組": 11,
-  "4年E組": 12,
-  "6年E組": 13,
+  "演習室B・C": 9,
+  "3年B組": 10,
+  "3年E組": 11,
+  "5年A組": 12,
+  "4年E組": 13,
+  "6年E組": 14,
 };
 
 const locationColorMap: Record<Location, string[]> = {
@@ -159,6 +160,7 @@ const locationColorMap: Record<Location, string[]> = {
   転心殿前: ["bg-purple-100", "border-purple-600"],
   音楽室: ["bg-pink-100", "border-pink-600"],
   小講堂: ["bg-slate-100", "border-slate-600"],
+  "演習室B・C": ["bg-slate-100", "border-slate-600"],
   "3年B組": ["bg-slate-100", "border-slate-600"],
   "3年E組": ["bg-slate-100", "border-slate-600"],
   "5年A組": ["bg-slate-100", "border-slate-600"],
@@ -272,7 +274,7 @@ function calcScheduleStyle({
     gridRowEnd: rowEnd + additionalRows,
   };
 }
-const numberOfPlace = 13;
+const numberOfPlace = 14;
 const SchedulesTable = ({
   day,
   onEventJump,

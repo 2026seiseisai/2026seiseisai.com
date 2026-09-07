@@ -2,3 +2,177 @@
   min-height: 60vh;
   padding: 48px 24px 80px;
 }
+            :root {
+                --lblue: #0A1B6F;
+                --lsky: #00AABE;
+                --lpink: #db5492;
+                --radiusbar: 25px;
+            }
+            h1 {
+                color: var(--lblue);
+                text-align: center;
+            }
+            .frame {
+                margin: 0 auto;
+                position: relative;
+                width: fit-content;
+                height: fit-content;
+                padding: 0;
+                background-image: linear-gradient(180deg, var(--lsky), var(--lsky)20%, var(--lpink)80%, var(--lpink));
+            }
+            .table-extra1 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--radiusbar);
+                position: relative;
+                background-color: #FFF;
+                z-index: 1;
+            }
+            .table-extra1::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--lsky);
+                border-top-left-radius: var(--radiusbar);
+            }
+            .table-extra2 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--radiusbar);
+                position: relative;
+                background-color: #FFF;
+                z-index: 1;
+            }
+            .table-extra2::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--lpink);
+                border-bottom-right-radius: var(--radiusbar);
+            }
+            .cover1 {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--radiusbar);
+                background-color: #FFF;
+                border: none;
+                border-bottom-right-radius: var(--radiusbar);
+            }
+            .cover2 {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--radiusbar);
+                background-color: #FFF;
+                border: none;
+                border-top-left-radius: var(--radiusbar);
+            }
+            input[type="radio"] {
+                display: none;
+            }
+            .tab-buttons {
+                display: flex;
+                justify-content: center;
+            }
+
+            .tab-label {
+                cursor: pointer;
+                width: 80px;
+                height: 20px;
+                margin: 0.5vw;
+                padding: 10px 12px;
+                text-align: center;
+                color: #FFF;
+                border: 2px solid var(--lblue);
+                background-color: #ccc;
+                box-shadow: inset 0 0 0 2px #FFF;
+                border-radius: var(--radiusbar);
+            }
+
+/* コンテンツ非表示 */
+            .tab-content {
+                display: none;
+                padding: 0;
+                border: none;
+            }
+
+            #tab1:checked ~ .tab-buttons .tab-label[for="tab1"],
+            #tab2:checked ~ .tab-buttons .tab-label[for="tab2"],
+            #tab3:checked ~ .tab-buttons .tab-label[for="tab3"] {
+                background-color: var(--lpink);
+            }
+
+            #tab1:checked ~ .tab-contents #content1,
+            #tab2:checked ~ .tab-contents #content2,
+            #tab3:checked ~ .tab-contents #content3 {
+                display: block;
+            }
+
+            table {
+                width: 100%;
+                position: relative;
+                margin: 0 auto;
+                padding: 12px;
+                background-color: #FFF;
+                border-left: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+                border-top-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+            }
+
+            table th {
+                font-size: 1.4em;
+                font-weight: 300;
+            }
+  
+            table td:nth-child(2) {
+                padding: 1rem;
+                font-size: 1.2em;
+            }
+  
+            table td:nth-child(3) {
+                padding: 1rem;
+                font-size: 1em;
+            }
+  
+            table td:nth-child(4) {
+                padding: 1rem;
+                font-size: 0.8em;
+            }
+            table td:nth-child(2) a {
+                display: block;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            a:visited {
+                color: #000;
+            }
+
+            .xicon {
+                width: 18px;
+                height: 16px;
+                margin: 0 3px;
+            }
+            .instaicon {
+                width: 16px;
+                height: 16px;
+                margin: 0 3px;
+            }
+            .linkicon {
+                width: 16px;
+                height: 16px;
+            }

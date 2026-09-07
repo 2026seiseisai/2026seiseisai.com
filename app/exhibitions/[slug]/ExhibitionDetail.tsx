@@ -22,7 +22,6 @@ export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
   }
 
   const hasEvents = exhibition.events && exhibition.events.length > 0;
-  const hasBlogs = exhibition.blogs && exhibition.blogs.length > 0;
 
   return (
     <div className={styles.container}>
@@ -89,7 +88,7 @@ export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
         {exhibition.website_link && (
           <a href={exhibition.website_link} target="_blank" rel="noopener noreferrer" className={styles.snsButton}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.snsIcon}>
-              <circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>
+              <circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>
             </svg>
             ウェブサイト
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.externalIcon}>
@@ -109,13 +108,13 @@ export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
           <div className={styles.itemList}>
             {hasEvents ? (
               exhibition.events?.map((eventName, index) => (
-                <div key={index} className={styles.itemRow}>
+                <Link key={index} href={`/events#${encodeURIComponent(eventName)}`} className={styles.itemRow}>
                   <div className={styles.itemRowLeft}>
                     <Image src={Frame303Icon} alt="" width={16} height={16} className={styles.itemIcon} />
                     <span>{eventName}</span>
                   </div>
                   <Image src={ArrowCircleIcon} alt="" width={16} height={16} className={styles.arrowIcon} />
-                </div>
+                </Link>
               ))
             ) : (
               <div className={styles.emptyMessage}>イベント開催情報はありません。</div>
@@ -127,13 +126,13 @@ export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
         <section className={styles.subSection}>
           <h2 className={styles.sectionHeading}>部誌</h2>
           <div className={styles.itemList}>
-            <div className={styles.itemRow}>
+            <Link href="/brochures" className={styles.itemRow}>
               <div className={styles.itemRowLeft}>
                 <Image src={Frame303Icon} alt="" width={16} height={16} className={styles.itemIcon} />
                 <span>{decodedSlug}の部誌を読む</span>
               </div>
               <Image src={ArrowCircleIcon} alt="" width={16} height={16} className={styles.arrowIcon} />
-            </div>
+            </Link>
           </div>
         </section>
       </div>
@@ -141,7 +140,7 @@ export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
       {/* 関連コンテンツ（ブログ） */}
       <section className={styles.blogsSectionContainer}>
         <h2 className={styles.sectionHeading}>関連コンテンツ</h2>
-        {hasBlogs ? (
+        {exhibition.blogs && exhibition.blogs.length > 0 ? (
           <div className={styles.blogsGrid}>
             {exhibition.blogs?.map((blogKey) => {
               const blog = blogDataRaw[blogKey as keyof typeof blogDataRaw];
@@ -160,7 +159,6 @@ export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
                     ) : (
                       <div className={styles.noThumbnail}>画像エリア</div>
                     )}
-                    {/* <span className={styles.newBadge}>NEW!</span> */}
                     {blog.date && blog.date.startsWith('2026') && (
                       <span className={styles.newBadge}>NEW!</span>
                     )}

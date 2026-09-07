@@ -38,12 +38,13 @@ export type EventDetail = {
 export const locations = [
   '体育館',
   '圓融館',
-  '視聴覚室',
   '音楽室',
+  '視聴覚室',
+  '小講堂',
+  '演習室B・C',
   '転心殿前',
   'グラウンド',
   '物理室',
-  '小講堂',
   '3年B組',
   '3年E組',
   '5年A組',
@@ -61,9 +62,9 @@ export const eventNames = [
   'T(DJ)² ',
   'E卍ILE',
   'PERFECT HUMAN',
-  '中1コーラス＆演劇',
+  '中1クラス合唱＆演劇',
   '中2パフォーマンス',
-  '中二演劇',
+  '中2演劇',
   'マッスルコンテスト',
   'カラオケコンテスト',
   '結婚式',
@@ -72,18 +73,17 @@ export const eventNames = [
   '靑々コンサート',
   'PTAコーラス',
   '音楽部ライブ',
+  '有志バンド',
   'テラボンバー',
   '模擬授業',
   'マーダーミステリー体験会',
-  '有志バンド',
+  '映画祭',
+  'お化け屋敷',
   '和太鼓演奏',
   'TDJ徒競走大会',
   'ロケット発射実験',
   'レゴプログラミング講習会',
   '科学部演示実験',
-  'T1グランプリ',
-  'PERFECT HUMAN',
-  '映画祭',
   'チェスのルール説明',
   '忍finity迷路',
   'ラジコンレース大会',
@@ -118,36 +118,29 @@ export const eventNames = [
 export const eventData: EventData[] = [
   //体育館
   {
-    name: '中1コーラス＆演劇',
+    name: '中3演劇・合唱',
     description:
-      'コーラス:クラスごとに磨き上げた光る歌の響き。それぞれの絆と思いをのせた、最高の歌声を届けます！;演劇:宮沢賢治の童話『注文の多い料理店』をホラー風にアレンジしました。おどろおどろしい演出に残暑も吹き飛ぶ……？',
+      '人の言葉を話せるようになったクマは、人間社会の中で暮らすことを決意。果たして人とクマは共存できるのでしょうか…。',
     day1: [
       {
         location: '体育館',
-        start: '09:10',
-        end: '10:30',
-      },
-    ],
-    day2: [
-      {
-        location: '体育館',
         start: '09:00',
-        end: '10:30',
+        end: '10:00',
       },
     ],
+    day2: [],
   },
   {
-    name: '中2演劇',
-    description:
-      '名探偵コナンの第1話「ジェットコースター殺人事件を上演します。高校生探偵の工藤新一の推理とその後の運命は…。',
-    day1: [],
-    day2: [
+    name: '中2コーラス',
+    description: '',
+    day1: [
       {
         location: '体育館',
-        start: '12:10',
-        end: '12:50',
+        start: '10:20',
+        end: '11:00',
       },
     ],
+    day2: [],
   },
   {
     name: 'TDJ48',
@@ -179,31 +172,7 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: 'E卍ILE',
-    description: '',
-    day1: [
-      {
-        location: '体育館',
-        start: '15:30',
-        end: '15:50',
-      },
-    ],
-    day2: [
-      {
-        location: '体育館',
-        start: '11:10',
-        end: '11:25',
-      },
-      {
-        location: '体育館',
-        start: '15:30',
-        end: '15:50',
-      },
-    ],
-  },
-
-  {
-    name: 'ラブライブサンスクリット',
+    name: 'ラブライブ！サンスクリット‼',
     description:
       '目指すのは、未完成でも熱を持った、みんなで作る芸術。1年をかけて作り上げたキセキの時間をご覧あれ。',
     day1: [
@@ -232,20 +201,6 @@ export const eventData: EventData[] = [
       },
     ],
   },
-  {
-    name: 'PERFECT HUMAN',
-    description: '',
-    day1: [
-      {
-        location: '体育館',
-        start: '16:50',
-        end: '17:00',
-      },
-    ],
-    day2: [],
-  },
-
-
   {
     name: '寺マス',
     description:
@@ -276,16 +231,17 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: 'マッスルコンテスト',
-    description: '筋肉で学校を揺らせ！漢たちの迸る肉体美に刮目せよ！',
-    day1: [],
-    day2: [
+    name: '令和の小町コンテスト',
+    description:
+      '花の色はうつりにけりないたずらにわが身世にふるながめせしまに”  永遠の美貌を手にするものは誰だ。',
+    day1: [
       {
         location: '体育館',
-        start: '13:00',
+        start: '12:40',
         end: '13:50',
       },
     ],
+    day2: [],
   },
   {
     name: 'T(DJ)² ',
@@ -312,30 +268,52 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: '中3演劇',
-    description:
-      '人の言葉を話せるようになったクマは、人間社会の中で暮らすことを決意。果たして人とクマは共存できるのでしょうか…。',
-    day1: [
-      {
-        location: '体育館',
-        start: '09:00',
-        end: '10:00',
-      },
-    ],
-    day2: [],
-  },
-
-  {
-    name: '中2コーラス',
+    name: 'E卍ILE',
     description: '',
     day1: [
       {
         location: '体育館',
-        start: '10:40',
-        end: '11:20',
+        start: '15:30',
+        end: '15:50',
+      },
+    ],
+    day2: [
+      {
+        location: '体育館',
+        start: '11:10',
+        end: '11:25',
+      },
+      {
+        location: '体育館',
+        start: '15:30',
+        end: '15:50',
+      },
+    ],
+  },
+  {
+    name: 'PERFECT HUMAN',
+    description: '',
+    day1: [
+      {
+        location: '体育館',
+        start: '16:50',
+        end: '17:00',
       },
     ],
     day2: [],
+  },
+  {
+    name: '中1クラス合唱＆演劇',
+    description:
+      'コーラス:クラスごとに磨き上げた光る歌の響き。それぞれの絆と思いをのせた、最高の歌声を届けます！;演劇:宮沢賢治の童話『注文の多い料理店』をホラー風にアレンジしました。おどろおどろしい演出に残暑も吹き飛ぶ……？',
+    day1: [],
+    day2: [
+      {
+        location: '体育館',
+        start: '09:00',
+        end: '10:30',
+      },
+    ],
   },
   {
     name: '中2パフォーマンス',
@@ -350,17 +328,29 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: '令和の小町コンテスト',
+    name: '中2演劇',
     description:
-      '花の色はうつりにけりないたずらにわが身世にふるながめせしまに”  永遠の美貌を手にするものは誰だ。',
-    day1: [
+      '名探偵コナンの第1話「ジェットコースター殺人事件を上演します。高校生探偵の工藤新一の推理とその後の運命は…。',
+    day1: [],
+    day2: [
       {
         location: '体育館',
-        start: '12:40',
+        start: '12:10',
+        end: '12:50',
+      },
+    ],
+  },
+  {
+    name: 'マッスルコンテスト',
+    description: '筋肉で学校を揺らせ！漢たちの迸る肉体美に刮目せよ！',
+    day1: [],
+    day2: [
+      {
+        location: '体育館',
+        start: '13:00',
         end: '13:50',
       },
     ],
-    day2: [],
   },
   {
     name: 'カラオケコンテスト',
@@ -378,7 +368,7 @@ export const eventData: EventData[] = [
       {
         location: '体育館',
         start: '14:00',
-        end: '14:50',
+        end: '14:40',
         label: '決勝',
       },
     ],
@@ -422,8 +412,8 @@ export const eventData: EventData[] = [
     day2: [
       {
         location: '圓融館',
-        start: '11:00',
-        end: '12:40',
+        start: '11:10',
+        end: '12:50',
       },
     ],
   },
@@ -441,8 +431,8 @@ export const eventData: EventData[] = [
     day2: [
       {
         location: '圓融館',
-        start: '12:50',
-        end: '13:40',
+        start: '13:00',
+        end: '13:50',
       },
     ],
   },
@@ -476,6 +466,26 @@ export const eventData: EventData[] = [
       },
     ],
   },
+  //音楽室
+  {
+    name: '有志バンド',
+    description:
+      '今年結成のゴキゲンなバンド。一度は聞いたことのある名曲を演奏する。ロックサウンドを全身で感じろ！',
+    day1: [
+      {
+        location: '音楽室',
+        start: '09:30',
+        end: '11:20',
+      },
+    ],
+    day2: [
+      {
+        location: '音楽室',
+        start: '11:20',
+        end: '13:20',
+      },
+    ],
+  },
   //視聴覚
   {
     name: 'テラボンバー',
@@ -498,13 +508,15 @@ export const eventData: EventData[] = [
     day1: [
       {
         location: '視聴覚室',
-        start: '11:50',
-        end: '12:20',
+        start: '11:30',
+        end: '12:00',
+        label: '「小説『夏帽子』」',
       },
       {
         location: '視聴覚室',
         start: '12:30',
         end: '13:00',
+        label: '「イギリス一周」',
       },
     ],
     day2: [
@@ -512,16 +524,19 @@ export const eventData: EventData[] = [
         location: '視聴覚室',
         start: '11:50',
         end: '12:20',
+        label: '「アメリカ一周」',
       },
       {
         location: '視聴覚室',
         start: '14:00',
         end: '14:30',
+        label: '「映画『もののけ姫』にみる中世日本の社会」',
       },
     ],
   },
   {
     name: 'マーダーミステリー体験会',
+    ticket: true,
     description:
       '物語の登場人物になって事件に巻き込まれてみませんか？あなたの選択で、物語をハッピーエンドに導きましょう！…とにかく、まずは試しに来て、やってみよう！話はそれからだ！',
     day1: [
@@ -539,24 +554,102 @@ export const eventData: EventData[] = [
       },
     ],
   },
-
-  //音楽室
+  //shoukoudou
   {
-    name: '有志バンド',
-    description:
-      '今年結成のゴキゲンなバンド。一度は聞いたことのある名曲を演奏する。ロックサウンドを全身で感じろ！',
+    name: '映画祭',
+    description: '',
     day1: [
       {
-        location: '音楽室',
-        start: '09:30',
-        end: '11:20',
+        location: '小講堂',
+        start: '10:00',
+        end: '10:40',
+      },
+      {
+        location: '小講堂',
+        start: '12:30',
+        end: '13:10',
+      },
+      {
+        location: '小講堂',
+        start: '14:10',
+        end: '14:50',
       },
     ],
     day2: [
       {
-        location: '音楽室',
-        start: '11:20',
-        end: '13:20',
+        location: '小講堂',
+        start: '09:30',
+        end: '10:10',
+      },
+      {
+        location: '小講堂',
+        start: '11:50',
+        end: '12:30',
+      },
+      {
+        location: '小講堂',
+        start: '13:30',
+        end: '14:10',
+      },
+    ],
+  },
+  //enshusituB,C
+  {
+    name: 'お化け屋敷',
+    description: '',
+    ticket: true,
+    day1: [
+      {
+        location: '演習室B・C',
+        start: '09:00',
+        end: '09:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '10:00',
+        end: '10:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '11:00',
+        end: '11:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '13:00',
+        end: '13:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '14:00',
+        end: '14:50',
+      },
+    ],
+    day2: [
+      {
+        location: '演習室B・C',
+        start: '09:00',
+        end: '09:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '10:00',
+        end: '10:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '11:00',
+        end: '11:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '13:00',
+        end: '13:50',
+      },
+      {
+        location: '演習室B・C',
+        start: '14:00',
+        end: '14:50',
       },
     ],
   },
@@ -591,6 +684,7 @@ export const eventData: EventData[] = [
       },
     ],
   },
+  //guraundo
   {
     name: 'TDJ徒競走大会',
     description:
@@ -616,8 +710,8 @@ export const eventData: EventData[] = [
       },
       {
         location: 'グラウンド',
-        start: '13:00',
-        end: '14:00',
+        start: '14:00',
+        end: '15:00',
       },
     ],
   },
@@ -640,13 +734,13 @@ export const eventData: EventData[] = [
     day2: [
       {
         location: 'グラウンド',
-        start: '11:30',
-        end: '11:50',
+        start: '11:50',
+        end: '12:10',
       },
       {
         location: 'グラウンド',
-        start: '14:10',
-        end: '14:40',
+        start: '13:10',
+        end: '13:40',
       },
     ],
   },
@@ -711,55 +805,15 @@ export const eventData: EventData[] = [
     ],
   },
   {
-    name: '映画祭',
-    description: '',
-    day1: [
-      {
-        location: '小講堂',
-        start: '10:00',
-        end: '10:40',
-      },
-      {
-        location: '小講堂',
-        start: '12:30',
-        end: '13:10',
-      },
-      {
-        location: '小講堂',
-        start: '14:10',
-        end: '14:50',
-      },
-    ],
-    day2: [
-      {
-        location: '小講堂',
-        start: '09:30',
-        end: '10:10',
-      },
-      {
-        location: '小講堂',
-        start: '11:50',
-        end: '12:30',
-      },
-      {
-        location: '小講堂',
-        start: '13:30',
-        end: '14:10',
-      },
-    ],
-  },
-  {
     name: 'チェスのルール説明',
     description:
       'チェスのルールを分かりやすく説明します。ぜひ参加してみてください！',
     day1: [
-      { location: '3年B組', start: '09:00', end: '10:00' },
       { location: '3年B組', start: '11:00', end: '11:20' },
       { location: '3年B組', start: '13:00', end: '13:20' },
       { location: '3年B組', start: '14:30', end: '14:50' },
     ],
     day2: [
-      { location: '3年B組', start: '09:00', end: '10:00' },
       { location: '3年B組', start: '11:00', end: '11:20' },
       { location: '3年B組', start: '13:00', end: '13:20' },
       { location: '3年B組', start: '14:30', end: '14:50' },
@@ -768,7 +822,7 @@ export const eventData: EventData[] = [
   {
     name: '忍finity迷路',
     description:
-      '9時から14時30分まで、30分ごとの入場です。それぞれ約1時間前に、グラウンドにて整理券の配布を行います。',
+      '一日目は10時30分から15時まで、二日目は9時から14時30分まで、30分ごとの入場です。それぞれ約1時間前に、グラウンドにて整理券の配布を行います。',
     ticket: true,
     day1: [{ location: '3年E組', start: '10:30', end: '15:00' }],
     day2: [{ location: '3年E組', start: '09:00', end: '14:30' }],
@@ -796,14 +850,12 @@ export const eventData: EventData[] = [
     name: 'マジックショー',
     description: 'マジック研究会によるマジックショーをお楽しみください！',
     day1: [
-      { location: '4年E組', start: '09:00', end: '10:00' },
       { location: '4年E組', start: '10:50', end: '11:10' },
       { location: '4年E組', start: '11:20', end: '11:50' },
       { location: '4年E組', start: '13:35', end: '13:50' },
       { location: '4年E組', start: '14:00', end: '14:15' },
     ],
     day2: [
-      { location: '4年E組', start: '09:00', end: '10:00' },
       { location: '4年E組', start: '10:50', end: '11:10' },
       { location: '4年E組', start: '11:20', end: '11:50' },
       { location: '4年E組', start: '13:35', end: '13:50' },
@@ -812,9 +864,9 @@ export const eventData: EventData[] = [
   },
   {
     name: 'ロケット製作体験',
-    description: '部員と一緒にロケットを作り、実際に飛ばしてみよう！',
+    description: '',
+    ticket: true,
     day1: [
-      { location: '6年E組', start: '09:00', end: '10:00' },
       { location: '6年E組', start: '10:00', end: '10:45' },
       { location: '6年E組', start: '12:00', end: '12:45' },
       { location: '6年E組', start: '14:00', end: '14:45' },

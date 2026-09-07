@@ -1,0 +1,139 @@
+.page {
+  overflow-x: clip;
+}
+
+.main {
+  width: min(1240px, calc(100% - clamp(40px, 8vw, 128px)));
+  margin: 0 auto;
+  padding: 24px 0 64px;
+}
+
+.page :global(.content-section) {
+  min-height: 0;
+  overflow: visible;
+  grid-template-rows: none;
+  gap: clamp(28px, 3vw, 44px);
+  margin-bottom: clamp(64px, 7vw, 100px);
+  padding: 0;
+}
+
+.page :global(.section-label-wrap) {
+  margin-bottom: 0;
+}
+
+.page :global(.section-label-box) {
+  height: clamp(48px, 4.8vw, 64px);
+}
+
+.page :global(.section-label-part-blue) {
+  padding: 0 24px;
+  font-size: clamp(24px, 3.2vw, 42px);
+}
+
+.page :global(.section-label-part-pink),
+.page :global(.section-label-part-teal) {
+  width: clamp(64px, 10vw, 144px);
+  min-width: clamp(64px, 10vw, 144px);
+}
+
+.page :global(.two-col-body) {
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.page :global(.two-col-left) {
+  flex-basis: 44%;
+  max-width: 44%;
+}
+
+.page :global(.two-col-right) {
+  justify-content: flex-start;
+  padding: 24px 0;
+}
+
+.page :global(.bg-watermark) {
+  color: #f0f1f6;
+  padding-right: 0;
+  font-size: clamp(56px, 7vw, 108px);
+}
+
+.page :global(.section-body-text) {
+  max-width: 36em;
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 500;
+  line-height: 2;
+  text-align: left;
+}
+
+.page :global(.news-teaser-body) {
+  max-width: none;
+}
+
+.page :global(.news-teaser-link) {
+  padding: 20px 16px;
+  gap: 8px 28px;
+}
+
+.page :global(.hero-lottie-box svg) {
+  max-height: 64vh;
+}
+
+@media (max-width: 767px) {
+  .main {
+    padding: 20px 0 24px;
+  }
+
+  .page :global(.content-section) {
+    gap: 28px;
+    margin-bottom: 64px;
+  }
+
+  .page :global(.section-label-box) {
+    height: 48px;
+  }
+
+  .page :global(.section-label-part-blue) {
+    padding: 0 16px;
+    font-size: 24px;
+  }
+
+  .page :global(.section-label-part-pink),
+  .page :global(.section-label-part-teal) {
+    width: clamp(36px, 11vw, 64px);
+    min-width: clamp(36px, 11vw, 64px);
+  }
+
+  .page :global(.two-col-body) {
+    gap: 24px;
+  }
+
+  .page :global(.two-col-left) {
+    flex-basis: auto;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .page :global(.two-col-right) {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .page :global(.section-body-text) {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .page :global(.bg-watermark) {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(44px, 12vw, 72px);
+  }
+
+  .page :global(.news-teaser-link) {
+    padding: 16px 8px;
+    gap: 6px 16px;
+  }
+
+  .page :global(.hero-lottie-box svg) {
+    max-height: none;
+  }
+}

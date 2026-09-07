@@ -9,11 +9,30 @@ type NewsBodyProps = {
 
 const inlineToken = /(\[[^\]\n]{1,240}\]\([^\s)\n]{1,2048}\)|\*\*[^*\n]+\*\*|__[^_\n]+__|`[^`\n]+`|\*[^*\n]+\*|_[^_\n]+_)/gu;
 const unsafeUrl = /[\\\u0000-\u001f\u007f]|%(?:25)*(?:2f|5c|00|0[1-9a-f]|1[0-9a-f]|7f)/iu;
-const officialHosts = new Set(['seiseisai.com', 'www.seiseisai.com']);
+const exactLinkHosts = new Set([
+  'seiseisai.com',
+  'www.seiseisai.com',
+  'instagram.com',
+  'www.instagram.com',
+]);
+// 整理券サイト・管理画面のお知らせと同じリンク許可範囲。
+const linkHostRoots = [
+  'tdj.ac.jp',
+  'mirai-compass.net',
+  'youtube.com',
+  'youtu.be',
+  'youtube-nocookie.com',
+  'x.com',
+  'twitter.com',
+];
 
 function safeLink(value: string): string | null {
   const candidate = value.trim();
   if (!candidate || candidate.length > 2048 || unsafeUrl.test(candidate)) return null;
+  // お問い合わせ先だけを許可し、宛先追加やメールヘッダー指定は受け付けない。
+  if (/^mailto:support@seiseisai\.com$/iu.test(candidate)) {
+    return 'mailto:support@seiseisai.com';
+  }
 
   if (candidate.startsWith('/')) {
     if (candidate.startsWith('//')) return null;
@@ -30,12 +49,15 @@ function safeLink(value: string): string | null {
 
   try {
     const parsed = new URL(candidate);
+    const hostname = parsed.hostname.toLowerCase();
+    const allowedHost = exactLinkHosts.has(hostname) ||
+      linkHostRoots.some((root) => hostname === root || hostname.endsWith(`.${root}`));
     if (
       parsed.protocol !== 'https:' ||
       parsed.username ||
       parsed.password ||
       parsed.port ||
-      !officialHosts.has(parsed.hostname.toLowerCase())
+      !allowedHost
     ) {
       return null;
     }
@@ -75,7 +97,7 @@ function inlineMarkdown(value: string, keyPrefix: string): ReactNode[] {
         ),
       );
     } else if (token.startsWith('**') || token.startsWith('__')) {
-      nodes.push(<strong key={key}>{token.slice(2, -2)}</strong>);
+      nodes.push(<strong key={key}>{inlineMarkdown(token.slice(2, -2), key)}</strong>);
     } else if (token.startsWith('`')) {
       nodes.push(<code key={key}>{token.slice(1, -1)}</code>);
     } else {

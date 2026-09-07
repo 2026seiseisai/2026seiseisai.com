@@ -1,1 +1,510 @@
-﻿
+.page {
+  width: 100%;
+  background: #ffffff;
+  color: #111111;
+}
+
+.content {
+  width: min(100%, 1168px);
+  margin: 0 auto;
+  padding: 64px 24px 120px;
+}
+
+.title {
+  margin: 0 0 76px;
+  color: #0a1b6f;
+  font-size: clamp(48px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(28px, 4vw, 64px);
+  row-gap: 54px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.productItem {
+  min-width: 0;
+}
+
+.product {
+  min-width: 0;
+}
+
+.productHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 30px;
+}
+
+.productName,
+.productPrice {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.productName {
+  min-width: 0;
+  color: #0a1b6f;
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.productPrice {
+  flex: 0 0 auto;
+  color: #111111;
+  font-size: clamp(17px, 1.55vw, 21px);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.variantList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  row-gap: 5px;
+  align-items: center;
+  justify-content: start;
+  min-height: 28px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.variant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.variantName {
+  min-width: 22px;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.variantPrice {
+  color: #111111;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.productStatus {
+  min-height: 28px;
+  margin-top: 8px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 17px;
+  padding: 3px 10px 3px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.status--available {
+  background: #0a1b6f;
+}
+
+.status--low {
+  background: #007f92;
+}
+
+.status--closed {
+  background: #c9387d;
+}
+
+.status--checking {
+  background: #6b7280;
+}
+
+.imageFrame {
+  position: relative;
+  width: min(100%, 268px);
+  aspect-ratio: 1.64 / 1;
+  margin: 16px auto 18px;
+  overflow: hidden;
+  clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
+}
+
+.imageScene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  background: #dce7ed url('/goods/background.svg') center / cover no-repeat;
+}
+
+.image {
+  position: absolute;
+  inset: 6% 11%;
+  display: block;
+  width: 78%;
+  height: 88%;
+  object-fit: contain;
+}
+
+.imageFallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: #5f6872;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.description {
+  max-width: 31em;
+  min-height: 3.25em;
+  margin: 0;
+  color: #111111;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.alert {
+  margin: -40px 0 40px;
+  padding: 12px 16px;
+  border-left: 4px solid #db5492;
+  background: #fff3f8;
+  color: #222222;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.emptyState,
+.errorState {
+  color: #222222;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.errorState {
+  max-width: 520px;
+  padding: 28px 0 48px;
+}
+
+.errorState h2,
+.errorState p {
+  margin: 0;
+}
+
+.errorState p {
+  margin-top: 8px;
+}
+
+.errorState button {
+  margin-top: 20px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 22px;
+  background: #0a1b6f;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.errorState button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.errorState button:focus-visible {
+  outline: 3px solid #db5492;
+  outline-offset: 3px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 124px;
+}
+
+.detailSection {
+  color: #111111;
+}
+
+.detailSection h2,
+.detailSection h3,
+.detailSection p {
+  margin: 0;
+}
+
+.stockSection {
+  order: 1;
+  margin-bottom: 128px;
+}
+
+.stockSection h2,
+.sizeSection h2,
+.sizeSection h3 {
+  color: #111111;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+}
+
+.stockSection p {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.sizeSection {
+  order: 2;
+}
+
+.tShirtSizeRow {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  gap: 48px;
+  margin-top: 10px;
+}
+
+.tShirtSizeRow p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sizeTable {
+  border-collapse: collapse;
+  color: #111111;
+  font-size: 13px;
+  text-align: center;
+}
+
+.sizeTable th,
+.sizeTable td {
+  min-width: 38px;
+  border: 2px solid #111111;
+  padding: 3px 7px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sizeTable th:first-child {
+  min-width: 66px;
+}
+
+.otherSizes {
+  margin-top: 28px;
+}
+
+.otherSizes dl {
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.otherSizes dl > div {
+  display: flex;
+}
+
+.otherSizes dt,
+.otherSizes dd {
+  margin: 0;
+}
+
+.otherSizes dt::after {
+  content: '';
+}
+
+.otherSizes dd {
+  margin-left: 16px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  .content {
+    width: 100%;
+    padding: 34px 24px 72px;
+  }
+
+  .title {
+    margin-bottom: 34px;
+    font-size: 32px;
+  }
+
+  .productGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 25px;
+  }
+
+  .productHeader {
+    min-height: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #111111;
+  }
+
+  .productName,
+  .productPrice {
+    font-size: 18px;
+  }
+
+  .variantList {
+    margin-top: 9px;
+    row-gap: 5px;
+  }
+
+  .variant {
+    gap: 5px;
+  }
+
+  .variantName {
+    min-width: 18px;
+    font-size: 10px;
+  }
+
+  .variantPrice {
+    font-size: 10px;
+  }
+
+  .status {
+    min-height: 15px;
+    padding: 3px 9px;
+    font-size: 9px;
+  }
+
+  .productStatus {
+    min-height: 24px;
+    margin-top: 8px;
+  }
+
+  .imageFrame {
+    width: min(100%, 250px);
+    margin: 14px auto 16px;
+  }
+
+  .imageFallback {
+    font-size: 10px;
+  }
+
+  .description {
+    max-width: 26em;
+    min-height: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .alert {
+    margin: -12px 0 28px;
+    font-size: 12px;
+  }
+
+  .details {
+    margin-top: 60px;
+  }
+
+  .sizeSection {
+    order: 1;
+  }
+
+  .stockSection {
+    order: 2;
+    margin-top: 48px;
+    margin-bottom: 0;
+  }
+
+  .stockSection h2,
+  .sizeSection h2,
+  .sizeSection h3 {
+    font-size: 20px;
+  }
+
+  .stockSection p {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .tShirtSizeRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 9px;
+  }
+
+  .tShirtSizeRow p {
+    font-size: 11px;
+  }
+
+  .sizeTable {
+    font-size: 10px;
+  }
+
+  .sizeTable th,
+  .sizeTable td {
+    min-width: 29px;
+    padding: 3px 5px;
+  }
+
+  .sizeTable th:first-child {
+    min-width: 50px;
+  }
+
+  .otherSizes {
+    margin-top: 21px;
+  }
+
+  .otherSizes dl {
+    margin-top: 7px;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .otherSizes dd {
+    margin-left: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .errorState button {
+    transition: none;
+  }
+}

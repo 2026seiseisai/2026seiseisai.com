@@ -11,11 +11,13 @@
   --color-text-light: #6b7280;
   --color-border: #e5e7eb;
 
-  max-width: 960px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px 96px;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
-    'Yu Gothic', sans-serif;
+  padding: 48px clamp(20px, 5vw, 80px) 96px;
+  font-family:
+    'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic',
+    sans-serif;
   color: var(--color-text);
 }
 
@@ -114,7 +116,9 @@
   font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .downloadButton:hover {
@@ -142,13 +146,13 @@
 }
 
 .accordionItem {
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
-/* ボタンデザインを刷新：
-   - 角丸を大きくして柔らかい印象に
+/* ボタンデザイン：
+   - 角丸を控えめにして、四角に近い印象に
    - 左側にカラーの縦バーを添えてアクセントに
-   - 淡い背景色＋濃い文字色の「タグ」のような見た目に変更
+   - 淡い背景色＋濃い文字色の「タグ」のような見た目
    - +/− アイコンは丸い枠で囲み、独立したボタンのように見せる */
 .accordionHeader {
   width: 100%;
@@ -159,13 +163,15 @@
   color: var(--color-navy);
   border: none;
   border-left: 5px solid var(--color-navy);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 12px 14px 12px 18px;
   font-size: 1rem;
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.15s ease,
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
     box-shadow 0.2s ease;
   box-shadow: 0 1px 2px rgba(28, 58, 94, 0.06);
 }
@@ -218,13 +224,13 @@
 .clubRow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 14px;
   padding: 10px 4px;
   border-bottom: 1px solid var(--color-border);
 }
 
-/* アイコンを表示する丸い枠。position: relative は、内側の
-   next/image（fillモード）が正しいサイズで表示されるために必須です */
+/* アイコンを表示する丸い枠 */
 .clubIcon {
   flex-shrink: 0;
   width: 40px;
@@ -237,12 +243,17 @@
 }
 
 .clubIconImage {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   padding: 4px;
+  box-sizing: border-box;
 }
 
 .clubName {
   flex: 1;
+  min-width: 100px;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text);
@@ -280,10 +291,6 @@
 
 /* --- レスポンシブ対応 --- */
 @media (max-width: 700px) {
-  .page {
-    padding: 32px 16px 64px;
-  }
-
   .title {
     font-size: 1.9rem;
   }
@@ -311,6 +318,103 @@
   }
 }
 
+/* --- 複数号ある部誌（鉄道研究部など）のダウンロードボタン群 --- */
+.multiDownloads {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.bulkDownloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-teal);
+  color: #fff;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+  .bulkDownloadButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--color-teal);
+    color: #fff;
+    border: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .bulkDownloadButton:hover {
+    opacity: 0.85;
+  }
+
+  .partDownloadButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-navy-light);
+    color: var(--color-navy);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+  }
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 700px) {
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .lead {
+    margin-bottom: 36px;
+  }
+
+  .sectionHeading {
+    gap: 12px;
+  }
+
+  .headingText h2 {
+    font-size: 1.4rem;
+  }
+
+  .accordionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .downloads {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .multiDownloads {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 54px;
+  }
+}
+
 @media (max-width: 420px) {
   .title {
     font-size: 1.6rem;
@@ -324,5 +428,3 @@
     font-size: 0.88rem;
   }
 }
-
-

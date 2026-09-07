@@ -7,6 +7,11 @@ import { NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Preserve the archive page for both the canonical path and legacy spellings.
+  if (pathname === '/archieves' || pathname === '/achieves') {
+    return NextResponse.redirect(new URL('/archives', request.url));
+  }
+
   // Keep the published top page, News pages, and destination page reachable.
   if (
     pathname === '/' ||
@@ -23,6 +28,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/exhibition-award/') ||
     pathname === '/exhibitions' ||
     pathname.startsWith('/exhibitions/') ||
+    pathname === '/archives' ||
+    pathname === '/brochures' ||
     pathname === '/404dummy'
   ) {
     return NextResponse.next();

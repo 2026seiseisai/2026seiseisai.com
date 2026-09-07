@@ -1,15 +1,15 @@
-﻿"use client";
-import { useEffect, useRef, useState } from "react";
-import { eventData, HourType, locations, MinuteType } from "./event-data";
-import map1 from "./map 1.svg";
-import cloud_rain from "./cloud_rain 1.svg";
-import mapPin from "./map-pin.svg";
-import Image from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import css from "./page.module.css";
-import arrowR from "./arrow-right-circle.svg";
+﻿'use client';
+import { useEffect, useRef, useState } from 'react';
+import { eventData, HourType, locations, MinuteType } from './event-data';
+import map1 from './map 1.svg';
+import cloud_rain from './cloud_rain 1.svg';
+import mapPin from './map-pin.svg';
+import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
+import css from './page.module.css';
+import arrowR from './arrow-right-circle.svg';
 
-type Day = "Day1" | "Day2";
+type Day = 'Day1' | 'Day2';
 
 const DaySwitcher = ({
   currentDay,
@@ -20,14 +20,14 @@ const DaySwitcher = ({
   setCurrentDay: (d: Day) => void;
   className?: string;
 }) => {
-  const buttonWrapperCN = "flex flex-col items-center";
+  const buttonWrapperCN = 'flex flex-col items-center';
   const buttonCommonCN =
-    "font-bold px-6 py-2 text-sm md:px-8 py-4 md:text-xl rounded-full";
-  const buttonLabelCN = "text-sm md:text-xl";
-  const currentCN = "bg-navy text-white";
-  const inCurrentCN = "bg-gray-200 text-white";
+    'font-bold px-6 py-2 text-sm md:px-8 py-4 md:text-xl rounded-full';
+  const buttonLabelCN = 'text-sm md:text-xl';
+  const currentCN = 'bg-navy text-white';
+  const inCurrentCN = 'bg-gray-200 text-white';
   const switcherArrowCN =
-    "text-6xl text-navy px-2 md:px-16 disabled:text-gray-200";
+    'text-6xl text-navy px-2 md:px-16 disabled:text-gray-200';
 
   return (
     <div
@@ -37,29 +37,29 @@ const DaySwitcher = ({
     >
       <button
         className={switcherArrowCN}
-        disabled={currentDay === "Day1"}
+        disabled={currentDay === 'Day1'}
         onClick={() => {
-          setCurrentDay("Day1");
+          setCurrentDay('Day1');
         }}
         aria-label="前の日へ"
         aria-controls="day-tablist"
       >
-        {"<"}
+        {'<'}
       </button>
       {/* 1日目 */}
       <button
         type="button"
         role="tab"
         id="tab-day1"
-        aria-selected={currentDay === "Day1"}
+        aria-selected={currentDay === 'Day1'}
         aria-controls="panel-day1"
-        tabIndex={currentDay === "Day1" ? 0 : -1}
-        onClick={() => setCurrentDay("Day1")}
+        tabIndex={currentDay === 'Day1' ? 0 : -1}
+        onClick={() => setCurrentDay('Day1')}
         className={buttonWrapperCN}
       >
         <span
           className={`${buttonCommonCN} ${
-            currentDay === "Day1" ? currentCN : inCurrentCN
+            currentDay === 'Day1' ? currentCN : inCurrentCN
           }`}
         >
           1日目
@@ -74,15 +74,15 @@ const DaySwitcher = ({
         type="button"
         role="tab"
         id="tab-day2"
-        aria-selected={currentDay === "Day2"}
+        aria-selected={currentDay === 'Day2'}
         aria-controls="panel-day2"
-        tabIndex={currentDay === "Day2" ? 0 : -1}
-        onClick={() => setCurrentDay("Day2")}
+        tabIndex={currentDay === 'Day2' ? 0 : -1}
+        onClick={() => setCurrentDay('Day2')}
         className={buttonWrapperCN}
       >
         <span
           className={`${buttonCommonCN} ${
-            currentDay === "Day2" ? currentCN : inCurrentCN
+            currentDay === 'Day2' ? currentCN : inCurrentCN
           }`}
         >
           2日目
@@ -93,14 +93,14 @@ const DaySwitcher = ({
       </button>
       <button
         className={switcherArrowCN}
-        disabled={currentDay === "Day2"}
+        disabled={currentDay === 'Day2'}
         aria-label="前の日へ"
         aria-controls="day-tablist"
         onClick={() => {
-          setCurrentDay("Day2");
+          setCurrentDay('Day2');
         }}
       >
-        {">"}
+        {'>'}
       </button>
     </div>
   );
@@ -109,30 +109,30 @@ const DaySwitcher = ({
 type Location = (typeof locations)[number];
 
 const hourPlacementMap: Record<HourType, number> = {
-  "09": 1,
-  "10": 2,
-  "11": 3,
-  "12": 4,
-  "13": 5,
-  "14": 6,
-  "15": 7,
-  "16": 8,
-  "17": 9,
+  '09': 1,
+  '10': 2,
+  '11': 3,
+  '12': 4,
+  '13': 5,
+  '14': 6,
+  '15': 7,
+  '16': 8,
+  '17': 9,
 } as const;
 
 const minPlacementMap: Record<MinuteType, number> = {
-  "00": 1,
-  "05": 2,
-  "10": 3,
-  "15": 4,
-  "20": 5,
-  "25": 6,
-  "30": 7,
-  "35": 8,
-  "40": 9,
-  "45": 10,
-  "50": 11,
-  "55": 12,
+  '00': 1,
+  '05': 2,
+  '10': 3,
+  '15': 4,
+  '20': 5,
+  '25': 6,
+  '30': 7,
+  '35': 8,
+  '40': 9,
+  '45': 10,
+  '50': 11,
+  '55': 12,
 } as const;
 const locationPlacementMap: Record<Location, number> = {
   体育館: 1,
@@ -143,74 +143,74 @@ const locationPlacementMap: Record<Location, number> = {
   転心殿前: 6,
   音楽室: 7,
   小講堂: 8,
-  "演習室B・C": 9,
-  "3年B組": 10,
-  "3年E組": 11,
-  "5年A組": 12,
-  "4年E組": 13,
-  "6年E組": 14,
+  '演習室B・C': 9,
+  '3年B組': 10,
+  '3年E組': 11,
+  '5年A組': 12,
+  '4年E組': 13,
+  '6年E組': 14,
 };
 
 const locationColorMap: Record<Location, string[]> = {
-  体育館: ["bg-red-100", "border-red-600"],
-  グラウンド: ["bg-yellow-100", "border-yellow-600"],
-  圓融館: ["bg-green-100", "border-green-600"],
-  物理室: ["bg-blue-100", "border-blue-600"],
-  視聴覚室: ["bg-indigo-100", "border-indigo-600"],
-  転心殿前: ["bg-purple-100", "border-purple-600"],
-  音楽室: ["bg-pink-100", "border-pink-600"],
-  小講堂: ["bg-slate-100", "border-slate-600"],
-  "演習室B・C": ["bg-slate-100", "border-slate-600"],
-  "3年B組": ["bg-slate-100", "border-slate-600"],
-  "3年E組": ["bg-slate-100", "border-slate-600"],
-  "5年A組": ["bg-slate-100", "border-slate-600"],
-  "4年E組": ["bg-slate-100", "border-slate-600"],
-  "6年E組": ["bg-slate-100", "border-slate-600"],
+  体育館: ['bg-red-100', 'border-red-600'],
+  グラウンド: ['bg-yellow-100', 'border-yellow-600'],
+  圓融館: ['bg-green-100', 'border-green-600'],
+  物理室: ['bg-blue-100', 'border-blue-600'],
+  視聴覚室: ['bg-indigo-100', 'border-indigo-600'],
+  転心殿前: ['bg-purple-100', 'border-purple-600'],
+  音楽室: ['bg-pink-100', 'border-pink-600'],
+  小講堂: ['bg-slate-100', 'border-slate-600'],
+  '演習室B・C': ['bg-slate-100', 'border-slate-600'],
+  '3年B組': ['bg-slate-100', 'border-slate-600'],
+  '3年E組': ['bg-slate-100', 'border-slate-600'],
+  '5年A組': ['bg-slate-100', 'border-slate-600'],
+  '4年E組': ['bg-slate-100', 'border-slate-600'],
+  '6年E組': ['bg-slate-100', 'border-slate-600'],
 };
 
 const mobileLocationOrder: Location[] = [
-  "体育館",
-  "圓融館",
-  "視聴覚室",
-  "音楽室",
-  "転心殿前",
-  "グラウンド",
-  "物理室",
-  "3年B組",
-  "3年E組",
-  "5年A組",
-  "4年E組",
-  "6年E組",
+  '体育館',
+  '圓融館',
+  '視聴覚室',
+  '音楽室',
+  '転心殿前',
+  'グラウンド',
+  '物理室',
+  '3年B組',
+  '3年E組',
+  '5年A組',
+  '4年E組',
+  '6年E組',
 ];
 
 const scheduleHours: HourType[] = [
-  "09",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
 ];
 
 const scheduleMinutes: MinuteType[] = [
-  "00",
-  "05",
-  "10",
-  "15",
-  "20",
-  "25",
-  "30",
-  "35",
-  "40",
-  "45",
-  "50",
-  "55",
+  '00',
+  '05',
+  '10',
+  '15',
+  '20',
+  '25',
+  '30',
+  '35',
+  '40',
+  '45',
+  '50',
+  '55',
 ];
 
-const scheduleHalfMinutes: MinuteType[] = ["00", "30"];
+const scheduleHalfMinutes: MinuteType[] = ['00', '30'];
 const additionalRows = 6;
 
 // overload
@@ -289,7 +289,7 @@ const SchedulesTable = ({
 
   const mobileSlides = mobileLocationOrder.map((location) => {
     const eventsForLocation = eventData.flatMap((event) => {
-      const todaysEvent = day === "Day1" ? event.day1 : event.day2;
+      const todaysEvent = day === 'Day1' ? event.day1 : event.day2;
       return todaysEvent
         .filter((thisEvent) => thisEvent.location === location)
         .map((thisEvent) => ({
@@ -328,8 +328,8 @@ const SchedulesTable = ({
                   className="grid rounded-2xl bg-white px-2 py-4"
                   style={{
                     gridTemplateRows: `repeat(${rows}, 0.82rem)`,
-                    gridTemplateColumns: "3.5rem minmax(0, 1fr)",
-                    userSelect: "none",
+                    gridTemplateColumns: '3.5rem minmax(0, 1fr)',
+                    userSelect: 'none',
                   }}
                 >
                   <ScheduleGrid
@@ -365,15 +365,15 @@ const ScheduleGrid = ({
       {locationsToRender.flatMap((localLocation) => {
         const ns = calcScheduleStyle({
           isTimeIndicator: true,
-          startHour: "09",
-          startMin: "00",
+          startHour: '09',
+          startMin: '00',
           location: localLocation,
           isMobile: false,
         });
 
         return (
           <div
-            key={`label-${localLocation}-${isMobile ? "mobile" : "pc"}`}
+            key={`label-${localLocation}-${isMobile ? 'mobile' : 'pc'}`}
             style={
               isMobile
                 ? {
@@ -388,7 +388,7 @@ const ScheduleGrid = ({
                     gridColumnEnd: (ns.gridColumnEnd as number) + 1,
                   }
             }
-            className={`${isMobile ? "text-2xl" : "text-3xl"} text-center`}
+            className={`${isMobile ? 'text-2xl' : 'text-3xl'} text-center`}
           >
             {localLocation}
           </div>
@@ -398,18 +398,18 @@ const ScheduleGrid = ({
       {locationsToRender.flatMap((location) =>
         scheduleHours.flatMap((hour) => (
           <div
-            key={`${location}-${hour}-00-${isMobile ? "mobile" : "pc"}`}
+            key={`${location}-${hour}-00-${isMobile ? 'mobile' : 'pc'}`}
             style={calcScheduleStyle({
               isTimeIndicator: true,
               startHour: hour,
-              startMin: "00",
+              startMin: '00',
               location,
               isMobile,
             })}
             className="relative w-14"
           >
             <span className="text-base whitespace-nowrap absolute -translate-y-2">
-              {hour}:{"00"}
+              {hour}:{'00'}
             </span>
           </div>
         )),
@@ -434,7 +434,7 @@ const ScheduleGrid = ({
                   gridColumnEnd: ns.gridColumnEnd as number,
                 }}
                 className={`border-t-2 border-black border-dashed mx-4 h-0`}
-                key={`line-${localLocation}-${d2}-${d3}-${isMobile ? "mobile" : "pc"}`}
+                key={`line-${localLocation}-${d2}-${d3}-${isMobile ? 'mobile' : 'pc'}`}
               ></div>
             );
           });
@@ -442,7 +442,7 @@ const ScheduleGrid = ({
       })}
       {/*各アイテム*/}
       {eventData.map((event) => {
-        const todaysEvent = day === "Day1" ? event.day1 : event.day2;
+        const todaysEvent = day === 'Day1' ? event.day1 : event.day2;
         return todaysEvent
           .filter((thisEvent) => locationsToRender.includes(thisEvent.location))
           .map((thisEvent) => {
@@ -457,7 +457,7 @@ const ScheduleGrid = ({
             });
             return (
               <div
-                key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}-${isMobile ? "mobile" : "pc"}`}
+                key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}-${isMobile ? 'mobile' : 'pc'}`}
                 style={placement}
                 className={`${locationColorMap[thisEvent.location][0]} m-0.5 mx-1 relative flex min-w-0 items-center justify-center border-l-4 ${locationColorMap[thisEvent.location][1]}`}
               >
@@ -488,7 +488,7 @@ const ScheduleGrid = ({
 };
 
 export default function EventsPage() {
-  const [currentDay, setCurrentDay] = useState<Day>("Day1");
+  const [currentDay, setCurrentDay] = useState<Day>('Day1');
   const scheduleViewportRef = useRef<HTMLDivElement>(null);
   const scrollHintDismissedRef = useRef(false);
   const [showScrollHint, setShowScrollHint] = useState(false);
@@ -518,12 +518,12 @@ export default function EventsPage() {
       scrollHintDismissedRef.current = true;
       setShowScrollHint(false);
     }, 2000);
-    viewport.addEventListener("scroll", updateHint, { passive: true });
-    window.addEventListener("resize", updateHint);
+    viewport.addEventListener('scroll', updateHint, { passive: true });
+    window.addEventListener('resize', updateHint);
     return () => {
       window.clearTimeout(hintTimer);
-      viewport.removeEventListener("scroll", updateHint);
-      window.removeEventListener("resize", updateHint);
+      viewport.removeEventListener('scroll', updateHint);
+      window.removeEventListener('resize', updateHint);
     };
   }, []);
   const jumpToEvent = (name: string) => {
@@ -533,15 +533,15 @@ export default function EventsPage() {
     if (!target) return;
     target.open = true;
     requestAnimationFrame(() =>
-      target.scrollIntoView({ behavior: "smooth", block: "center" }),
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' }),
     );
   };
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType === "touch" || e.pointerType === "pen") return;
+    if (e.pointerType === 'touch' || e.pointerType === 'pen') return;
     if (
       (e.target as HTMLElement | null)?.closest(
-        "button, a, input, textarea, select, summary",
+        'button, a, input, textarea, select, summary',
       )
     ) {
       return;
@@ -576,7 +576,7 @@ export default function EventsPage() {
     dragStateRef.current.dragging = false;
     dragStateRef.current.pointerId = -1;
     if (e) {
-      e.currentTarget.style.cursor = "grab";
+      e.currentTarget.style.cursor = 'grab';
     }
   };
 
@@ -601,7 +601,7 @@ export default function EventsPage() {
       >
         <div
           aria-hidden="true"
-          className={`pointer-events-none hidden lg:flex absolute inset-0 z-10 items-start justify-center pt-8 bg-black/35 text-sm text-white transition-opacity duration-500 ease-out ${showScrollHint ? "opacity-100" : "opacity-0"}`}
+          className={`pointer-events-none hidden lg:flex absolute inset-0 z-10 items-start justify-center pt-8 bg-black/35 text-sm text-white transition-opacity duration-500 ease-out ${showScrollHint ? 'opacity-100' : 'opacity-0'}`}
         >
           <span className="rounded-full bg-black/65 px-4 py-2 shadow-lg">
             横にスクロールできます&nbsp; →

@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
+import { exhibitionData } from '../exhibitions/exhibition-data';
 import Map3D2026 from './Map3D2026';
 import { mapFloors, type Building, type MapRoom } from './map-2026-data';
 import styles from './Map2026.module.css';
@@ -27,9 +29,21 @@ function VenueCard({ room }: { room: MapRoom }) {
       <h3>{room.label ?? room.name}</h3>
       {hasExhibitions ? (
         <ul>
-          {room.exhibitions.map((exhibition) => (
-            <li key={exhibition}>{exhibition}</li>
-          ))}
+          {room.exhibitions.map((exhibition) => {
+            const hasDetailPage = exhibition in exhibitionData;
+
+            return (
+              <li key={exhibition}>
+                {hasDetailPage ? (
+                  <Link href={`/exhibitions/${encodeURIComponent(exhibition)}`}>
+                    {exhibition}
+                  </Link>
+                ) : (
+                  exhibition
+                )}
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <p>展示なし</p>

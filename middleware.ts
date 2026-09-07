@@ -17,7 +17,6 @@ export function middleware(request: NextRequest) {
     pathname === '/' ||
     pathname === '/news' ||
     pathname.startsWith('/news/') ||
-    pathname === '/events' ||
     pathname === '/access' ||
     pathname === '/contact' ||
     pathname === '/privacy-policy' ||

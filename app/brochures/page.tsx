@@ -299,12 +299,16 @@ const categories: Category[] = [
   },
 ];
 
-// TODO: 実際のPDFファイルのパスに差し替えてください（例: /pamphlets/pamphlet-high.pdf）
 const pamphlets = [
   {
     label: '高画質版',
-    size: '13.7MB',
+    size: '44.9MB',
     href: '/brochures-data/第62回菁々祭パンフレット高画質版.pdf',
+  },
+  {
+    label: '中画質版',
+    size: '13.7MB',
+    href: '/brochures-data/第62回菁々祭パンフレット中画質版.pdf',
   },
   {
     label: '低画質版',
@@ -346,7 +350,7 @@ export default function BrochuresPage() {
           <br />
           校門でもパンフレットを配布いたしますが、事前にダウンロードしていただくと大変便利です。
           <br />
-          用途に合わせ、2段階の画質でご用意しました。東大寺学園は電波の弱い場所が多いため、校内では低画質版のダウンロードをお勧めします。
+          用途に合わせ、三段階の画質でご用意しました。東大寺学園は電波の弱い場所が多いため、校内では低画質版のダウンロードをお勧めします。
         </p>
 
         <div className={styles.downloads}>

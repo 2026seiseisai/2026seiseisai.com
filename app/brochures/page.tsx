@@ -299,11 +299,14 @@ const categories: Category[] = [
   },
 ];
 
+const highQualityPamphletFile = '第62回菁々祭パンフレット高画質版.pdf';
+const highQualityPamphletHref = `https://raw.githubusercontent.com/2026seiseisai/2026seiseisai.com/main/public/brochures-data/${encodeURIComponent(highQualityPamphletFile)}`;
+
 const pamphlets = [
   {
     label: '高画質版',
     size: '44.9MB',
-    href: '/brochures-data/第62回菁々祭パンフレット高画質版.pdf',
+    href: highQualityPamphletHref,
   },
   {
     label: '中画質版',

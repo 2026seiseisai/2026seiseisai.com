@@ -1,154 +1,142 @@
-﻿.main {
-  position: relative;
+.main {
   width: 100%;
-  max-width: 1440px;
-  margin: auto;
-  padding: 40px 6% 40px 6%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 48px clamp(20px, 5vw, 64px) 80px;
+  color: #0a1b6f;
 }
+
 .title {
-  color: #0A1B6F;
-  font-size: 48px;
+  margin: 0 0 12px;
+  color: #0a1b6f;
+  font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 700;
-  text-align: left;
-  margin-bottom: 10px;
-  position: relative;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
+
 .explain {
-  color: #000;
-  font-size: 12px;
-  font-weight: 500;
-  text-align: left;
-  position: relative;
+  max-width: 72rem;
+  margin: 0;
+  color: #25304d;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.8;
 }
-.background{
-    width: 100%;
-    height:50%;
-    background-color: #0A1B6F0D;
-    position: relative;
-    margin-top:20px;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px rgb(150, 150, 150);
+
+.explain + .explain {
+  margin-top: 2px;
 }
+
+.background {
+  width: 100%;
+  margin-top: 28px;
+  padding: 24px clamp(16px, 3vw, 32px) 20px;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  box-shadow: 0 6px 18px rgb(10 27 111 / 8%);
+}
+
+.background h2 {
+  margin: 0;
+  font-weight: 400;
+}
+
 .center {
-  text-align: center;
-  color: #000;
-  font-size: 22px;
-  font-weight: 200;
-  letter-spacing: 0.05em;
-}
-.year {
-  font-size: 30px;
+  color: #172554;
+  font-size: 1.15rem;
   font-weight: 500;
-  margin-left: 10px;
-}
-.color2025 {
-  color: #e61321;
-}
-.color2025:hover {
-  color: #ac0f1a;
-}
-.color2024 {
-  color: #FF0084;
-}
-.color2024:hover {
-  color: #cc0069;
-}
-.color2023 {
-  color: rgb(82, 204, 137)
-}
-.color2023:hover {
-  color: rgb(61, 153, 102)
-}
-.color2022 {
-  color: rgb(192, 74, 136);
-}
-.color2022:hover {
-  color: rgb(144, 55, 102);
-}
-.color2021 {
-  color: #000
-}
-.color2021:hover {
-  color: #7a7a7a
-}
-.color2020 {
-  color: rgb(242, 150, 0);
-}
-.color2020:hover {
-  color: rgb(182, 113, 0);
-}
-.color2019 {
-  color: rgb(1, 160, 226);
-}
-.color2019:hover {
-  color: rgb(1, 120, 170);
-}
-.color2017 {
-  color: rgb(171, 68, 67);
-}
-.color2017:hover {
-  color: rgb(128, 51, 50);
-}
-.color2016 {
-  color: rgb(65, 93, 139);
-}
-.color2016:hover {
-  color: rgb(49, 70, 105);
-}
-.color2015 {
-  color: rgb(0, 0, 0);
-}
-.color2015:hover {
-  color: #7a7a7a;
-}
-.color2013 {
-  color: rgb(75, 206, 74);
-}
-.color2013:hover {
-  color: rgb(56, 154, 55);
-}
-.color2012 {
-  color: rgb(148, 149, 197);
-}
-.color2012:hover {
-  color: rgb(111, 112, 148);
-}
-.color2011 {
-  color: rgb(157, 109, 121);
-}  
-.color2011:hover {
-  color: rgb(118, 82, 92);
-} 
-.color2009 {
-  color: rgb(0, 0, 0);
-}
-.color2009:hover {
- color: #7a7a7a;
-}
-.color2008 {
-  color: rgb(0, 0, 1);
-}
-.color2008:hover {
-    color: #7a7a7a;
-}
-.color2002 {
-  color: rgb(0, 0, 0);
-}
-.color2002:hover {
-  color: #7a7a7a;
-}
-.link {
-    text-align: center;
-  font-size: 18px;
-  font-weight: 200;
-  position: relative;
+  line-height: 1.55;
   letter-spacing: 0.03em;
-  text-decoration: underline;
+  text-align: center;
 }
+
+.year {
+  color: #0a1b6f;
+  font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.year:hover {
+  color: #a52f6b;
+}
+
+.link {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.95rem;
+  color: #174f69;
+  border: 1px solid #0a1b6f;
+  border-bottom: 3px solid #db5492;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.link:hover {
+  color: #0a1b6f;
+  background: #fdf0f6;
+}
+
+.link:focus-visible,
+.year:focus-visible {
+  outline: 2px solid #00aabe;
+  outline-offset: 3px;
+}
+
 .logo {
-    padding: 0px 6% 5px 6%;
-    display: flex;
-  justify-content: flex-start;
-  gap: 100px;
-  padding-top: 15px;
+  display: block;
+  width: min(100%, 900px);
+  height: auto;
+  max-height: 430px;
+  padding: 16px 0 4px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 32px 20px 64px;
+  }
+
+  .title {
+    margin-bottom: 10px;
+  }
+
+  .explain {
+    font-size: 0.88rem;
+  }
+
+  .background {
+    margin-top: 24px;
+    padding: 18px 14px 16px;
+  }
+
+  .center {
+    font-size: 1rem;
+  }
+
+  .link {
+    width: 100%;
+    padding-inline: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .logo {
+    padding-top: 14px;
+  }
 }

@@ -1,0 +1,22 @@
+.card { min-width: 0; height: 100%; border: 1px solid #aeb6d0; background: #fff; color: var(--color-navy); transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.link { display: flex; height: 100%; flex-direction: column; padding: 5px; text-decoration: none; color: inherit; }
+.link:focus-visible { outline: 3px solid var(--color-navy); outline-offset: 5px; }
+.imageFrame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #f0f2f7; }
+.image { object-fit: cover; transition: transform 240ms ease; }
+.newBadge { position: absolute; top: 12px; right: 12px; padding: 5px 10px; background: var(--color-pink); color: #071344; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.body { display: flex; flex: 1; flex-direction: column; padding: 17px 14px 12px; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.meta time { color: #5e6580; font-size: 12px; font-variant-numeric: tabular-nums; }
+.topic { padding: 3px 9px; background: #e9f7f9; color: #006775; font-size: 11px; font-weight: 500; line-height: 1.5; }
+.title { margin: 13px 0 22px; font-size: 17px; font-weight: 700; line-height: 1.75; overflow-wrap: anywhere; }
+.bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; }
+.author { color: #626981; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+.arrow { display: grid; flex-shrink: 0; width: 32px; height: 32px; place-items: center; border: 1px solid #d7dbea; transition: color 180ms ease, background-color 180ms ease; }
+.arrow svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; }
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { border-color: var(--color-navy); transform: translateY(-3px); box-shadow: 0 8px 20px rgb(10 27 111 / 7%); }
+  .card:hover .image { transform: scale(1.025); }
+  .card:hover .arrow { background: var(--color-navy); color: #fff; }
+}
+@media (max-width: 559px) { .body { padding: 16px 14px 12px; } .title { margin-bottom: 18px; font-size: 16px; } }
+@media (prefers-reduced-motion: reduce) { .card, .image, .arrow { transition: none; } .card:hover, .card:hover .image { transform: none; } }

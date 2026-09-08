@@ -153,37 +153,40 @@
   position: relative;
   z-index: 2;
   display: inline-flex;
-  min-width: 76px;
-  height: 38px;
+  min-width: 84px;
+  height: 48px;
   align-self: end;
   justify-self: end;
   align-items: center;
   justify-content: flex-end;
   gap: 7px;
-  margin: 0 12px 12px 0;
+  margin: 0 12px 8px 0;
   padding: 4px 5px 4px 12px;
   box-sizing: border-box;
-  border: 1px solid rgb(10 27 111 / 24%);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 96%);
-  box-shadow: 0 5px 14px rgb(10 27 111 / 10%);
+  border: 1px solid var(--navy);
+  border-bottom: 3px solid var(--pink);
+  border-radius: 0;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 100% 84%, 84% 100%, 0 100%);
   color: var(--navy);
   text-decoration: none;
   transition:
     border-color 180ms ease,
-    box-shadow 180ms ease,
+    background-color 180ms ease,
     transform 180ms ease;
 }
 
 .downloadButton:hover {
   border-color: var(--teal);
-  box-shadow: 0 8px 18px rgb(10 27 111 / 16%);
+  border-bottom-color: var(--pink);
+  background-color: #f1fbfc;
   transform: translateY(-2px);
 }
 
 .downloadButton:focus-visible {
-  outline: 3px solid var(--pink);
-  outline-offset: 3px;
+  outline: 3px solid var(--teal);
+  outline-offset: -5px;
+  background-color: #e5f8fa;
 }
 
 .downloadFormat {
@@ -235,8 +238,8 @@
   }
 
   .downloadButton {
-    min-width: 72px;
-    height: 36px;
+    min-width: 84px;
+    height: 44px;
     margin: 0 8px 8px 0;
   }
 }
@@ -283,11 +286,17 @@
     padding: 0;
     border: 0;
     background: transparent;
-    box-shadow: none;
+    clip-path: none;
+    border-radius: 50%;
   }
 
   .downloadButton:hover {
-    box-shadow: none;
+    background: transparent;
+  }
+
+  .downloadButton:focus-visible {
+    outline-offset: 3px;
+    background: transparent;
   }
 
   .downloadFormat {

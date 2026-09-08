@@ -1,5 +1,5 @@
-﻿import NotFoundDummyPage from '../404dummy/page';
+import { redirect } from 'next/navigation';
 
 export default function ArchivesPage() {
-  return <NotFoundDummyPage />;
+  redirect('/archives');
 }

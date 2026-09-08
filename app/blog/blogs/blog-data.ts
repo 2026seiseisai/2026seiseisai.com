@@ -2485,7 +2485,7 @@ Nさん、ありがとうございました！
   '62/01': {
     title: `謎解き同好会について`,
     date: `2026.05.15`,
-    author: `PRパート員`,
+    author: `PRパート員 Y.H.`,
     topic: `同好会紹介`,
     thumbnail: Image139,
     thumbnailPath: `src/blogs/62/1/tshirt.png`,
@@ -2587,7 +2587,7 @@ Nさん、ありがとうございました！
   '62/02': {
     title: `昨年度から新しくなった民族音楽同好会の魅力に迫る`,
     date: `2026.05.18`,
-    author: `PRパート員`,
+    author: `PRパート員 I.H.`,
     topic: `同好会紹介`,
     thumbnail: Image148,
     thumbnailPath: `src/blogs/62/2/IMG_5104.jpeg`,
@@ -2670,7 +2670,7 @@ Nさん、ありがとうございました！
   '62/03': {
     title: `ペンライト。その実現と進歩`,
     date: `2026.05.21`,
-    author: `PRパート員`,
+    author: `PRパート員 O.H.`,
     topic: `グッズ紹介`,
     thumbnail: Image154,
     thumbnailPath: `src/blogs/62/3/1000024172.jpg`,
@@ -2781,7 +2781,7 @@ Nさん、ありがとうございました！
   '62/04': {
     title: `自動車硏究會に就いて`,
     date: `2026.05.22`,
-    author: `PRパート員`,
+    author: `PRパート員 T.H.`,
     topic: `同好会紹介`,
     thumbnail: Image161,
     thumbnailPath: `src/blogs/62/4/image.png`,
@@ -2886,7 +2886,7 @@ Nさん、ありがとうございました！
   '62/05': {
     title: `毎年大人気！鉄道研究部のウラ側・展示の見どころを解説`,
     date: `2026.05.25`,
-    author: `PRパート員`,
+    author: `PRパート員 I.Y.`,
     topic: `部活動紹介`,
     thumbnail: Image169,
     thumbnailPath: `src/blogs/62/5/IMG_3843.jpeg`,
@@ -3044,7 +3044,7 @@ Nゲージコーナーでは、昨年と今年の鉄道模型コンテスト展�
   '62/06': {
     title: `菁々祭テーマ・ロゴ発表PVについて`,
     date: `2026.05.28`,
-    author: `PRパート員`,
+    author: `PRパート員 S.K.`,
     topic: `PR`,
     thumbnail: Image173,
     thumbnailPath: `src/blogs/62/6/1000003908.jpg`,

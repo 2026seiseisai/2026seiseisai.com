@@ -66,6 +66,7 @@
 .lead {
   margin: 22px 0 42px;
   font-size: 15px;
+  text-wrap: balance;
 }
 .selectLabel {
   display: block;
@@ -196,9 +197,8 @@
   flex: 1;
 }
 .resultName {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
   font-size: 15px;
   font-weight: 700;
 }
@@ -266,5 +266,14 @@
     align-items: start;
     gap: 12px;
     flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .panel h1,
+  .resultsPanel h1 {
+    max-width: 100%;
+    font-size: clamp(38px, 6vw, 54px);
+    letter-spacing: -0.02em;
   }
 }

@@ -5,37 +5,33 @@
   --ink: #0b0e0f;
   --muted: #5f6474;
   --line: #dfe3ee;
-  min-height: 100vh;
-  padding: clamp(48px, 6vw, 88px) 24px clamp(96px, 11vw, 168px);
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, rgb(219 84 146 / 6%) 0 18%, transparent 18% 100%),
-    #f5f6fa;
+  min-height: 60vh;
+  padding: clamp(56px, 5.25vw, 76px) 32px clamp(96px, 12vw, 160px);
+  overflow-x: clip;
+  background: #fff;
   color: var(--ink);
 }
 
 .shell {
-  width: min(100%, 1120px);
+  width: min(100%, 1100px);
   margin: 0 auto;
 }
 
 .hero {
   position: relative;
-  min-height: 430px;
-  padding: clamp(40px, 6vw, 76px);
-  overflow: hidden;
-  border-top: 7px solid var(--navy);
-  background: #fff;
-  box-shadow: 0 24px 70px rgb(10 27 111 / 9%);
+  min-height: 0;
+  padding: 0 0 42px;
+  overflow: visible;
+  border-bottom: 1px solid var(--line);
   isolation: isolate;
 }
 
 .hero::before {
   position: absolute;
   right: 0;
-  bottom: 0;
-  width: 42%;
-  height: 8px;
+  bottom: -1px;
+  width: 48px;
+  height: 3px;
   background: linear-gradient(90deg, var(--pink) 0 48%, var(--teal) 48% 100%);
   content: '';
 }
@@ -56,12 +52,12 @@
 }
 
 .title {
-  margin: 0 0 30px;
+  margin: 0 0 28px;
   color: var(--navy);
-  font-size: clamp(58px, 9vw, 112px);
-  font-weight: 900;
-  letter-spacing: -0.065em;
-  line-height: 0.9;
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 
 .title::first-letter {
@@ -69,30 +65,30 @@
 }
 
 .lead {
-  margin: 0 0 22px;
+  margin: 0 0 18px;
   color: var(--ink);
-  font-size: clamp(20px, 2.25vw, 30px);
+  font-size: clamp(18px, 2vw, 24px);
   font-weight: 700;
-  line-height: 1.65;
+  line-height: 1.7;
   word-break: auto-phrase;
 }
 
 .description {
   margin: 0;
   color: #343844;
-  font-size: clamp(15px, 1.5vw, 18px);
+  font-size: clamp(14px, 1.35vw, 16px);
   font-weight: 500;
   line-height: 1.9;
 }
 
 .infinityMark {
   position: absolute;
-  right: clamp(-86px, -4vw, -20px);
-  bottom: clamp(-108px, -7vw, -48px);
+  right: -0.04em;
+  bottom: -0.11em;
   z-index: 1;
-  color: rgb(10 27 111 / 5.5%);
+  color: rgb(10 27 111 / 4%);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(300px, 38vw, 560px);
+  font-size: clamp(150px, 18vw, 260px);
   font-weight: 700;
   letter-spacing: -0.12em;
   line-height: 0.68;
@@ -103,55 +99,54 @@
 
 .channels,
 .formSection {
-  margin-top: clamp(58px, 8vw, 96px);
+  margin-top: clamp(52px, 6vw, 72px);
 }
 
 .sectionHeading {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .sectionHeading h2,
 .formHeading h2 {
   margin: 0;
   color: var(--navy);
-  font-size: clamp(28px, 3.4vw, 44px);
-  font-weight: 900;
-  letter-spacing: -0.035em;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
   line-height: 1.2;
 }
 
 .sectionHeading > div > p {
   margin: 10px 0 0;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.75;
 }
 
 .channelGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+  border-top: 2px solid var(--navy);
 }
 
 .channelCard {
   position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  min-height: 144px;
+  min-height: 126px;
   align-items: center;
   gap: 16px;
-  padding: 26px 24px;
+  padding: 22px 20px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: #fff;
   color: var(--ink);
   text-decoration: none;
-  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 .channelCard::after {
@@ -180,7 +175,6 @@
 
 .channelCard:hover {
   background: #fbfcff;
-  transform: translateY(-3px);
 }
 
 .channelCard:hover::after {
@@ -264,16 +258,31 @@
 }
 
 .openFormLink {
+  position: relative;
   display: inline-flex;
-  min-height: 44px;
+  min-height: 40px;
   align-items: center;
   gap: 8px;
-  padding: 9px 14px;
-  border-bottom: 2px solid var(--teal);
+  padding: 8px 12px;
+  border: 1px solid var(--navy);
+  border-bottom: 3px solid var(--teal);
+  background: #fff;
   color: var(--navy);
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
+}
+
+.openFormLink::after {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  content: '';
+  pointer-events: none;
 }
 
 .openFormLink .arrowIcon {
@@ -283,24 +292,23 @@
 
 .formFrame {
   position: relative;
-  padding: clamp(8px, 1.2vw, 14px);
+  padding: clamp(8px, 1.2vw, 12px);
   border: 1px solid var(--line);
-  border-top: 6px solid var(--navy);
+  border-top: 2px solid var(--navy);
   background: #fff;
-  box-shadow: 0 20px 60px rgb(10 27 111 / 8%);
 }
 
 .formFrame::before,
 .formFrame::after {
   position: absolute;
-  top: -6px;
-  width: 72px;
-  height: 6px;
+  top: -2px;
+  width: 48px;
+  height: 2px;
   content: '';
 }
 
 .formFrame::before {
-  right: 72px;
+  right: 48px;
   background: var(--pink);
 }
 
@@ -318,12 +326,8 @@
 }
 
 @media (max-width: 900px) {
-  .hero {
-    min-height: 0;
-  }
-
   .infinityMark {
-    right: -90px;
+    right: -28px;
     opacity: 0.8;
   }
 
@@ -332,17 +336,17 @@
   }
 
   .channelCard {
-    min-height: 112px;
+    min-height: 104px;
   }
 }
 
 @media (max-width: 640px) {
   .page {
-    padding: 32px 16px 96px;
+    padding: 36px 20px 64px;
   }
 
   .hero {
-    padding: 28px 24px 36px;
+    padding-bottom: 32px;
   }
 
   .title {
@@ -354,9 +358,9 @@
   }
 
   .infinityMark {
-    right: -104px;
-    bottom: -28px;
-    font-size: 330px;
+    right: -42px;
+    bottom: -18px;
+    font-size: 180px;
   }
 
   .sectionHeading {
@@ -365,8 +369,8 @@
   }
 
   .channelCard {
-    min-height: 104px;
-    padding: 20px 18px;
+    min-height: 96px;
+    padding: 18px 16px;
   }
 
   .channelIcon {
@@ -390,8 +394,8 @@
   }
 
   .formFrame {
-    margin-right: -16px;
-    margin-left: -16px;
+    margin-right: -20px;
+    margin-left: -20px;
     padding: 4px;
   }
 

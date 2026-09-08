@@ -50,7 +50,7 @@ function DownloadButton({
 
 export default function App() {
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <h1 className={styles.title}>Theme &amp; Logo</h1>
       <p className={styles.introduction}>
         テーマ･ロゴについての紹介に加え､関連データのダウンロードができるページです｡
@@ -151,6 +151,6 @@ export default function App() {
           太さを一定にすることで安定感を持たせ、文字の一部を繋げることで“続く”イメージを可視化しています。
         </p>
       </div>
-    </div>
+    </main>
   );
 }

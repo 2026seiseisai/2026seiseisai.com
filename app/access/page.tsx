@@ -49,7 +49,7 @@ const AccessPage: NextPage = () => {
                   href="https://www.tdj.ac.jp"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#0000ee', textDecoration: 'underline' }}
+                  className={styles.schoolLink}
                 >
                   https://www.tdj.ac.jp
                 </a>
@@ -65,6 +65,7 @@ const AccessPage: NextPage = () => {
           {/* クラス名に styles.googleMap を追加して、枠のサイズを合わせます */}
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13118.723774730854!2d135.77831102660247!3d34.71322650700483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60013c8734fc9973%3A0x55c23a5ae3354ec9!2z5p2x5aSn5a-65a2m5ZyS5Lit5a2m5qCh44O76auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1786944459692!5m2!1sja!2sjp"
+            title="東大寺学園へのアクセスマップ"
             width="400"
             height="250"
             style={{ border: 0, flexShrink: 0 }}
@@ -87,7 +88,7 @@ const AccessPage: NextPage = () => {
         {/* 5. バス運行表 */}
         <h2 className={styles.sectionHeading}>バス運行表</h2>
         <div className={styles.placeholderBox}>
-          {/* バス運行表の画像があればここに配置 */}
+          {/* 運行表の素材が掲載されたらここに配置 */}
         </div>
 
         {/* 6. 路線図 */}

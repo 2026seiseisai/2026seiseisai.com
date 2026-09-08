@@ -12,7 +12,7 @@
 
 .heading {
   margin: 0 0 clamp(28px, 2.4vw, 36px);
-  color: #171717;
+  color: #0a1b6f;
   font-size: clamp(38px, 3.2vw, 46px);
   font-weight: 900;
   line-height: 1.15;

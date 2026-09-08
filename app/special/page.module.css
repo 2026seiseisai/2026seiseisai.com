@@ -1,37 +1,38 @@
-﻿body {
-  font-family: 'Noto Sans JP', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fefefe;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-}
-
-.main {
+﻿.main {
   position: relative;
   width: 100%;
   max-width: 1440px;
   margin: 0;
   padding: 40px 0px 0px 80px;
+  overflow-x: clip;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #fefefe;
+}
+
+/* PCでは本文と素材一覧の左右の余白をそろえる。 */
+@media (min-width: 768px) {
+  .main {
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: 40px 48px 0;
+  }
 }
 
 .main::before {
-  content: "SPECIAL";
+  content: 'SPECIAL';
   position: absolute;
-  top: 350Px;
+  top: 350px;
   left: 65%;
   transform: translateX(-40%) scaleX(0.3);
   font-family: 'Odibee Sans', sans-serif;
   font-size: 450;
   font-weight: 400;
-  color: #0A1B6F0D;
+  color: #0a1b6f0d;
+  pointer-events: none;
 }
 
-
 .title {
-  color: #0A1B6F;
+  color: #0a1b6f;
   font-size: 70px;
   font-weight: 700;
   text-align: left;
@@ -41,10 +42,15 @@ body::-webkit-scrollbar {
   white-space: normal;
 }
 
-.pcOnly { display: block; }
-.spOnly { display: none; }
+.pcOnly {
+  display: block;
+}
+.spOnly {
+  display: none;
+}
 .description {
-  color: #0B0E0F;
+  color: #0b0e0f;
+  text-wrap: pretty;
   font-size: 30px;
   line-height: 1.8;
   max-width: 2004px;
@@ -66,17 +72,17 @@ body::-webkit-scrollbar {
 }
 
 .rules::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 10px;
   width: 6px;
   height: 320px;
-  background-color: #00AABE;
+  background-color: #00aabe;
 }
 
 .ruleTitle {
-  color: #DB5492;
+  color: #db5492;
   font-size: 50px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -85,7 +91,7 @@ body::-webkit-scrollbar {
 .ruleList {
   list-style-type: disc;
   padding-left: 2rem;
-  color: #0B0E0F;
+  color: #0b0e0f;
   font-size: 30px;
   line-height: 1.8;
 }
@@ -139,13 +145,19 @@ body::-webkit-scrollbar {
   margin-bottom: 30px;
 }
 
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .wallpaperDownloadButton {
   position: absolute;
-  bottom: -30px;
-  right: -30px;
+  bottom: -24px;
+  right: -24px;
   width: 60px;
   height: 60px;
-  background-color: #00AABE;
+  background-color: #00aabe;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -165,8 +177,8 @@ body::-webkit-scrollbar {
   margin-bottom: 20px;
 }
 
-.sectionTitleicon{
-font-family: 'Noto Sans JP', sans-serif;
+.sectionTitleicon {
+  font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
   font-size: 50px;
   line-height: 1.5;
@@ -176,8 +188,8 @@ font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 16px;
 }
 
-.sectionDescriptionIcon{
-font-family: 'Noto Sans JP', sans-serif;
+.sectionDescriptionIcon {
+  font-family: 'Noto Sans JP', sans-serif;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.5;
@@ -208,18 +220,23 @@ font-family: 'Noto Sans JP', sans-serif;
   border-radius: 50%;
 }
 
+.iconItem .iconImage {
+  border-radius: 50%;
+}
+
 .downloadButton {
   position: absolute;
   bottom: 0px;
   right: 0px;
   width: 60px;
   height: 60px;
-  background-color: #E60012;
+  background-color: #e60012;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 1;
 }
 
 .downloadButton img {
@@ -257,7 +274,7 @@ font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 16px;
 }
 
- .headerGrid {
+.headerGrid {
   display: flex;
   justify-content: flex-start;
   gap: 160px;
@@ -288,11 +305,11 @@ font-family: 'Noto Sans JP', sans-serif;
 
 .headerDownloadButton {
   position: absolute;
-  bottom: -25px;
-  right: -25px;
+  bottom: -24px;
+  right: -24px;
   width: 60px;
   height: 60px;
-  background-color: #DE0D22;
+  background-color: #de0d22;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -305,13 +322,171 @@ font-family: 'Noto Sans JP', sans-serif;
   height: 32px;
 }
 
-/* スマホ対応 */
-@media (max-width: 480px) {
+/* Use the same angular, high-contrast download action across Special. */
+.wallpaperDownloadButton,
+.downloadButton,
+.headerDownloadButton {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #0a1b6f;
+  border-bottom: 3px solid #db5492;
+  border-radius: 0;
+  background-color: #ffffff;
+  color: #0a1b6f;
+  clip-path: polygon(0 0, 100% 0, 100% 84%, 84% 100%, 0 100%);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
 
-  body::-webkit-scrollbar {
-    display: none
+.wallpaperDownloadButton:hover,
+.downloadButton:hover,
+.headerDownloadButton:hover {
+  border-color: #00aabe;
+  border-bottom-color: #db5492;
+  background-color: #f1fbfc;
+  transform: translateY(-2px);
+}
+
+.wallpaperDownloadButton:focus-visible,
+.downloadButton:focus-visible,
+.headerDownloadButton:focus-visible {
+  outline: 3px solid #00aabe;
+  outline-offset: -5px;
+  background-color: #e5f8fa;
+}
+
+.wallpaperDownloadButton img,
+.downloadButton img,
+.headerDownloadButton img {
+  width: 26px;
+  height: 26px;
+}
+
+@media (min-width: 768px) {
+  .wallpaperGrid,
+  .iconGrid,
+  .headerGrid {
+    justify-content: safe center;
+    padding-inline: 0 32px;
   }
 
+  .iconItem,
+  .headerItem {
+    flex: 0 0 auto;
+  }
+
+  .description {
+    font-size: 24px;
+    max-width: 100%;
+  }
+
+  .description br {
+    display: none;
+  }
+}
+
+/* Keep the spacious desktop composition readable at tablet widths. */
+@media (min-width: 481px) and (max-width: 900px) {
+  .main {
+    padding: 32px 32px 0;
+  }
+
+  .main::before {
+    top: 320px;
+    font-size: clamp(220px, 44vw, 360px);
+  }
+
+  .title {
+    font-size: clamp(44px, 7vw, 58px);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  .description {
+    font-size: clamp(17px, 3vw, 24px);
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+
+  .rules {
+    padding-left: 16px;
+    gap: 12px;
+  }
+
+  .rules::before {
+    width: 4px;
+    height: 220px;
+  }
+
+  .ruleTitle {
+    font-size: clamp(32px, 5.5vw, 42px);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .ruleList {
+    padding-left: 1.5rem;
+    font-size: clamp(17px, 3vw, 24px);
+    line-height: 1.7;
+  }
+
+  .wallpaperHeader,
+  .iconHeader,
+  .headerHeader {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .sectionTitlewallpaper,
+  .sectionTitleicon,
+  .sectionTitleheader {
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.3;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+
+  .sectionDescriptionWallpaper,
+  .sectionDescriptionIcon,
+  .sectionDescriptionHeader {
+    font-size: clamp(16px, 2.8vw, 22px);
+    line-height: 1.5;
+  }
+
+  .wallpaperGrid {
+    gap: 32px;
+    margin-top: 24px;
+    padding-left: 0;
+    height: 310px;
+  }
+
+  .wallpaperItem {
+    width: 150px;
+    height: 300px;
+  }
+
+  .iconGrid {
+    gap: 48px;
+    padding-left: 0;
+    height: 220px;
+  }
+
+  .iconItem {
+    width: 180px;
+    height: 180px;
+  }
+
+  .headerGrid {
+    gap: 48px;
+    padding-left: 0;
+    height: 140px;
+  }
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
   .main {
     position: relative;
     width: 100%;
@@ -324,51 +499,55 @@ font-family: 'Noto Sans JP', sans-serif;
     font-size: 30px;
   }
 
-  .pcOnly { display: none; }
-  .spOnly { display: block; }
+  .pcOnly {
+    display: none;
+  }
+  .spOnly {
+    display: block;
+  }
   .description {
-  color: #0B0E0F;
-  font-size: 14px;
-  line-height: 1.6;
-  max-width: 2004px;
-  text-align: left;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 1;
-  white-space: pre-line;
-}
+    color: #0b0e0f;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 2004px;
+    text-align: left;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+    white-space: normal;
+  }
 
   .rules {
     padding-left: 10px;
   }
 
   .rules::before {
-   content: "";
-   position: absolute;
-   left: 0;
-   top: 0;
-   width: 6px;
-   height: 170px;
-   background-color: #00AABE;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 170px;
+    background-color: #00aabe;
   }
 
   .ruleTitle {
     font-size: 22px;
     text-align: left;
-    color: #DB5492;
+    color: #db5492;
     margin-bottom: -15px;
   }
 
   .main::before {
-   content: "SPECIAL";
-   position: absolute;
-   top: 270px;
-   left: 65%;
-   transform: translateX(-40%) scaleX(0.3);
-   font-family: 'Odibee Sans', sans-serif;
-   font-size: 180;
-   font-weight: 400;
-   color: #0A1B6F0D;
+    content: 'SPECIAL';
+    position: absolute;
+    top: 270px;
+    left: 65%;
+    transform: translateX(-40%) scaleX(0.3);
+    font-family: 'Odibee Sans', sans-serif;
+    font-size: 180;
+    font-weight: 400;
+    color: #0a1b6f0d;
   }
 
   .ruleList {
@@ -392,18 +571,18 @@ font-family: 'Noto Sans JP', sans-serif;
   }
 
   .wallpaperGrid {
-  display: flex;
-  justify-content: flex-start;
-  gap: 30px;
-  padding-left: 0;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: flex;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  height: 300px;
-}
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-left: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 300px;
+  }
 
   .wallpaperItem {
     flex: 0 0 auto;
@@ -413,20 +592,20 @@ font-family: 'Noto Sans JP', sans-serif;
     overflow: visible;
   }
 
-  .sectionTitlewallpaper{
+  .sectionTitlewallpaper {
     font-size: 22px;
-    color: #0A1B6F;
+    color: #0a1b6f;
   }
 
- .sectionDescriptionWallpaper{
+  .sectionDescriptionWallpaper {
     font-size: 14px;
   }
 
   .wallpaperDownloadButton {
-    bottom: -15px;
-    right: -15px;
-    width: 50px;
-    height: 50px;
+    bottom: -12px;
+    right: -12px;
+    width: 48px;
+    height: 48px;
   }
 
   .iconHeader {
@@ -437,13 +616,13 @@ font-family: 'Noto Sans JP', sans-serif;
     gap: 0;
   }
 
-  .sectionTitleicon{
+  .sectionTitleicon {
     font-size: 22px;
     margin-bottom: 0px;
-    color: #0A1B6F;
+    color: #0a1b6f;
   }
 
-  .sectionDescriptionIcon{
+  .sectionDescriptionIcon {
     font-size: 14px;
   }
 
@@ -472,8 +651,8 @@ font-family: 'Noto Sans JP', sans-serif;
   .downloadButton {
     bottom: 0px;
     right: 0px;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
 
   .headerHeader {
@@ -487,14 +666,13 @@ font-family: 'Noto Sans JP', sans-serif;
     margin-top: -10px;
   }
 
-
-  .sectionTitleheader{
+  .sectionTitleheader {
     font-size: 22px;
-    color: #0A1B6F;
+    color: #0a1b6f;
     margin-bottom: 0px;
   }
 
-  .sectionDescriptionHeader{
+  .sectionDescriptionHeader {
     font-size: 14px;
     margin-bottom: 15px;
   }
@@ -522,10 +700,53 @@ font-family: 'Noto Sans JP', sans-serif;
   }
 
   .headerDownloadButton {
-    bottom: -15px;
-    right: -15px;
-    width: 50px;
-    height: 50px;
+    bottom: -12px;
+    right: -12px;
+    width: 48px;
+    height: 48px;
   }
 }
 
+@media (max-width: 600px) {
+  .wallpaperDownloadButton,
+  .downloadButton,
+  .headerDownloadButton {
+    right: 4px;
+    bottom: 4px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    clip-path: none;
+  }
+
+  .wallpaperDownloadButton:hover,
+  .downloadButton:hover,
+  .headerDownloadButton:hover {
+    background: transparent;
+    transform: none;
+  }
+
+  .wallpaperDownloadButton:focus-visible,
+  .downloadButton:focus-visible,
+  .headerDownloadButton:focus-visible {
+    outline-offset: 3px;
+    background: transparent;
+  }
+
+  .wallpaperDownloadButton img,
+  .downloadButton img,
+  .headerDownloadButton img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallpaperDownloadButton,
+  .downloadButton,
+  .headerDownloadButton {
+    transition: none;
+  }
+}

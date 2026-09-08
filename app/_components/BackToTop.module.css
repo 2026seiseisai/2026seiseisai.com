@@ -1,0 +1,66 @@
+.button {
+  position: fixed;
+  right: clamp(16px, 4vw, 42px);
+  bottom: calc(clamp(18px, 4vw, 38px) + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-navy, #0a1b6f);
+  border-bottom: 3px solid var(--color-pink, #db5492);
+  background: var(--color-navy, #0a1b6f);
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 170, 190, 0.18);
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.button::after {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 10px;
+  height: 2px;
+  background: var(--color-teal, #00aabe);
+  content: "";
+  transform: rotate(-45deg);
+  transform-origin: right center;
+}
+
+.button:hover {
+  background: #14288b;
+  transform: translateY(-2px);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-pink, #db5492);
+  outline-offset: -5px;
+}
+
+@media (max-width: 767px) {
+  .button {
+    right: 14px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+}

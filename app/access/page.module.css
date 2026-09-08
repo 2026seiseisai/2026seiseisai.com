@@ -3,10 +3,27 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-family: var(--font-noto-sans-jp), sans-serif;
   color: #333;
   line-height: 1.6;
   background-color: #f9f9f9;
+}
+
+.schoolLink {
+  color: #0a1b6f;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
+}
+
+.schoolLink:hover {
+  color: #007a8a;
+}
+
+.schoolLink:focus-visible {
+  outline: 3px solid #db5492;
+  outline-offset: 3px;
 }
 
 .headerImage {

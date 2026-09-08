@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Anton } from 'next/font/google';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const anton = Anton({
   subsets: ['latin'],
@@ -19,7 +19,7 @@ const NAV_ITEMS = [
   { label: 'Exhibitions', href: '/exhibitions' },
   { label: 'Map', href: '/map' },
   { label: 'Goods', href: '/goods' },
-  { label: 'Blog', href: '/blog/blog一覧' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Special', href: '/special' },
   { label: 'Brochures', href: '/brochures' },
   { label: 'Archives', href: '/archives' },
@@ -33,7 +33,10 @@ const PUBLISHED_PATHS = new Set([
   '/theme&logo',
   '/access',
   '/events',
+  '/exhibitions',
   '/goods',
+  '/special',
+  '/blog',
   '/brochures',
   '/archives',
 ]);
@@ -50,6 +53,7 @@ function InfinityLogo() {
       viewBox="0 0 60 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <path
         d="M5.63046 18.7302L3.77588 18.8356V7.84282C3.77588 7.65549 3.93151 7.49353 4.12405 7.4828L5.63146 7.39597V18.7302H5.63046Z"
@@ -137,10 +141,65 @@ function InfinityLogo() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+
+    if (!menuOpen) {
+      returnFocusRef.current?.focus();
+      returnFocusRef.current = null;
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+
+    if (!returnFocusRef.current) {
+      returnFocusRef.current =
+        document.activeElement instanceof HTMLElement
+          ? document.activeElement
+          : menuButtonRef.current;
+    }
+
+    const getFocusableElements = () =>
+      Array.from(
+        drawerRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((element) => !element.hasAttribute('disabled'));
+
+    getFocusableElements()[0]?.focus();
+
+    const handleMenuKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleMenuKeyDown);
+
     return () => {
+      document.removeEventListener('keydown', handleMenuKeyDown);
       document.body.style.overflow = '';
     };
   }, [menuOpen]);
@@ -148,6 +207,7 @@ export default function Header() {
   return (
     <>
       <header
+        className="site-header"
         style={{
           position: 'fixed',
           top: 0,
@@ -165,6 +225,7 @@ export default function Header() {
       >
         <Link
           href="/"
+          aria-label="トップページ"
           onClick={() => {
             window.scrollTo(0, 0);
             setMenuOpen(false);
@@ -187,7 +248,7 @@ export default function Header() {
             className="header-cta-link"
             style={{
               fontFamily: HEADER_BUTTON_FONT,
-              color: '#DB5492',
+              color: '#F06AA6',
               textDecoration: 'none',
               fontSize: '18px',
               fontWeight: 500,
@@ -195,10 +256,8 @@ export default function Header() {
               padding: '0',
               border: 'none',
               whiteSpace: 'nowrap',
-              transition: 'opacity 0.2s',
+              transition: 'color 0.2s ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -210,7 +269,7 @@ export default function Header() {
             className="header-cta-link"
             style={{
               fontFamily: HEADER_BUTTON_FONT,
-              color: '#DB5492',
+              color: '#F06AA6',
               textDecoration: 'none',
               fontSize: '18px',
               fontWeight: 500,
@@ -218,10 +277,8 @@ export default function Header() {
               padding: '0',
               border: 'none',
               whiteSpace: 'nowrap',
-              transition: 'opacity 0.2s',
+              transition: 'color 0.2s ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.82')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -230,10 +287,12 @@ export default function Header() {
 
           <button
             type="button"
+            ref={menuButtonRef}
             className="menu-button"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
             aria-expanded={menuOpen}
+            aria-controls="site-menu"
             style={{
               background: 'none',
               border: 'none',
@@ -266,7 +325,7 @@ export default function Header() {
                   borderRadius: '4px',
                   backgroundColor: '#ffffff',
                   transform: menuOpen ? 'rotate(45deg)' : 'none',
-                  transition: 'all 0.22s ease',
+                  transition: 'top 0.22s ease, transform 0.22s ease',
                 }}
               />
               <span
@@ -292,7 +351,7 @@ export default function Header() {
                   borderRadius: '4px',
                   backgroundColor: '#ffffff',
                   transform: menuOpen ? 'rotate(-45deg)' : 'none',
-                  transition: 'all 0.22s ease',
+                  transition: 'top 0.22s ease, transform 0.22s ease',
                 }}
               />
             </span>
@@ -301,9 +360,13 @@ export default function Header() {
       </header>
 
       <div
+        id="site-menu"
+        className="site-menu"
         role="dialog"
+        aria-label="メニュー"
         aria-modal="true"
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
         style={{
           position: 'fixed',
           top: 0,
@@ -319,6 +382,7 @@ export default function Header() {
         onClick={() => setMenuOpen(false)}
       >
         <div
+          ref={drawerRef}
           style={{
             width: 'min(88vw, 440px)',
             maxWidth: '100%',
@@ -346,6 +410,7 @@ export default function Header() {
           >
             <Link
               href="/"
+              aria-label="トップページ"
               onClick={() => {
                 window.scrollTo(0, 0);
                 setMenuOpen(false);
@@ -489,11 +554,41 @@ export default function Header() {
           margin-left: auto;
         }
 
+        .header-cta-link {
+          display: inline-flex;
+          align-items: center;
+          min-height: 44px;
+          padding-inline: 2px;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: rgba(0, 170, 190, 0.18);
+        }
+
+        .header-cta-link:hover {
+          color: #ff8cba !important;
+        }
+
+        .site-header a:focus-visible,
+        .site-header button:focus-visible,
+        .site-menu a:focus-visible,
+        .site-menu button:focus-visible {
+          outline: 3px solid #00aabe;
+          outline-offset: 3px;
+        }
+
         .drawer-cta-wrap {
           display: flex;
           flex-direction: column;
           gap: 12px;
           margin-top: 24px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .site-menu,
+          .site-menu > div,
+          .menu-button span,
+          .header-cta-link {
+            transition: none !important;
+          }
         }
 
         @media (max-width: 1024px) {
@@ -513,15 +608,15 @@ export default function Header() {
           }
 
           .header-cta-link {
-            font-size: 12px !important;
+            font-size: clamp(12px, 3.7vw, 14px) !important;
           }
 
-          .menu-button {
+          .site-header .menu-button {
             width: 40px !important;
             height: 40px !important;
           }
 
-          header {
+          .site-header {
             padding: 0 16px !important;
           }
         }

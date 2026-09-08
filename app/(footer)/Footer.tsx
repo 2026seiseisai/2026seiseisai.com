@@ -27,7 +27,7 @@ const FOOTER_DATA = [
   {
     title: 'Contents',
     links: [
-      { label: 'Blog', href: '/blog/blog一覧' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Special', href: '/special' },
       { label: 'Brochures', href: '/brochures' },
       { label: 'Archives', href: '/archives' },
@@ -92,7 +92,10 @@ const PUBLISHED_PATHS = new Set([
   '/theme&logo',
   '/access',
   '/events',
+  '/exhibitions',
   '/goods',
+  '/special',
+  '/blog',
   '/brochures',
   '/archives',
   '/contact',
@@ -207,7 +210,7 @@ export default function Footer() {
                   gap: '6px',
                 }}
               >
-                <span style={{ fontSize: '11px', color: '#999' }}>
+                <span aria-hidden="true" style={{ fontSize: '11px', color: '#999' }}>
                   &gt;&gt;
                 </span>
                 お問い合わせ
@@ -226,7 +229,7 @@ export default function Footer() {
                   cursor: 'not-allowed',
                 }}
               >
-                <span style={{ fontSize: '11px', color: '#999999' }}>
+                <span aria-hidden="true" style={{ fontSize: '11px', color: '#999999' }}>
                   &gt;&gt;
                 </span>
                 お問い合わせ
@@ -246,7 +249,7 @@ export default function Footer() {
                   gap: '6px',
                 }}
               >
-                <span style={{ fontSize: '11px', color: '#999' }}>
+                <span aria-hidden="true" style={{ fontSize: '11px', color: '#999' }}>
                   &gt;&gt;
                 </span>
                 プライバシーポリシー
@@ -265,7 +268,7 @@ export default function Footer() {
                   cursor: 'not-allowed',
                 }}
               >
-                <span style={{ fontSize: '11px', color: '#999999' }}>
+                <span aria-hidden="true" style={{ fontSize: '11px', color: '#999999' }}>
                   &gt;&gt;
                 </span>
                 プライバシーポリシー
@@ -302,14 +305,16 @@ export default function Footer() {
             style={{
               display: 'grid',
               width: '100%',
-              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
               alignItems: 'stretch',
-              gap: 'clamp(12px, 2.2vw, 36px)',
             }}
           >
             {FOOTER_DATA.map((section) => (
-              <div key={section.title} style={{ textAlign: 'left' }}>
-                <h3
+              <div
+                key={section.title}
+                className={section.title === 'Contents' ? 'footer-contents' : undefined}
+                style={{ textAlign: 'left' }}
+              >
+                <h2
                   style={{
                     color: '#00AABE',
                     fontSize: '46px',
@@ -322,7 +327,7 @@ export default function Footer() {
                   }}
                 >
                   {section.title}
-                </h3>
+                </h2>
                 <ul
                   style={{
                     listStyle: 'none',
@@ -409,6 +414,7 @@ export default function Footer() {
                 ))}
                 <Link
                   href="https://tickets.seiseisai.com/"
+                  className="footer-ticket-link"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -436,17 +442,21 @@ export default function Footer() {
       </div>
 
       <style>{`
-        @media (max-width: 1100px) {
-          .footer-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          }
+        .site-footer a {
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: rgba(0, 170, 190, 0.18);
         }
 
-        @media (max-width: 768px) {
-          .footer-grid {
-            grid-template-columns: 1fr !important;
-          }
+        .site-footer a:focus-visible {
+          outline: 3px solid #00aabe;
+          outline-offset: 4px;
         }
+
+        .footer-ticket-link {
+          box-sizing: border-box;
+          min-height: 40px;
+        }
+
       `}</style>
     </footer>
   );

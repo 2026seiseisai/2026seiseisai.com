@@ -19,7 +19,7 @@ export const locations = {
   '1年A組': ExhibitionFloor.中学棟1階,
   '1年B組': ExhibitionFloor.中学棟1階,
   '1年C組': ExhibitionFloor.中学棟1階,
-  '1年E組': ExhibitionFloor.高校棟4階,
+  '1年E組': ExhibitionFloor.中学棟1階,
   '1年C組, 1年D組, 1年E組': ExhibitionFloor.中学棟1階,
   '2年A組': ExhibitionFloor.中学棟2階,
   '2年B組': ExhibitionFloor.中学棟2階,

@@ -33,6 +33,7 @@ const PUBLISHED_PATHS = new Set([
   '/theme&logo',
   '/access',
   '/events',
+  '/exhibitions',
   '/goods',
   '/brochures',
   '/archives',

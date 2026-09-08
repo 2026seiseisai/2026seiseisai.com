@@ -34,6 +34,7 @@ const PUBLISHED_PATHS = new Set([
   '/access',
   '/events',
   '/goods',
+  '/special',
   '/brochures',
   '/archives',
 ]);

@@ -18,20 +18,19 @@ body::-webkit-scrollbar {
 }
 
 .main::before {
-  content: "SPECIAL";
+  content: 'SPECIAL';
   position: absolute;
-  top: 350Px;
+  top: 350px;
   left: 65%;
   transform: translateX(-40%) scaleX(0.3);
   font-family: 'Odibee Sans', sans-serif;
   font-size: 450;
   font-weight: 400;
-  color: #0A1B6F0D;
+  color: #0a1b6f0d;
 }
 
-
 .title {
-  color: #0A1B6F;
+  color: #0a1b6f;
   font-size: 70px;
   font-weight: 700;
   text-align: left;
@@ -41,10 +40,14 @@ body::-webkit-scrollbar {
   white-space: normal;
 }
 
-.pcOnly { display: block; }
-.spOnly { display: none; }
+.pcOnly {
+  display: block;
+}
+.spOnly {
+  display: none;
+}
 .description {
-  color: #0B0E0F;
+  color: #0b0e0f;
   font-size: 30px;
   line-height: 1.8;
   max-width: 2004px;
@@ -66,17 +69,17 @@ body::-webkit-scrollbar {
 }
 
 .rules::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 10px;
   width: 6px;
   height: 320px;
-  background-color: #00AABE;
+  background-color: #00aabe;
 }
 
 .ruleTitle {
-  color: #DB5492;
+  color: #db5492;
   font-size: 50px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -85,7 +88,7 @@ body::-webkit-scrollbar {
 .ruleList {
   list-style-type: disc;
   padding-left: 2rem;
-  color: #0B0E0F;
+  color: #0b0e0f;
   font-size: 30px;
   line-height: 1.8;
 }
@@ -139,13 +142,19 @@ body::-webkit-scrollbar {
   margin-bottom: 30px;
 }
 
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .wallpaperDownloadButton {
   position: absolute;
   bottom: -30px;
   right: -30px;
   width: 60px;
   height: 60px;
-  background-color: #00AABE;
+  background-color: #00aabe;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -165,8 +174,8 @@ body::-webkit-scrollbar {
   margin-bottom: 20px;
 }
 
-.sectionTitleicon{
-font-family: 'Noto Sans JP', sans-serif;
+.sectionTitleicon {
+  font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
   font-size: 50px;
   line-height: 1.5;
@@ -176,8 +185,8 @@ font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 16px;
 }
 
-.sectionDescriptionIcon{
-font-family: 'Noto Sans JP', sans-serif;
+.sectionDescriptionIcon {
+  font-family: 'Noto Sans JP', sans-serif;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.5;
@@ -208,18 +217,23 @@ font-family: 'Noto Sans JP', sans-serif;
   border-radius: 50%;
 }
 
+.iconItem .iconImage {
+  border-radius: 50%;
+}
+
 .downloadButton {
   position: absolute;
   bottom: 0px;
   right: 0px;
   width: 60px;
   height: 60px;
-  background-color: #E60012;
+  background-color: #e60012;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 1;
 }
 
 .downloadButton img {
@@ -257,7 +271,7 @@ font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 16px;
 }
 
- .headerGrid {
+.headerGrid {
   display: flex;
   justify-content: flex-start;
   gap: 160px;
@@ -292,7 +306,7 @@ font-family: 'Noto Sans JP', sans-serif;
   right: -25px;
   width: 60px;
   height: 60px;
-  background-color: #DE0D22;
+  background-color: #de0d22;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -307,9 +321,8 @@ font-family: 'Noto Sans JP', sans-serif;
 
 /* スマホ対応 */
 @media (max-width: 480px) {
-
   body::-webkit-scrollbar {
-    display: none
+    display: none;
   }
 
   .main {
@@ -324,51 +337,55 @@ font-family: 'Noto Sans JP', sans-serif;
     font-size: 30px;
   }
 
-  .pcOnly { display: none; }
-  .spOnly { display: block; }
+  .pcOnly {
+    display: none;
+  }
+  .spOnly {
+    display: block;
+  }
   .description {
-  color: #0B0E0F;
-  font-size: 14px;
-  line-height: 1.6;
-  max-width: 2004px;
-  text-align: left;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 1;
-  white-space: pre-line;
-}
+    color: #0b0e0f;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 2004px;
+    text-align: left;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+    white-space: pre-line;
+  }
 
   .rules {
     padding-left: 10px;
   }
 
   .rules::before {
-   content: "";
-   position: absolute;
-   left: 0;
-   top: 0;
-   width: 6px;
-   height: 170px;
-   background-color: #00AABE;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 170px;
+    background-color: #00aabe;
   }
 
   .ruleTitle {
     font-size: 22px;
     text-align: left;
-    color: #DB5492;
+    color: #db5492;
     margin-bottom: -15px;
   }
 
   .main::before {
-   content: "SPECIAL";
-   position: absolute;
-   top: 270px;
-   left: 65%;
-   transform: translateX(-40%) scaleX(0.3);
-   font-family: 'Odibee Sans', sans-serif;
-   font-size: 180;
-   font-weight: 400;
-   color: #0A1B6F0D;
+    content: 'SPECIAL';
+    position: absolute;
+    top: 270px;
+    left: 65%;
+    transform: translateX(-40%) scaleX(0.3);
+    font-family: 'Odibee Sans', sans-serif;
+    font-size: 180;
+    font-weight: 400;
+    color: #0a1b6f0d;
   }
 
   .ruleList {
@@ -392,18 +409,18 @@ font-family: 'Noto Sans JP', sans-serif;
   }
 
   .wallpaperGrid {
-  display: flex;
-  justify-content: flex-start;
-  gap: 30px;
-  padding-left: 0;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: flex;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  height: 300px;
-}
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-left: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 300px;
+  }
 
   .wallpaperItem {
     flex: 0 0 auto;
@@ -413,12 +430,12 @@ font-family: 'Noto Sans JP', sans-serif;
     overflow: visible;
   }
 
-  .sectionTitlewallpaper{
+  .sectionTitlewallpaper {
     font-size: 22px;
-    color: #0A1B6F;
+    color: #0a1b6f;
   }
 
- .sectionDescriptionWallpaper{
+  .sectionDescriptionWallpaper {
     font-size: 14px;
   }
 
@@ -437,13 +454,13 @@ font-family: 'Noto Sans JP', sans-serif;
     gap: 0;
   }
 
-  .sectionTitleicon{
+  .sectionTitleicon {
     font-size: 22px;
     margin-bottom: 0px;
-    color: #0A1B6F;
+    color: #0a1b6f;
   }
 
-  .sectionDescriptionIcon{
+  .sectionDescriptionIcon {
     font-size: 14px;
   }
 
@@ -487,14 +504,13 @@ font-family: 'Noto Sans JP', sans-serif;
     margin-top: -10px;
   }
 
-
-  .sectionTitleheader{
+  .sectionTitleheader {
     font-size: 22px;
-    color: #0A1B6F;
+    color: #0a1b6f;
     margin-bottom: 0px;
   }
 
-  .sectionDescriptionHeader{
+  .sectionDescriptionHeader {
     font-size: 14px;
     margin-bottom: 15px;
   }
@@ -528,4 +544,3 @@ font-family: 'Noto Sans JP', sans-serif;
     height: 50px;
   }
 }
-

@@ -93,6 +93,7 @@ const PUBLISHED_PATHS = new Set([
   '/access',
   '/events',
   '/exhibitions',
+  '/map',
   '/goods',
   '/special',
   '/blog',

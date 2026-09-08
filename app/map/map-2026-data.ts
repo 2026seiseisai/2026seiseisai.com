@@ -138,7 +138,7 @@ export const mapFloors: readonly MapFloor[] = [
   {
     id: 'bazaar',
     building: 'bazaar',
-    label: '会場',
+    label: 'バザー',
     title: 'バザー',
     rooms: [
       { name: '1', label: '[1]', accent: MAP_COLORS.bazaar, exhibitions: ['フランクフルト'] },

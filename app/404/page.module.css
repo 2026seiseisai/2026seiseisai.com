@@ -14,6 +14,7 @@
     linear-gradient(135deg, rgb(219 84 146 / 5%) 0 18%, transparent 18% 100%),
     #f5f6fa;
   color: var(--ink);
+  font-family: var(--font-noto-sans-jp), "Noto Sans JP", sans-serif;
 }
 
 .panel {
@@ -336,6 +337,18 @@
   height: 4px;
   background: var(--teal);
   content: '';
+}
+
+.homeLink::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  content: '';
+  pointer-events: none;
 }
 
 .arrow {

@@ -27,7 +27,7 @@ const FOOTER_DATA = [
   {
     title: 'Contents',
     links: [
-      { label: 'Blog', href: '/blog/blog一覧' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Special', href: '/special' },
       { label: 'Brochures', href: '/brochures' },
       { label: 'Archives', href: '/archives' },
@@ -95,6 +95,7 @@ const PUBLISHED_PATHS = new Set([
   '/exhibitions',
   '/goods',
   '/special',
+  '/blog',
   '/brochures',
   '/archives',
   '/contact',

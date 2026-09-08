@@ -17,6 +17,15 @@ body::-webkit-scrollbar {
   padding: 40px 0px 0px 80px;
 }
 
+/* PCでは本文と素材一覧の左右の余白をそろえる。 */
+@media (min-width: 768px) {
+  .main {
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: 40px 48px 0;
+  }
+}
+
 .main::before {
   content: 'SPECIAL';
   position: absolute;
@@ -317,6 +326,29 @@ body::-webkit-scrollbar {
 .headerDownloadButton img {
   width: 32px;
   height: 32px;
+}
+
+@media (min-width: 768px) {
+  .wallpaperGrid,
+  .iconGrid,
+  .headerGrid {
+    justify-content: safe center;
+    padding-inline: 0 32px;
+  }
+
+  .iconItem,
+  .headerItem {
+    flex: 0 0 auto;
+  }
+
+  .description {
+    font-size: 24px;
+    max-width: 100%;
+  }
+
+  .description br {
+    display: none;
+  }
 }
 
 /* スマホ対応 */

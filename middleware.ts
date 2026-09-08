@@ -12,6 +12,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/archives', request.url));
   }
 
+  if (pathname === '/blog/blog一覧' || pathname === '/blog/blog%E4%B8%80%E8%A6%A7') {
+    const destination = request.nextUrl.clone();
+    destination.pathname = '/blog';
+    return NextResponse.redirect(destination);
+  }
+
   // Keep the published top page, News pages, and destination page reachable.
   if (
     pathname === '/' ||
@@ -19,6 +25,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/news/') ||
     pathname === '/events' ||
     pathname === '/goods' ||
+    pathname === '/blog' ||
+    pathname.startsWith('/blog/') ||
     pathname === '/access' ||
     pathname === '/contact' ||
     pathname === '/privacy-policy' ||

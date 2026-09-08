@@ -14,7 +14,7 @@ export const wallpaperItems: DownloadItem[] = [
   { svg: 'wallpaper1.svg', raster: 'wallpaper1.png', alt: 'Wallpaper 1' },
   { svg: 'wallpaper2.svg', raster: 'wallpaper2.png', alt: 'Wallpaper 2' },
   { svg: 'wallpaper3.svg', raster: 'wallpaper3.png', alt: 'Wallpaper 3' },
-  { svg: 'wallpaper4.svg', raster: 'wallpaper4.jpg', alt: 'Wallpaper 4' },
+  { svg: 'wallpaper4.svg', raster: 'wallpaper4.png', alt: 'Wallpaper 4' },
   { svg: 'wallpaper5.svg', raster: 'wallpaper5.png', alt: 'Wallpaper 5' },
 ];
 
@@ -24,5 +24,5 @@ export const iconItems: DownloadItem[] = [
 
 export const headerItems: DownloadItem[] = [
   { svg: 'header1.svg', raster: 'header1.png', alt: 'Header 1' },
-  { svg: 'header2.svg', raster: 'header2.jpg', alt: 'Header 2' },
+  { svg: 'header2.svg', raster: 'header2.png', alt: 'Header 2' },
 ];

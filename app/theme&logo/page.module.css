@@ -278,20 +278,25 @@
   }
 
   .downloadButton {
-    width: 48px;
-    min-width: 48px;
-    height: 48px;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
     gap: 0;
     margin: 0 4px 4px 0;
     padding: 0;
-    border: 1px solid var(--navy);
-    border-bottom: 3px solid var(--pink);
-    background: #ffffff;
-    clip-path: polygon(0 0, 100% 0, 100% 84%, 84% 100%, 0 100%);
+    border: 0;
+    background: transparent;
+    clip-path: none;
+    border-radius: 50%;
   }
 
   .downloadButton:hover {
-    background: #f1fbfc;
+    background: transparent;
+  }
+
+  .downloadButton:focus-visible {
+    outline-offset: 3px;
+    background: transparent;
   }
 
   .downloadFormat {

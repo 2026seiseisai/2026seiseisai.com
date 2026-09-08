@@ -300,7 +300,7 @@ const categories: Category[] = [
 ];
 
 const highQualityPamphletFile = '第62回菁々祭パンフレット高画質版.pdf';
-const highQualityPamphletHref = `https://raw.githubusercontent.com/2026seiseisai/2026seiseisai.com/main/public/brochures-data/${encodeURIComponent(highQualityPamphletFile)}`;
+const highQualityPamphletHref = `https://raw.githubusercontent.com/2026seiseisai/2026seiseisai.com/main/brochure-assets/${encodeURIComponent(highQualityPamphletFile)}`;
 
 const pamphlets = [
   {

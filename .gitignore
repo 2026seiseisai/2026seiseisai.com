@@ -50,5 +50,4 @@ next-env.d.ts
 
 !.env.example
 
-# large assets excluded from git (deploy separately; exceeds GitHub 100MB limit)
-public/brochures-data/第62回菁々祭パンフレット高画質版.pdf
+

@@ -303,7 +303,7 @@ const categories: Category[] = [
 const pamphlets = [
   {
     label: '高画質版',
-    size: '118.4MB',
+    size: '13.7MB',
     href: '/brochures-data/第62回菁々祭パンフレット高画質版.pdf',
   },
   {

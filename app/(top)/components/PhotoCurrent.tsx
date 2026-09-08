@@ -45,7 +45,7 @@ export default function PhotoCurrent() {
       aria-label="これまでの菁々祭の写真"
       data-paused={!isInView}
     >
-      <div className={styles.viewport} tabIndex={0} aria-label="菁々祭の写真一覧">
+      <div className={styles.viewport} role="group" tabIndex={0} aria-label="菁々祭の写真一覧">
         <div className={styles.track}>
           {[false, true].map((isCopy) => (
             <div

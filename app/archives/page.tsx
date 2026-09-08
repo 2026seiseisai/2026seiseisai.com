@@ -25,12 +25,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第61回-
-              <a className={`${styles.year} ${styles.color2025} `} href='https://2026seiseisai.pages.dev/2025'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2025'>
                 分秒
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2025' className={`${styles.color2025} ${styles.link} ${styles.color_button2025}`}>
-                https://2026seiseisai.pages.dev/2025
+              <a href='https://2026seiseisai.pages.dev/2025' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -39,7 +39,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2025}
-        alt="61th"
+        alt="第61回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -52,12 +52,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第60回-
-              <a className={`${styles.year} ${styles.color2024}`} href='https://2026seiseisai.pages.dev/2024'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2024'>
                 IGNITION
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2024' className={`${styles.color2024} ${styles.link} ${styles.color_button2024}`}>
-                https://2026seiseisai.pages.dev/2024
+              <a href='https://2026seiseisai.pages.dev/2024' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -66,7 +66,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2024}
-        alt="60th"
+        alt="第60回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -80,12 +80,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第59回-
-              <a className={`${styles.year} ${styles.color2023}`} href='https://2026seiseisai.pages.dev/2023'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2023'>
                 RESONANCE
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2023' className={`${styles.color2023} ${styles.link} ${styles.color_button2023}`}>
-                https://2026seiseisai.pages.dev/2023
+              <a href='https://2026seiseisai.pages.dev/2023' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -94,7 +94,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2023}
-        alt="59th"
+        alt="第59回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -108,12 +108,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第58回-
-              <a className={`${styles.year} ${styles.color2022}`} href='https://2026seiseisai.pages.dev/2022'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2022'>
                 四季彩
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2022' className={`${styles.color2022} ${styles.link} ${styles.color_button2022}`}>
-                https://2026seiseisai.pages.dev/2022
+              <a href='https://2026seiseisai.pages.dev/2022' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -122,7 +122,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2022}
-        alt="58th"
+        alt="第58回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -136,12 +136,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第57回-
-              <a className={`${styles.year} ${styles.color2021}`} href='https://2026seiseisai.pages.dev/2021'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2021'>
                 あをによし
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2021' className={`${styles.color2021} ${styles.link} ${styles.color_button2021}`}>
-                https://2026seiseisai.pages.dev/2021
+              <a href='https://2026seiseisai.pages.dev/2021' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -150,7 +150,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2021}
-        alt="57th"
+        alt="第57回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -164,12 +164,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第56回-
-              <a className={`${styles.year} ${styles.color2020}`} href='https://2026seiseisai.pages.dev/2020'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2020'>
                 bright
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2020' className={`${styles.color2020} ${styles.link} ${styles.color_button2020}`}>
-                https://2026seiseisai.pages.dev/2020
+              <a href='https://2026seiseisai.pages.dev/2020' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -178,7 +178,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2020}
-        alt="56th"
+        alt="第56回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -192,12 +192,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第55回-
-              <a className={`${styles.year} ${styles.color2019}`} href='https://2026seiseisai.pages.dev/2019'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2019'>
                 sailing
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2019' className={`${styles.color2019} ${styles.link} ${styles.color_button2019}`}>
-                https://2026seiseisai.pages.dev/2019
+              <a href='https://2026seiseisai.pages.dev/2019' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -206,7 +206,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2019}
-        alt="55th"
+        alt="第55回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -220,12 +220,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第53回-
-              <a className={`${styles.year} ${styles.color2017}`} href='https://2026seiseisai.pages.dev/2017'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2017'>
                 自由楽果
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2017' className={`${styles.color2017} ${styles.link} ${styles.color_button2017}`}>
-                https://2026seiseisai.pages.dev/2017
+              <a href='https://2026seiseisai.pages.dev/2017' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -234,7 +234,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2017}
-        alt="53th"
+        alt="第53回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -248,12 +248,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第52回-
-              <a className={`${styles.year} ${styles.color2016}`} href='https://2026seiseisai.pages.dev/2016'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2016'>
                 GO Together
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2016' className={`${styles.color2016} ${styles.link} ${styles.color_button2016}`}>
-                https://2026seiseisai.pages.dev/2016
+              <a href='https://2026seiseisai.pages.dev/2016' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -262,7 +262,7 @@ export default function Archives() {
           </div>
           <Image
         src={logo_2016}
-        alt="52th"
+        alt="第52回菁々祭のロゴ"
         className={styles.logo}
         width={900}
         height={215}
@@ -275,12 +275,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第51回-
-              <a className={`${styles.year} ${styles.color2015}`} href='https://web.archive.org/web/20150915024420/http://www.seisei51st.com:80/'>
+              <a className={styles.year} href='https://web.archive.org/web/20150915024420/http://www.seisei51st.com:80/'>
                 Re:Member
               </a>
               <br />
-              <a href='https://web.archive.org/web/20150915024420/http://www.seisei51st.com:80/' className={`${styles.color2015} ${styles.link} ${styles.color_button2015}`}>
-                http://www.seisei51st.com:80/(Internet Archive)
+              <a href='https://web.archive.org/web/20150915024420/http://www.seisei51st.com:80/' className={styles.link}>
+                Internet Archiveで見る <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -291,12 +291,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第49回-
-              <a className={`${styles.year} ${styles.color2013}`} href='https://2026seiseisai.pages.dev/2013'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2013'>
                 漢度良好
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2013' className={`${styles.color2013} ${styles.link} ${styles.color_button2013}`}>
-                https://2026seiseisai.pages.dev/2013
+              <a href='https://2026seiseisai.pages.dev/2013' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -307,12 +307,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第48回-
-              <a className={`${styles.year} ${styles.color2012}`} href='https://2026seiseisai.pages.dev/2012'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2012'>
                 流星〜二日間の輝き〜
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2012' className={`${styles.color2012} ${styles.link} ${styles.color_button2012}`}>
-                https://2026seiseisai.pages.dev/2012
+              <a href='https://2026seiseisai.pages.dev/2012' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -323,12 +323,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第47回-
-              <a className={`${styles.year} ${styles.color2011}`} href='https://2026seiseisai.pages.dev/2011'>
+              <a className={styles.year} href='https://2026seiseisai.pages.dev/2011'>
                 刻〜EndloseZeit
               </a>
               <br />
-              <a href='https://2026seiseisai.pages.dev/2011' className={`${styles.color2011} ${styles.link} ${styles.color_button2011}`}>
-                https://2026seiseisai.pages.dev/2011
+              <a href='https://2026seiseisai.pages.dev/2011' className={styles.link}>
+                過去サイトを開く <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -339,12 +339,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第45回-
-              <a className={`${styles.year} ${styles.color2009}`} href='https://web.archive.org/web/20090909062151/http://www.seisei45.org/home.html'>
+              <a className={styles.year} href='https://web.archive.org/web/20090909062151/http://www.seisei45.org/home.html'>
                 行け!!Men!!
               </a>
               <br />
-              <a href='https://web.archive.org/web/20090909062151/http://www.seisei45.org/home.html' className={`${styles.color2009} ${styles.link} ${styles.color_button2009}`}>
-                http://www.seisei45.org/home.html(Internet Archive)
+              <a href='https://web.archive.org/web/20090909062151/http://www.seisei45.org/home.html' className={styles.link}>
+                Internet Archiveで見る <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -355,12 +355,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第44回-
-              <a className={`${styles.year} ${styles.color2008}`} href='https://web.archive.org/web/20080918072948/http://seiseisai44.net/'>
+              <a className={styles.year} href='https://web.archive.org/web/20080918072948/http://seiseisai44.net/'>
                 ただいまあきない中~無法地帯へようこそ~
               </a>
               <br />
-              <a href='https://web.archive.org/web/20080918072948/http://seiseisai44.net/' className={`${styles.color2008} ${styles.link} ${styles.color_button2008}`}>
-                http://seiseisai44.net/(Internet Archive)
+              <a href='https://web.archive.org/web/20080918072948/http://seiseisai44.net/' className={styles.link}>
+                Internet Archiveで見る <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>
@@ -371,12 +371,12 @@ export default function Archives() {
           <h2>
             <div className={styles.center}>
               第38回-
-              <a className={`${styles.year} ${styles.color2002}`} href='https://web.archive.org/web/20020808060607/http://seisei.info/tdj/'>
+              <a className={styles.year} href='https://web.archive.org/web/20020808060607/http://seisei.info/tdj/'>
                 101%
               </a>
               <br />
-              <a href='https://web.archive.org/web/20020808060607/http://seisei.info/tdj/' className={`${styles.color2002} ${styles.link} ${styles.color_button2002}`}>
-                http://seisei.info/tdj/(Internet Archive)
+              <a href='https://web.archive.org/web/20020808060607/http://seisei.info/tdj/' className={styles.link}>
+                Internet Archiveで見る <span aria-hidden="true">↗</span>
               </a>
             </div>
           </h2>

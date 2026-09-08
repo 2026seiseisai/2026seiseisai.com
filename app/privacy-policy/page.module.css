@@ -215,24 +215,3 @@
     text-align: left;
   }
 }
-
-@media (max-width: 390px) {
-  .hero {
-    min-height: 190px;
-    padding-right: 18px;
-    padding-left: 18px;
-  }
-
-  .title {
-    font-size: clamp(37px, 12vw, 47px);
-  }
-
-  .subtitle {
-    font-size: 15px;
-  }
-
-  .content {
-    padding-right: 18px;
-    padding-left: 18px;
-  }
-}

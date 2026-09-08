@@ -22,38 +22,36 @@ const DaySwitcher = ({
 }) => {
   const buttonWrapperCN = 'flex flex-col items-center';
   const buttonCommonCN =
-    'font-bold px-6 py-2 text-sm md:px-8 py-4 md:text-xl rounded-full';
-  const buttonLabelCN = 'text-sm md:text-xl';
-  const currentCN = 'bg-navy text-white';
-  const inCurrentCN = 'bg-gray-200 text-white';
+    'font-bold px-6 py-2 text-sm md:px-8 md:py-4 md:text-xl rounded-none border border-navy transition-colors';
+  const buttonLabelCN = 'text-sm md:text-xl text-navy';
+  const currentCN = 'bg-navy text-white border-b-4 border-pink';
+  const inCurrentCN = 'bg-slate-100 text-navy hover:bg-slate-200';
   const switcherArrowCN =
-    'text-6xl text-navy px-2 md:px-16 disabled:text-gray-200';
+    'text-6xl text-navy px-2 md:px-16 disabled:text-gray-300 hover:text-pink transition-colors rounded-none';
 
   return (
     <div
-      role="tablist"
+      role="group"
       aria-label="イベント日程"
       className={`flex gap-4 md:gap-8 justify-center ${className}`}
     >
       <button
+        type="button"
         className={switcherArrowCN}
         disabled={currentDay === 'Day1'}
         onClick={() => {
           setCurrentDay('Day1');
         }}
         aria-label="前の日へ"
-        aria-controls="day-tablist"
+        aria-controls="day-schedule"
       >
         {'<'}
       </button>
       {/* 1日目 */}
       <button
         type="button"
-        role="tab"
-        id="tab-day1"
-        aria-selected={currentDay === 'Day1'}
-        aria-controls="panel-day1"
-        tabIndex={currentDay === 'Day1' ? 0 : -1}
+        aria-pressed={currentDay === 'Day1'}
+        aria-controls="day-schedule"
         onClick={() => setCurrentDay('Day1')}
         className={buttonWrapperCN}
       >
@@ -72,11 +70,8 @@ const DaySwitcher = ({
       {/* 2日目 */}
       <button
         type="button"
-        role="tab"
-        id="tab-day2"
-        aria-selected={currentDay === 'Day2'}
-        aria-controls="panel-day2"
-        tabIndex={currentDay === 'Day2' ? 0 : -1}
+        aria-pressed={currentDay === 'Day2'}
+        aria-controls="day-schedule"
         onClick={() => setCurrentDay('Day2')}
         className={buttonWrapperCN}
       >
@@ -92,10 +87,11 @@ const DaySwitcher = ({
         </span>
       </button>
       <button
+        type="button"
         className={switcherArrowCN}
         disabled={currentDay === 'Day2'}
-        aria-label="前の日へ"
-        aria-controls="day-tablist"
+        aria-label="次の日へ"
+        aria-controls="day-schedule"
         onClick={() => {
           setCurrentDay('Day2');
         }}
@@ -592,6 +588,9 @@ export default function EventsPage() {
       ></DaySwitcher>
       <div
         ref={scheduleViewportRef}
+        id="day-schedule"
+        role="region"
+        aria-label="イベント日程表"
         className="relative overflow-x-auto w-full lg:cursor-grab lg:active:cursor-grabbing"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
@@ -603,7 +602,7 @@ export default function EventsPage() {
           aria-hidden="true"
           className={`pointer-events-none hidden lg:flex absolute inset-0 z-10 items-start justify-center pt-8 bg-black/35 text-sm text-white transition-opacity duration-500 ease-out ${showScrollHint ? 'opacity-100' : 'opacity-0'}`}
         >
-          <span className="rounded-full bg-black/65 px-4 py-2 shadow-lg">
+          <span className="rounded-none border-b-2 border-pink bg-navy/90 px-4 py-2 shadow-lg">
             横にスクロールできます&nbsp; →
           </span>
         </div>
@@ -649,7 +648,7 @@ export default function EventsPage() {
                 <summary className="text-xl text-navy relative pr-16">
                   <span className="text-black">{event.name}</span>
                   {event.ticket && (
-                    <span className="absolute top-1/2 -translate-y-1/2 right-0 bg-pink rounded-full text-white text-base px-3 py-1">
+                    <span className="absolute top-1/2 -translate-y-1/2 right-0 bg-navy border border-pink rounded-none text-white text-base px-3 py-1">
                       要整理券
                     </span>
                   )}

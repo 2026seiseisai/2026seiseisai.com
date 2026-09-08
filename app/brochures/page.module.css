@@ -1,15 +1,17 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
 
 .page {
-  --color-teal: #1f6f83;
-  --color-navy: #1c3a5e;
-  --color-navy-hover: #142a45;
-  --color-navy-light: #eef2f7;
-  --color-pink: #c2255c;
-  --color-pink-light: #fdeef3;
-  --color-text: #374151;
-  --color-text-light: #6b7280;
-  --color-border: #e5e7eb;
+  --color-teal: #00aabe;
+  --color-teal-text: #007a8a;
+  --color-navy: #0a1b6f;
+  --color-navy-hover: #07134f;
+  --color-navy-light: #f1f4fb;
+  --color-pink: #db5492;
+  --color-pink-text: #a62f6b;
+  --color-pink-light: #fff1f7;
+  --color-text: #1f2937;
+  --color-text-light: #59657a;
+  --color-border: #d7deeb;
 
   width: 100%;
   max-width: 1200px;
@@ -64,7 +66,7 @@
 .headingText h2 {
   font-size: 1.9rem;
   font-weight: 800;
-  color: var(--color-teal);
+  color: var(--color-teal-text);
   margin: 0;
 }
 
@@ -112,7 +114,9 @@
   background: var(--color-navy);
   color: #fff;
   padding: 8px 22px;
-  border-radius: 20px;
+  border: 1px solid var(--color-navy);
+  border-bottom: 3px solid var(--color-pink);
+  border-radius: 2px;
   font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
@@ -146,14 +150,14 @@
 }
 
 .accordionItem {
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 /* ボタンデザイン：
    - 角丸を控えめにして、四角に近い印象に
    - 左側にカラーの縦バーを添えてアクセントに
    - 淡い背景色＋濃い文字色の「タグ」のような見た目
-   - +/− アイコンは丸い枠で囲み、独立したボタンのように見せる */
+   - +/− アイコンは小さな角型の枠で囲み、独立したボタンのように見せる */
 .accordionHeader {
   width: 100%;
   display: flex;
@@ -163,7 +167,7 @@
   color: var(--color-navy);
   border: none;
   border-left: 5px solid var(--color-navy);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 12px 14px 12px 18px;
   font-size: 1rem;
   font-weight: 700;
@@ -184,7 +188,7 @@
 
 .accordionHeaderOpen {
   background: var(--color-pink-light);
-  color: var(--color-pink);
+  color: var(--color-pink-text);
   border-left-color: var(--color-pink);
 }
 
@@ -204,8 +208,9 @@
   justify-content: center;
   width: 26px;
   height: 26px;
-  border-radius: 50%;
+  border-radius: 2px;
   background: rgba(255, 255, 255, 0.6);
+  color: var(--color-navy);
   font-size: 1.1rem;
   font-weight: 800;
   line-height: 1;
@@ -268,7 +273,9 @@
   font-size: 0.75rem;
   font-weight: 700;
   padding: 6px 14px;
-  border-radius: 20px;
+  border: 1px solid var(--color-navy);
+  border-bottom: 3px solid var(--color-pink);
+  border-radius: 2px;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.2s ease;
@@ -331,52 +338,56 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: var(--color-teal);
+  background: var(--color-navy);
   color: #fff;
-  border: none;
+  border: 1px solid var(--color-teal);
+  border-bottom: 3px solid var(--color-pink);
   font-size: 0.72rem;
   font-weight: 700;
   padding: 6px 10px;
-  border-radius: 20px;
+  border-radius: 2px;
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
 }
 
-  .bulkDownloadButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--color-teal);
-    color: #fff;
-    border: none;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-  }
+.bulkDownloadButton:hover {
+  background: var(--color-navy-hover);
+  transform: translateY(-1px);
+}
 
-  .bulkDownloadButton:hover {
-    opacity: 0.85;
-  }
+.bulkDownloadButton:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
 
-  .partDownloadButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-navy-light);
-    color: var(--color-navy);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 20px;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.2s ease;
-  }
+.partDownloadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-navy-light);
+  color: var(--color-navy);
+  border: 1px solid var(--color-navy);
+  border-bottom: 3px solid var(--color-teal);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.partDownloadButton:hover {
+  background: #e3e9f5;
+}
+
+.partDownloadButton:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
 
 /* --- レスポンシブ対応 --- */
 @media (max-width: 700px) {

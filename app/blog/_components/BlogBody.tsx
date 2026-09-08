@@ -72,7 +72,11 @@ function plainInlineText(value: string): string {
 }
 
 function normalizeForComparison(value: string): string {
-  return plainInlineText(value).replace(/^\$/, '').trim();
+  return plainInlineText(value)
+    .normalize('NFKC')
+    .replace(/[\s。、，．,.]/gu, '')
+    .replace(/^\$/, '')
+    .trim();
 }
 
 function contentWithoutTitleHeading(markdown: string, post: BlogPost): string {

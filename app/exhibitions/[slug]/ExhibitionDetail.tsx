@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import Frame303Icon from './Frame303.svg';
 import TwitterIcon from './Twitter.svg';
 import InstagramIcon from './Instagram.svg';
@@ -14,12 +15,19 @@ interface ExhibitionDetailProps {
 }
 
 export default function ExhibitionDetail({ slug }: ExhibitionDetailProps) {
-  const decodedSlug = decodeURIComponent(slug);
-  const exhibition = exhibitionData[decodedSlug];
+  let decodedSlug = slug;
 
-  if (!exhibition) {
-    return <div className={styles.notFound}>団体が見つかりませんでした。</div>;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    notFound();
   }
+
+  if (!Object.hasOwn(exhibitionData, decodedSlug)) {
+    notFound();
+  }
+
+  const exhibition = exhibitionData[decodedSlug];
 
   const hasEvents = exhibition.events && exhibition.events.length > 0;
 

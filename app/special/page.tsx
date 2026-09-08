@@ -1,5 +1,6 @@
 ﻿import styles from './page.module.css';
 import { Odibee_Sans } from 'next/font/google';
+import downloadPicture from '../theme&logo/DLPict.svg';
 import {
   DOWNLOADS_BASE_PATH,
   headerItems,
@@ -64,9 +65,11 @@ export default function SpecialPage() {
               <a
                 href={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
                 download
+                aria-label={`${item.alt}をダウンロード`}
+                title={`${item.alt}をダウンロード`}
                 className={styles.wallpaperDownloadButton}
               >
-                <img src="/special/Frame_492_b.svg" alt="Download" />
+                <img src={downloadPicture.src} alt="" aria-hidden="true" />
               </a>
             </div>
           ))}
@@ -91,9 +94,11 @@ export default function SpecialPage() {
               <a
                 href={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
                 download
+                aria-label={`${item.alt}をダウンロード`}
+                title={`${item.alt}をダウンロード`}
                 className={styles.downloadButton}
               >
-                <img src="/special/Frame_492_r.svg" alt="Download" />
+                <img src={downloadPicture.src} alt="" aria-hidden="true" />
               </a>
             </div>
           ))}
@@ -118,9 +123,11 @@ export default function SpecialPage() {
               <a
                 href={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
                 download
+                aria-label={`${item.alt}をダウンロード`}
+                title={`${item.alt}をダウンロード`}
                 className={styles.headerDownloadButton}
               >
-                <img src="/special/Frame_492_r.svg" alt="Download" />
+                <img src={downloadPicture.src} alt="" aria-hidden="true" />
               </a>
             </div>
           ))}

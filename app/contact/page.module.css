@@ -7,7 +7,7 @@
   --line: #dfe3ee;
   min-height: 60vh;
   padding: clamp(56px, 5.25vw, 76px) 32px clamp(96px, 12vw, 160px);
-  overflow: visible;
+  overflow-x: clip;
   background: #fff;
   color: var(--ink);
 }

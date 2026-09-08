@@ -37,13 +37,13 @@ export type HomeNewsArticle = {
 function SectionLabel({ text }: { text: string }) {
   return (
     <div className="section-label-wrap">
-      <div className="section-label-box">
+      <h2 className="section-label-box">
         <span className="section-label-part section-label-part-blue">
           {text}
         </span>
         <span className="section-label-part section-label-part-pink" />
         <span className="section-label-part section-label-part-teal" />
-      </div>
+      </h2>
     </div>
   );
 }

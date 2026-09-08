@@ -107,7 +107,7 @@
 .graphicStage::after {
   position: absolute;
   inset: 15% 13%;
-  background: url('../theme&logo/Logo-color.svg') center / contain no-repeat;
+  background: url('/images/logo-color.svg') center / contain no-repeat;
   content: '';
   pointer-events: none;
   transform: rotate(-4deg);

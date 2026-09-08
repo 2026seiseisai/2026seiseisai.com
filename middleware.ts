@@ -18,7 +18,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(destination);
   }
 
-  // Keep the published top page, News pages, and destination page reachable.
   if (
     pathname === '/' ||
     pathname === '/news' ||
@@ -38,7 +37,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/exhibitions/') ||
     pathname === '/archives' ||
     pathname === '/brochures' ||
-    pathname === '/404dummy'
+    pathname === '/404'
   ) {
     return NextResponse.next();
   }
@@ -52,7 +51,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  return NextResponse.redirect(new URL('/404dummy', request.url));
+  return NextResponse.rewrite(new URL('/404', request.url), { status: 404 });
 }
 
 export const config = {

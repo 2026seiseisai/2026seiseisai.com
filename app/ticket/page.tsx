@@ -1,5 +1,5 @@
-﻿import NotFoundDummyPage from '../404dummy/page';
+import { notFound } from 'next/navigation';
 
 export default function TicketPage() {
-  return <NotFoundDummyPage />;
+  notFound();
 }

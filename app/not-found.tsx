@@ -1,5 +1,5 @@
-import NotFoundPage from './404/page';
+import NotFoundContent from './404/NotFoundContent';
 
 export default function NotFound() {
-  return <NotFoundPage />;
+  return <NotFoundContent />;
 }

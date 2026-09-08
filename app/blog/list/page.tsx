@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BlogCard from '../_components/BlogCard';
-import BackToTop from '../_components/BackToTop';
+import BackToTop from '../../_components/BackToTop';
 import { BLOG_YEARS, getPosts } from '../_lib/posts';
 import styles from './page.module.css';
 

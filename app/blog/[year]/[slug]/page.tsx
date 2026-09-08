@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 
 import BlogBody, { getBlogHeadings } from '../../_components/BlogBody';
 import BlogCard from '../../_components/BlogCard';
-import BackToTop from '../../_components/BackToTop';
+import BackToTop from '../../../_components/BackToTop';
 import {
   formatBlogDate,
   getPost,
@@ -105,11 +105,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </div>
         </header>
 
-        <div className={styles.contentGrid}>
-          <aside className={styles.sidebar}>
-            <nav className={styles.toc} aria-labelledby="blog-toc-title">
-              <h2 id="blog-toc-title">目次</h2>
-              {headings.length > 0 ? (
+        <div className={`${styles.contentGrid} ${headings.length === 0 ? styles.contentGridWithoutToc : ''}`}>
+          {headings.length > 0 ? (
+            <aside className={styles.sidebar}>
+              <nav className={styles.toc} aria-labelledby="blog-toc-title">
+                <h2 id="blog-toc-title">目次</h2>
                 <ol>
                   {headings.map((heading) => (
                     <li
@@ -120,11 +120,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     </li>
                   ))}
                 </ol>
-              ) : (
-                <p className={styles.tocEmpty}>見出しはありません</p>
-              )}
-            </nav>
-          </aside>
+              </nav>
+            </aside>
+          ) : null}
 
           <section className={styles.bodyColumn} aria-label="記事本文">
             <BlogBody post={post} />

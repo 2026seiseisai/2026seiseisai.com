@@ -118,6 +118,12 @@
   margin-top: 44px;
 }
 
+.contentGridWithoutToc {
+  display: block;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
 .bodyColumn {
   grid-area: body;
   min-width: 0;
@@ -204,12 +210,6 @@
 
 .toc a:hover {
   color: #b52d70;
-}
-
-.tocEmpty {
-  margin: 0;
-  color: #6c7280;
-  font-size: 12px;
 }
 
 .postNav {

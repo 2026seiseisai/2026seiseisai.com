@@ -2,6 +2,8 @@ import type { StaticImageData } from 'next/image';
 
 import { blogData } from '../blogs/blog-data';
 import StampBookImage from '../blogs/62/5/IMG_3398.jpeg';
+import { djPost } from '../blogs/62/7/post';
+import { bandPost } from '../blogs/62/8/post';
 
 export type BlogPost = {
   key: string;
@@ -21,6 +23,13 @@ export type BlogPost = {
 export const BLOG_YEARS: readonly string[] = ['62', '61', '60', '59'];
 
 type RawBlogPost = (typeof blogData)[string];
+
+// New drafts live alongside their images; the archived generated data stays intact.
+const ALL_BLOG_DATA: Readonly<Record<string, RawBlogPost>> = {
+  ...blogData,
+  '62/07': djPost,
+  '62/08': bandPost,
+};
 
 const BLOG_KEY_PATTERN = /^(\d{2})\/(\d{2})$/;
 const BLOG_DATE_PATTERN = /^(\d{4})\.(\d{2})\.(\d{2})$/;
@@ -99,7 +108,7 @@ function toBlogPost(key: string, rawPost: RawBlogPost): BlogPost | undefined {
   };
 }
 
-const POSTS: readonly BlogPost[] = Object.entries(blogData).flatMap(([key, rawPost]) => {
+const POSTS: readonly BlogPost[] = Object.entries(ALL_BLOG_DATA).flatMap(([key, rawPost]) => {
   const post = toBlogPost(key, rawPost);
   return post ? [post] : [];
 });
@@ -133,9 +142,9 @@ export function getPost(year: string, slug: string): BlogPost | undefined {
 
   const key = `${year}/${slug}`;
 
-  if (!Object.hasOwn(blogData, key)) return undefined;
+  if (!Object.hasOwn(ALL_BLOG_DATA, key)) return undefined;
 
-  const rawPost = blogData[key];
+  const rawPost = ALL_BLOG_DATA[key];
   return rawPost ? toBlogPost(key, rawPost) : undefined;
 }
 

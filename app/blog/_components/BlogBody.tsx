@@ -22,11 +22,14 @@ type ImageMatch = {
 type ParsedHeading = Pick<BlogHeading, 'level' | 'text'>;
 
 const IMAGE_LINE_PATTERN = /^!\[([\s\S]*?)\]\(([^)\r\n]+)\)\s*$/;
+const VIDEO_LINK_LINE_PATTERN = /^\[([^\]\r\n]+)\]\(([^)\r\n]+)\)$/;
 const HEADING_LINE_PATTERN = /^(#{1,6})[ \t]+(.+?)\s*$/;
 const UNORDERED_ITEM_PATTERN = /^ {0,3}[-*+][ \t]+(.+)$/;
 const ORDERED_ITEM_PATTERN = /^ {0,3}\d+[.)][ \t]+(.+)$/;
 const COLOR_SPAN_PATTERN = /^<span\s+style\s*=\s*\{\{\s*color\s*:\s*(?:(?:["'“”‘’])\s*)?(#[\da-f]{3,8})\s*(?:(?:["'“”‘’])\s*)?\}\}\s*>/i;
 const MARKDOWN_IMAGE_PATTERN = /!\[([\s\S]*?)\]\(([^)\r\n]+)\)/g;
+const YOUTUBE_HOSTS = new Set(['youtube.com', 'www.youtube.com', 'youtu.be']);
+const YOUTUBE_VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
 const DOCUMENT_HREFS: Readonly<Record<string, Readonly<Record<string, string>>>> = {
   '59/03': {
     '%E7%95%AA%E8%8C%B6%E5%85%9A%E7%AC%AC36%E5%8F%B7%EF%BC%882022%E5%B9%B4%E7%99%BA%E8%A1%8C%EF%BC%89.pdf':
@@ -44,6 +47,9 @@ const INLINE_COLOR_OVERRIDES: Readonly<Record<string, string>> = {
   '#ffa500': '#8a4b00',
   '#ffff00': '#7a5f00',
   '#1e90ff': '#146a8f',
+  '#ffd770': '#8a6500',
+  '#40e0d0': '#00786e',
+  '#5f9ea0': '#356d70',
 };
 
 function normalizeMarkdown(markdown: string): string {
@@ -164,10 +170,63 @@ function isHorizontalRule(line: string): boolean {
   return /^ {0,3}(?:\*\s*){3,}$/.test(line) || /^ {0,3}(?:-\s*){3,}$/.test(line);
 }
 
+type VideoLinkMatch = {
+  label: string;
+  videoId: string;
+};
+
+function youtubeVideoId(value: string): string | undefined {
+  try {
+    const url = new URL(value.trim());
+
+    if (
+      url.protocol !== 'https:' ||
+      url.username ||
+      url.password ||
+      url.port ||
+      !YOUTUBE_HOSTS.has(url.hostname.toLowerCase())
+    ) {
+      return undefined;
+    }
+
+    if (url.hostname.toLowerCase() === 'youtu.be') {
+      const pathSegments = url.pathname.split('/').filter(Boolean);
+      const videoId = pathSegments.length === 1 ? pathSegments[0] : undefined;
+
+      return videoId && YOUTUBE_VIDEO_ID_PATTERN.test(videoId) ? videoId : undefined;
+    }
+
+    if (url.pathname !== '/watch' && url.pathname !== '/watch/') return undefined;
+
+    const videoIds = url.searchParams.getAll('v');
+    const videoId = videoIds.length === 1 ? videoIds[0] : undefined;
+
+    return videoId && YOUTUBE_VIDEO_ID_PATTERN.test(videoId) ? videoId : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function videoFromLine(line: string): VideoLinkMatch | undefined {
+  const match = VIDEO_LINK_LINE_PATTERN.exec(line.trim());
+
+  if (!match) return undefined;
+
+  const videoId = youtubeVideoId(match[2]);
+
+  if (!videoId) return undefined;
+
+  return {
+    label: match[1].trim(),
+    videoId,
+  };
+}
+
 function isBlockStart(line: string): boolean {
   return Boolean(
     headingFromLine(line) ||
       imageFromLine(line) ||
+      videoFromLine(line) ||
       /^ {0,3}```/.test(line) ||
       UNORDERED_ITEM_PATTERN.test(line) ||
       ORDERED_ITEM_PATTERN.test(line) ||
@@ -431,6 +490,23 @@ function renderFigure(post: BlogPost, imageMatch: ImageMatch, key: string): Reac
   );
 }
 
+function renderVideoEmbed(video: VideoLinkMatch, key: string): ReactNode {
+  const title = plainInlineText(video.label) || 'YouTube動画';
+
+  return (
+    <div className={styles.videoEmbed} key={key}>
+      <iframe
+        src={`https://www.youtube.com/embed/${video.videoId}`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
+    </div>
+  );
+}
+
 function renderMarkdown(markdown: string, post: BlogPost): ReactNode[] {
   const normalized = contentWithoutTitleHeading(markdown, post);
 
@@ -473,6 +549,15 @@ function renderMarkdown(markdown: string, post: BlogPost): ReactNode[] {
           {renderInline(heading.text, post, `heading-${blockIndex}`)}
         </HeadingTag>,
       );
+      lineIndex += 1;
+      blockIndex += 1;
+      continue;
+    }
+
+    const video = videoFromLine(line);
+
+    if (video) {
+      nodes.push(renderVideoEmbed(video, `video-${blockIndex}`));
       lineIndex += 1;
       blockIndex += 1;
       continue;

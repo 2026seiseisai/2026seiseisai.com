@@ -189,6 +189,8 @@
   line-height: 1.55;
   text-wrap: pretty;
   white-space: pre-line;
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
 }
 
 .alert {

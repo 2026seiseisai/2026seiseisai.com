@@ -1,12 +1,23 @@
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { NextResponse } from 'next/server';
 import { exhibitionData } from '@/app/exhibitions/exhibition-data';
+import {
+  exhibitionAwardPassword,
+  exhibitionAwardPasswordHeader,
+} from '@/app/exhibition-award/auth';
 
 type Vote = { id: string; exhibition: string; createdAt: string };
 type VotesStore = NonNullable<CloudflareEnv['EXHIBITION_AWARD_VOTES']>;
 
 function getVotesStore() {
   return getCloudflareContext().env.EXHIBITION_AWARD_VOTES;
+}
+
+function isAuthorized(request: Request) {
+  return (
+    request.headers.get(exhibitionAwardPasswordHeader) ===
+    exhibitionAwardPassword
+  );
 }
 
 async function getVoteKeys(store: VotesStore) {
@@ -25,6 +36,8 @@ async function getVoteKeys(store: VotesStore) {
 }
 
 export async function POST(request: Request) {
+  if (!isAuthorized(request))
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   const vote = (await request.json()) as Partial<Vote>;
   if (
     !vote.id ||
@@ -46,7 +59,9 @@ export async function POST(request: Request) {
   return NextResponse.json({ ok: true });
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  if (!isAuthorized(request))
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   const store = getVotesStore();
   if (!store)
     return NextResponse.json(
@@ -70,7 +85,9 @@ export async function GET() {
   });
 }
 
-export async function DELETE() {
+export async function DELETE(request: Request) {
+  if (!isAuthorized(request))
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   const store = getVotesStore();
   if (!store)
     return NextResponse.json(

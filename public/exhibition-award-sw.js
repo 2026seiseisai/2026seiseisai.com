@@ -1,4 +1,4 @@
-const CACHE_NAME = 'seiseisai-exhibition-award-v1';
+const CACHE_NAME = 'seiseisai-exhibition-award-v2';
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.add('/exhibition-award')),
@@ -6,7 +6,18 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 self.addEventListener('activate', (event) =>
-  event.waitUntil(self.clients.claim()),
+  event.waitUntil(
+    caches
+      .keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames
+            .filter((cacheName) => cacheName !== CACHE_NAME)
+            .map((cacheName) => caches.delete(cacheName)),
+        ),
+      )
+      .then(() => self.clients.claim()),
+  ),
 );
 self.addEventListener('fetch', (event) => {
   if (

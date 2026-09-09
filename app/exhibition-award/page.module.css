@@ -68,6 +68,28 @@
   font-size: 15px;
   text-wrap: balance;
 }
+.passwordForm {
+  margin-top: 28px;
+}
+.passwordInput {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 14px;
+  border: 2px solid #18212b;
+  border-radius: 0;
+  background: #f4efe7;
+  color: #18212b;
+  font:
+    700 18px var(--font-noto-sans-jp),
+    sans-serif;
+}
+.resetPasswordLabel {
+  display: block;
+  margin-top: 16px;
+  color: #8b234f;
+  font-size: 13px;
+  font-weight: 700;
+}
 .selectLabel {
   display: block;
   margin-bottom: 10px;
@@ -244,6 +266,10 @@
     700 13px var(--font-noto-sans-jp),
     sans-serif;
   cursor: pointer;
+}
+.resetButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 @media (max-width: 600px) {
   .page,

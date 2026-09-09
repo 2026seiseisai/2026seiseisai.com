@@ -1,53 +1,60 @@
 .page {
-  width: min(1120px, calc(100% - 40px));
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(38px, 7vw, 84px) 0 clamp(64px, 9vw, 112px);
+  padding: 48px clamp(16px, 5vw, 80px) 96px;
+  color: var(--color-navy);
+  -webkit-font-smoothing: antialiased;
 }
 
 .heading {
-  margin-bottom: clamp(28px, 5vw, 52px);
+  margin-bottom: 40px;
 }
 
 .eyebrow {
-  margin: 0 0 9px;
+  margin: 0 0 8px;
   color: var(--color-teal);
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
 }
 
 .heading h1 {
   margin: 0;
   color: var(--color-navy);
-  font-size: clamp(42px, 6.5vw, 68px);
-  font-weight: 900;
-  letter-spacing: -0.06em;
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
   line-height: 1.1;
-}
-
-.heading h1::first-letter {
-  color: var(--color-pink);
+  text-wrap: balance;
 }
 
 .heading > p:last-child {
-  margin: 16px 0 0;
+  max-width: 36em;
+  margin: 13px 0 0;
   color: #45516d;
-  font-size: clamp(16px, 2.2vw, 18px);
-  font-weight: 700;
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: 500;
+  line-height: 1.7;
+  text-wrap: pretty;
 }
 
 .map {
-  border: 1px solid #d5dceb;
-  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 14px 38px rgb(10 27 111 / 10%);
+  border: 1px solid #d7deeb;
+  border-top: 2px solid var(--color-navy);
+  border-radius: 0;
+  background: #fff;
 }
 
 .buildingTabs {
-  display: flex;
-  gap: 2px;
-  padding: 8px;
-  background: var(--color-navy);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid #d7deeb;
+  background: #f5f6fa;
 }
 
 .buildingTab,
@@ -55,71 +62,80 @@
 .floorTab,
 .floorTabActive {
   appearance: none;
-  border: 0;
+  border: 1px solid var(--color-navy);
+  border-radius: 0;
   cursor: pointer;
   font: inherit;
-  font-weight: 900;
-  transition: background-color 160ms ease, color 160ms ease;
+  font-weight: 700;
+  line-height: 1.35;
+  outline-offset: 3px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgb(0 170 190 / 18%);
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .buildingTab,
 .buildingTabActive {
-  flex: 1;
-  min-height: 54px;
-  border-radius: 10px;
-  color: #dce4ff;
-  background: transparent;
-  font-size: 17px;
-}
-
-.buildingTab:hover,
-.buildingTab:focus-visible {
-  background: rgb(255 255 255 / 14%);
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px 10px;
+  color: #3f4b69;
+  background: #f1f3f7;
+  font-size: 15px;
+  overflow-wrap: anywhere;
 }
 
 .buildingTabActive {
-  color: var(--color-navy);
-  background: #fff;
+  border-color: var(--color-navy);
+  border-bottom: 3px solid var(--color-pink);
+  color: #fff;
+  background: var(--color-navy);
+}
+
+.buildingTab:focus-visible,
+.buildingTabActive:focus-visible,
+.floorTab:focus-visible,
+.floorTabActive:focus-visible {
+  outline: 3px solid var(--color-teal);
 }
 
 .mapBody {
   display: grid;
-  grid-template-columns: 100px 1fr;
-  min-height: 450px;
+  grid-template-columns: 96px minmax(0, 1fr);
+  min-width: 0;
+  background: #fff;
 }
 
 .floorTabs {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 18px 12px;
-  background: #f1f5ff;
-  border-right: 1px solid #d5dceb;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px;
+  border-right: 1px solid #d7deeb;
+  background: #f5f6fa;
 }
 
 .floorTab,
 .floorTabActive {
-  min-height: 58px;
-  border-radius: 9px;
+  min-height: 46px;
+  padding: 7px 6px;
+  border-color: #c6cddd;
   color: var(--color-navy);
-  background: transparent;
-  font-size: 17px;
-}
-
-.floorTab:hover,
-.floorTab:focus-visible {
-  background: #dce8ff;
+  background: #fff;
+  font-size: 15px;
 }
 
 .floorTabActive {
+  border-color: var(--color-navy);
+  border-bottom: 3px solid var(--color-pink);
   color: #fff;
-  background: var(--color-teal);
-  box-shadow: 0 4px 10px rgb(0 170 190 / 26%);
+  background: var(--color-navy);
 }
 
 .floorContent {
   min-width: 0;
-  padding: clamp(22px, 4vw, 40px);
+  padding: 32px clamp(20px, 3vw, 36px) 36px;
 }
 
 .floorTitleWrap {
@@ -127,44 +143,44 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 18px;
-  margin-bottom: 24px;
+  min-width: 0;
+  margin-bottom: 20px;
 }
 
 .floorTitleWrap h2 {
+  min-width: 0;
   margin: 0;
   color: var(--color-navy);
-  font-size: clamp(28px, 3.5vw, 38px);
-  font-weight: 900;
+  font-size: clamp(25px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .floorTitleWrap span {
-  color: #63708d;
-  font-size: 15px;
-  font-weight: 700;
+  flex: 0 0 auto;
+  color: #59657a;
+  font-size: 13px;
+  font-weight: 500;
   white-space: nowrap;
-}
-
-.floorPlan {
-  margin-top: 18px;
-  padding: 14px;
-  border: 2px solid #cbd5e9;
-  border-radius: 14px;
-  background: #f8faff;
 }
 
 .map3dViewport {
   position: relative;
-  min-height: 520px;
+  min-width: 0;
+  min-height: 380px;
+  height: clamp(380px, 48vw, 520px);
   overflow: hidden;
-  border: 1px solid #cbd5e9;
-  border-radius: 14px;
+  border: 1px solid #d7deeb;
+  border-radius: 0;
   background: #f4f7ff;
 }
 
 .map3dCanvas {
   display: block;
   width: 100%;
-  height: 520px;
+  height: 100%;
   cursor: grab;
   touch-action: none;
 }
@@ -175,18 +191,21 @@
 
 .map3dHelp {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 8px;
+  bottom: 8px;
+  max-width: calc(100% - 16px);
   margin: 0;
-  padding: 7px 11px;
-  border: 1px solid rgb(255 255 255 / 72%);
-  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid rgb(255 255 255 / 78%);
+  border-radius: 0;
   color: #fff;
-  background: rgb(10 27 111 / 78%);
-  font-size: 13px;
-  font-weight: 800;
+  background: rgb(10 27 111 / 88%);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-wrap: balance;
   pointer-events: none;
-  backdrop-filter: blur(6px);
 }
 
 .map3dFallback {
@@ -195,83 +214,119 @@
   margin: 0;
   place-items: center;
   padding: 24px;
-  border: 1px solid #d5dceb;
-  border-radius: 14px;
-  color: #5f6b82;
-  background: #f4f7ff;
-  font-size: 17px;
-  font-weight: 700;
+  border: 1px solid #d7deeb;
+  border-radius: 0;
+  color: #59657a;
+  background: #f5f6fa;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
   text-align: center;
+}
+
+.floorPlan {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid #d7deeb;
+  border-radius: 0;
+  background: #f8f9fc;
 }
 
 .corridor {
   display: grid;
-  place-items: center;
   min-height: 42px;
-  margin-bottom: 14px;
-  border-radius: 6px;
-  color: #72809b;
-  background: repeating-linear-gradient(-45deg, #e6ebf5, #e6ebf5 8px, #f5f7fb 8px, #f5f7fb 16px);
+  margin-bottom: 12px;
+  place-items: center;
+  border: 1px solid #d7deeb;
+  border-radius: 0;
+  color: #59657a;
+  background: repeating-linear-gradient(-45deg, #edf0f6, #edf0f6 8px, #fafbfc 8px, #fafbfc 16px);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
 }
 
 .roomGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
   gap: 12px;
+  min-width: 0;
 }
 
 .room,
 .roomActive {
-  min-height: 150px;
-  padding: 16px;
-  border: 1px solid #d7deec;
-  border-radius: 8px;
+  min-width: 0;
+  min-height: 132px;
+  padding: 15px;
+  border: 1px solid #d7deeb;
+  border-bottom: 3px solid #aeb6c9;
+  border-radius: 0;
   background: #fff;
+  overflow-wrap: anywhere;
 }
 
 .roomActive {
-  border: 2px solid var(--color-pink);
-  background: linear-gradient(135deg, #fff 0%, #fff6fa 100%);
+  border-color: var(--color-pink);
+  border-bottom-color: var(--color-pink);
+  background: #fff8fb;
 }
 
 .room h3,
 .roomActive h3 {
-  margin: 0 0 10px;
+  min-width: 0;
+  margin: 0 0 9px;
   color: var(--color-navy);
-  font-size: 19px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .room p {
   margin: 0;
-  color: #9aa5ba;
-  font-size: 14px;
+  color: #747887;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .roomActive ul {
   display: grid;
-  gap: 7px;
+  gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .roomActive li {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 7px;
   color: #2d3550;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.45;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.roomActive li::before {
+  content: '';
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  margin-top: 0.55em;
+  border-radius: 50%;
+  background: var(--color-pink);
 }
 
 .roomActive li a {
-  color: inherit;
+  min-width: 0;
+  color: var(--color-navy);
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--color-pink) 55%, transparent);
-  text-decoration-thickness: 2px;
+  text-decoration-color: color-mix(in srgb, var(--color-pink) 60%, transparent);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
 }
 
 .roomActive li a:hover {
@@ -279,31 +334,73 @@
 }
 
 .roomActive li a:focus-visible {
-  border-radius: 2px;
-  outline: 3px solid color-mix(in srgb, var(--color-pink) 35%, transparent);
+  border-radius: 0;
+  outline: 3px solid color-mix(in srgb, var(--color-teal) 45%, transparent);
   outline-offset: 3px;
 }
 
-.roomActive li::before {
-  content: '';
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  margin: 0 8px 1px 0;
-  border-radius: 50%;
-  background: var(--color-pink);
-}
-
 .note {
-  margin: 18px 4px 0;
-  color: #69738a;
-  font-size: 14px;
-  line-height: 1.65;
+  margin: 16px 0 0;
+  padding-left: 10px;
+  border-left: 3px solid var(--color-teal);
+  color: #59657a;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
-@media (max-width: 640px) {
+@media (hover: hover) and (pointer: fine) {
+  .buildingTab:hover,
+  .floorTab:hover {
+    border-color: var(--color-teal);
+    background: #f7fbfc;
+    color: var(--color-navy);
+  }
+
+  .buildingTabActive:hover,
+  .floorTabActive:hover {
+    border-color: var(--color-navy);
+    border-bottom-color: var(--color-pink);
+    background: #14288b;
+    color: #fff;
+  }
+}
+
+@media (max-width: 767px) {
   .page {
-    width: min(100% - 28px, 1120px);
+    padding: 36px 16px 64px;
+  }
+
+  .heading {
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .heading h1 {
+    font-size: clamp(32px, 9vw, 42px);
+  }
+
+  .heading > p:last-child {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .buildingTabs {
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .buildingTab,
+  .buildingTabActive {
+    min-height: 52px;
+    padding: 7px 4px;
+    font-size: clamp(11px, 3.3vw, 15px);
+    letter-spacing: -0.02em;
   }
 
   .mapBody {
@@ -311,35 +408,50 @@
   }
 
   .floorTabs {
-    flex-direction: row;
-    padding: 10px;
-    overflow-x: auto;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    gap: 6px;
+    padding: 8px;
     border-right: 0;
-    border-bottom: 1px solid #d5dceb;
+    border-bottom: 1px solid #d7deeb;
   }
 
   .floorTab,
   .floorTabActive {
-    flex: 0 0 64px;
-    min-height: 48px;
+    min-width: 0;
+    min-height: 46px;
+    padding: 7px 4px;
+    font-size: 14px;
   }
 
   .floorContent {
-    padding: 22px 16px;
+    padding: 22px 14px 24px;
+  }
+
+  .floorTitleWrap {
+    margin-bottom: 18px;
+  }
+
+  .floorTitleWrap h2 {
+    font-size: clamp(24px, 7vw, 32px);
   }
 
   .map3dViewport {
     min-height: 420px;
-  }
-
-  .map3dCanvas {
     height: 420px;
   }
 
   .map3dHelp {
     right: 8px;
     bottom: 8px;
-    font-size: 12px;
+    max-width: calc(100% - 16px);
+    font-size: 11px;
+  }
+
+  .floorPlan {
+    margin-top: 14px;
+    padding: 10px;
   }
 
   .roomGrid {
@@ -349,18 +461,64 @@
 
   .room,
   .roomActive {
-    min-height: 136px;
-    padding: 13px;
+    min-height: 132px;
+    padding: 12px;
+  }
+
+  .room h3,
+  .roomActive h3 {
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+
+  .roomActive li {
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .note {
+    margin-top: 14px;
+    padding-left: 8px;
+    font-size: 12px;
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 374px) {
+  .page {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .buildingTabs {
+    gap: 3px;
+    padding: 6px;
+  }
+
   .buildingTab,
   .buildingTabActive {
-    font-size: 15px;
+    min-height: 50px;
+    padding-right: 2px;
+    padding-left: 2px;
+    font-size: 11px;
   }
 
   .roomGrid {
     grid-template-columns: 1fr;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .buildingTab,
+  .buildingTabActive,
+  .floorTab,
+  .floorTabActive {
+    transition: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .buildingTabs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; }
+  .buildingTab, .buildingTabActive { min-height: 44px; font-size: 14px; padding: 8px 4px; }
+  .roomGrid { grid-template-columns: 1fr; }
+  .room, .roomActive { min-height: 0; }
 }

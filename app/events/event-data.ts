@@ -391,7 +391,8 @@ export const eventData: EventData[] = [
   },
   {
     name: '展示団体賞授賞式',
-    description: '',
+    description:
+      '菁々祭を彩る数々の団体…その中で最も来場者の心をつかんだ展示は??菁々祭のクライマックスをぜひご覧ください!',
     day1: [],
     day2: [
       {
@@ -442,7 +443,7 @@ export const eventData: EventData[] = [
   },
   {
     name: 'PTAコーラス',
-    description: '',
+    description: '厳かな祈りの２曲に続く、個性豊かな２曲。最後は室内楽部とのコラボ♪息のあった『エール』をぜひご堪能ください。',
     day1: [
       {
         location: '圓融館',

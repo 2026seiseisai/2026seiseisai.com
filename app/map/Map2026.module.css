@@ -266,6 +266,24 @@
   line-height: 1.45;
 }
 
+.roomActive li a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-pink) 55%, transparent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.roomActive li a:hover {
+  color: var(--color-pink);
+}
+
+.roomActive li a:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid color-mix(in srgb, var(--color-pink) 35%, transparent);
+  outline-offset: 3px;
+}
+
 .roomActive li::before {
   content: '';
   display: inline-block;

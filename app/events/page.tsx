@@ -20,20 +20,20 @@ const DaySwitcher = ({
   setCurrentDay: (d: Day) => void;
   className?: string;
 }) => {
-  const buttonWrapperCN = 'flex flex-col items-center';
+  const buttonWrapperCN = 'flex min-w-0 flex-col items-center';
   const buttonCommonCN =
-    'font-bold px-6 py-2 text-sm md:px-8 md:py-4 md:text-xl rounded-none border border-navy transition-colors';
+    'font-bold whitespace-nowrap px-3 py-2 text-sm md:px-8 md:py-4 md:text-xl rounded-none border border-navy transition-colors';
   const buttonLabelCN = 'text-sm md:text-xl text-navy';
   const currentCN = 'bg-navy text-white border-b-4 border-pink';
   const inCurrentCN = 'bg-slate-100 text-navy hover:bg-slate-200';
   const switcherArrowCN =
-    'text-6xl text-navy px-2 md:px-16 disabled:text-gray-300 hover:text-pink transition-colors rounded-none';
+    'text-4xl md:text-6xl text-navy px-1 md:px-8 disabled:text-gray-300 hover:text-pink transition-colors rounded-none';
 
   return (
     <div
       role="group"
       aria-label="イベント日程"
-      className={`flex gap-4 md:gap-8 justify-center ${className}`}
+      className={`flex gap-2 md:gap-8 justify-center ${className}`}
     >
       <button
         type="button"
@@ -62,7 +62,7 @@ const DaySwitcher = ({
         >
           1日目
         </span>
-        <span className={buttonLabelCN} aria-label="9月6日 土曜日">
+        <span className={buttonLabelCN} aria-label="9月12日 土曜日">
           9.12 sat
         </span>
       </button>
@@ -82,7 +82,7 @@ const DaySwitcher = ({
         >
           2日目
         </span>
-        <span className={buttonLabelCN} aria-label="9月7日 日曜日">
+        <span className={buttonLabelCN} aria-label="9月13日 日曜日">
           9.13 sun
         </span>
       </button>
@@ -169,6 +169,8 @@ const mobileLocationOrder: Location[] = [
   '圓融館',
   '視聴覚室',
   '音楽室',
+  '小講堂',
+  '演習室B・C',
   '転心殿前',
   'グラウンド',
   '物理室',
@@ -323,7 +325,7 @@ const SchedulesTable = ({
                 <div
                   className="grid rounded-2xl bg-white px-2 py-4"
                   style={{
-                    gridTemplateRows: `repeat(${rows}, 0.82rem)`,
+                    gridTemplateRows: `repeat(${rows}, 1.25rem)`,
                     gridTemplateColumns: '3.5rem minmax(0, 1fr)',
                     userSelect: 'none',
                   }}
@@ -455,26 +457,25 @@ const ScheduleGrid = ({
               <div
                 key={`ev-${event.name}-${day}-${thisEvent.start}-${thisEvent.end}-${isMobile ? 'mobile' : 'pc'}`}
                 style={placement}
-                className={`${locationColorMap[thisEvent.location][0]} m-0.5 mx-1 relative flex min-w-0 items-center justify-center border-l-4 ${locationColorMap[thisEvent.location][1]}`}
+                className={`${css.scheduleCard} ${locationColorMap[thisEvent.location][0]} m-0.5 mx-1 min-w-0 border-l-4 ${locationColorMap[thisEvent.location][1]}`}
               >
-                <div className="absolute left-1 top-0 bottom-0 flex flex-col justify-between text-sm leading-none py-0.5 whitespace-nowrap">
+                <div className={css.scheduleTimes}>
                   <div>{thisEvent.start}</div>
                   <div>{thisEvent.end}</div>
                 </div>
 
-                <div className="px-10 text-lg xl:text-base flex min-w-0 items-center whitespace-break-spaces">
-                  {event.name}
-                  <button
-                    type="button"
-                    className="ml-1 shrink-0 pointer-events-auto"
-                    onClick={() => {
-                      onEventJump?.(event.name);
-                    }}
-                    aria-label={`${event.name}の紹介を開く`}
-                  >
-                    <Image src={arrowR} alt="" width={20} height={20}></Image>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  className={css.scheduleJump}
+                  title={event.name}
+                  onClick={() => {
+                    onEventJump?.(event.name);
+                  }}
+                  aria-label={`${event.name}の紹介を開く`}
+                >
+                  <span className={css.scheduleName}>{event.name}</span>
+                  <Image src={arrowR} alt="" width={20} height={20} />
+                </button>
               </div>
             );
           });
@@ -645,21 +646,21 @@ export default function EventsPage() {
                 key={event.name}
                 id={`eventD-${event.name}`}
               >
-                <summary className="text-xl text-navy relative pr-16">
-                  <span className="text-black">{event.name}</span>
+                <summary className={css.eventSummary}>
+                  <span className={css.eventName}>{event.name}</span>
                   {event.ticket && (
-                    <span className="absolute top-1/2 -translate-y-1/2 right-0 bg-navy border border-pink rounded-none text-white text-base px-3 py-1">
+                    <span className={css.ticketBadge}>
                       要整理券
                     </span>
                   )}
                 </summary>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-6">
-                  <div className="flex">
-                    <Image src={mapPin} alt="map icon"></Image>
-                    <div>
+                <div className={css.eventDays}>
+                  <div className={css.eventDay}>
+                    <Image src={mapPin} alt="" className={css.locationIcon} />
+                    <div className={css.eventDayContent}>
                       <h4 className="text-xl">【1日目】</h4>
 
-                      <table className="text-base whitespace-nowrap">
+                      <table className={css.eventTimes}>
                         <tbody>
                           {event.day1.map((today) => {
                             return (
@@ -682,12 +683,12 @@ export default function EventsPage() {
                     </div>
                   </div>
                   {/*day2*/}
-                  <div className="flex">
-                    <Image src={mapPin} alt="map icon"></Image>
-                    <div>
+                  <div className={css.eventDay}>
+                    <Image src={mapPin} alt="" className={css.locationIcon} />
+                    <div className={css.eventDayContent}>
                       <h4 className="text-xl">【2日目】</h4>
 
-                      <table className="text-base whitespace-nowrap">
+                      <table className={css.eventTimes}>
                         <tbody>
                           {event.day2.map((today) => {
                             return (

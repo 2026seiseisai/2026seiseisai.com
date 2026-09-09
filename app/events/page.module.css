@@ -140,3 +140,58 @@
 .embla__dot--selected:after {
   opacity: 1;
 }
+
+
+.eventSummary {
+  display: grid;
+  grid-template-columns: 0.65em minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.5rem;
+  color: var(--color-navy);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  cursor: pointer;
+  list-style: none;
+}
+.eventSummary::-webkit-details-marker { display: none; }
+.eventSummary::before {
+  content: '';
+  margin-top: 0.5em;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+  border-left: 0.5em solid currentColor;
+  transition: transform 160ms ease;
+}
+details[open] > .eventSummary::before { transform: rotate(90deg); }
+.eventSummary:focus-visible { outline: 2px solid var(--color-pink); outline-offset: 6px; }
+.eventName { min-width: 0; color: #171717; overflow-wrap: anywhere; }
+.ticketBadge {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-pink);
+  background: var(--color-navy);
+  color: white;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.eventDays { display: grid; gap: 1rem; padding-top: 1.5rem; }
+.eventDay { display: flex; align-items: flex-start; gap: 0.25rem; min-width: 0; }
+.locationIcon { flex: 0 0 1.25rem; width: 1.25rem; height: 1.5rem; }
+.eventDayContent { min-width: 0; flex: 1; }
+.eventTimes { width: 100%; font-size: 1rem; table-layout: fixed; }
+.eventTimes td { overflow-wrap: anywhere; vertical-align: top; }
+.eventTimes td:nth-child(2) { width: 7rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.eventTimes td:last-child:empty { width: 0; padding: 0; }
+@media (max-width: 479px) {
+  .eventSummary { grid-template-columns: 0.65em minmax(0, 1fr); }
+  .ticketBadge { grid-column: 2; justify-self: start; }
+}
+@media (min-width: 1280px) { .eventDays { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .eventSummary::before { transition: none; } }
+
+.scheduleCard { display: grid; grid-template-columns: 2.7rem minmax(0, 1fr); gap: 0.25rem; min-height: 0; padding: 2px 4px; }
+.scheduleTimes { display: flex; flex-direction: column; justify-content: space-between; font-size: 0.6875rem; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.scheduleJump { display: flex; min-width: 0; min-height: 0; align-items: center; gap: 0.25rem; text-align: left; cursor: pointer; }
+.scheduleJump:focus-visible { outline: 2px solid var(--color-navy); outline-offset: -2px; }
+.scheduleJump img { flex: 0 0 20px; }
+.scheduleName { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; font-size: 0.875rem; line-height: 1.15; }

@@ -154,6 +154,59 @@
   margin-top: 16px;
 }
 
+.wallpaperCategoryTitle {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 3px solid #00aabe;
+  color: #0a1b6f;
+  font-size: clamp(18px, 2.3vw, 26px);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.pcWallpaperSection {
+  margin-top: 36px;
+  margin-bottom: 48px;
+}
+
+.wallpaperSize {
+  margin: 10px 0 24px;
+  color: #50576d;
+  font-size: 14px;
+}
+
+.pcWallpaperGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.pcWallpaperItem {
+  position: relative;
+  min-width: 0;
+}
+
+.pcWallpaperImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .pcWallpaperGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pcWallpaperSection {
+    padding-right: 20px;
+  }
+}
+
 .wallpaperDot {
   width: 10px;
   height: 10px;

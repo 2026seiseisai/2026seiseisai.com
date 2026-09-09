@@ -36,7 +36,6 @@ function DownloadButton({
       title={accessibleLabel}
       className={`${styles.downloadButton} ${className}`}
     >
-      <span className={styles.downloadFormat}>PNG</span>
       <Image
         src={downloadPicture}
         alt=""

@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 import styles from './page.module.css';
 import { Odibee_Sans } from 'next/font/google';
 import downloadPicture from '../theme&logo/DLPict.svg';
@@ -8,6 +9,7 @@ import {
   DOWNLOADS_BASE_PATH,
   headerItems,
   iconItems,
+  pcWallpaperItems,
   wallpaperItems,
 } from './downloads-data';
 
@@ -96,40 +98,70 @@ useEffect(() => {
       </section>
 
       {/* Wallpaper */}
-      <section className={styles.wallpaperSection}>
-  <div className={styles.wallpaperHeader}>
-    <h2 className={styles.sectionTitlewallpaper}>Wallpaper</h2>
-    <p className={styles.sectionDescriptionWallpaper}>壁紙にどうぞ！</p>
-  </div>
+      <section className={styles.wallpaperSection} aria-labelledby="wallpaper-title">
+        <div className={styles.wallpaperHeader}>
+          <h2 id="wallpaper-title" className={styles.sectionTitlewallpaper}>Wallpaper</h2>
+          <p className={styles.sectionDescriptionWallpaper}>壁紙にどうぞ！</p>
+        </div>
 
-  <div className={styles.wallpaperGrid}>
-    {wallpaperItems.map((item) => (
-      <div key={item.svg} className={styles.wallpaperItem}>
-        <img
-          src={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
-          alt={item.alt}
-          className={styles.iconImage}
-        />
-        <a
-          href={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
-          download
-          aria-label={`${item.alt}をダウンロード`}
-          title={`${item.alt}をダウンロード`}
-          className={styles.wallpaperDownloadButton}
-        >
-          <img src={downloadPicture.src} alt="" aria-hidden="true" />
-        </a>
-      </div>
-    ))}
-  </div>
+        <section aria-labelledby="smartphone-wallpaper-title">
+          <h3 id="smartphone-wallpaper-title" className={styles.wallpaperCategoryTitle}>Mobile</h3>
+          <div className={styles.wallpaperGrid}>
+            {wallpaperItems.map((item) => (
+              <div key={item.svg} className={styles.wallpaperItem}>
+                <img
+                  src={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
+                  alt={item.alt}
+                  className={styles.iconImage}
+                />
+                <a
+                  href={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
+                  download
+                  aria-label={`${item.alt}をダウンロード`}
+                  title={`${item.alt}をダウンロード`}
+                  className={styles.wallpaperDownloadButton}
+                >
+                  <img src={downloadPicture.src} alt="" aria-hidden="true" />
+                </a>
+              </div>
+            ))}
+          </div>
 
-  {/* ★ Wallpaper 用ドットインジケーター */}
-  <div className={styles.wallpaperIndicator}>
-    {wallpaperItems.map((_, index) => (
-      <div key={index} className={styles.wallpaperDot}></div>
-    ))}
-  </div>
-</section>
+          <div className={styles.wallpaperIndicator}>
+            {wallpaperItems.map((_, index) => (
+              <div key={index} className={styles.wallpaperDot}></div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.pcWallpaperSection} aria-labelledby="pc-wallpaper-title">
+          <h3 id="pc-wallpaper-title" className={styles.wallpaperCategoryTitle}>Desktop</h3>
+          <p className={styles.wallpaperSize}>1920 × 1080 px</p>
+          <div className={styles.pcWallpaperGrid}>
+            {pcWallpaperItems.map((item) => (
+              <div key={item.raster} className={styles.pcWallpaperItem}>
+                <Image
+                  src={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
+                  alt={item.alt}
+                  width={1920}
+                  height={1080}
+                  sizes="(max-width: 767px) calc(100vw - 64px), (max-width: 1240px) calc((100vw - 128px) / 2), 556px"
+                  className={styles.pcWallpaperImage}
+                />
+                <a
+                  href={`${DOWNLOADS_BASE_PATH}/${item.raster}`}
+                  download
+                  aria-label={`${item.alt}をダウンロード`}
+                  title={`${item.alt}をダウンロード`}
+                  className={styles.wallpaperDownloadButton}
+                >
+                  <Image src={downloadPicture.src} alt="" width={28} height={28} aria-hidden="true" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+      </section>
 
 
       {/* Icon */}

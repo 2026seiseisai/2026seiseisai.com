@@ -15,7 +15,11 @@ export const wallpaperItems: DownloadItem[] = [
   { svg: 'wallpaper2.svg', raster: 'wallpaper2.png', alt: 'Wallpaper 2' },
   { svg: 'wallpaper3.svg', raster: 'wallpaper3.png', alt: 'Wallpaper 3' },
   { svg: 'wallpaper4.svg', raster: 'wallpaper4.png', alt: 'Wallpaper 4' },
-  { svg: 'wallpaper5.svg', raster: 'wallpaper5.png', alt: 'Wallpaper 5' },
+];
+
+export const pcWallpaperItems: Pick<DownloadItem, 'raster' | 'alt'>[] = [
+  { raster: 'infinity-webcore.png', alt: 'PC用壁紙 Infinity Webcore' },
+  { raster: 'pc.png', alt: 'PC用壁紙 Infinity' },
 ];
 
 export const iconItems: DownloadItem[] = [

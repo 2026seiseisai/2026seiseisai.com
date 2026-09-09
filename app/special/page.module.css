@@ -57,7 +57,7 @@
   text-align: left;
   margin-bottom: 60px;
   position: relative;
-  white-space: normal;
+  white-space: pre-line;
   z-index: 1;
 }
 
@@ -126,6 +126,8 @@
   gap: 55px;
   margin-top: 40px;
   padding-left: 100px;
+  padding-right: 18px;
+  padding-bottom: 10px;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
@@ -143,6 +145,24 @@
   scroll-snap-align: start;
   overflow: visible;
   margin-bottom: 30px;
+}
+
+.wallpaperIndicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.wallpaperDot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.wallpaperDot.active {
+  background-color: #0a1b6f;
 }
 
 .iconImage {
@@ -244,6 +264,25 @@
   height: 28px;
 }
 
+.iconIndicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background-color: #0a1b6f; /* アクティブ色 */
+}
+
+
 .headerSection {
   margin-top: -30px;
 }
@@ -279,13 +318,13 @@
   justify-content: flex-start;
   gap: 160px;
   padding-left: 200px;
-
+  padding-right: 18px;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  height: 160px;
+  height: 100%;
 }
 
 .headerItem {
@@ -321,6 +360,49 @@
   width: 32px;
   height: 32px;
 }
+
+.headerIndicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.headerDot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.headerDot.active {
+  background-color: #0a1b6f;
+}
+
+.iconIndicator,
+.wallpaperIndicator,
+.headerIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* ← 縦方向も中央に */
+  gap: 8px;
+  margin-top: 16px;
+  margin-left: -10px;
+  padding-bottom: 15px;
+  width: 100%;              /* ← 横幅を全体に広げる */
+}
+
+.headerIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* ← 縦方向も中央に */
+  gap: 8px;
+  margin-top: 16px;
+  margin-left: -10px;                /* ← 左の余白をなくす */
+  width: 100%;              /* ← 横幅を全体に広げる */
+}
+
+
 
 /* Use the same angular, high-contrast download action across Special. */
 .wallpaperDownloadButton,
@@ -364,12 +446,14 @@
   height: 26px;
 }
 
+/* スマホ対応 */
 @media (min-width: 768px) {
   .wallpaperGrid,
   .iconGrid,
   .headerGrid {
     justify-content: safe center;
     padding-inline: 0 32px;
+    width: 100%;
   }
 
   .iconItem,
@@ -385,9 +469,21 @@
   .description br {
     display: none;
   }
+
+  .wallpaperDownloadButton,
+  .downloadButton,
+  .headerDownloadButton {
+    right: 4px;
+    bottom: 4px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    clip-path: none;
+  }
 }
 
-/* Keep the spacious desktop composition readable at tablet widths. */
 @media (min-width: 481px) and (max-width: 900px) {
   .main {
     padding: 32px 32px 0;
@@ -459,7 +555,7 @@
     gap: 32px;
     margin-top: 24px;
     padding-left: 0;
-    height: 310px;
+    height: 330px;
   }
 
   .wallpaperItem {
@@ -476,16 +572,79 @@
   .iconItem {
     width: 180px;
     height: 180px;
+    margin-inline: auto;
   }
 
   .headerGrid {
+    display: flex;
+    justify-content: flex-start; /* ← centerだとスクロールが死ぬ */
     gap: 48px;
     padding-left: 0;
-    height: 140px;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* ← 横スクロール復活 */
+    overflow-y: hidden; /* ← 縦スクロール禁止（横だけにする） */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 145px;
+  }
+
+  .headerItem {
+    width: 345px;
+    height: 115px;
+    flex: 0 0 auto;
+  }
+
+   .wallpaperDownloadButton,
+  .downloadButton,
+  .headerDownloadButton {
+    right: 4px;
+    bottom: 4px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    clip-path: none;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  .wallpaperDownloadButton,
+  .downloadButton,
+  .headerDownloadButton {
+    right: 4px;
+    bottom: 4px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    clip-path: none;
+  }
+
+  .wallpaperDownloadButton:hover,
+  .downloadButton:hover,
+  .headerDownloadButton:hover {
+    background: transparent;
+    transform: none;
+  }
+
+  .wallpaperDownloadButton:focus-visible,
+  .downloadButton:focus-visible,
+  .headerDownloadButton:focus-visible {
+    outline-offset: 3px;
+    background: transparent;
+  }
+
+  .wallpaperDownloadButton img,
+  .downloadButton img,
+  .headerDownloadButton img {
+    width: 28px;
+    height: 28px;
   }
 }
 
-/* スマホ対応 */
 @media (max-width: 480px) {
   .main {
     position: relative;
@@ -511,10 +670,12 @@
     line-height: 1.6;
     max-width: 2004px;
     text-align: left;
+    padding-left: 0px;
+    padding-right: 20px;
     margin-bottom: 60px;
     position: relative;
     z-index: 1;
-    white-space: normal;
+    white-space: pre-line;
   }
 
   .rules {
@@ -552,6 +713,7 @@
 
   .ruleList {
     font-size: 14px;
+    padding-right: 20px;
   }
 
   .wallpaperHeader {
@@ -646,6 +808,7 @@
     width: 180px;
     height: 180px;
     scroll-snap-align: start;
+    margin-inline: auto;
   }
 
   .downloadButton {
@@ -693,10 +856,9 @@
   }
 
   .headerItem {
+    width: 345px;
+    height: 115px;
     flex: 0 0 auto;
-    width: 300px;
-    height: 110px;
-    scroll-snap-align: start;
   }
 
   .headerDownloadButton {
@@ -707,39 +869,23 @@
   }
 }
 
-@media (max-width: 600px) {
-  .wallpaperDownloadButton,
-  .downloadButton,
-  .headerDownloadButton {
-    right: 4px;
-    bottom: 4px;
-    width: 28px;
-    height: 28px;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    clip-path: none;
+@media (max-width: 356px){
+  .description {
+    color: #0b0e0f;
+    font-size: 12px;
+    line-height: 1.6;
+    max-width: 2004px;
+    text-align: left;
+    padding-right: 20px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+    white-space: pre-line;
   }
-
-  .wallpaperDownloadButton:hover,
-  .downloadButton:hover,
-  .headerDownloadButton:hover {
-    background: transparent;
-    transform: none;
-  }
-
-  .wallpaperDownloadButton:focus-visible,
-  .downloadButton:focus-visible,
-  .headerDownloadButton:focus-visible {
-    outline-offset: 3px;
-    background: transparent;
-  }
-
-  .wallpaperDownloadButton img,
-  .downloadButton img,
-  .headerDownloadButton img {
-    width: 28px;
-    height: 28px;
+  
+  .ruleList {
+    font-size: 12px;
+    padding-right: 20px;
   }
 }
 

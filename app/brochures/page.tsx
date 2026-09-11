@@ -285,23 +285,23 @@ const categories: Category[] = [
 ];
 
 const highQualityPamphletFile = '第62回菁々祭パンフレット高画質版.pdf';
-const highQualityPamphletHref = `https://raw.githubusercontent.com/2026seiseisai/2026seiseisai.com/main/brochure-assets/${encodeURIComponent(highQualityPamphletFile)}`;
+const highQualityPamphletHref = `https://raw.githubusercontent.com/2026seiseisai/2026seiseisai.com/main/brochure-assets/${encodeURIComponent(highQualityPamphletFile)}?v=b43c8a3c2ca8`;
 
 const pamphlets = [
   {
     label: '高画質版',
-    size: '44.9MB',
+    size: '98.5MB',
     href: highQualityPamphletHref,
   },
   {
     label: '中画質版',
-    size: '13.7MB',
-    href: '/brochures-data/第62回菁々祭パンフレット中画質版.pdf',
+    size: '19.7MB',
+    href: '/brochures-data/第62回菁々祭パンフレット中画質版.pdf?v=0650f4e621c7',
   },
   {
     label: '低画質版',
-    size: '9.2MB',
-    href: '/brochures-data/第62回菁々祭パンフレット低画質版.pdf',
+    size: '13.6MB',
+    href: '/brochures-data/第62回菁々祭パンフレット低画質版.pdf?v=8f710ffe074e',
   },
 ];
 

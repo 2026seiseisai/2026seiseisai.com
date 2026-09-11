@@ -103,6 +103,95 @@
 .mapDescription p {
   margin-bottom: 10px;
 }
+
+.busSection {
+  margin-bottom: 60px;
+  scroll-margin-top: 100px;
+}
+
+.busNotice {
+  margin-bottom: 20px;
+  padding: 16px;
+  border-left: 4px solid #004a99;
+  background: #eaf2fa;
+}
+
+.busNotice span {
+  display: block;
+  margin-top: 4px;
+}
+
+.busDays {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.busDay {
+  min-width: 0;
+  border: 1px solid #ccd5df;
+  background: #fff;
+}
+
+.busDate {
+  padding: 12px 20px;
+  background: #004a99;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.busRoute {
+  padding: 20px;
+}
+
+.busRoute + .busRoute {
+  border-top: 1px solid #ccd5df;
+}
+
+.busRoute dt {
+  margin-bottom: 8px;
+  color: #0a1b6f;
+  font-weight: bold;
+}
+
+.busHours {
+  font-size: 24px;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.busExtraLabel {
+  margin-top: 12px;
+}
+
+.busExtraTimes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+  list-style: none;
+}
+
+.busFootnote {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.busPdfLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .busDays {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .mapSection {
     flex-direction: column; /* スマホでは縦並び */

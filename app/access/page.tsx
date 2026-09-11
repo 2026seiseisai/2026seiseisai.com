@@ -6,6 +6,15 @@ import headerImage from './header.svg';
 import trainMapImage from './train_map.svg';
 import styles from './page.module.css';
 
+const busTimetable = [
+  { date: '2026-09-12', label: '9月12日（土）', extraDepartures: ['18:15'] },
+  {
+    date: '2026-09-13',
+    label: '9月13日（日）',
+    extraDepartures: ['18:20', '18:40', '19:00', '19:20'],
+  },
+];
+
 const AccessPage: NextPage = () => {
   return (
     <>
@@ -86,10 +95,56 @@ const AccessPage: NextPage = () => {
         </div>
 
         {/* 5. バス運行表 */}
-        <h2 className={styles.sectionHeading}>バス運行表</h2>
-        <div className={styles.placeholderBox}>
-          {/* 運行表の素材が掲載されたらここに配置 */}
-        </div>
+        <section className={styles.busSection} aria-labelledby="bus-timetable">
+          <h2 id="bus-timetable" className={styles.sectionHeading}>バス運行表</h2>
+          <p className={styles.busNotice}>
+            <strong>保護者・一般来場者の方は、高の原駅8:30発からご乗車いただけます。</strong>
+            <span>8:00・8:15発は在校生専用です。</span>
+          </p>
+          <div className={styles.busDays}>
+            {busTimetable.map((day) => (
+              <section key={day.date} className={styles.busDay} aria-labelledby={`bus-${day.date}`}>
+                <h3 id={`bus-${day.date}`} className={styles.busDate}>
+                  <time dateTime={day.date}>{day.label}</time>
+                </h3>
+                <dl className={styles.busRoutes}>
+                  <div className={styles.busRoute}>
+                    <dt>高の原駅発 → 東大寺学園行</dt>
+                    <dd>
+                      <p className={styles.busHours}>8:00〜15:00</p>
+                      <p>毎時 00・15・30・45分発</p>
+                      <p>最終 15:00発</p>
+                    </dd>
+                  </div>
+                  <div className={styles.busRoute}>
+                    <dt>東大寺学園発 → 高の原駅行</dt>
+                    <dd>
+                      <p className={styles.busHours}>10:00〜18:00</p>
+                      <p>毎時 00・15・30・45分発</p>
+                      <p className={styles.busExtraLabel}>18:00以降の便</p>
+                      <ul className={styles.busExtraTimes} aria-label={`${day.label}の18:00以降の発車時刻`}>
+                        {day.extraDepartures.map((departure) => (
+                          <li key={departure}>{departure}</li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+            ))}
+          </div>
+          <p className={styles.busFootnote}>
+            ※混雑状況により、ダイヤが変更になる場合もございます。予めご了承ください。
+          </p>
+          <a
+            href="/access/bus-timetable-2026.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.schoolLink} ${styles.busPdfLink}`}
+          >
+            バス運行表の原本PDFを開く（新しいタブ）
+          </a>
+        </section>
 
         {/* 6. 路線図 */}
         <h2 className={styles.sectionHeading}>路線図</h2>

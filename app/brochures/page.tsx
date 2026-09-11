@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import { exhibitionIcons } from '../map/map-2026-exhibition-icons';
 import { clubMagazineLinks } from './brochures-data';
@@ -308,6 +308,30 @@ const pamphlets = [
 export default function BrochuresPage() {
   const [openId, setOpenId] = useState<string | null>('a');
 
+  useEffect(() => {
+    const clubId = window.location.hash.replace(/^#club-/, '');
+    const category = categories.find((cat) =>
+      cat.items.some((item) => item.id === clubId),
+    );
+    if (!category) return;
+
+    window.setTimeout(() => setOpenId(category.id), 0);
+  }, []);
+
+  useEffect(() => {
+    const clubId = window.location.hash.replace(/^#club-/, '');
+    if (!clubId) return;
+
+    const clubRow = document.getElementById(`club-${clubId}`);
+    if (!clubRow) return;
+
+    window.requestAnimationFrame(() => {
+      const clubRow = document.getElementById(`club-${clubId}`);
+      clubRow?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      clubRow?.focus({ preventScroll: true });
+    });
+  }, [openId]);
+
   const toggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
@@ -433,7 +457,12 @@ function AccordionCategory({
             <li className={styles.clubEmpty}>準備中です</li>
           )}
           {category.items.map((item) => (
-            <li className={styles.clubRow} key={item.id}>
+            <li
+              className={styles.clubRow}
+              id={`club-${item.id}`}
+              key={item.id}
+              tabIndex={-1}
+            >
               <span className={styles.clubIcon}>
                 <span
                   className={styles.clubIconImage}

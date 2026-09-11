@@ -11,6 +11,8 @@ import arrowR from './arrow-right-circle.svg';
 
 type Day = 'Day1' | 'Day2';
 
+const eventAnchorId = (name: string) => `eventD-${encodeURIComponent(name)}`;
+
 const DaySwitcher = ({
   currentDay,
   setCurrentDay,
@@ -497,6 +499,29 @@ export default function EventsPage() {
   });
 
   useEffect(() => {
+    const eventName = window.location.hash.replace(/^#event-/, '');
+    if (!eventName) return;
+
+    let decodedEventName: string;
+    try {
+      decodedEventName = decodeURIComponent(eventName);
+    } catch {
+      return;
+    }
+
+    const target = document.getElementById(
+      eventAnchorId(decodedEventName),
+    ) as HTMLDetailsElement | null;
+    if (!target) return;
+
+    target.open = true;
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.focus({ preventScroll: true });
+    });
+  }, []);
+
+  useEffect(() => {
     const viewport = scheduleViewportRef.current;
     if (!viewport) return;
     const updateHint = () => {
@@ -525,7 +550,7 @@ export default function EventsPage() {
   }, []);
   const jumpToEvent = (name: string) => {
     const target = document.getElementById(
-      `eventD-${name}`,
+      eventAnchorId(name),
     ) as HTMLDetailsElement | null;
     if (!target) return;
     target.open = true;
@@ -644,14 +669,13 @@ export default function EventsPage() {
               <details
                 className="mb-4 break-inside-avoid bg-[#5A44A926] p-4 md:p-5"
                 key={event.name}
-                id={`eventD-${event.name}`}
+                id={eventAnchorId(event.name)}
+                tabIndex={-1}
               >
                 <summary className={css.eventSummary}>
                   <span className={css.eventName}>{event.name}</span>
                   {event.ticket && (
-                    <span className={css.ticketBadge}>
-                      要整理券
-                    </span>
+                    <span className={css.ticketBadge}>要整理券</span>
                   )}
                 </summary>
                 <div className={css.eventDays}>

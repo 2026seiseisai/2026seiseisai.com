@@ -1,4 +1,3 @@
-const clubMagazineLinks: Record<string, string | undefined> = {};
 import type { eventNames } from '@/app/events/event-data';
 import type { BlogKey } from '@/app/blog/blogs/blog-data';
 import { exhibitionIcons } from '@/app/map/map-2026-exhibition-icons';
@@ -271,7 +270,7 @@ const exhibitionDataRaw = {
     description:
       'ロケット研究部が皆さんを宇宙の世界へご案内します！大型ロケット模型や過去に打ち上げた実機の\n展示に加え、実際にロケットを製作できる体験イベント(要整理券)も開催。',
     twitter_link: 'https://x.com/rockettdj63',
-    events: ['ロケット発射実験'],
+    events: ['ロケット発射実験', 'ロケット製作体験'],
     blogs: ['61/02'],
   },
   'Vocaloid&作曲同好会': {

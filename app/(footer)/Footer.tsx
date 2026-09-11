@@ -22,6 +22,7 @@ const FOOTER_DATA = [
       { label: 'Exhibitions', href: '/exhibitions' },
       { label: 'Map', href: '/map' },
       { label: 'Goods', href: '/goods' },
+      { label: 'Ticket Status', href: '/distribution' },
     ],
   },
   {
@@ -108,6 +109,7 @@ const PUBLISHED_PATHS = new Set([
   '/exhibitions',
   '/map',
   '/goods',
+  '/distribution',
   '/special',
   '/blog',
   '/brochures',

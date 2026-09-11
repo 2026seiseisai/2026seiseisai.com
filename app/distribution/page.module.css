@@ -1,0 +1,44 @@
+.page {
+  width: 100%;
+  min-height: 60vh;
+  background: #fff;
+  color: #111;
+}
+
+.content {
+  width: min(100%, 1168px);
+  margin: 0 auto;
+  padding: 64px 24px 120px;
+}
+
+.title {
+  margin: 0;
+  color: #0a1b6f;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.25;
+}
+
+.intro {
+  margin: 20px 0 52px;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding: 34px 24px 72px;
+  }
+
+  .title {
+    font-size: clamp(27px, 7.6vw, 32px);
+  }
+
+  .intro {
+    margin: 16px 0 32px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,283 @@
+.live {
+  width: 100%;
+}
+
+.liveHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #555;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.title {
+  margin: 0;
+  color: #0a1b6f;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+}
+
+.dateHeading {
+  margin: 0;
+  color: #0a1b6f;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.alert {
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  border-left: 4px solid #db5492;
+  background: #fff3f8;
+  color: #222;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.eventGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eventCard {
+  min-width: 0;
+  padding-top: 16px;
+  border-top: 2px solid #0a1b6f;
+}
+
+.eventName {
+  margin: 0 0 16px;
+  color: #0a1b6f;
+  font-size: clamp(18px, 1.6vw, 21px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.sessionList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sessionRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 0;
+  border-top: 1px solid #e2e5ec;
+}
+
+.sessionTime {
+  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+.sessionEmpty {
+  margin: 0;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 82px;
+  min-height: 28px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.status--notStarted {
+  background: #edf0f8;
+  color: #0a1b6f;
+}
+
+.status--distributing {
+  background: #0a1b6f;
+  color: #fff;
+}
+
+.status--lowRemaining {
+  background: #c9387d;
+  color: #fff;
+}
+
+.status--ended {
+  background: #ececec;
+  color: #555;
+}
+
+.emptyState,
+.loadingState,
+.errorState {
+  margin: 0;
+  padding: 40px 20px;
+  border-top: 1px solid #00aabe;
+  border-bottom: 1px solid #00aabe;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.errorState p {
+  margin: 0;
+}
+
+.refreshButton,
+.retryButton {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #0a1b6f;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.retryButton {
+  margin-top: 20px;
+}
+
+.refreshButton:hover,
+.retryButton:hover {
+  background: #172b87;
+}
+
+.refreshButton:focus-visible,
+.retryButton:focus-visible,
+.moreLink:focus-visible,
+.topLink:focus-visible {
+  outline: 3px solid #db5492;
+  outline-offset: 4px;
+}
+
+.refreshButton:disabled,
+.retryButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 20px;
+}
+
+.metaRowOnlyLink {
+  justify-content: flex-start;
+}
+
+.lastUpdated {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.moreLink,
+.topLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: #0a1b6f;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.moreLink:hover,
+.topLink:hover {
+  color: #db5492;
+}
+
+.previewNote {
+  margin: 14px 0 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.topLink {
+  margin-top: 32px;
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+  .eventGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .liveHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .dateHeading {
+    font-size: 18px;
+  }
+
+  .eventGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .emptyState,
+  .loadingState,
+  .errorState {
+    padding: 32px 8px;
+    text-align: left;
+  }
+
+  .metaRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .moreLink {
+    align-self: flex-start;
+  }
+}

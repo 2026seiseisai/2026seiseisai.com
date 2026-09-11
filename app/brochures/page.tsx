@@ -30,31 +30,31 @@ const categories: Category[] = [
         id: 'angou',
         name: '暗号同好会',
         icon: exhibitionIcons['暗号同好会'],
-        href: '#',
+        href: clubMagazineLinks['暗号同好会'],
       },
       {
         id: 'igo',
         name: '囲碁将棋部',
         icon: exhibitionIcons['囲碁将棋部'],
-        href: clubMagazineLinks.igoshougi,
+        href: clubMagazineLinks['囲碁将棋部'],
       },
       {
         id: 'eigo',
-        name: '英語部',
+        name: '英語研究部',
         icon: exhibitionIcons['英語部'],
-        href: clubMagazineLinks.eigo,
+        href: clubMagazineLinks['英語研究部'],
       },
       {
         id: 'engei',
         name: '園芸部',
         icon: exhibitionIcons['園芸部'],
-        href: '#',
+        href: clubMagazineLinks['園芸部'],
       },
       {
         id: 'osero',
         name: 'オセロ同好会',
         icon: exhibitionIcons['オセロ同好会'],
-        href: clubMagazineLinks.osero,
+        href: clubMagazineLinks['オセロ研究会'],
       },
       {
         id: 'origami',
@@ -72,25 +72,25 @@ const categories: Category[] = [
         id: 'kagaku',
         name: '科学部',
         icon: exhibitionIcons['科学部'],
-        href: clubMagazineLinks.kagaku,
+        href: clubMagazineLinks['科学部'],
       },
       {
         id: 'quiz',
         name: 'クイズ研究部',
         icon: exhibitionIcons['クイズ研究部'],
-        href: clubMagazineLinks.quiz,
+        href: clubMagazineLinks['クイズ研究会'],
       },
       {
         id: 'koutya',
         name: '紅茶同好会',
         icon: exhibitionIcons['紅茶同好会'],
-        href: clubMagazineLinks.koutya,
+        href: clubMagazineLinks['紅茶同好会'],
       },
       {
         id: 'koma',
         name: '独楽研究会',
         icon: exhibitionIcons['独楽研究会'],
-        href: clubMagazineLinks.koma,
+        href: clubMagazineLinks['独楽研究会'],
       },
     ],
   },
@@ -99,40 +99,22 @@ const categories: Category[] = [
     label: 'さ行',
     items: [
       {
-        id: 'syasin',
-        name: '写真部',
-        icon: exhibitionIcons['写真部'],
-        href: '#',
-      },
-      {
-        id: 'syodou',
-        name: '書道部',
-        icon: exhibitionIcons['書道部'],
-        href: '#',
-      },
-      {
         id: 'sinbun',
         name: '新聞部',
         icon: exhibitionIcons['新聞部'],
-        href: clubMagazineLinks.sinbun,
+        href: clubMagazineLinks['新聞部'],
       },
       {
         id: 'jidousya',
         name: '自動車研究会',
         icon: exhibitionIcons['自動車研究会'],
-        href: clubMagazineLinks.jidousha,
-      },
-      {
-        id: 'jyouhou',
-        name: '情報研究部',
-        icon: exhibitionIcons['情報研究部'],
-        href: '#',
+        href: clubMagazineLinks['自動車研究会'],
       },
       {
         id: 'suugaku',
         name: '数学研究部',
         icon: exhibitionIcons['数学研究部'],
-        href: clubMagazineLinks.suugaku,
+        href: clubMagazineLinks['数学研究部'],
       },
     ],
   },
@@ -144,7 +126,7 @@ const categories: Category[] = [
         id: 'chesu',
         name: 'チェス研究会',
         icon: exhibitionIcons['チェス研究会'],
-        href: clubMagazineLinks.chesu,
+        href: clubMagazineLinks['チェス研究会'],
       },
       {
         id: 'tiri',
@@ -157,23 +139,23 @@ const categories: Category[] = [
         name: '鉄道研究部',
         icon: exhibitionIcons['鉄道研究部'],
         parts: [
-          { label: '東大路快速', href: clubMagazineLinks.tetudou1 },
-          { label: '急行みささぎ', href: clubMagazineLinks.tetudou2 },
-          { label: '準急わかくさ', href: clubMagazineLinks.tetudou3 },
-          { label: '臨時', href: clubMagazineLinks.tetudou4 },
+          { label: '東大路快速', href: clubMagazineLinks['鉄道研究部1'] },
+          { label: '急行みささぎ', href: clubMagazineLinks['鉄道研究部2'] },
+          { label: '準急わかくさ', href: clubMagazineLinks['鉄道研究部3'] },
+          { label: '臨時', href: clubMagazineLinks['鉄道研究部4'] },
         ],
       },
       {
         id: 'dennsikousaku',
         name: '電子工作部',
         icon: exhibitionIcons['電子工作部'],
-        href: clubMagazineLinks.denshikousaku,
+        href: clubMagazineLinks['電子工作部'],
       },
       {
         id: 'touhou',
         name: '東方研究会',
         icon: exhibitionIcons['東方研究会'],
-        href: clubMagazineLinks.touhou,
+        href: clubMagazineLinks['東方研究部'],
       },
       {
         id: 'tozan',
@@ -185,13 +167,13 @@ const categories: Category[] = [
         id: 'douro',
         name: '道路研究会',
         icon: exhibitionIcons['道路研究会'],
-        href: '#',
+        href: clubMagazineLinks['道路研究会'],
       },
       {
         id: 'doraemon',
         name: 'ドラえもん研究会',
         icon: exhibitionIcons['ドラえもん研究会'],
-        href: '#',
+        href: clubMagazineLinks['ドラえもん研究会'],
       },
     ],
   },
@@ -203,7 +185,7 @@ const categories: Category[] = [
         id: 'nazo',
         name: '謎解き研究会',
         icon: exhibitionIcons['謎解き研究会'],
-        href: clubMagazineLinks.nazotoki,
+        href: clubMagazineLinks['謎解き同好会'],
       },
     ],
   },
@@ -215,7 +197,7 @@ const categories: Category[] = [
         id: 'bijyutu',
         name: '美術部',
         icon: exhibitionIcons['美術部'],
-        href: clubMagazineLinks.bijyutu,
+        href: clubMagazineLinks['美術部'],
       },
       {
         id: 'bunngei',
@@ -227,7 +209,7 @@ const categories: Category[] = [
         id: 'pokemon',
         name: 'ポケモン同好会',
         icon: exhibitionIcons['ポケモン同好会'],
-        href: '#',
+        href: clubMagazineLinks['ポケモン同好会'],
       },
       {
         id: 'majikku',
@@ -239,7 +221,7 @@ const categories: Category[] = [
         id: 'minnzoku',
         name: '民族音楽同好会',
         icon: exhibitionIcons['民族音楽同好会'],
-        href: clubMagazineLinks.minnzokuonngaku,
+        href: clubMagazineLinks['民族音楽同好会'],
       },
     ],
   },
@@ -251,7 +233,7 @@ const categories: Category[] = [
         id: 'ramen',
         name: 'ラーメン研究会',
         icon: exhibitionIcons['ラーメン研究会'],
-        href: clubMagazineLinks.ramen,
+        href: clubMagazineLinks['ラーメン研究会'],
       },
       {
         id: 'ryokou',
@@ -269,13 +251,13 @@ const categories: Category[] = [
         id: 'rekisi',
         name: '歴史部菁史会',
         icon: exhibitionIcons['歴史部菁史会'],
-        href: '#',
+        href: clubMagazineLinks['歴史部'],
       },
       {
         id: 'roketto',
         name: 'ロケット研究部',
         icon: exhibitionIcons['ロケット研究部'],
-        href: clubMagazineLinks.roketto,
+        href: clubMagazineLinks['ロケット研究部'],
       },
     ],
   },
@@ -287,13 +269,16 @@ const categories: Category[] = [
         id: 'MGA',
         name: 'MGA同好会',
         icon: exhibitionIcons['MGA同好会'],
-        href: '#',
+        parts: [
+          { label: 'MGA', href: clubMagazineLinks.MGA },
+          { label: '般若湯', href: clubMagazineLinks.MGA_般若湯 },
+        ],
       },
       {
         id: 'vocaloid',
-        name: 'ボーカロイド＆作曲同好会',
+        name: 'VOCALOID＆作曲同好会',
         icon: exhibitionIcons['VOCALOID&作曲同好会'],
-        href: '#',
+        href: clubMagazineLinks['VOCALOID＆作曲同好会'],
       },
     ],
   },
@@ -408,7 +393,7 @@ export default function BrochuresPage() {
   );
 }
 // 複数のPDFを、少し間隔を空けながら順番にダウンロードします
-function handleBulkDownload(hrefs: string[]) {
+function handleBulkView(hrefs: string[]) {
   hrefs.forEach((url, index) => {
     setTimeout(() => {
       const link = document.createElement('a');
@@ -465,10 +450,10 @@ function AccordionCategory({
                     type="button"
                     className={styles.bulkDownloadButton}
                     onClick={() =>
-                      handleBulkDownload(item.parts!.map((p) => p.href))
+                      handleBulkView(item.parts!.map((p) => p.href))
                     }
                   >
-                    まとめて <span aria-hidden>⬇</span>
+                    まとめて見る <span aria-hidden>↗</span>
                   </button>
                   {item.parts!.map((part) => (
                     <a

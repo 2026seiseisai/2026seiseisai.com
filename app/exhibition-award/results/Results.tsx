@@ -9,8 +9,6 @@ import {
 import styles from '../page.module.css';
 
 export default function ExhibitionAwardResults() {
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [resetPassword, setResetPassword] = useState('');
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [total, setTotal] = useState(0);
@@ -21,7 +19,7 @@ export default function ExhibitionAwardResults() {
     try {
       const response = await fetch('/api/exhibition-award/votes', {
         cache: 'no-store',
-        headers: { [exhibitionAwardPasswordHeader]: password },
+        headers: { [exhibitionAwardPasswordHeader]: exhibitionAwardPassword },
       });
       if (!response.ok) throw new Error('集計データを取得できません');
       const data = (await response.json()) as {
@@ -34,7 +32,7 @@ export default function ExhibitionAwardResults() {
     } catch {
       setStatus('集計データを取得できませんでした');
     }
-  }, [password]);
+  }, []);
 
   const resetResults = async () => {
     if (!resetArmed) {
@@ -56,49 +54,9 @@ export default function ExhibitionAwardResults() {
   };
 
   useEffect(() => {
-    if (!isAuthenticated) return;
     const initialLoad = window.setTimeout(() => void loadResults(), 0);
     return () => window.clearTimeout(initialLoad);
-  }, [isAuthenticated, loadResults]);
-
-  if (!isAuthenticated) {
-    return (
-      <main className={styles.resultsPage}>
-        <section
-          className={styles.resultsPanel}
-          aria-labelledby="results-password-title"
-        >
-          <p className={styles.kicker}>SEISEISAI 2026 / LIVE TALLY</p>
-          <h1 id="results-password-title">パスワードを入力してください</h1>
-          <form
-            className={styles.passwordForm}
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (password === exhibitionAwardPassword)
-                setIsAuthenticated(true);
-            }}
-          >
-            <label className={styles.selectLabel} htmlFor="results-password">
-              パスワード
-            </label>
-            <input
-              id="results-password"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              className={styles.passwordInput}
-              autoComplete="current-password"
-              required
-            />
-            <button type="submit" className={styles.startButton}>
-              確認画面を開く
-              <span aria-hidden="true">→</span>
-            </button>
-          </form>
-        </section>
-      </main>
-    );
-  }
+  }, [loadResults]);
   const rows = Object.keys(exhibitionData)
     .map((name) => ({ name, count: counts[name] ?? 0 }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'ja'));

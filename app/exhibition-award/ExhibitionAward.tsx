@@ -28,8 +28,6 @@ function getDeviceId() {
 }
 
 export default function ExhibitionAward() {
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
   const [selectedExhibition, setSelectedExhibition] = useState(
@@ -51,7 +49,7 @@ export default function ExhibitionAward() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            [exhibitionAwardPasswordHeader]: password,
+            [exhibitionAwardPasswordHeader]: exhibitionAwardPassword,
           },
           body: JSON.stringify(vote),
         });
@@ -65,10 +63,9 @@ export default function ExhibitionAward() {
     setPendingCount(unsentVotes.length);
     if (unsentVotes.length === 0)
       setMessage('投票を集計サーバーへ送信しました。');
-  }, [password]);
+  }, []);
 
   useEffect(() => {
-    if (!isAuthenticated) return;
     if ('serviceWorker' in navigator)
       void navigator.serviceWorker.register('/exhibition-award-sw.js');
     const initialSync = window.setTimeout(() => {
@@ -89,46 +86,7 @@ export default function ExhibitionAward() {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, [isAuthenticated, syncVotes]);
-
-  if (!isAuthenticated) {
-    return (
-      <main className={styles.page}>
-        <section
-          className={styles.panel}
-          aria-labelledby="award-password-title"
-        >
-          <p className={styles.kicker}>SEISEISAI 2026 / EXHIBITION AWARD</p>
-          <h1 id="award-password-title">パスワードを入力してください</h1>
-          <form
-            className={styles.passwordForm}
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (password === exhibitionAwardPassword)
-                setIsAuthenticated(true);
-            }}
-          >
-            <label className={styles.selectLabel} htmlFor="award-password">
-              パスワード
-            </label>
-            <input
-              id="award-password"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              className={styles.passwordInput}
-              autoComplete="current-password"
-              required
-            />
-            <button type="submit" className={styles.startButton}>
-              投票画面を開く
-              <span aria-hidden="true">→</span>
-            </button>
-          </form>
-        </section>
-      </main>
-    );
-  }
+  }, [syncVotes]);
 
   const submitVote = () => {
     if (!selectedExhibition) return;

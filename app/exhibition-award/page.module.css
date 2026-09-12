@@ -28,6 +28,7 @@
   top: -13vw;
   border-radius: 50%;
   border: 1px solid rgba(10, 27, 111, 0.16);
+  pointer-events: none;
   box-shadow:
     0 0 0 24px rgba(10, 27, 111, 0.04),
     0 0 0 48px rgba(10, 27, 111, 0.035);
@@ -41,6 +42,7 @@
   border: 1px solid #18212b;
   box-shadow: 12px 12px 0 #db5492;
   padding: clamp(28px, 6vw, 68px);
+  z-index: 1;
 }
 .kicker {
   margin: 0 0 22px;

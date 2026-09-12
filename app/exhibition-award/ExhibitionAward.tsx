@@ -11,19 +11,43 @@ const exhibitionNames = Object.keys(exhibitionData);
 
 type PendingVote = { id: string; exhibition: string; createdAt: string };
 
+let memoryVotes: PendingVote[] = [];
+
 function getPendingVotes(): PendingVote[] {
   try {
-    return JSON.parse(localStorage.getItem(queueKey) ?? '[]') as PendingVote[];
+    const storedVotes = localStorage.getItem(queueKey);
+    return storedVotes ? (JSON.parse(storedVotes) as PendingVote[]) : memoryVotes;
   } catch {
-    return [];
+    return memoryVotes;
+  }
+}
+
+function savePendingVotes(votes: PendingVote[]) {
+  memoryVotes = votes;
+  try {
+    localStorage.setItem(queueKey, JSON.stringify(votes));
+  } catch {
+    // Keep the current page usable when storage is blocked by the tablet.
   }
 }
 
 function getDeviceId() {
-  const existingId = localStorage.getItem(voteIdKey);
+  let existingId = '';
+  try {
+    existingId = localStorage.getItem(voteIdKey) ?? '';
+  } catch {
+    existingId = '';
+  }
   if (existingId) return existingId;
-  const newId = crypto.randomUUID();
-  localStorage.setItem(voteIdKey, newId);
+  const newId =
+    typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  try {
+    localStorage.setItem(voteIdKey, newId);
+  } catch {
+    // The in-memory fallback still provides a usable vote id for this page.
+  }
   return newId;
 }
 
@@ -59,7 +83,7 @@ export default function ExhibitionAward() {
       }
     }
 
-    localStorage.setItem(queueKey, JSON.stringify(unsentVotes));
+    savePendingVotes(unsentVotes);
     setPendingCount(unsentVotes.length);
     if (unsentVotes.length === 0)
       setMessage('投票を集計サーバーへ送信しました。');
@@ -67,7 +91,9 @@ export default function ExhibitionAward() {
 
   useEffect(() => {
     if ('serviceWorker' in navigator)
-      void navigator.serviceWorker.register('/exhibition-award-sw.js');
+      void navigator.serviceWorker
+        .register('/exhibition-award-sw.js')
+        .catch(() => undefined);
     const initialSync = window.setTimeout(() => {
       setIsOnline(navigator.onLine);
       setPendingCount(getPendingVotes().length);
@@ -96,7 +122,7 @@ export default function ExhibitionAward() {
       createdAt: new Date().toISOString(),
     };
     const pendingVotes = [...getPendingVotes(), vote];
-    localStorage.setItem(queueKey, JSON.stringify(pendingVotes));
+    savePendingVotes(pendingVotes);
     setPendingCount(pendingVotes.length);
     setMessage(
       isOnline
